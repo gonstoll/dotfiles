@@ -1,3 +1,10 @@
-- Run `ln -s ~/dotfiles/zsh/zshrc ~/.zshrc` to symlink the `.zshrc` file
-- Run `ln -s ~/dotfiles/git/gitconfig ~/.gitconfig` to symlink the `.gitconfig` file
-- Run `cd && mkdir -p .config && cd .config && ln -s ~/dotfiles/nvim nvim`
+# Dotfiles
+
+This are my dotfiles, use with caution and at your own risk!
+
+### Basic Installation
+
+```bash
+git clone https://github.com/gonstoll/dotfiles.git ~/dotfiles
+~/dotfiles/install.sh
+```
