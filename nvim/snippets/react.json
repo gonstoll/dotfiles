@@ -1,0 +1,47 @@
+{
+  "Import all react": {
+    "prefix": "iar",
+    "body": ["import * as React from 'react'"],
+    "description": "Imports React and all it's primitives"
+  },
+  "Create a react component": {
+    "prefix": "react component",
+    "body": [
+      "import * as React from 'react'",
+      "",
+      "export default function ${1:Component}() {",
+      "  return <div />$0",
+      "}"
+    ],
+    "description": "Imports React and all it's primitives"
+  },
+  "Create a react component with props": {
+    "prefix": "react component with props",
+    "body": [
+      "import * as React from 'react'",
+      "",
+      "interface Props {",
+      "  ${2:prop}: ${3:string};",
+      "}",
+      "export default function ${1:Component}({${2:prop}}: Props) {",
+      "  return <div />$0",
+      "}"
+    ],
+    "description": "Imports React and all it's primitives"
+  },
+  "Import zod": {
+    "prefix": "izod",
+    "body": ["import {z} from 'zod'"],
+    "description": "Imports z from the zod package"
+  },
+  "Use server": {
+    "prefix": "useserv",
+    "body": ["'use server'", ""],
+    "description": "Adds 'use server' RSC directive"
+  },
+  "Use client": {
+    "prefix": "usecli",
+    "body": ["'use client'", ""],
+    "description": "Adds 'use client' RSC directive"
+  }
+}

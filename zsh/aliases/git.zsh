@@ -1,0 +1,2 @@
+# Lazygit
+alias lg="lazygit"

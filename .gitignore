@@ -1,0 +1,12 @@
+.DS_Store
+
+# zsh
+z
+
+# oh-my-zsh
+!/zsh/oh-my-zsh/
+/zsh/oh-my-zsh/*
+/zsh/oh-my-zsh/*/
+!/zsh/oh-my-zsh/themes/
+/zsh/oh-my-zsh/themes/*
+!/zsh/oh-my-zsh/themes/gonzalostoll.zsh-theme
