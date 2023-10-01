@@ -38,8 +38,15 @@ link_gitconfig() {
   ln -s ~/dotfiles/git/gitconfig ~/.gitconfig
 }
 
+link_iterm_profiles() {
+  echo "Installing iTerm2 profiles"
+
+  ln -s ~/dotfiles/iterm2/dynamic-profiles.json ~/.config/iterm2/AppSupport/DynamicProfiles/dynamic-profiles.json
+}
+
 link_nvim
 link_zshrc
 link_gitconfig
+link_iterm_profiles
 
 echo "Setup finished"
