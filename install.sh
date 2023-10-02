@@ -2,11 +2,13 @@
 
 echo "Setup started"
 
-CONFIG_DIR="$HOME/.config"
+cd "$(dirname "$0")"
+DOTFILES=$(pwd -P)
 
 link_nvim() {
   echo "Installing Neovim"
 
+  CONFIG_DIR="$HOME/.config"
   NVIM_CONFIG_DIR="$CONFIG_DIR/nvim"
 
   if [ -d "$CONFIG_DIR" ]; then
@@ -19,7 +21,7 @@ link_nvim() {
       ln -s $HOME/dotfiles/nvim nvim # Symlink
     fi
   else
-    cd # Go home
+    cd $HOME # Go home
     mkdir -p .config # Create .config directory
     cd .config # Cd into .config directory
     ln -s $HOME/dotfiles/nvim nvim # Symlink
