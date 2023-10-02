@@ -19,7 +19,7 @@ sudo nvram SystemAudioVolume=" "
 
 # Set a blazingly fast keyboard repeat rate
 defaults write -g KeyRepeat -int 1
-defaults write -g InitialKeyRepeat -int 12
+defaults write -g InitialKeyRepeat -int 13
 
 # Sync iTerm2 configs
 defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$HOME/dotfiles/iterm2"
