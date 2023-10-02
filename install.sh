@@ -12,7 +12,7 @@ link_nvim() {
   NVIM_CONFIG_DIR="$CONFIG_DIR/nvim"
 
   if [ -d "$CONFIG_DIR" ]; then
-    cd .config # Cd into .config directory
+    cd $HOME/.config # Cd into .config directory
 
     if [ -d "$NVIM_CONFIG_DIR" ]; then
       rm -rf nvim # Remove nvim directory
