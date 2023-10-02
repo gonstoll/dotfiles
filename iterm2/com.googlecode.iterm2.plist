@@ -419,7 +419,7 @@
 			<key>Disable Window Resizing</key>
 			<true/>
 			<key>Dynamic Profile Filename</key>
-			<string>/Users/gonzalostoll/Library/Application Support/iTerm2/DynamicProfiles/dynamic-profiles.json</string>
+			<string>/Users/gonzalostoll/Library/Application Support/iTerm2/DynamicProfiles/night-owl.json</string>
 			<key>Flashing Bell</key>
 			<false/>
 			<key>Foreground Color</key>
@@ -434,7 +434,7 @@
 			<key>Guid</key>
 			<string>6AA4F643-B242-4D74-BCB2-EB7BE1F80384</string>
 			<key>Horizontal Spacing</key>
-			<real>1</real>
+			<integer>1</integer>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Jobs to Ignore</key>
@@ -936,7 +936,7 @@
 			<key>Use Underline Color</key>
 			<true/>
 			<key>Vertical Spacing</key>
-			<real>1</real>
+			<integer>1</integer>
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
@@ -1176,19 +1176,6 @@
 			</dict>
 			<key>Background Image Location</key>
 			<string></string>
-			<key>Badge Color</key>
-			<dict>
-				<key>Alpha Component</key>
-				<real>0.5</real>
-				<key>Blue Component</key>
-				<real>0.0</real>
-				<key>Color Space</key>
-				<string>sRGB</string>
-				<key>Green Component</key>
-				<real>0.14910030364990234</real>
-				<key>Red Component</key>
-				<real>1</real>
-			</dict>
 			<key>Blinking Cursor</key>
 			<true/>
 			<key>Blur</key>
@@ -1231,19 +1218,6 @@
 				<key>Red Component</key>
 				<real>0.10980392156862745</real>
 			</dict>
-			<key>Cursor Guide Color</key>
-			<dict>
-				<key>Alpha Component</key>
-				<real>0.25</real>
-				<key>Blue Component</key>
-				<real>1</real>
-				<key>Color Space</key>
-				<string>sRGB</string>
-				<key>Green Component</key>
-				<real>0.92681378126144409</real>
-				<key>Red Component</key>
-				<real>0.70214027166366577</real>
-			</dict>
 			<key>Cursor Text Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -1270,7 +1244,7 @@
 			<key>Disable Window Resizing</key>
 			<true/>
 			<key>Dynamic Profile Filename</key>
-			<string>/Users/gonzalostoll/Library/Application Support/iTerm2/DynamicProfiles/dynamic-profiles.json</string>
+			<string>/Users/gonzalostoll/Library/Application Support/iTerm2/DynamicProfiles/night-owl.json</string>
 			<key>Flashing Bell</key>
 			<false/>
 			<key>Foreground Color</key>
@@ -1713,16 +1687,16 @@
 			<key>Selected Text Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.0</real>
+				<integer>0</integer>
 				<key>Green Component</key>
-				<real>0.0</real>
+				<integer>0</integer>
 				<key>Red Component</key>
-				<real>0.0</real>
+				<integer>0</integer>
 			</dict>
 			<key>Selection Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>1</real>
+				<integer>1</integer>
 				<key>Green Component</key>
 				<real>0.8353000283241272</real>
 				<key>Red Component</key>
