@@ -43,8 +43,11 @@ link_gitconfig() {
 link_iterm_profiles() {
   echo "Installing iTerm2 profiles"
 
-  ln -s $HOME/dotfiles/iterm2/dynamic-profiles.json $HOME/.config/iterm2/AppSupport/DynamicProfiles/dynamic-profiles.json
+  ln -s $HOME/dotfiles/iterm2/night-owl.json $HOME/.config/iterm2/AppSupport/DynamicProfiles/night-owl.json
 }
+
+./bin/brew.sh
+./bin/macos.sh
 
 link_nvim
 link_zshrc
