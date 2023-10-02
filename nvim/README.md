@@ -21,6 +21,7 @@ This is my Neovim config files, take from it what you need!
 - [`telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim) - Find, Filter, Preview, Pick. All lua, all the time
   - [`telescope-file-browser.nvim`](https://github.com/nvim-telescope/telescope-file-browser.nvim) - File Browser extension for telescope.nvim
   - [`telescope-fzf-native.nvim`](https://github.com/nvim-telescope/telescope-fzf-native.nvim) - FZF sorter for telescope written in c
+- [`conform.nvim`](https://github.com/stevearc/conform.nvim) - Lightweight yet powerful formatter plugin for Neovim
 - [`gitsigns.nvim`](https://github.com/lewis6991/gitsigns.nvim) - Git integration for buffers
 - [`lazygit.nvim`](https://github.com/kdheepak/lazygit.nvim) - Plugin for calling lazygit from within neovim
 - [`vim-fugitive`](https://github.com/tpope/vim-fugitive) - A Git wrapper so awesome, it should be illegal
