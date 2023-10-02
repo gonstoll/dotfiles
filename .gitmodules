@@ -4,3 +4,6 @@
 [submodule "zsh-autosuggestions"]
   path = zsh/oh-my-zsh-custom/plugins/zsh-autosuggestions
   url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "system/wallpapers/wallpapper"]
+	path = system/wallpapers/wallpapper
+	url = https://github.com/mczachurski/wallpapper

@@ -6,7 +6,7 @@ cd "$(dirname "$0")"
 DOTFILES=$(pwd -P)
 
 link_nvim() {
-  echo "Installing Neovim"
+  echo "Symlinkling Neovim"
 
   CONFIG_DIR="$HOME/.config"
   NVIM_CONFIG_DIR="$CONFIG_DIR/nvim"
@@ -29,19 +29,19 @@ link_nvim() {
 }
 
 link_zshrc() {
-  echo "Installing zsh"
+  echo "Symlinkling zshrc"
 
   ln -s $HOME/dotfiles/zsh/zshrc $HOME/.zshrc
 }
 
 link_gitconfig() {
-  echo "Installing gitconfig"
+  echo "Symlinkling gitconfig"
 
   ln -s $HOME/dotfiles/git/gitconfig $HOME/.gitconfig
 }
 
 link_iterm_profiles() {
-  echo "Installing iTerm2 profiles"
+  echo "Symlinkling iTerm2 profiles"
 
   ln -s $HOME/dotfiles/iterm2/night-owl.json $HOME/.config/iterm2/AppSupport/DynamicProfiles/night-owl.json
 }
