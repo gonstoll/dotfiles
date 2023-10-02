@@ -33,3 +33,6 @@ brew install tmux
 brew install node
 brew tap oven-sh/bun # for macOS and Linux
 brew install bun
+
+# Raycast
+brew install --cask raycast
