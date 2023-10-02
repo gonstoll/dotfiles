@@ -1,0 +1,11 @@
+[
+  {
+    "fileName": "tokyo.jpg",
+    "isPrimary": true,
+    "isForLight": true
+  },
+  {
+    "fileName": "new-york.jpg",
+    "isForDark": true
+  }
+]

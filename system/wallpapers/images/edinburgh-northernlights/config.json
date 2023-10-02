@@ -1,0 +1,11 @@
+[
+  {
+    "fileName": "edinburgh.jpg",
+    "isPrimary": true,
+    "isForLight": true
+  },
+  {
+    "fileName": "northern-lights.jpg",
+    "isForDark": true
+  }
+]
