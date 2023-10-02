@@ -121,6 +121,8 @@
 	<true/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
+	<key>LeftTabBarWidth</key>
+	<real>114</real>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -3041,8 +3043,12 @@
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
 	<real>0.096018090109223284</real>
+	<key>StatusBarPosition</key>
+	<integer>0</integer>
 	<key>TabStyleWithAutomaticOption</key>
 	<integer>5</integer>
+	<key>TabViewType</key>
+	<integer>1</integer>
 	<key>UseBorder</key>
 	<false/>
 	<key>UseLionStyleFullscreen</key>
