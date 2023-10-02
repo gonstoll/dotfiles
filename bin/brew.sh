@@ -28,3 +28,8 @@ brew install fd fzf
 
 # Tmux
 brew install tmux
+
+# Runtime
+brew install node
+brew tap oven-sh/bun # for macOS and Linux
+brew install bun
