@@ -24,3 +24,8 @@ defaults write -g InitialKeyRepeat -int 13
 # Sync iTerm2 configs
 defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$HOME/dotfiles/iterm2"
 defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+
+# Set wallpaper to one of the dynamic wallpapers
+osascript -e 'tell application "Finder" to set desktop picture to POSIX file "$DOTFILES/system/wallpapers/images/tokyo-nyc/output.heic"'
+# Set a random wallpaper
+# osascript -e 'tell application "Finder" to set desktop picture to POSIX file "$(find ~/dotfiles/system/foo -name "*.heic" -type f | shuf -n 1)"'
