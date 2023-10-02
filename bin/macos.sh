@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "Setting system defaults"
+
 # ~/.macos — https://mths.be/macos
 
 # Close any open System Preferences panes, to prevent them from overriding
@@ -18,3 +20,7 @@ sudo nvram SystemAudioVolume=" "
 # Set a blazingly fast keyboard repeat rate
 defaults write -g KeyRepeat -int 1
 defaults write -g InitialKeyRepeat -int 12
+
+# Sync iTerm2 configs
+defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$HOME/dotfiles/iterm2"
+defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true

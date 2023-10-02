@@ -46,6 +46,9 @@ link_iterm_profiles() {
   ln -s $HOME/dotfiles/iterm2/dynamic-profiles.json $HOME/.config/iterm2/AppSupport/DynamicProfiles/dynamic-profiles.json
 }
 
+./bin/brew.sh
+./bin/macos.sh
+
 link_nvim
 link_zshrc
 link_gitconfig
