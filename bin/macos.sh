@@ -26,6 +26,7 @@ defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$HOME/dotfiles/i
 defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
 
 # Set wallpaper to one of the dynamic wallpapers
-osascript -e 'tell application "Finder" to set desktop picture to POSIX file "$DOTFILES/system/wallpapers/images/tokyo-nyc/output.heic"'
+wallpaper_image_path="$DOTFILES/system/wallpapers/images/tokyo-nyc/output.heic"
+osascript -e 'tell application "System Events" to set picture of every desktop to POSIX file "'$wallpaper_image_path'"'
 # Set a random wallpaper
 # osascript -e 'tell application "Finder" to set desktop picture to POSIX file "$(find ~/dotfiles/system/foo -name "*.heic" -type f | shuf -n 1)"'

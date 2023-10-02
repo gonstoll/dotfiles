@@ -3,7 +3,7 @@
 echo "Setup started"
 
 cd "$(dirname "$0")"
-DOTFILES=$(pwd -P)
+export DOTFILES=$(pwd -P)
 
 link_nvim() {
   echo "Symlinkling Neovim"
