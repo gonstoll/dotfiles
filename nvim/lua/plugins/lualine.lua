@@ -11,27 +11,27 @@ return {
       normal = {
         a = {bg = rp_palette.love, fg = rp_palette.base, gui = 'bold'},
         b = {bg = rp_palette.base, fg = rp_palette.love},
-        c = {bg = rp_palette.none, fg = rp_palette.text},
+        c = {bg = rp_palette.base, fg = rp_palette.text},
       },
       insert = {
         a = {bg = rp_palette.foam, fg = rp_palette.base, gui = 'bold'},
         b = {bg = rp_palette.base, fg = rp_palette.foam},
-        c = {bg = rp_palette.none, fg = rp_palette.text},
+        c = {bg = rp_palette.base, fg = rp_palette.text},
       },
       visual = {
         a = {bg = rp_palette.iris, fg = rp_palette.base, gui = 'bold'},
         b = {bg = rp_palette.base, fg = rp_palette.iris},
-        c = {bg = rp_palette.none, fg = rp_palette.text},
+        c = {bg = rp_palette.base, fg = rp_palette.text},
       },
       replace = {
         a = {bg = rp_palette.pine, fg = rp_palette.base, gui = 'bold'},
         b = {bg = rp_palette.base, fg = rp_palette.pine},
-        c = {bg = rp_palette.none, fg = rp_palette.text},
+        c = {bg = rp_palette.base, fg = rp_palette.text},
       },
       command = {
         a = {bg = rp_palette.rose, fg = rp_palette.base, gui = 'bold'},
         b = {bg = rp_palette.base, fg = rp_palette.rose},
-        c = {bg = rp_palette.none, fg = rp_palette.text},
+        c = {bg = rp_palette.base, fg = rp_palette.text},
       },
       inactive = {
         a = {bg = rp_palette.base, fg = rp_palette.muted, gui = 'bold'},
