@@ -4,13 +4,6 @@ return {
     init = function()
       return {mode = 'symbol'}
     end,
-    -- config = function()
-    --   local lspkind = require('lspkind')
-    --
-    --   lspkind.init({
-    --     mode = 'symbol',
-    --   })
-    -- end,
   },
 
   {
