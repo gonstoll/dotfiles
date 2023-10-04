@@ -378,7 +378,7 @@
       },
       "Session Close Undo Timeout": 20,
       "Blur": true,
-      "Normal Font": "FiraCodeNF-Ret 14",
+      "Normal Font": "FiraCodeNF-Ret 16",
       "Vertical Spacing": 1,
       "Use Underline Color": true,
       "Ansi 7 Color": {
@@ -424,7 +424,7 @@
       },
       "Screen": -1,
       "Bound Hosts": [],
-      "Non Ascii Font": "SauceCodeProNF 19",
+      "Non Ascii Font": "FiraCodeNF-Ret 16",
       "Ansi 13 Color": {
         "Red Component": 0.7803921568627451,
         "Color Space": "sRGB",
@@ -827,7 +827,7 @@
       },
       "Session Close Undo Timeout": 20,
       "Blur": true,
-      "Normal Font": "FiraCodeNF-Ret 14",
+      "Normal Font": "FiraCodeNF-Ret 16",
       "Vertical Spacing": 1,
       "Use Underline Color": true,
       "Ansi 7 Color": {
@@ -873,7 +873,7 @@
       },
       "Screen": -1,
       "Bound Hosts": [],
-      "Non Ascii Font": "FiraCodeNF-Ret 14",
+      "Non Ascii Font": "FiraCodeNF-Ret 16",
       "Ansi 13 Color": {
         "Red Component": 0.59999999999999998,
         "Color Space": "sRGB",

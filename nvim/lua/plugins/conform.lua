@@ -13,6 +13,8 @@ return {
       scss = {'prettier'},
       markdown = {'prettier'},
       yaml = {'prettier'},
+      sh = {'beautysh'},
+      zsh = {'beautysh'},
     },
     format_on_save = function(bufnr)
       -- Disable autoformat for files in a certain path
@@ -26,7 +28,10 @@ return {
     format_after_save = {lsp_fallback = true},
   },
   config = function(plugin, opts)
-    require('conform').setup(opts)
+    local conform = require('conform')
+    local util = require('conform.util')
+
+    conform.setup(opts)
 
     require('conform.formatters.prettier').args = function(ctx)
       local args = {'--stdin-filepath', '$FILENAME'}
@@ -36,5 +41,10 @@ return {
       end
       return args
     end
+
+    local beautysh = require('conform.formatters.beautysh')
+    conform.formatters.beautysh = vim.tbl_deep_extend('force', beautysh, {
+      args = util.extend_args(beautysh.args, {'--indent-size', '2', '--force-function-style', 'fnpar'})
+    })
   end,
 }

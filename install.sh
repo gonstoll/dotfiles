@@ -5,7 +5,7 @@ echo "Setup started"
 cd "$(dirname "$0")"
 export DOTFILES=$(pwd -P)
 
-link_nvim() {
+function link_nvim() {
   echo "Symlinkling Neovim"
 
   CONFIG_DIR="$HOME/.config"
@@ -28,19 +28,19 @@ link_nvim() {
   fi
 }
 
-link_zshrc() {
+function link_zshrc() {
   echo "Symlinkling zshrc"
 
   ln -s $HOME/dotfiles/zsh/zshrc $HOME/.zshrc
 }
 
-link_gitconfig() {
+function link_gitconfig() {
   echo "Symlinkling gitconfig"
 
   ln -s $HOME/dotfiles/git/gitconfig $HOME/.gitconfig
 }
 
-link_iterm_profiles() {
+function link_iterm_profiles() {
   echo "Symlinkling iTerm2 profiles"
 
   ln -s $HOME/dotfiles/iterm2/night-owl.json $HOME/.config/iterm2/AppSupport/DynamicProfiles/night-owl.json
