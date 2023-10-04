@@ -35,32 +35,30 @@ fi
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-alias ..="cd .. && cd .."
-# npm aliases
-[ -f ~/dotfiles/zsh/aliases/npm.zsh ] && source ~/dotfiles/zsh/aliases/npm.zsh
-# pnpm aliases
-[ -f ~/dotfiles/zsh/aliases/pnpm.zsh ] && source ~/dotfiles/zsh/aliases/pnpm.zsh
-# Lazygit
-[ -f ~/dotfiles/zsh/aliases/git.zsh ] && source ~/dotfiles/zsh/aliases/git.zsh
-# Neovim
-[ -f ~/dotfiles/zsh/aliases/neovim.zsh ] && source ~/dotfiles/zsh/aliases/neovim.zsh
+# Bun
+[ -s "/Users/gonzalostoll/.bun/_bun" ] && source "/Users/gonzalostoll/.bun/_bun"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Syntax highlighting
 source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # z for navigation jumping
-. ~/dotfiles/zsh/z.sh
+source ~/dotfiles/zsh/z.sh
 
 # Shell integration
 source ~/dotfiles/zsh/iterm2_shell_integration.zsh
 
 # fzf
-[ -f ~/dotfiles/zsh/fzf.zsh ] && source ~/dotfiles/zsh/fzf.zsh
-[ -f ~/dotfiles/zsh/aliases/fzf.zsh ] && source ~/dotfiles/zsh/aliases/fzf.zsh
+source ~/dotfiles/zsh/fzf.zsh
 
-# bun completions
-[ -s "/Users/gonzalostoll/.bun/_bun" ] && source "/Users/gonzalostoll/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+#################################### ALIASES ####################################
+# navigation
+source ~/dotfiles/zsh/aliases/navigation.zsh
+# runtime
+source ~/dotfiles/zsh/aliases/runtime.zsh
+# Lazygit
+source ~/dotfiles/zsh/aliases/git.zsh
+# Neovim
+source ~/dotfiles/zsh/aliases/neovim.zsh
+source ~/dotfiles/zsh/aliases/fzf.zsh
