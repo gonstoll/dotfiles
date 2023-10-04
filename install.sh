@@ -54,4 +54,6 @@ link_zshrc
 link_gitconfig
 link_iterm_profiles
 
+cd $HOME # Go home
+
 echo "Setup finished"
