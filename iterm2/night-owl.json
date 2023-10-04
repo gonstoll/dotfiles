@@ -368,7 +368,7 @@
       },
       "Smart Cursor Color": false,
       "Ambiguous Double Width": false,
-      "Blur Radius": 8.337832446808509,
+      "Blur Radius": 20,
       "Ansi 0 Color": {
         "Red Component": 0.0039215686274509795,
         "Color Space": "sRGB",
@@ -414,7 +414,7 @@
         "Alpha Component": 1,
         "Green Component": 0.79607843137254897
       },
-      "Transparency": 0.080000000000000002,
+      "Transparency": 0.14,
       "Background Color": {
         "Red Component": 0.090196078431372548,
         "Color Space": "sRGB",
@@ -817,7 +817,7 @@
       },
       "Smart Cursor Color": false,
       "Ambiguous Double Width": false,
-      "Blur Radius": 8.337832446808509,
+      "Blur Radius": 20,
       "Ansi 0 Color": {
         "Red Component": 0.25098039215686274,
         "Color Space": "sRGB",
@@ -863,7 +863,7 @@
         "Alpha Component": 1,
         "Green Component": 0.58823529411764708
       },
-      "Transparency": 0.080000000000000002,
+      "Transparency": 0.14,
       "Background Color": {
         "Red Component": 0.98431372549019602,
         "Color Space": "sRGB",

@@ -362,7 +362,7 @@
 			<key>Blur</key>
 			<true/>
 			<key>Blur Radius</key>
-			<real>8.337832446808509</real>
+			<integer>20</integer>
 			<key>Bold Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -894,7 +894,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
-			<real>0.080000000000000002</real>
+			<real>0.14000000000000001</real>
 			<key>Triggers</key>
 			<array>
 				<dict>
@@ -1183,7 +1183,7 @@
 			<key>Blur</key>
 			<true/>
 			<key>Blur Radius</key>
-			<real>8.337832446808509</real>
+			<integer>20</integer>
 			<key>Bold Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -1725,7 +1725,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
-			<real>0.080000000000000002</real>
+			<real>0.14000000000000001</real>
 			<key>Triggers</key>
 			<array>
 				<dict>
