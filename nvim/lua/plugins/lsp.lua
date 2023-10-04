@@ -160,8 +160,8 @@ return {
         }
       })
 
-      local on_attach = function(_, bufnr)
-        local nmap = function(keys, func, desc)
+      local function on_attach(_, bufnr)
+        local function nmap(keys, func, desc)
           if desc then
             desc = 'LSP: ' .. desc
           end
@@ -172,12 +172,6 @@ return {
         nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
         nmap('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
         nmap('<leader>f', function()
-          -- vim.lsp.buf.format({
-          --   filter = function(c)
-          --     return c.name == 'efm' or c.name == 'lua_ls'
-          --   end,
-          --   bufnr = bufnr,
-          -- })
           require('conform').format({async = true, lsp_fallback = true})
         end, 'Format current buffer with LSP')
 
@@ -201,14 +195,6 @@ return {
         end, 'Workspace List Folders')
 
         -- Create a command `:Format` local to the LSP buffer
-        -- vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-        --   vim.lsp.buf.format({
-        --     filter = function(c)
-        --       return c.name == 'efm' or c.name == 'lua_ls'
-        --     end,
-        --     bufnr = bufnr,
-        --   })
-        -- end, {desc = 'Format current buffer with LSP'})
         vim.api.nvim_create_user_command('Format', function(args)
           local range = nil
           if args.count ~= -1 then
@@ -320,75 +306,6 @@ return {
       typescript_keymap('<leader>tr', ':TSToolsRemoveUnusedImports<CR>', 'Remove unused imports')
       typescript_keymap('<leader>ta', ':TSToolsAddMissingImports<CR>', 'Add missing imports')
       typescript_keymap('<leader>tf', ':TSToolsFixAll<CR>', 'Fix all')
-
-      -- ########################### FORMATTING ###########################
-      -- local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
-      --
-      -- local prettier = {
-      --   formatCommand = 'prettierd "${INPUT}"',
-      --   formatStdin = true,
-      --   formatCanRange = true,
-      --   env = {string.format('PRETTIERD_DEFAULT_CONFIG=%s', vim.fn.expand('~/.config/nvim/.prettierrc.json'))},
-      --   rootMarkers = {
-      --     '.prettierrc',
-      --     '.prettierrc.json',
-      --     '.prettierrc.js',
-      --     '.prettierrc.yml',
-      --     '.prettierrc.yaml',
-      --     '.prettierrc.json5',
-      --     '.prettierrc.mjs',
-      --     '.prettierrc.cjs',
-      --     '.prettierrc.toml',
-      --   },
-      -- }
-      --
-      -- local languages = {
-      --   typescript = {prettier},
-      --   typescriptreact = {prettier},
-      --   javascript = {prettier},
-      --   javascriptreact = {prettier},
-      --   ['javascript.jsx'] = {prettier},
-      --   ['typescript.tsx'] = {prettier},
-      --   html = {prettier},
-      --   css = {prettier},
-      --   json = {prettier},
-      --   yaml = {prettier},
-      --   markdown = {prettier},
-      -- }
-      --
-      -- local efmls_config = {
-      --   filetypes = vim.tbl_keys(languages),
-      --   settings = {
-      --     languages = languages,
-      --   },
-      --   init_options = {
-      --     documentFormatting = true,
-      --     documentRangeFormatting = true,
-      --   },
-      -- }
-      --
-      -- lspconfig.efm.setup(vim.tbl_extend('force', efmls_config, {
-      --   capabilities = capabilities,
-      --   on_attach = function(client, bufnr)
-      --     vim.keymap.set('n', ';wf', ':noautocmd w<CR>', {desc = 'Save file without formatting'})
-      --
-      --     if client.supports_method('textDocument/formatting') then
-      --       vim.api.nvim_clear_autocmds({group = augroup, buffer = bufnr})
-      --       vim.api.nvim_create_autocmd('BufWritePre', {
-      --         group = augroup,
-      --         buffer = bufnr,
-      --         callback = function()
-      --           vim.lsp.buf.format({
-      --             filter = function(c)
-      --               return c.name == 'efm' or c.name == 'lua_ls'
-      --             end,
-      --             bufnr = bufnr,
-      --           })
-      --         end,
-      --       })
-      --     end
-      --   end,
-      -- }))
 
       -- ########################### UFO ###########################
       local ufo = require('ufo')
