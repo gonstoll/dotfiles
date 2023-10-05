@@ -21,7 +21,7 @@ function link_nvim() {
     mkdir -p $CONFIG_DIR
   fi
 
-  ln -s $HOME/dotfiles/nvim $NVIM_CONFIG_DIR
+  ln -s $DOTFILES/nvim $NVIM_CONFIG_DIR
 }
 
 function link_zshrc() {
@@ -31,7 +31,7 @@ function link_zshrc() {
     rm $HOME/.zshrc
   fi
 
-  ln -s $HOME/dotfiles/zsh/zshrc $HOME/.zshrc
+  ln -s $DOTFILES/zsh/zshrc $HOME/.zshrc
 }
 
 function link_gitconfig() {
@@ -41,7 +41,7 @@ function link_gitconfig() {
     rm $HOME/.gitconfig
   fi
 
-  ln -s $HOME/dotfiles/git/gitconfig $HOME/.gitconfig
+  ln -s $DOTFILES/git/gitconfig $HOME/.gitconfig
 }
 
 function link_iterm_profiles() {
@@ -51,7 +51,7 @@ function link_iterm_profiles() {
     rm $CONFIG_DIR/iterm2/AppSupport/DynamicProfiles/night-owl.json
   fi
 
-  ln -s $HOME/dotfiles/iterm2/night-owl.json $CONFIG_DIR/iterm2/AppSupport/DynamicProfiles/night-owl.json
+  ln -s $DOTFILES/iterm2/night-owl.json $CONFIG_DIR/iterm2/AppSupport/DynamicProfiles/night-owl.json
 }
 
 source ./bin/brew.sh
