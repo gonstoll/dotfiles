@@ -86,15 +86,33 @@
       "Unlimited Scrollback": false,
       "Custom Command": "No",
       "Keyboard Map": {
+        "0x68-0x140000-0x4": {
+          "Version": 1,
+          "Action": 18,
+          "Text": "",
+          "Label": "Select split pane on left"
+        },
+        "0x6a-0x140000-0x26": {
+          "Version": 1,
+          "Action": 21,
+          "Text": "",
+          "Label": "Select split pane below"
+        },
+        "0x6c-0x140000-0x25": {
+          "Version": 1,
+          "Action": 19,
+          "Text": "",
+          "Label": "Select split pane on right"
+        },
+        "0x6b-0x140000-0x28": {
+          "Version": 1,
+          "Action": 20,
+          "Text": "",
+          "Label": "Select split pane above"
+        },
         "0xf700-0x260000": {
           "Action": 10,
           "Text": "[1;6A"
-        },
-        "0x68-0x140000-0x4": {
-          "Version": 1,
-          "Action": 31,
-          "Text": "",
-          "Label": ""
         },
         "0x37-0x40000": {
           "Action": 11,
@@ -160,12 +178,6 @@
           "Version": 1,
           "Action": 11,
           "Text": "0x05",
-          "Label": ""
-        },
-        "0x6c-0x140000-0x25": {
-          "Version": 1,
-          "Action": 30,
-          "Text": "",
           "Label": ""
         },
         "0xf703-0x220000": {
@@ -534,15 +546,33 @@
       "Unlimited Scrollback": false,
       "Custom Command": "No",
       "Keyboard Map": {
+        "0x68-0x140000-0x4": {
+          "Version": 1,
+          "Action": 18,
+          "Text": "",
+          "Label": "Select split pane on left"
+        },
+        "0x6a-0x140000-0x26": {
+          "Version": 1,
+          "Action": 21,
+          "Text": "",
+          "Label": "Select split pane below"
+        },
+        "0x6c-0x140000-0x25": {
+          "Version": 1,
+          "Action": 19,
+          "Text": "",
+          "Label": "Select split pane on right"
+        },
+        "0x6b-0x140000-0x28": {
+          "Version": 1,
+          "Action": 20,
+          "Text": "",
+          "Label": "Select split pane above"
+        },
         "0xf700-0x260000": {
           "Action": 10,
           "Text": "[1;6A"
-        },
-        "0x68-0x140000-0x4": {
-          "Version": 1,
-          "Action": 31,
-          "Text": "",
-          "Label": ""
         },
         "0x37-0x40000": {
           "Action": 11,
@@ -608,12 +638,6 @@
           "Version": 1,
           "Action": 11,
           "Text": "0x05",
-          "Label": ""
-        },
-        "0x6c-0x140000-0x25": {
-          "Version": 1,
-          "Action": 30,
-          "Text": "",
           "Label": ""
         },
         "0xf703-0x220000": {
