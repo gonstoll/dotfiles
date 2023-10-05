@@ -37,11 +37,19 @@ function link_zshrc() {
 function link_gitconfig() {
   echo "Symlinkling gitconfig"
 
+  if [ -f "$HOME/.gitconfig" ]; then
+    rm $HOME/.gitconfig
+  fi
+
   ln -s $HOME/dotfiles/git/gitconfig $HOME/.gitconfig
 }
 
 function link_iterm_profiles() {
   echo "Symlinkling iTerm2 profiles"
+
+  if [ -f "$CONFIG_DIR/iterm2/AppSupport/DynamicProfiles/night-owl.json" ]; then
+    rm $CONFIG_DIR/iterm2/AppSupport/DynamicProfiles/night-owl.json
+  fi
 
   ln -s $HOME/dotfiles/iterm2/night-owl.json $CONFIG_DIR/iterm2/AppSupport/DynamicProfiles/night-owl.json
 }
