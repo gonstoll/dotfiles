@@ -11,18 +11,17 @@ function link_nvim() {
 
   NVIM_CONFIG_DIR="$CONFIG_DIR/nvim"
 
-  if [ -d "$CONFIG_DIR" ]; then
-    cd $HOME/.config # Cd into .config directory
-
-    if [ -d "$NVIM_CONFIG_DIR" ]; then
-      rm -rf nvim # Remove nvim directory
-    fi
-
-    ln -s $HOME/dotfiles/nvim nvim # Symlink
-  else
-    mkdir -p $CONFIG_DIR # Create .config directory
-    ln -s $HOME/dotfiles/nvim $CONFIG_DIR/nvim # Symlink
+  # Remove nvim dir if it exists
+  if [ -d "$NVIM_CONFIG_DIR" ]; then
+    rm -rf $NVIM_CONFIG_DIR
   fi
+
+  # Create .config directory if it doesn't exist
+  if [ ! -d "$CONFIG_DIR" ]; then
+    mkdir -p $CONFIG_DIR
+  fi
+
+  ln -s $HOME/dotfiles/nvim $NVIM_CONFIG_DIR
 }
 
 function link_zshrc() {
