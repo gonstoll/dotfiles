@@ -16,20 +16,21 @@ function link_nvim() {
 
     if [ -d "$NVIM_CONFIG_DIR" ]; then
       rm -rf nvim # Remove nvim directory
-      ln -s $HOME/dotfiles/nvim nvim # Symlink
-    else
-      ln -s $HOME/dotfiles/nvim nvim # Symlink
     fi
-  else
-    cd $HOME # Go home
-    mkdir -p .config # Create .config directory
-    cd .config # Cd into .config directory
+
     ln -s $HOME/dotfiles/nvim nvim # Symlink
+  else
+    mkdir -p $CONFIG_DIR # Create .config directory
+    ln -s $HOME/dotfiles/nvim $CONFIG_DIR/nvim # Symlink
   fi
 }
 
 function link_zshrc() {
   echo "Symlinkling zshrc"
+
+  if [ -f "$HOME/.zshrc" ]; then
+    rm $HOME/.zshrc
+  fi
 
   ln -s $HOME/dotfiles/zsh/zshrc $HOME/.zshrc
 }
