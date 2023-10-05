@@ -4,11 +4,11 @@ echo "Setup started"
 
 cd "$(dirname "$0")"
 export DOTFILES=$(pwd -P)
+CONFIG_DIR="$HOME/.config"
 
 function link_nvim() {
   echo "Symlinkling Neovim"
 
-  CONFIG_DIR="$HOME/.config"
   NVIM_CONFIG_DIR="$CONFIG_DIR/nvim"
 
   if [ -d "$CONFIG_DIR" ]; then
@@ -44,11 +44,11 @@ function link_gitconfig() {
 function link_iterm_profiles() {
   echo "Symlinkling iTerm2 profiles"
 
-  ln -s $HOME/dotfiles/iterm2/night-owl.json $HOME/.config/iterm2/AppSupport/DynamicProfiles/night-owl.json
+  ln -s $HOME/dotfiles/iterm2/night-owl.json $CONFIG_DIR/iterm2/AppSupport/DynamicProfiles/night-owl.json
 }
 
-./bin/brew.sh
-./bin/macos.sh
+source ./bin/brew.sh
+source ./bin/macos.sh
 
 link_nvim
 link_zshrc
