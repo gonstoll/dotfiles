@@ -5,13 +5,13 @@ vim.keymap.set('n', '<C-a>', 'gg<S-v>G', {desc = 'Select all'})
 vim.keymap.set('n', 'tn', ':tabnew %<CR>', {desc = 'New tab'})
 vim.keymap.set('n', 'tc', ':tabclose<CR>', {desc = 'Close tab'})
 -- Split window
-vim.keymap.set('n', 'ss', ':split<Return><C-w>w', {desc = 'Split window horizontally'})   -- Horizontal
-vim.keymap.set('n', 'sv', ':vsplit<Return><C-w>w', {desc = 'Split window vertically'})    -- Vertical
+vim.keymap.set('n', 'ss', ':split<Return><C-w>w', {desc = 'Split window horizontally'}) -- Horizontal
+vim.keymap.set('n', 'sv', ':vsplit<Return><C-w>w', {desc = 'Split window vertically'})  -- Vertical
 -- Move window
-vim.keymap.set('', '<C-h>', '<C-w>h', {desc = 'Move window (left)'})                      -- Left
-vim.keymap.set('', '<C-k>', '<C-w>k', {desc = 'Move window (up)'})                        -- Up
-vim.keymap.set('', '<C-j>', '<C-w>j', {desc = 'Move window (down)'})                      -- Down
-vim.keymap.set('', '<C-l>', '<C-w>l', {desc = 'Move window (right)'})                     -- Right
+vim.keymap.set('', '<C-h>', '<C-w>h', {desc = 'Move window (left)'})                    -- Left
+vim.keymap.set('', '<C-k>', '<C-w>k', {desc = 'Move window (up)'})                      -- Up
+vim.keymap.set('', '<C-j>', '<C-w>j', {desc = 'Move window (down)'})                    -- Down
+vim.keymap.set('', '<C-l>', '<C-w>l', {desc = 'Move window (right)'})                   -- Right
 
 -- Resize window
 vim.keymap.set('n', '<C-w><left>', '<C-w><', {desc = 'Resize window (left)'})
@@ -41,3 +41,6 @@ vim.keymap.set('n', '<leader>gg', ':LazyGit<CR>', {desc = 'Open lazygit'})
 
 -- Toggle highlighting search
 vim.keymap.set('n', '<leader>;h', ':set hlsearch!<CR>', {desc = 'Toggle highlighting search'})
+
+-- Save without formatting
+vim.keymap.set('n', ';wf', ':noautocmd w<CR>', {desc = 'Save without formatting'})
