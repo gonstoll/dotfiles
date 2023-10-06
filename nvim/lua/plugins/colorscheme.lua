@@ -43,7 +43,7 @@ return {
         },
         CursorLine = {
           bg = 'text',
-          blend = 10,
+          blend = 20,
         },
         StatusLine = {
           fg = 'love',
