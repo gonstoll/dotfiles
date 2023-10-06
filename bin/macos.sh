@@ -30,3 +30,12 @@ wallpaper_image_path="$DOTFILES/system/wallpapers/images/tokyo-nyc/output.heic"
 osascript -e 'tell application "System Events" to set picture of every desktop to POSIX file "'$wallpaper_image_path'"'
 # Set a random wallpaper
 # osascript -e 'tell application "Finder" to set desktop picture to POSIX file "$(find ~/dotfiles/system/wallpapers -name "*.heic" -type f | shuf -n 1)"'
+
+# Enable menu-bar icons
+defaults write com.apple.systemuiserver menuExtras -array \
+  "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
+  "/System/Library/CoreServices/Menu Extras/Clock.menu" \
+  "/System/Library/CoreServices/Menu Extras/Battery.menu" \
+  "/System/Library/CoreServices/Menu Extras/Volume.menu"
+
+killall SystemUIServer
