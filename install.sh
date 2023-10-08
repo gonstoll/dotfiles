@@ -1,67 +1,102 @@
 #!/bin/sh
-
-echo "Setup started"
+# Script heavily inspired by https://github.com/andrew8088/dotfiles/blob/main/install/bootstrap.sh
 
 cd "$(dirname "$0")"
 export DOTFILES=$(pwd -P)
-CONFIG_DIR="$HOME/.config"
 
-function link_nvim() {
-  echo "Symlinkling Neovim"
+echo ">>> Setup started"
+echo ""
 
-  NVIM_CONFIG_DIR="$CONFIG_DIR/nvim"
+function install_system() {
+  read -p "Do you want to install system packages? (y/n) " yn < /dev/tty
+  case $yn in
+    [Yy]* ) source ./bin/brew.sh; break ;;
+    [Nn]* ) echo "> Skipped installing system packages"; return ;;
+    * ) echo "> Incorrect option, skipping"; return ;;
+  esac
 
-  # Remove nvim dir if it exists
-  if [ -d "$NVIM_CONFIG_DIR" ]; then
-    rm -rf $NVIM_CONFIG_DIR
-  fi
-
-  # Create .config directory if it doesn't exist
-  if [ ! -d "$CONFIG_DIR" ]; then
-    mkdir -p $CONFIG_DIR
-  fi
-
-  ln -s $DOTFILES/nvim $NVIM_CONFIG_DIR
+  echo "> Finished installing system packages"
 }
 
-function link_zshrc() {
-  echo "Symlinkling zshrc"
+function install_preferences() {
+  read -p "Do you want to install system preferences? (y/n) " yn < /dev/tty
+  case $yn in
+    [Yy]* ) source ./bin/macos.sh; break ;;
+    [Nn]* ) echo "> Skipped installing system preferences"; return ;;
+    * ) echo "> Incorrect option, skipping"; return ;;
+  esac
 
-  if [ -f "$HOME/.zshrc" ]; then
-    rm $HOME/.zshrc
-  fi
-
-  ln -s $DOTFILES/zsh/zshrc $HOME/.zshrc
+  echo "> Finished installing system preferences"
 }
 
-function link_gitconfig() {
-  echo "Symlinkling gitconfig"
+function link_files() {
+  local src=$1 dst=$2
 
-  if [ -f "$HOME/.gitconfig" ]; then
-    rm $HOME/.gitconfig
+  local skip=
+  local overwrite=
+  local backup=
+  local action=
+
+  if [ -f "$dst" ] || [ -d "$dst" ] || [ -L "$dst" ]
+  then
+
+    local first_line="Path to $dst already exists, what do you want to do?"
+    local second_line="[o]verwrite, [s]kip, [S]kip all, [b]ackup?"
+    read -p "$first_line $second_line " yn < /dev/tty
+
+    case $yn in
+      [S]* ) echo "> Skipped symlinking all duplicated files"; break ;;
+      [s]* ) echo "> Skipped symlinking $(basename "$src")"; skip=true ;;
+      [o]* ) overwrite=true ;;
+      [b]* ) backup=true ;;
+      * ) echo "> Incorrect option, skipping"; skip=true ;;
+    esac
+
+
+    if [ "$overwrite" == "true" ]
+    then
+      rm -rf "$dst"
+      echo "> Removed $dst"
+    fi
+
+    if [ "$backup" == "true" ]
+    then
+      mv "$dst" "${dst}.backup"
+      echo "> Moved $dst to ${dst}.backup"
+    fi
+
   fi
 
-  ln -s $DOTFILES/git/gitconfig $HOME/.gitconfig
-}
-
-function link_iterm_profiles() {
-  echo "Symlinkling iTerm2 profiles"
-
-  if [ -f "$CONFIG_DIR/iterm2/AppSupport/DynamicProfiles/night-owl.json" ]; then
-    rm $CONFIG_DIR/iterm2/AppSupport/DynamicProfiles/night-owl.json
+  if [ "$skip" != "true" ]
+  then
+    ln -s "$src" "$dst"
+    echo "> Linked $1 to $2"
   fi
 
-  ln -s $DOTFILES/iterm2/night-owl.json $CONFIG_DIR/iterm2/AppSupport/DynamicProfiles/night-owl.json
+  echo ""
 }
 
-source ./bin/brew.sh
-source ./bin/macos.sh
+function install_dotfiles() {
+  echo "> Installing dotfiles"
 
-link_nvim
-link_zshrc
-link_gitconfig
-link_iterm_profiles
+  find . -name "link.prop" -type f -exec cat {} \; | while IFS= read -r line;
+  do
+    local src=$(eval echo "$line" | cut -d '=' -f 1)
+    local dst=$(eval echo "$line" | cut -d '=' -f 2)
+    local dir=$(dirname $dst)
+
+    mkdir -p $dir
+
+    link_files $src $dst
+  done
+}
+
+install_system
+echo ""
+install_preferences
+echo ""
+install_dotfiles
 
 cd $HOME # Go home
 
-echo "Setup finished"
+echo ">>> Setup finished"
