@@ -314,7 +314,7 @@ return {
       vim.keymap.set('n', 'zR', ufo.openAllFolds)
       vim.keymap.set('n', 'zM', ufo.closeAllFolds)
       vim.keymap.set('n', 'K', function()
-        local winid = ufo.peekFoldedLinesUnderCursor()
+        local winid = ufo.peekFoldedLinesUnderCursor(true)
         if not winid then
           vim.lsp.buf.hover()
         end
