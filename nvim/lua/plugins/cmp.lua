@@ -116,7 +116,6 @@ return {
       end,
       completion = {
         keyword_length = 1,
-        completeopt = 'menu,menuone,noinsert'
       },
     })
 
