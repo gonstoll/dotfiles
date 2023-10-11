@@ -11,6 +11,8 @@ Take from it what you need!
 | <img src="/__images/dark-mode-1.png" alt="Neovim dark mode screenshot - Dashboard" /> | <img src="/__images/light-mode-1.png" alt="Neovim light mode screenshot - Dashboard" /> |
 | <img src="/__images/dark-mode-2.png" alt="Neovim dark mode screenshot" />             | <img src="/__images/light-mode-2.png" alt="Neovim light mode screenshot" />             |
 
+Always a WIP 😅
+
 ## Plugins
 
 - [`lazy.nvim`](https://github.com/folke/lazy.nvim) - A modern plugin manager for Neovim
