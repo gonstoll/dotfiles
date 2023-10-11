@@ -32,6 +32,7 @@ return {
         'yaml',
         'css',
         'html',
+        'javascript',
         'lua',
         'vim',
         'vimdoc',
@@ -43,7 +44,7 @@ return {
         enable_close_on_slash = false,
       },
       context_commentstring = {
-        enable         = true,
+        enable = true,
         enable_autocmd = false,
       },
       incremental_selection = {
