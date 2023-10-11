@@ -33,12 +33,26 @@ return {
 
     conform.setup(opts)
 
+    -- Customize prettier args
     require('conform.formatters.prettier').args = function(ctx)
       local args = {'--stdin-filepath', '$FILENAME'}
-      local found = vim.fs.find('.prettierrc.json', {upward = true, path = ctx.dirname, type = 'file'})[1]
+      local found = vim.fs.find('.prettierrc.json', {
+        upward = true,
+        path = ctx.dirname,
+        type = 'file'
+      })[1]
+      local found2 = vim.fs.find('.prettierrc.json', {
+        path = vim.fn.expand('~/.config/nvim'),
+        type = 'file'
+      })[1]
+
+      -- Project config takes precedence over global config
       if found then
         vim.list_extend(args, {'--config', found})
+      elseif found2 then
+        vim.list_extend(args, {'--config', found2})
       end
+
       return args
     end
 
