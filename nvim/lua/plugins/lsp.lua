@@ -15,7 +15,10 @@ return {
     event = 'LspAttach',
     opts = {
       ui = {border = 'rounded'},
-      symbol_in_winbar = {enable = true},
+      symbol_in_winbar = {
+        enable = true,
+        folder_level = 2,
+      },
       lightbulb = {
         enable = false,
         sign = false,
