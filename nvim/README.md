@@ -1,6 +1,15 @@
 # Neovim configuration
 
-This is my Neovim config files, take from it what you need!
+This is my Neovim configuration. As you might've guessed by the screenshots, this configuration is heavily inclined for
+Frontend development, with support for Typescript, tsx, tailwind, and more. That being said, it's completely extendable
+to suit any of your needs :)
+
+Take from it what you need!
+
+| Dark mode                                                                             | Light mode                                                                              |
+| ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| <img src="/__images/dark-mode-1.png" alt="Neovim dark mode screenshot - Dashboard" /> | <img src="/__images/light-mode-1.png" alt="Neovim light mode screenshot - Dashboard" /> |
+| <img src="/__images/dark-mode-2.png" alt="Neovim dark mode screenshot" />             | <img src="/__images/light-mode-2.png" alt="Neovim light mode screenshot" />             |
 
 ## Plugins
 
@@ -52,6 +61,7 @@ This is my Neovim config files, take from it what you need!
 - [`vim-test`](https://github.com/vim-test/vim-test) - Run your tests at the speed of thought
 - [`which-key.nvim`](https://github.com/folke/which-key.nvim) - displays a popup with possible keybindings of the command you started typing
 - [`package-info.nvim`](https://github.com/vuki656/package-info.nvim) - All the npm/yarn/pnpm commands I don't want to type
+- [`vim-visual-multi`](https://github.com/mg979/vim-visual-multi) - Multiple cursors plugin for vim/neovim
 - [`neodev.nvim`](https://github.com/folke/neodev.nvim) - plugin development with full signature help, docs and completion for the nvim lua API
 - [`vim-carbon-now-sh`](https://github.com/ellisonleao/carbon-now.nvim) - Create beautiful code snippets directly from your neovim terminal
 - [`nui.nvim`](https://github.com/MunifTanjim/nui.nvim) - UI Component Library for Neovim
