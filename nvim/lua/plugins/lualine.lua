@@ -40,9 +40,11 @@ return {
       },
     }
 
+    local isRosePineTheme = vim.g.colors_name == 'rose-pine'
+
     return {
       options = {
-        theme = customRosePineTheme,
+        theme = isRosePineTheme and customRosePineTheme or 'gruvbox-material',
         component_separators = '│',
       },
       sections = {
