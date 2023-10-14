@@ -71,7 +71,7 @@ return {
         -- end, {'i', 's'}),
       },
       sources = cmp.config.sources({
-        {name = 'nvim_lsp', max_item_count = 200},
+        {name = 'nvim_lsp'},
         {name = 'luasnip'},
       }, {
         {name = 'buffer'},
@@ -114,9 +114,6 @@ return {
           return not context.in_treesitter_capture('comment') and not context.in_syntax_group('Comment')
         end
       end,
-      completion = {
-        keyword_length = 1,
-      },
     })
 
     -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
