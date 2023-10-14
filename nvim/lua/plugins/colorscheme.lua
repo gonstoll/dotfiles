@@ -29,11 +29,6 @@ return {
         IndentBlanklineIndent1 = {fg = 'highlight_med'},
       }
     },
-    config = function(_, opts)
-      local theme = require('rose-pine')
-      theme.setup(opts)
-      vim.cmd.colorscheme('rose-pine')
-    end
   },
 
   {
@@ -57,7 +52,7 @@ return {
       local palette = vim.fn['gruvbox_material#get_palette'](configuration.background, configuration.foreground,
         configuration.colors_override)
 
-      -- vim.cmd.colorscheme('gruvbox-material')
+      vim.cmd.colorscheme('gruvbox-material')
 
       local highlights_groups = {
         FoldColumn = {bg = 'none'},

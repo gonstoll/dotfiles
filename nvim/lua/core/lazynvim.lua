@@ -17,8 +17,8 @@ require('lazy').setup({
     notify = false,
   },
   install = {
-    missing = true,                -- install missing plugins on startup.
-    colorscheme = {'rose-pine'},   -- try to load one of these colorschemes when installation
+    missing = true,                                  -- install missing plugins on startup.
+    colorscheme = {'gruvbox-material', 'rose-pine'}, -- try to load one of these colorschemes when installation
   },
   ui = {
     border = 'rounded',
