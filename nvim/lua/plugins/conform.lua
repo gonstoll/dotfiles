@@ -27,7 +27,7 @@ return {
     end,
     format_after_save = {lsp_fallback = true},
   },
-  config = function(plugin, opts)
+  config = function(_, opts)
     local conform = require('conform')
     local util = require('conform.util')
 
@@ -51,6 +51,25 @@ return {
         vim.list_extend(args, {'--config', found})
       elseif found2 then
         vim.list_extend(args, {'--config', found2})
+      end
+
+      local isUsingTailwind = vim.fs.find('tailwind.config.js', {
+        upward = true,
+        path = ctx.dirname,
+        type = 'file'
+      })[1]
+      local local_prettier_tailwind_plugin = vim.fs.find('node_modules/prettier-plugin-tailwindcss/dist/index.mjs', {
+        upward = true,
+        path = ctx.dirname,
+        type = 'file'
+      })[1]
+
+      if local_prettier_tailwind_plugin then
+        vim.list_extend(args, {'--plugin', local_prettier_tailwind_plugin})
+      else
+        if isUsingTailwind then
+          vim.notify('Please run npm i -D prettier-plugin-tailwindcss', vim.log.levels.WARN)
+        end
       end
 
       return args

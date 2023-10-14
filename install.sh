@@ -29,6 +29,17 @@ function install_preferences() {
   echo "> Finished installing system preferences"
 }
 
+function install_runtime_packages() {
+  read -p "Do you want to install global runtime packages? (y/n) " yn < /dev/tty
+  case $yn in
+    [Yy]* ) source ./bin/runtime.sh; break ;;
+    [Nn]* ) echo "> Skipped installing global runtime packages"; return ;;
+    * ) echo "> Incorrect option, skipping"; return ;;
+  esac
+
+  echo "> Finished installing global runtime packages"
+}
+
 function link_files() {
   local src=$1 dst=$2
 
@@ -94,6 +105,8 @@ function install_dotfiles() {
 install_system
 echo ""
 install_preferences
+echo ""
+install_runtime_packages
 echo ""
 install_dotfiles
 
