@@ -15,6 +15,7 @@ require('lazy').setup({
   spec = 'plugins',
   change_detection = {
     notify = false,
+    enabled = true,
   },
   install = {
     missing = true,                                  -- install missing plugins on startup.

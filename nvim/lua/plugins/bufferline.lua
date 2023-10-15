@@ -6,12 +6,6 @@ return {
   opts = function()
     local bufferline = require('bufferline')
     local groups = require('bufferline.groups')
-    local rp_palette = require('rose-pine.palette')
-
-    local is_dark_theme = vim.o.background == 'dark'
-    local white_color = '#ffffff'
-    local black_color = '#1c1c27'
-
 
     function GoToBuffer(bufnr)
       bufferline.go_to(bufnr)
@@ -25,6 +19,43 @@ return {
     vim.keymap.set('n', '<leader>P', function() groups.toggle_pin() end, {desc = 'Toggle pin buffer'})
     vim.keymap.set('n', '<leader>XA', function() bufferline.close_others() end,
       {desc = 'Close all other visible buffers'})
+
+    local is_dark_theme = vim.o.background == 'dark'
+    local white_color = '#ffffff'
+    local black_color = '#1c1c27'
+
+    local colorscheme = vim.g.colors_name
+    local palette = {}
+
+    if colorscheme == 'rose-pine' then
+      local rp_palette = require('rose-pine.palette')
+
+      palette = {
+        text = rp_palette.text,
+        dim = rp_palette.subtle,
+        red = rp_palette.rose,
+        yellow = rp_palette.gold,
+        green = rp_palette.foam,
+        purple = rp_palette.iris,
+        blue = rp_palette.foam,
+      }
+    end
+
+    if colorscheme == 'gruvbox-material' then
+      local configuration = vim.fn['gruvbox_material#get_configuration']()
+      local gv_palette = vim.fn['gruvbox_material#get_palette'](configuration.background, configuration.foreground,
+        configuration.colors_override)
+
+      palette = {
+        text = gv_palette.fg1[1],
+        dim = gv_palette.grey1[1],
+        red = gv_palette.red[1],
+        yellow = gv_palette.yellow[1],
+        green = gv_palette.green[1],
+        purple = gv_palette.purple[1],
+        blue = gv_palette.blue[1],
+      }
+    end
 
     return {
       options = {
@@ -73,7 +104,7 @@ return {
       highlights = {
         tab = {
           bg = 'none',
-          fg = rp_palette.text,
+          fg = palette.text,
         },
         tab_selected = {
           bg = 'none',
@@ -81,7 +112,7 @@ return {
         },
         buffer_visible = {
           bg = 'none',
-          fg = rp_palette.subtle,
+          fg = palette.dim,
         },
         buffer_selected = {
           bg = 'none',
@@ -90,88 +121,88 @@ return {
         },
         separator = {
           bg = 'none',
-          fg = rp_palette.text,
+          fg = palette.text,
         },
         numbers = {
-          fg = rp_palette.text,
+          fg = palette.text,
         },
         numbers_visible = {
-          fg = rp_palette.subtle,
+          fg = palette.dim,
         },
         background = {
-          fg = rp_palette.subtle, -- Color of buffer when not selected
+          fg = palette.dim,
         },
         hint = {
-          fg = rp_palette.subtle,
+          fg = palette.dim,
         },
         hint_visible = {
-          fg = rp_palette.subtle,
+          fg = palette.dim,
         },
         hint_selected = {
           fg = is_dark_theme and white_color or black_color,
         },
         hint_diagnostic = {
-          fg = rp_palette.iris,
+          fg = palette.purple,
         },
         hint_diagnostic_visible = {
-          fg = rp_palette.iris,
+          fg = palette.purple,
         },
         hint_diagnostic_selected = {
-          fg = rp_palette.iris,
+          fg = palette.purple,
         },
         error = {
-          fg = rp_palette.subtle,
+          fg = palette.dim,
         },
         error_visible = {
-          fg = rp_palette.subtle,
+          fg = palette.dim,
         },
         error_selected = {
           fg = is_dark_theme and white_color or black_color,
         },
         error_diagnostic = {
-          fg = rp_palette.rose,
+          fg = palette.red,
         },
         error_diagnostic_visible = {
-          fg = rp_palette.rose,
+          fg = palette.red,
         },
         error_diagnostic_selected = {
-          fg = rp_palette.rose,
+          fg = palette.red,
         },
         warning = {
-          fg = rp_palette.subtle,
+          fg = palette.dim,
         },
         warning_visible = {
-          fg = rp_palette.subtle,
+          fg = palette.dim,
         },
         warning_selected = {
           fg = is_dark_theme and white_color or black_color,
         },
         warning_diagnostic = {
-          fg = rp_palette.gold,
+          fg = palette.yellow,
         },
         warning_diagnostic_visible = {
-          fg = rp_palette.gold,
+          fg = palette.yellow,
         },
         warning_diagnostic_selected = {
-          fg = rp_palette.gold,
+          fg = palette.yellow,
         },
         info = {
-          fg = rp_palette.subtle,
+          fg = palette.dim,
         },
         info_visible = {
-          fg = rp_palette.subtle,
+          fg = palette.dim,
         },
         info_selected = {
           fg = is_dark_theme and white_color or black_color,
         },
         info_diagnostic = {
-          fg = rp_palette.foam,
+          fg = palette.blue,
         },
         info_diagnostic_visible = {
-          fg = rp_palette.foam,
+          fg = palette.blue,
         },
         info_diagnostic_selected = {
-          fg = rp_palette.foam,
+          fg = palette.blue,
         },
       },
     }

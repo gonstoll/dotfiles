@@ -16,6 +16,7 @@ Always a WIP 😅
 ## Plugins
 
 - [`lazy.nvim`](https://github.com/folke/lazy.nvim) - A modern plugin manager for Neovim
+- [`gruvbox-material`](https://github.com/sainnhe/gruvbox-material) - Gruvbox with Material Palette
 - [`rose-pine`](https://github.com/rose-pine/neovim) - Soho vibes for Neovim
 - [`nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig) - Quickstart configs for Nvim LSP
   - [`mason.nvim`](https://github.com/williamboman/mason.nvim) - Easily install and manage LSP servers, DAP servers, linters, and formatters

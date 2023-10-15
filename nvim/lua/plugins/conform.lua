@@ -36,21 +36,21 @@ return {
     -- Customize prettier args
     require('conform.formatters.prettier').args = function(ctx)
       local args = {'--stdin-filepath', '$FILENAME'}
-      local found = vim.fs.find('.prettierrc.json', {
+      local localPrettierConfig = vim.fs.find('.prettierrc.json', {
         upward = true,
         path = ctx.dirname,
         type = 'file'
       })[1]
-      local found2 = vim.fs.find('.prettierrc.json', {
+      local globalPrettierConfig = vim.fs.find('.prettierrc.json', {
         path = vim.fn.expand('~/.config/nvim'),
         type = 'file'
       })[1]
 
       -- Project config takes precedence over global config
-      if found then
-        vim.list_extend(args, {'--config', found})
-      elseif found2 then
-        vim.list_extend(args, {'--config', found2})
+      if localPrettierConfig then
+        vim.list_extend(args, {'--config', localPrettierConfig})
+      elseif globalPrettierConfig then
+        vim.list_extend(args, {'--config', globalPrettierConfig})
       end
 
       local isUsingTailwind = vim.fs.find('tailwind.config.js', {
@@ -58,17 +58,19 @@ return {
         path = ctx.dirname,
         type = 'file'
       })[1]
-      local local_prettier_tailwind_plugin = vim.fs.find('node_modules/prettier-plugin-tailwindcss/dist/index.mjs', {
+      local localTailwindcssPlugin = vim.fs.find('node_modules/prettier-plugin-tailwindcss/dist/index.mjs', {
         upward = true,
         path = ctx.dirname,
         type = 'file'
       })[1]
 
-      if local_prettier_tailwind_plugin then
-        vim.list_extend(args, {'--plugin', local_prettier_tailwind_plugin})
+      if localTailwindcssPlugin then
+        vim.list_extend(args, {'--plugin', localTailwindcssPlugin})
       else
         if isUsingTailwind then
-          vim.notify('Please run npm i -D prettier-plugin-tailwindcss', vim.log.levels.WARN)
+          vim.notify(
+            'Tailwind was detected for your project. You can really benefit from automatic class sorting. Please run npm i -D prettier-plugin-tailwindcss',
+            vim.log.levels.WARN)
         end
       end
 

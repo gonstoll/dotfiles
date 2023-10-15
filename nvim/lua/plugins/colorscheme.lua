@@ -2,7 +2,6 @@ return {
   {
     'rose-pine/neovim',
     lazy = false,
-    priority = 1000,
     name = 'rose-pine',
     opts = {
       variant = 'auto',
@@ -25,7 +24,7 @@ return {
         GitSignsAdd = {fg = 'iris', bg = 'none'},
         GitSignsChange = {fg = 'foam', bg = 'none'},
         GitSignsDelete = {fg = 'rose', bg = 'none'},
-        IndentBlanklineContextChar = {fg = 'subtle'},
+        IndentBlanklineContextChar = {fg = 'subtle'}, -- Highlighted indent
         IndentBlanklineIndent1 = {fg = 'highlight_med'},
       }
     },
@@ -35,6 +34,7 @@ return {
     'sainnhe/gruvbox-material',
     name = 'gruvbox-material',
     lazy = false,
+    priority = 1000,
     config = function()
       vim.g.gruvbox_material_better_performance = 1
       -- Fonts
