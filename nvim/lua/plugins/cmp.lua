@@ -54,7 +54,6 @@ return {
       mapping = {
         ['<CR>'] = cmp.mapping.confirm({select = true, behavior = cmp.ConfirmBehavior.Replace}),
         ['<C-e>'] = cmp.mapping.abort(),
-        ['<ESC>'] = cmp.mapping.abort(),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
         ['<Up>'] = cmp.mapping.select_prev_item(cmp_select_opts),
@@ -62,13 +61,6 @@ return {
         ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select_opts),
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select_opts),
         ['<C-y>'] = cmp.mapping.complete(),
-        -- ['<ESC>'] = cmp.mapping(function(fallback)
-        --   if cmp.visible() then
-        --     cmp.abort()
-        --   else
-        --     fallback()
-        --   end
-        -- end, {'i', 's'}),
       },
       sources = cmp.config.sources({
         {name = 'nvim_lsp'},
