@@ -9,7 +9,7 @@ These are my dotfiles, use with caution and at your own risk! For the moment, th
 
 ## Features
 
-- Editor - [Neovim](https://neovim.io/)
+- Editor - [Neovim](https://neovim.io/). Want more pics? Check them out [here](https://github.com/gonstoll/dotfiles/blob/master/nvim/README.md)
 - Shell - [Zsh](https://www.zsh.org/)
 - Terminal - [iTerm2](https://iterm2.com/)
 - Launcher - [Raycast](https://www.raycast.com/)
@@ -27,7 +27,11 @@ First, this script will let you choose whether to install or not a set of script
 
 - [Homebrew](https://brew.sh/) and a set of packages ([find them
   here](https://github.com/gonstoll/dotfiles/blob/master/bin/brew.sh))
-- MacOS settings
+- MacOS settings (things like key-repeat rate, menu bar icons. It even features mczachurski's
+  [wallpapper](https://github.com/mczachurski/wallpapper) to let you easily setup dynamic wallpapers)
 - Runtime packages (`npm` global packages)
 
 Then, it will install the mentioned features by symlinking them to their corresponding locations.
+
+Already have your own git/iTerm/nvim/etc configuration and don't want to lose it? Fear not! This script will let skip
+overriding them, or even back them up in case you want them for future reference.

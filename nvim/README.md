@@ -70,3 +70,11 @@ Always a WIP 😅
 - [`nui.nvim`](https://github.com/MunifTanjim/nui.nvim) - UI Component Library for Neovim
 - [`plenary.nvim`](https://github.com/nvim-lua/plenary.nvim) - All the lua functions I don't want to write twice
 - [`promise-async`](https://github.com/kevinhwang91/promise-async) - Promise & Async in Lua
+
+## More screenshots
+
+<img src="/__images/neovim/neovim-1.png" alt="Neovim and telescope screenshot" />
+<img src="/__images/neovim/neovim-2.png" alt="Neovim and lazygit screenshot" />
+<img src="/__images/neovim/neovim-3.png" alt="Neovim and tailwind classes screenshot" />
+<img src="/__images/neovim/neovim-4.png" alt="Neovim and tailwind colors screenshot" />
+<img src="/__images/neovim/neovim-5.png" alt="Neovim and auto-import screenshot" />
