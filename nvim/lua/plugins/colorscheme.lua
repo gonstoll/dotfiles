@@ -24,8 +24,6 @@ return {
         GitSignsAdd = {fg = 'iris', bg = 'none'},
         GitSignsChange = {fg = 'foam', bg = 'none'},
         GitSignsDelete = {fg = 'rose', bg = 'none'},
-        IndentBlanklineContextChar = {fg = 'subtle'}, -- Highlighted indent
-        IndentBlanklineIndent1 = {fg = 'highlight_med'},
       }
     },
   },
@@ -72,8 +70,6 @@ return {
         GitSignsAdd = {fg = palette.green[1], bg = 'none'},
         GitSignsChange = {fg = palette.yellow[1], bg = 'none'},
         GitSignsDelete = {fg = palette.red[1], bg = 'none'},
-        IndentBlanklineContextChar = {fg = palette.grey1[1]},
-        IndentBlanklineIndent1 = {fg = palette.bg5[1]},
       }
 
       for group, styles in pairs(highlights_groups) do
