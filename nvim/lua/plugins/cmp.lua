@@ -61,6 +61,20 @@ return {
         ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select_opts),
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select_opts),
         ['<C-y>'] = cmp.mapping.complete(),
+        ['<Tab>'] = cmp.mapping(function(fallback)
+          if luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          else
+            fallback()
+          end
+        end, {'i', 's'}),
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+          if luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, {'i', 's'}),
       },
       sources = cmp.config.sources({
         {name = 'nvim_lsp'},
@@ -124,6 +138,18 @@ return {
       }, {
         {name = 'cmdline'}
       })
+    })
+
+    vim.api.nvim_create_autocmd('ModeChanged', {
+      pattern = '*',
+      callback = function()
+        if ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
+            and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
+            and not require('luasnip').session.jump_active
+        then
+          require('luasnip').unlink_current()
+        end
+      end
     })
   end
 }
