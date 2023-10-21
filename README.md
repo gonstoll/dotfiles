@@ -20,6 +20,7 @@ Clone this repo and execute the `install` script:
 
 ```bash
 git clone --recurse-submodules https://github.com/gonstoll/dotfiles.git ~/dotfiles
+chmod +x ~/dotfiles/install.sh
 ~/dotfiles/install.sh
 ```
 
