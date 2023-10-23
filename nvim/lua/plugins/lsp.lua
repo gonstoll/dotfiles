@@ -296,7 +296,8 @@ return {
         on_attach = on_attach,
         capabilities = capabilities,
         settings = {
-          expose_as_code_action = {'fix_all', 'add_missing_imports', 'remove_unused'}
+          expose_as_code_action = 'all',
+          complete_function_calls = true,
         }
       }
 
@@ -304,11 +305,12 @@ return {
         vim.keymap.set('n', user_command, lsp_command, {desc = 'Typescript: ' .. description})
       end
 
-      typescript_keymap('<leader>to', ':TSToolsOrganizeImports<CR>', 'Organize imports')
-      typescript_keymap('<leader>ts', ':TSToolsSortImports<CR>', 'Sort imports')
-      typescript_keymap('<leader>tr', ':TSToolsRemoveUnusedImports<CR>', 'Remove unused imports')
-      typescript_keymap('<leader>ta', ':TSToolsAddMissingImports<CR>', 'Add missing imports')
-      typescript_keymap('<leader>tf', ':TSToolsFixAll<CR>', 'Fix all')
+      typescript_keymap('<leader>to', ':TSToolsOrganizeImports<CR>', 'Organize imports (Typescript)')
+      typescript_keymap('<leader>ts', ':TSToolsSortImports<CR>', 'Sort imports (Typescript)')
+      typescript_keymap('<leader>ta', ':TSToolsAddMissingImports<CR>', 'Add missing imports (Typescript)')
+      typescript_keymap('<leader>tf', ':TSToolsFixAll<CR>', 'Fix all (Typescript)')
+      typescript_keymap('<leader>tr', ':TSToolsRenameFile<CR>',
+        'Rename current file and apply changes to connected files (Typescript)')
 
       -- ########################### UFO ###########################
       local ufo = require('ufo')

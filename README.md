@@ -32,7 +32,7 @@ First, this script will let you choose whether to install or not a set of script
   [wallpapper](https://github.com/mczachurski/wallpapper) to let you easily setup dynamic wallpapers)
 - Runtime packages (`npm` global packages)
 
-Then, it will install the mentioned features by symlinking them to their corresponding locations.
+Then, it will install the aforementioned features by symlinking them to their corresponding locations.
 
-Already have your own git/iTerm/nvim/etc configuration and don't want to lose it? Fear not! This script will let skip
-overriding them, or even back them up in case you want them for future reference.
+Already have your own git/iTerm/nvim/etc configuration and don't want to lose it? Fear not! This script will let you
+skip overriding them, or even back them up in case you want them for future reference.
