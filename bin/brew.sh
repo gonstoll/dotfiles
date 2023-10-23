@@ -38,3 +38,6 @@ brew install bun
 
 # Raycast
 brew install --cask raycast
+
+# Redis
+brew install redis
