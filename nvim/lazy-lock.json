@@ -48,7 +48,6 @@
   "telescope.nvim": { "branch": "master", "commit": "776b509f80dd49d8205b9b0d94485568236d1192" },
   "todo-comments.nvim": { "branch": "main", "commit": "3094ead8edfa9040de2421deddec55d3762f64d1" },
   "trouble.nvim": { "branch": "main", "commit": "f1168feada93c0154ede4d1fe9183bf69bac54ea" },
-  "typescript-tools.nvim": { "branch": "master", "commit": "102ba313f87e1f9f9864f681dd7779cac8f6d3ea" },
   "vim-carbon-now-sh": { "branch": "master", "commit": "31a18d26fc27e7bd5786da092ed886273b4cf639" },
   "vim-fugitive": { "branch": "master", "commit": "cbe9dfa162c178946afa689dd3f42d4ea8bf89c1" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },

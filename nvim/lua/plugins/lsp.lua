@@ -120,13 +120,12 @@ return {
       },
       'williamboman/mason-lspconfig.nvim',
       'folke/neodev.nvim',
-      'pmizio/typescript-tools.nvim',
+      'b0o/schemastore.nvim',
       {
         'kevinhwang91/nvim-ufo',
         dependencies = 'kevinhwang91/promise-async',
         event = 'VeryLazy',
       },
-      'b0o/schemastore.nvim',
     },
     init = function()
       vim.diagnostic.config({
@@ -205,7 +204,7 @@ return {
 
       local mason_lspconfig = require('mason-lspconfig')
       local lspconfig = require('lspconfig')
-      local typescript_tools = require('typescript-tools')
+      -- local typescript_tools = require('typescript-tools')
 
       -- ########################### NEODEV ###########################
       local neodev = require('neodev')
@@ -256,6 +255,7 @@ return {
         },
         eslint = {format = false},
         emmet_language_server = {},
+        tsserver = {},
       }
 
       mason_lspconfig.setup {
@@ -274,24 +274,24 @@ return {
       }
 
       -- ########################### TYPESCRIPT ###########################
-      typescript_tools.setup {
-        on_attach = on_attach,
-        settings = {
-          expose_as_code_action = 'all',
-          complete_function_calls = true,
-        }
-      }
-
-      local function typescript_keymap(user_command, lsp_command, description)
-        vim.keymap.set('n', user_command, lsp_command, {desc = 'Typescript: ' .. description})
-      end
-
-      typescript_keymap('<leader>to', ':TSToolsOrganizeImports<CR>', 'Organize imports (Typescript)')
-      typescript_keymap('<leader>ts', ':TSToolsSortImports<CR>', 'Sort imports (Typescript)')
-      typescript_keymap('<leader>ta', ':TSToolsAddMissingImports<CR>', 'Add missing imports (Typescript)')
-      typescript_keymap('<leader>tf', ':TSToolsFixAll<CR>', 'Fix all (Typescript)')
-      typescript_keymap('<leader>tr', ':TSToolsRenameFile<CR>',
-        'Rename current file and apply changes to connected files (Typescript)')
+      -- typescript_tools.setup {
+      --   on_attach = on_attach,
+      --   settings = {
+      --     expose_as_code_action = 'all',
+      --     complete_function_calls = true,
+      --   }
+      -- }
+      --
+      -- local function typescript_keymap(user_command, lsp_command, description)
+      --   vim.keymap.set('n', user_command, lsp_command, {desc = 'Typescript: ' .. description})
+      -- end
+      --
+      -- typescript_keymap('<leader>to', ':TSToolsOrganizeImports<CR>', 'Organize imports (Typescript)')
+      -- typescript_keymap('<leader>ts', ':TSToolsSortImports<CR>', 'Sort imports (Typescript)')
+      -- typescript_keymap('<leader>ta', ':TSToolsAddMissingImports<CR>', 'Add missing imports (Typescript)')
+      -- typescript_keymap('<leader>tf', ':TSToolsFixAll<CR>', 'Fix all (Typescript)')
+      -- typescript_keymap('<leader>tr', ':TSToolsRenameFile<CR>',
+      --   'Rename current file and apply changes to connected files (Typescript)')
 
       -- ########################### UFO ###########################
       local ufo = require('ufo')
