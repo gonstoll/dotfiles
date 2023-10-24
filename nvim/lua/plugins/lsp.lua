@@ -120,12 +120,7 @@ return {
       },
       'williamboman/mason-lspconfig.nvim',
       'folke/neodev.nvim',
-      {
-        -- Plugin for better TypeScript LSP support & more
-        'pmizio/typescript-tools.nvim',
-        event = {'BufRead', 'BufNewFile'},
-        ft = {'typescript', 'typescriptreact'},
-      },
+      'pmizio/typescript-tools.nvim',
       {
         'kevinhwang91/nvim-ufo',
         dependencies = 'kevinhwang91/promise-async',
@@ -158,9 +153,7 @@ return {
       local mason = require('mason')
 
       mason.setup({
-        ui = {
-          border = 'rounded',
-        }
+        ui = {border = 'rounded'}
       })
 
       local function on_attach(_, bufnr)
@@ -174,28 +167,23 @@ return {
 
         nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
         nmap('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
-        nmap('<leader>f', function()
-          require('conform').format({async = true, lsp_fallback = true})
-        end, 'Format current buffer with LSP')
-
         nmap('gd', vim.lsp.buf.definition, 'Goto Definition')
+        nmap('gD', vim.lsp.buf.declaration, 'Goto Declaration')
         nmap('gr', require('telescope.builtin').lsp_references, 'Goto References')
         nmap('gi', vim.lsp.buf.implementation, 'Goto Implementation')
         nmap('<leader>td', vim.lsp.buf.type_definition, 'Type Definition')
         nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
         nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
-
-        -- See `:help K` for why this keymap
         nmap('<leader>hd', vim.lsp.buf.hover, 'Hover Documentation')
         nmap('<leader>sd', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-        -- Lesser used LSP functionality
-        nmap('gD', vim.lsp.buf.declaration, 'Goto Declaration')
         nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, 'Workspace Add Folder')
         nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, 'Workspace Remove Folder')
         nmap('<leader>wl', function()
           print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, 'Workspace List Folders')
+        nmap('<leader>f', function()
+          require('conform').format({async = true, lsp_fallback = true})
+        end, 'Format current buffer with LSP')
 
         -- Create a command `:Format` local to the LSP buffer
         vim.api.nvim_create_user_command('Format', function(args)
@@ -239,15 +227,9 @@ return {
         efm = {},
         lua_ls = {
           Lua = {
-            workspace = {
-              checkThirdParty = false,
-            },
-            telemetry = {
-              enable = false,
-            },
-            completion = {
-              callSnippet = 'Replace',
-            },
+            workspace = {checkThirdParty = false},
+            telemetry = {enable = false},
+            completion = {callSnippet = 'Replace'},
             diagnostics = {
               globals = {'vim'},
             },
@@ -294,7 +276,6 @@ return {
       -- ########################### TYPESCRIPT ###########################
       typescript_tools.setup {
         on_attach = on_attach,
-        capabilities = capabilities,
         settings = {
           expose_as_code_action = 'all',
           complete_function_calls = true,
