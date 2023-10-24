@@ -255,7 +255,18 @@ return {
         },
         eslint = {format = false},
         emmet_language_server = {},
-        tsserver = {},
+        tsserver = {
+          javascript = {
+            format = {
+              enable = false,
+            },
+          },
+          typescript = {
+            format = {
+              enable = false,
+            },
+          },
+        },
       }
 
       mason_lspconfig.setup {
