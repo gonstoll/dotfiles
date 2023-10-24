@@ -18,7 +18,7 @@ return {
         TelescopeSelection = {fg = 'text', bg = 'text', blend = 10},
         TelescopeSelectionCaret = {fg = 'base', bg = 'text'},
         ColorColumn = {bg = 'rose'},
-        CursorLine = {bg = 'text', blend = 20},
+        CursorLine = {bg = 'text', blend = 30},
         StatusLine = {fg = 'love', bg = 'love', blend = 10},
         StatusLineNC = {fg = 'subtle', bg = 'surface'},
         GitSignsAdd = {fg = 'iris', bg = 'none'},
