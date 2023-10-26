@@ -1,4 +1,4 @@
-vim.opt.guicursor = 'n-v-c:block,i-ci-ve:ver100/,a:blinkwait700-blinkoff400-blinkon250-lCursor'
+vim.opt.guicursor = 'n-v-c:block,i-ci-ve:ver100/,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
 vim.opt.cursorline = true                                   -- highlight the current line
 
 vim.opt.number = true                                       -- Set numbered lines
