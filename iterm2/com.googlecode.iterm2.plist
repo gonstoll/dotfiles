@@ -123,6 +123,10 @@
 	<true/>
 	<key>LeftTabBarWidth</key>
 	<real>114</real>
+	<key>NeverWarnAboutShortLivedSessions_6AA4F643-B242-4D74-BCB2-EB7BE1F80384</key>
+	<true/>
+	<key>NeverWarnAboutShortLivedSessions_6AA4F643-B242-4D74-BCB2-EB7BE1F80384_selection</key>
+	<integer>0</integer>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>

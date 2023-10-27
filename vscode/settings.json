@@ -96,7 +96,7 @@
   "window.titleBarStyle": "custom",
   "vscode_vibrancy.theme": "Solarized Dark+",
   "vscode_vibrancy.imports": [
-    "/Users/gonzalostoll/Dev/configs/vscode/custom.css"
+    "Users/gonzalostoll/dotfiles/vscode/vibrancy/night-owl.css"
   ],
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,

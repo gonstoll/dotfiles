@@ -94,11 +94,11 @@ function install_dotfiles() {
   do
     local src=$(eval echo "$line" | cut -d '=' -f 1)
     local dst=$(eval echo "$line" | cut -d '=' -f 2)
-    local dir=$(dirname $dst)
+    local dir=$(dirname "$dst")
 
     mkdir -p $dir
 
-    link_files $src $dst
+    link_files $src "$dst"
   done
 }
 
