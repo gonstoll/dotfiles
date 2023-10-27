@@ -29,7 +29,7 @@ vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')
 vim.cmd('autocmd BufEnter * :lua require("lazygit.utils").project_root_dir()')
 
 -- Some cursor stuff
----- This sets the 'CursorReset' highlight group depending on the theme we are in
+--   This sets the 'CursorReset' highlight group depending on the theme we are in
 au('VimEnter', {
   callback = function()
     if (vim.o.background == 'dark') then
@@ -40,7 +40,7 @@ au('VimEnter', {
   end
 })
 
----- This changes the cursor highlight to 'CursorReset' when leaving vim
+--   This changes the cursor highlight to 'CursorReset' when leaving vim
 vim.cmd([[
   augroup RestoreCursorShapeOnExit
     autocmd!
