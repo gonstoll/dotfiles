@@ -39,5 +39,6 @@ vim.opt.wildignore:append {'*/node_modules/*'}              -- Ignore when expan
 
 vim.opt.splitbelow = true                                   -- force all horizontal splits to go below current window
 vim.opt.splitright = true                                   -- force all vertical splits to go to the right of current window
+vim.opt.laststatus = 3                                      -- Global statusline when on split
 
 vim.g.markdown_recommended_style = 0                        -- Disable default markdown styles (see https://www.reddit.com/r/neovim/comments/z2lhyz/comment/ixjb7je)
