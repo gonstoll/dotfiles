@@ -1,0 +1,71 @@
+{
+  "Print to console": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "logging",
+    "body": ["console.log('logging $1', $2)"],
+    "description": "Log output to console"
+  },
+  "Import all react": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "iar",
+    "body": ["import * as React from 'react'"],
+    "description": "Imports React and all it's primitives"
+  },
+  "Create a react component": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "react component",
+    "body": [
+      "import * as React from 'react'",
+      "",
+      "export default function ${1:Component}() {",
+      "  return <div />$0",
+      "}"
+    ],
+    "description": "Imports React and all it's primitives"
+  },
+  "Create a react component with props": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "react component with props",
+    "body": [
+      "import * as React from 'react'",
+      "",
+      "interface Props {",
+      "  ${2:prop}: ${3:string};",
+      "}",
+      "export default function ${1:Component}({${2:prop}}: Props) {",
+      "  return <div />$0",
+      "}"
+    ],
+    "description": "Imports React and all it's primitives"
+  },
+  "Export a function": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "efunc",
+    "body": ["export function ${1:Function}() {$0}"],
+    "description": "Exports a function"
+  },
+  "Export an async function": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "eafunc",
+    "body": ["export async function ${1:Function}() {$0}"],
+    "description": "Exports an async function"
+  },
+  "Import zod": {
+    "scope": "javascriptreact,typescriptreact",
+    "prefix": "izod",
+    "body": ["import {z} from 'zod'"],
+    "description": "Imports z from the zod package"
+  },
+  "Use server": {
+    "scope": "javascriptreact,typescriptreact,javascript,typescript",
+    "prefix": "useserv",
+    "body": ["'use server'", ""],
+    "description": "Adds 'use server' RSC directive"
+  },
+  "Use client": {
+    "scope": "javascriptreact,typescriptreact,javascript,typescript",
+    "prefix": "usecli",
+    "body": ["'use client'", ""],
+    "description": "Adds 'use client' RSC directive"
+  }
+}

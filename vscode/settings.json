@@ -1,0 +1,125 @@
+{
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.fontSize": 14,
+  "editor.fontFamily": "FiraCode Nerd Font",
+  "editor.lineHeight": 1.35,
+  "workbench.editor.enablePreview": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.arrowParens": "avoid",
+  "prettier.singleQuote": true,
+  "prettier.bracketSpacing": false,
+  "prettier.semi": false,
+  "prettier.printWidth": 80,
+  "workbench.startupEditor": "none",
+  "editor.tabSize": 2,
+  "editor.formatOnPaste": true,
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "typescript.preferences.quoteStyle": "double",
+  "editor.bracketPairColorization.enabled": false,
+  "workbench.colorCustomizations": {
+    "editorCursor.background": "#000000",
+    "editorCursor.foreground": "#ffffff",
+    "terminalCursor.background": "#000000",
+    "terminalCursor.foreground": "#ffffff",
+    "[Gruvbox Material Dark]": {
+      "editorCursor.background": "#141617",
+      "editorCursor.foreground": "#db4740",
+      "terminalCursor.background": "#141617",
+      "terminalCursor.foreground": "#db4740"
+    },
+    "[Gruvbox Material Light]": {
+      "editorCursor.background": "#141617",
+      "editorCursor.foreground": "#db4740",
+      "terminalCursor.background": "#141617",
+      "terminalCursor.foreground": "#db4740"
+    }
+  },
+  "material-icon-theme.folders.color": "#0778d4",
+  "material-icon-theme.folders.theme": "specific",
+  "material-icon-theme.activeIconPack": "react_redux",
+  "material-icon-theme.opacity": 1,
+  "material-icon-theme.hidesExplorerArrows": false,
+  "material-icon-theme.saturation": 0.7,
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.advanced": {
+    "indentationMode": {
+      "python": false,
+      "javascript": false,
+      "javascriptreact": false,
+      "jsx": false,
+      "typescript": false,
+      "typescriptreact": false,
+      "go": false,
+      "ruby": false,
+      "*": true
+    }
+  },
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false,
+    "typescriptreact": true,
+    "typescript": true
+  },
+  "workbench.colorTheme": "Gruvbox Material Dark",
+  "git.confirmSync": false,
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
+  "editor.renderWhitespace": "none",
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "editor.accessibilitySupport": "off",
+  "terminal.integrated.fontSize": 15,
+  "workbench.panel.defaultLocation": "right",
+  "editor.rulers": [90],
+  "notebook.output.wordWrap": true,
+  "editor.wordWrapColumn": 90,
+  "editor.minimap.enabled": false,
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wrappingStrategy": "advanced",
+  "editor.formatOnSave": true,
+  "window.zoomLevel": 1,
+  "window.titleBarStyle": "custom",
+  "vscode_vibrancy.theme": "Solarized Dark+",
+  "vscode_vibrancy.imports": [
+    "/Users/gonzalostoll/Dev/configs/vscode/custom.css"
+  ],
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.leader": "<space>",
+  "vim.hlsearch": true,
+  "vim.visualModeKeyBindings": [
+    {
+      "before": ["J"],
+      "commands": ["editor.action.moveLinesDownAction"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.moveLinesUpAction"]
+    }
+  ],
+  "vim.cursorStylePerMode.visualline": "block",
+  "vim.cursorStylePerMode.visualblock": "block",
+  "vim.cursorStylePerMode.replace": "block",
+  "vim.highlightedyank.enable": true,
+  "vim.highlightedyank.color": "#f2594b",
+  "vim.highlightedyank.textColor": "#000000",
+  "vim.enableNeovim": true,
+  "vim.neovimPath": "/opt/homebrew/bin/nvim",
+  "vim.neovimConfigPath": "~/.config/nvim/init.lua",
+  "vim.neovimUseConfigFile": true
+}
