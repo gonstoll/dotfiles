@@ -60,7 +60,7 @@ return {
     return {
       options = {
         numbers = function(opts)
-          return string.format('%s.', opts.ordinal)
+          return string.format('%s:', opts.ordinal)
         end,
         style_preset = {
           bufferline.style_preset.no_italic,
