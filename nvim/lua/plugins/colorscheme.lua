@@ -40,7 +40,7 @@ return {
       vim.g.gruvbox_material_disable_italic_comment = 1
       vim.g.gruvbox_material_enable_italic = 0
       vim.g.gruvbox_material_enable_bold = 0
-      vim.g.gruvbox_material_transparent_background = 2
+      vim.g.gruvbox_material_transparent_background = 1
       -- Themes
       vim.g.gruvbox_material_foreground = 'mix'
       vim.g.gruvbox_material_background = 'hard'
@@ -60,6 +60,7 @@ return {
         NormalNC = {bg = 'none'},
         NormalFloat = {bg = 'none'},
         FloatBorder = {bg = 'none'},
+        FloatTitle = {bg = 'none', fg = palette.orange[1]},
         TelescopeBorder = {bg = 'none'},
         TelescopeNormal = {fg = 'none'},
         TelescopePromptNormal = {bg = 'none'},
