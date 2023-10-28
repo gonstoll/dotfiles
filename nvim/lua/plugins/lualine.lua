@@ -122,7 +122,8 @@ return {
           {
             'filename',
             file_status = true,
-            path = 1,
+            path = 4,
+            shorting_target = 40,
           },
           'branch',
           'diff',
