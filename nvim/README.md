@@ -78,3 +78,4 @@ Always a WIP 😅
 <img src="/__images/neovim/neovim-3.png" alt="Neovim and tailwind classes screenshot" />
 <img src="/__images/neovim/neovim-4.png" alt="Neovim and tailwind colors screenshot" />
 <img src="/__images/neovim/neovim-5.png" alt="Neovim and auto-import screenshot" />
+<img src="/__images/neovim/neovim-6.png" alt="Neovim and splits screenshot" />
