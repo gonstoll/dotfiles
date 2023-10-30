@@ -576,11 +576,11 @@
       "Terminal Type": "xterm-256color",
       "Horizontal Spacing": 1,
       "Underline Color": {
-        "Red Component": 1,
+        "Red Component": 0.88627450980392153,
         "Color Space": "sRGB",
-        "Blue Component": 1,
+        "Blue Component": 0.66274509803921566,
         "Alpha Component": 1,
-        "Green Component": 1
+        "Green Component": 0.80000000000000004
       },
       "Option Key Sends": 0,
       "Only The Default BG Color Uses Transparency": false,
