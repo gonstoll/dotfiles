@@ -454,7 +454,172 @@
         "Alpha Component": 1,
         "Green Component": 0.5725490196078431
       },
-      "ASCII Ligatures": false
+      "ASCII Ligatures": false,
+      "Show status bar": true,
+      "Status Bar Layout": {
+        "components": [
+          {
+            "class": "iTermStatusBarBatteryComponent",
+            "configuration": {
+              "knobs": {
+                "ShowPercentage": 1,
+                "base: priority": 5,
+                "shared text color": {
+                  "Red Component": 0.77254903316497803,
+                  "Color Space": "sRGB",
+                  "Blue Component": 0.47058823704719543,
+                  "Alpha Component": 1,
+                  "Green Component": 0.89411765336990356
+                },
+                "ShowTime": 1
+              },
+              "layout advanced configuration dictionary value": {
+                "remove empty components": true,
+                "font": "FiraCodeNF-Ret 14",
+                "algorithm": 1,
+                "auto-rainbow style": 0
+              }
+            }
+          },
+          {
+            "class": "iTermStatusBarCPUUtilizationComponent",
+            "configuration": {
+              "knobs": {
+                "base: priority": 5,
+                "shared text color": {
+                  "Red Component": 0.50980392156862742,
+                  "Color Space": "sRGB",
+                  "Blue Component": 1,
+                  "Alpha Component": 1,
+                  "Green Component": 0.66666666666666663
+                }
+              },
+              "layout advanced configuration dictionary value": {
+                "remove empty components": true,
+                "font": "FiraCodeNF-Ret 14",
+                "algorithm": 1,
+                "auto-rainbow style": 0
+              }
+            }
+          },
+          {
+            "class": "iTermStatusBarSpringComponent",
+            "configuration": {
+              "knobs": {
+                "iTermStatusBarSpringComponentSpringConstantKey": 0.01
+              },
+              "layout advanced configuration dictionary value": {
+                "remove empty components": true,
+                "font": "FiraCodeNF-Ret 14",
+                "algorithm": 1,
+                "auto-rainbow style": 0
+              }
+            }
+          },
+          {
+            "class": "iTermStatusBarClockComponent",
+            "configuration": {
+              "knobs": {
+                "format": "M/dd h:mm:ss",
+                "base: priority": 5,
+                "maxwidth": 1.7976931348623157e308,
+                "minwidth": "0",
+                "shared text color": {
+                  "Red Component": 0.78039216995239258,
+                  "Color Space": "sRGB",
+                  "Blue Component": 0.91764706373214722,
+                  "Alpha Component": 1,
+                  "Green Component": 0.57254904508590698
+                },
+                "base: compression resistance": 0.01,
+                "localize": 1
+              },
+              "layout advanced configuration dictionary value": {
+                "remove empty components": true,
+                "font": "FiraCodeNF-Ret 14",
+                "algorithm": 1,
+                "auto-rainbow style": 0
+              }
+            }
+          },
+          {
+            "class": "iTermStatusBarSpringComponent",
+            "configuration": {
+              "knobs": {
+                "iTermStatusBarSpringComponentSpringConstantKey": 0.01
+              },
+              "layout advanced configuration dictionary value": {
+                "remove empty components": true,
+                "font": "FiraCodeNF-Ret 14",
+                "algorithm": 1,
+                "auto-rainbow style": 0
+              }
+            }
+          },
+          {
+            "class": "iTermStatusBarMemoryUtilizationComponent",
+            "configuration": {
+              "knobs": {
+                "base: priority": 5,
+                "shared text color": {
+                  "Red Component": 1,
+                  "Color Space": "sRGB",
+                  "Blue Component": 0.54509803921568623,
+                  "Alpha Component": 1,
+                  "Green Component": 0.79607843137254897
+                }
+              },
+              "layout advanced configuration dictionary value": {
+                "remove empty components": true,
+                "font": "FiraCodeNF-Ret 14",
+                "algorithm": 1,
+                "auto-rainbow style": 0
+              }
+            }
+          },
+          {
+            "class": "iTermStatusBarNetworkUtilizationComponent",
+            "configuration": {
+              "knobs": {
+                "Network upload color": {
+                  "Red Component": 1,
+                  "Color Space": "sRGB",
+                  "Blue Component": 0.45490196347236633,
+                  "Alpha Component": 1,
+                  "Green Component": 0.34509804844856262
+                },
+                "base: priority": 50,
+                "shared text color": {
+                  "Red Component": 1,
+                  "Color Space": "sRGB",
+                  "Blue Component": 0.45490196347236633,
+                  "Alpha Component": 1,
+                  "Green Component": 0.34509804844856262
+                },
+                "Network download color": {
+                  "Red Component": 0.50196081399917603,
+                  "Color Space": "sRGB",
+                  "Blue Component": 0.76862746477127075,
+                  "Alpha Component": 1,
+                  "Green Component": 0.79607844352722168
+                }
+              },
+              "layout advanced configuration dictionary value": {
+                "remove empty components": true,
+                "font": "FiraCodeNF-Ret 14",
+                "algorithm": 1,
+                "auto-rainbow style": 0
+              }
+            }
+          }
+        ],
+        "advanced configuration": {
+          "remove empty components": true,
+          "font": "FiraCodeNF-Ret 14",
+          "algorithm": 1,
+          "auto-rainbow style": 0
+        }
+      }
     },
     {
       "Name": "Night owl (light)",
