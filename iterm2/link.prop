@@ -1,1 +1,4 @@
-$DOTFILES/iterm2/DynamicProfiles/=$HOME/.config/iterm2/AppSupport/DynamicProfiles
+$DOTFILES/iterm2/DynamicProfiles/night-owl-dark.json=$HOME/.config/iterm2/AppSupport/DynamicProfiles/night-owl-dark.json
+$DOTFILES/iterm2/DynamicProfiles/night-owl-light.json=$HOME/.config/iterm2/AppSupport/DynamicProfiles/night-owl-light.json
+$DOTFILES/iterm2/DynamicProfiles/gruvbox-material-dark.json=$HOME/.config/iterm2/AppSupport/DynamicProfiles/gruvbox-material-dark.json
+$DOTFILES/iterm2/DynamicProfiles/gruvbox-material-light.json=$HOME/.config/iterm2/AppSupport/DynamicProfiles/gruvbox-material-light.json
