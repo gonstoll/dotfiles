@@ -1236,13 +1236,13 @@
 				<key>Alpha Component</key>
 				<integer>1</integer>
 				<key>Blue Component</key>
-				<integer>1</integer>
+				<real>0.66274509803921566</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<integer>1</integer>
+				<real>0.80000000000000004</real>
 				<key>Red Component</key>
-				<integer>1</integer>
+				<real>0.88627450980392153</real>
 			</dict>
 			<key>Unlimited Scrollback</key>
 			<false/>
@@ -2380,13 +2380,13 @@
 				<key>Alpha Component</key>
 				<integer>1</integer>
 				<key>Blue Component</key>
-				<integer>1</integer>
+				<real>0.21176470588235294</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<integer>1</integer>
+				<real>0.25098039215686274</real>
 				<key>Red Component</key>
-				<integer>1</integer>
+				<real>0.31764705882352939</real>
 			</dict>
 			<key>Unlimited Scrollback</key>
 			<false/>
