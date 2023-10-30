@@ -926,7 +926,7 @@
 					<key>auto-rainbow style</key>
 					<integer>0</integer>
 					<key>font</key>
-					<string>FiraCodeNF-Reg 16</string>
+					<string>FiraCodeNF-Ret 14</string>
 					<key>remove empty components</key>
 					<true/>
 				</dict>
@@ -966,7 +966,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Reg 16</string>
+								<string>FiraCodeNF-Ret 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -1002,7 +1002,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Reg 16</string>
+								<string>FiraCodeNF-Ret 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -1025,7 +1025,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Reg 16</string>
+								<string>FiraCodeNF-Ret 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -1071,7 +1071,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Reg 16</string>
+								<string>FiraCodeNF-Ret 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -1094,7 +1094,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Reg 16</string>
+								<string>FiraCodeNF-Ret 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -1130,7 +1130,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Reg 16</string>
+								<string>FiraCodeNF-Ret 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -1192,7 +1192,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Reg 14</string>
+								<string>FiraCodeNF-Ret 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -2066,7 +2066,7 @@
 					<key>auto-rainbow style</key>
 					<integer>0</integer>
 					<key>font</key>
-					<string>FiraCodeNF-Reg 16</string>
+					<string>FiraCodeNF-Ret 14</string>
 					<key>remove empty components</key>
 					<true/>
 				</dict>
@@ -2090,13 +2090,13 @@
 									<key>Alpha Component</key>
 									<integer>1</integer>
 									<key>Blue Component</key>
-									<real>0.47058823704719543</real>
+									<real>0.41568627450980394</real>
 									<key>Color Space</key>
 									<string>sRGB</string>
 									<key>Green Component</key>
-									<real>0.89411765336990356</real>
+									<real>0.60784313725490191</real>
 									<key>Red Component</key>
-									<real>0.77254903316497803</real>
+									<real>0.047058823529411764</real>
 								</dict>
 							</dict>
 							<key>layout advanced configuration dictionary value</key>
@@ -2106,7 +2106,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Reg 16</string>
+								<string>FiraCodeNF-Ret 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -2126,13 +2126,13 @@
 									<key>Alpha Component</key>
 									<integer>1</integer>
 									<key>Blue Component</key>
-									<integer>1</integer>
+									<real>0.83921568627450982</real>
 									<key>Color Space</key>
 									<string>sRGB</string>
 									<key>Green Component</key>
-									<real>0.66666666666666663</real>
+									<real>0.46274509803921571</real>
 									<key>Red Component</key>
-									<real>0.50980392156862742</real>
+									<real>0.28235294117647058</real>
 								</dict>
 							</dict>
 							<key>layout advanced configuration dictionary value</key>
@@ -2142,7 +2142,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Reg 16</string>
+								<string>FiraCodeNF-Ret 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -2165,7 +2165,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Reg 16</string>
+								<string>FiraCodeNF-Ret 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -2195,13 +2195,13 @@
 									<key>Alpha Component</key>
 									<integer>1</integer>
 									<key>Blue Component</key>
-									<real>0.91764706373214722</real>
+									<real>0.76470588235294112</real>
 									<key>Color Space</key>
 									<string>sRGB</string>
 									<key>Green Component</key>
-									<real>0.57254904508590698</real>
+									<real>0.29803921568627451</real>
 									<key>Red Component</key>
-									<real>0.78039216995239258</real>
+									<real>0.59999999999999998</real>
 								</dict>
 							</dict>
 							<key>layout advanced configuration dictionary value</key>
@@ -2211,7 +2211,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Reg 16</string>
+								<string>FiraCodeNF-Ret 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -2234,7 +2234,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Reg 16</string>
+								<string>FiraCodeNF-Ret 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -2254,13 +2254,13 @@
 									<key>Alpha Component</key>
 									<integer>1</integer>
 									<key>Blue Component</key>
-									<real>0.54509803921568623</real>
+									<real>0.40784313725490196</real>
 									<key>Color Space</key>
 									<string>sRGB</string>
 									<key>Green Component</key>
-									<real>0.79607843137254897</real>
+									<real>0.59999999999999998</real>
 									<key>Red Component</key>
-									<integer>1</integer>
+									<real>0.74901960784313726</real>
 								</dict>
 							</dict>
 							<key>layout advanced configuration dictionary value</key>
@@ -2270,7 +2270,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Reg 16</string>
+								<string>FiraCodeNF-Ret 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -2288,26 +2288,26 @@
 									<key>Alpha Component</key>
 									<integer>1</integer>
 									<key>Blue Component</key>
-									<real>0.76862746477127075</real>
+									<real>0.60784316062927246</real>
 									<key>Color Space</key>
 									<string>sRGB</string>
 									<key>Green Component</key>
-									<real>0.79607844352722168</real>
+									<real>0.58823531866073608</real>
 									<key>Red Component</key>
-									<real>0.50196081399917603</real>
+									<real>0.047058824449777603</real>
 								</dict>
 								<key>Network upload color</key>
 								<dict>
 									<key>Alpha Component</key>
 									<integer>1</integer>
 									<key>Blue Component</key>
-									<real>0.45490196347236633</real>
+									<real>0.24313725531101227</real>
 									<key>Color Space</key>
 									<string>sRGB</string>
 									<key>Green Component</key>
-									<real>0.34509804844856262</real>
+									<real>0.25882354378700256</real>
 									<key>Red Component</key>
-									<integer>1</integer>
+									<real>0.82745099067687988</real>
 								</dict>
 								<key>base: priority</key>
 								<integer>50</integer>
@@ -2316,13 +2316,13 @@
 									<key>Alpha Component</key>
 									<integer>1</integer>
 									<key>Blue Component</key>
-									<real>0.45490196347236633</real>
+									<real>0.24313725531101227</real>
 									<key>Color Space</key>
 									<string>sRGB</string>
 									<key>Green Component</key>
-									<real>0.34509804844856262</real>
+									<real>0.25882354378700256</real>
 									<key>Red Component</key>
-									<integer>1</integer>
+									<real>0.82745099067687988</real>
 								</dict>
 							</dict>
 							<key>layout advanced configuration dictionary value</key>
@@ -2332,7 +2332,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Reg 14</string>
+								<string>FiraCodeNF-Ret 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
