@@ -98,7 +98,7 @@ function install_dotfiles() {
 
     mkdir -p $dir
 
-    link_files $src "$dst"
+    link_files "$src" "$dst"
   done
 }
 
