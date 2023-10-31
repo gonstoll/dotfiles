@@ -95,6 +95,16 @@
   "vim.useCtrlKeys": true,
   "vim.leader": "<space>",
   "vim.hlsearch": true,
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["K"],
+      "commands": ["editor.action.showHover"]
+    },
+    {
+      "before": ["<leader>", "f"],
+      "commands": ["editor.action.formatDocument"]
+    }
+  ],
   "vim.visualModeKeyBindings": [
     {
       "before": ["J"],
