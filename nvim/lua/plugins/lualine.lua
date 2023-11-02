@@ -55,7 +55,7 @@ return {
 
       lualineTheme = {
         normal = {
-          a = {bg = 'none', fg = gruvboxPalette.fg0[1]},
+          a = {bg = 'none', fg = gruvboxPalette.purple[1]},
           b = {bg = gruvboxPalette.bg_statusline3[1], fg = gruvboxPalette.fg0[1]},
           c = {bg = gruvboxPalette.bg_statusline3[1], fg = gruvboxPalette.fg0[1]},
           z = {bg = gruvboxPalette.bg_statusline3[1], fg = gruvboxPalette.fg0[1]},
@@ -85,7 +85,7 @@ return {
           z = {bg = gruvboxPalette.bg_statusline3[1], fg = gruvboxPalette.fg0[1]},
         },
         terminal = {
-          a = {bg = 'none', fg = gruvboxPalette.purple[1]},
+          a = {bg = 'none', fg = gruvboxPalette.aqua[1]},
           b = {bg = gruvboxPalette.bg_statusline3[1], fg = gruvboxPalette.fg0[1]},
           c = {bg = gruvboxPalette.bg_statusline3[1], fg = gruvboxPalette.fg0[1]},
           z = {bg = gruvboxPalette.bg_statusline3[1], fg = gruvboxPalette.fg0[1]},
