@@ -70,6 +70,7 @@ Always a WIP 😅
 - [`nui.nvim`](https://github.com/MunifTanjim/nui.nvim) - UI Component Library for Neovim
 - [`plenary.nvim`](https://github.com/nvim-lua/plenary.nvim) - All the lua functions I don't want to write twice
 - [`promise-async`](https://github.com/kevinhwang91/promise-async) - Promise & Async in Lua
+- [`duck.nvim`](https://github.com/tamton-aquib/duck.nvim/tree/main) - A duck that waddles arbitrarily in neovim
 
 ## More screenshots
 
