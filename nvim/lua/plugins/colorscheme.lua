@@ -1,8 +1,8 @@
 return {
   {
     'rose-pine/neovim',
-    lazy = false,
     name = 'rose-pine',
+    event = 'VeryLazy',
     opts = {
       variant = 'auto',
       dark_variant = 'moon',
