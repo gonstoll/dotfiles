@@ -6,7 +6,7 @@ return {
     local isDarkTheme = vim.o.background == 'dark'
 
     local darkIndentHighlights = {
-      indent = '#3c3836',
+      indent = '#4c4846',
       scope = '#928374',
     }
 
