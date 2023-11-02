@@ -102,7 +102,7 @@ return {
     return {
       options = {
         theme = lualineTheme,
-        component_separators = '│',
+        component_separators = '|',
         section_separators = '',
         globalstatus = true,
       },
@@ -131,19 +131,14 @@ return {
         lualine_c = {
           {'diagnostics'},
         },
-        lualine_x = {
-          {
-            'datetime',
-            style = '%H:%M:%S',
-          },
-          'encoding',
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {
           {
             'filetype',
             colored = true,
           },
-        },
-        lualine_y = {'progress'},
-        lualine_z = {
+          'progress',
           {
             'location',
             color = {gui = ''},
@@ -170,7 +165,6 @@ return {
       extensions = {
         'trouble',
         'fzf',
-        'nvim-dap-ui',
       },
     }
   end,
