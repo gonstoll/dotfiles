@@ -10,7 +10,7 @@ return {
     'nvimdev/lspsaga.nvim',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
-      'nvim-tree/nvim-web-devicons',
+      {'nvim-tree/nvim-web-devicons', lazy = true},
     },
     event = 'LspAttach',
     opts = {
