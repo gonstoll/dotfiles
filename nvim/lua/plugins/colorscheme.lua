@@ -1,8 +1,8 @@
 return {
   {
     'rose-pine/neovim',
-    lazy = false,
     name = 'rose-pine',
+    event = 'VeryLazy',
     opts = {
       variant = 'auto',
       dark_variant = 'moon',
@@ -17,8 +17,9 @@ return {
         TelescopeResultsNormal = {fg = 'subtle', bg = 'none'},
         TelescopeSelection = {fg = 'text', bg = 'text', blend = 10},
         TelescopeSelectionCaret = {fg = 'base', bg = 'text'},
+        Cursor = {fg = 'base', bg = 'text'},
         ColorColumn = {bg = 'rose'},
-        CursorLine = {bg = 'text', blend = 20},
+        CursorLine = {bg = 'text', blend = 30},
         StatusLine = {fg = 'love', bg = 'love', blend = 10},
         StatusLineNC = {fg = 'subtle', bg = 'surface'},
         GitSignsAdd = {fg = 'iris', bg = 'none'},
@@ -39,42 +40,14 @@ return {
       vim.g.gruvbox_material_disable_italic_comment = 1
       vim.g.gruvbox_material_enable_italic = 0
       vim.g.gruvbox_material_enable_bold = 0
-      vim.g.gruvbox_material_transparent_background = 2
+      vim.g.gruvbox_material_transparent_background = 1
       -- Themes
       vim.g.gruvbox_material_foreground = 'mix'
       vim.g.gruvbox_material_background = 'hard'
       vim.g.gruvbox_material_ui_contrast = 'high' -- The contrast of line numbers, indent lines, etc.
       vim.g.gruvbox_material_float_style = 'dim'  -- Background of floating windows
 
-      local configuration = vim.fn['gruvbox_material#get_configuration']()
-      local palette = vim.fn['gruvbox_material#get_palette'](configuration.background, configuration.foreground,
-        configuration.colors_override)
-
-      vim.cmd.colorscheme('gruvbox-material')
-
-      local highlights_groups = {
-        FoldColumn = {bg = 'none'},
-        SignColumn = {bg = 'none'},
-        Normal = {bg = 'none'},
-        NormalNC = {bg = 'none'},
-        NormalFloat = {bg = 'none'},
-        FloatBorder = {bg = 'none'},
-        TelescopeBorder = {bg = 'none'},
-        TelescopeNormal = {fg = 'none'},
-        TelescopePromptNormal = {bg = 'none'},
-        TelescopeResultsNormal = {bg = 'none'},
-        TelescopeSelection = {bg = palette.bg3[1]},
-        Visual = {bg = palette.bg_statusline3[1]},
-        ColorColumn = {bg = palette.bg_visual_blue[1]},
-        CursorLine = {bg = palette.bg3[1], blend = 15},
-        GitSignsAdd = {fg = palette.green[1], bg = 'none'},
-        GitSignsChange = {fg = palette.yellow[1], bg = 'none'},
-        GitSignsDelete = {fg = palette.red[1], bg = 'none'},
-      }
-
-      for group, styles in pairs(highlights_groups) do
-        vim.api.nvim_set_hl(0, group, styles)
-      end
+      vim.cmd.colorscheme('gruvbox-material')     -- For highlights customizations go to lua/core/highlights
     end
   }
 }

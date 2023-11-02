@@ -8,6 +8,8 @@
 	pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
 	st = status
 	br = branch
+[init]
+  defaultBranch = master
 [pull]
   rebase = false
 [core]

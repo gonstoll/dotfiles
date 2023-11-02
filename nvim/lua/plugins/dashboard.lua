@@ -1,7 +1,9 @@
 return {
   'glepnir/dashboard-nvim',
   event = 'VimEnter',
-  dependencies = {{'nvim-tree/nvim-web-devicons'}},
+  dependencies = {
+    {'nvim-tree/nvim-web-devicons', lazy = true},
+  },
   opts = {
     theme = 'hyper',
     config = {
@@ -43,12 +45,14 @@ return {
   },
   config = function(_, opts)
     local dashboard = require('dashboard')
-
     dashboard.setup(opts)
 
-    local rp_palette = require('rose-pine.palette')
+    local colorscheme = vim.g.colors_name
+    if (colorscheme == 'rose-pine') then
+      local rp_palette = require('rose-pine.palette')
 
-    vim.api.nvim_set_hl(0, 'DashboardHeader', {fg = rp_palette.text})
-    vim.api.nvim_set_hl(0, 'DashboardFooter', {fg = rp_palette.love})
+      vim.api.nvim_set_hl(0, 'DashboardHeader', {fg = rp_palette.text})
+      vim.api.nvim_set_hl(0, 'DashboardFooter', {fg = rp_palette.love})
+    end
   end
 }

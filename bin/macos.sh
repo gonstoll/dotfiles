@@ -54,3 +54,6 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+# VSCode: disable the Apple press and hold for VSCode only
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false

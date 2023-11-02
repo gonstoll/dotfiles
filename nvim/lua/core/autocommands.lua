@@ -27,3 +27,11 @@ vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')
 
 -- Make sure any opened buffer which is contained in a git repo will be tracked
 vim.cmd('autocmd BufEnter * :lua require("lazygit.utils").project_root_dir()')
+
+-- Change the cursor highlight to 'CursorReset' when leaving vim
+vim.cmd([[
+  augroup RestoreCursorShapeOnExit
+    autocmd!
+    autocmd VimLeave * set guicursor=n-v-c:block,i-ci-ve:ver100/,a:blinkwait700-blinkoff400-blinkon250-CursorReset/lCursorReset
+  augroup END
+]])

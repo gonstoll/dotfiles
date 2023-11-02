@@ -10,7 +10,7 @@ return {
     'nvimdev/lspsaga.nvim',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
-      'nvim-tree/nvim-web-devicons',
+      {'nvim-tree/nvim-web-devicons', lazy = true},
     },
     event = 'LspAttach',
     opts = {
@@ -120,18 +120,12 @@ return {
       },
       'williamboman/mason-lspconfig.nvim',
       'folke/neodev.nvim',
-      {
-        -- Plugin for better TypeScript LSP support & more
-        'pmizio/typescript-tools.nvim',
-        event = {'BufRead', 'BufNewFile'},
-        ft = {'typescript', 'typescriptreact'},
-      },
+      'b0o/schemastore.nvim',
       {
         'kevinhwang91/nvim-ufo',
         dependencies = 'kevinhwang91/promise-async',
         event = 'VeryLazy',
       },
-      'b0o/schemastore.nvim',
     },
     init = function()
       vim.diagnostic.config({
@@ -158,9 +152,7 @@ return {
       local mason = require('mason')
 
       mason.setup({
-        ui = {
-          border = 'rounded',
-        }
+        ui = {border = 'rounded'}
       })
 
       local function on_attach(_, bufnr)
@@ -174,28 +166,26 @@ return {
 
         nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
         nmap('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
-        nmap('<leader>f', function()
-          require('conform').format({async = true, lsp_fallback = true})
-        end, 'Format current buffer with LSP')
-
         nmap('gd', vim.lsp.buf.definition, 'Goto Definition')
+        nmap('gD', vim.lsp.buf.declaration, 'Goto Declaration')
         nmap('gr', require('telescope.builtin').lsp_references, 'Goto References')
         nmap('gi', vim.lsp.buf.implementation, 'Goto Implementation')
+        nmap('gl', '<cmd>lua vim.diagnostic.open_float()<cr>', 'Open diagnostics')
+        nmap('[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', 'Previous diagnostic')
+        nmap(']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', 'Next diagnostic')
         nmap('<leader>td', vim.lsp.buf.type_definition, 'Type Definition')
         nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
         nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
-
-        -- See `:help K` for why this keymap
         nmap('<leader>hd', vim.lsp.buf.hover, 'Hover Documentation')
         nmap('<leader>sd', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-        -- Lesser used LSP functionality
-        nmap('gD', vim.lsp.buf.declaration, 'Goto Declaration')
         nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, 'Workspace Add Folder')
         nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, 'Workspace Remove Folder')
         nmap('<leader>wl', function()
           print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, 'Workspace List Folders')
+        nmap('<leader>f', function()
+          require('conform').format({async = true, lsp_fallback = true})
+        end, 'Format current buffer with LSP')
 
         -- Create a command `:Format` local to the LSP buffer
         vim.api.nvim_create_user_command('Format', function(args)
@@ -209,15 +199,11 @@ return {
           end
           require('conform').format({async = true, lsp_fallback = true, range = range})
         end, {range = true})
-
-        nmap('gl', '<cmd>lua vim.diagnostic.open_float()<cr>', 'Open diagnostics')
-        nmap('[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', 'Previous diagnostic')
-        nmap(']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', 'Next diagnostic')
       end
 
       local mason_lspconfig = require('mason-lspconfig')
       local lspconfig = require('lspconfig')
-      local typescript_tools = require('typescript-tools')
+      -- local typescript_tools = require('typescript-tools')
 
       -- ########################### NEODEV ###########################
       local neodev = require('neodev')
@@ -239,15 +225,9 @@ return {
         efm = {},
         lua_ls = {
           Lua = {
-            workspace = {
-              checkThirdParty = false,
-            },
-            telemetry = {
-              enable = false,
-            },
-            completion = {
-              callSnippet = 'Replace',
-            },
+            workspace = {checkThirdParty = false},
+            telemetry = {enable = false},
+            completion = {callSnippet = 'Replace'},
             diagnostics = {
               globals = {'vim'},
             },
@@ -274,6 +254,7 @@ return {
         },
         eslint = {format = false},
         emmet_language_server = {},
+        tsserver = {},
       }
 
       mason_lspconfig.setup {
@@ -289,26 +270,96 @@ return {
             settings = servers[server_name],
           }
         end,
+        tsserver = function()
+          lspconfig.tsserver.setup {
+            capabilities = capabilities,
+            on_attach = on_attach(),
+            settings = {
+              javascript = {
+                format = {
+                  enable = false,
+                  insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false,
+                  insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
+                },
+                updateImportsOnFileMove = {
+                  enabled = 'always',
+                },
+              },
+              typescript = {
+                format = {
+                  enable = false,
+                  insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false,
+                  insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
+                  preferTypeOnlyAutoImports = true,
+                },
+                updateImportsOnFileMove = {
+                  enabled = 'always',
+                },
+              },
+            },
+            commands = {
+              OrganizeImports = {
+                function()
+                  local params = {
+                    command = '_typescript.organizeImports',
+                    arguments = {vim.api.nvim_buf_get_name(0)},
+                    title = '',
+                  }
+                  vim.lsp.buf.execute_command(params)
+                end,
+                description = 'Organize imports',
+              },
+              RenameFile = {
+                function()
+                  local source_file, target_file
+
+                  vim.ui.input({
+                      prompt = 'Source: ',
+                      completion = 'file',
+                      default = vim.api.nvim_buf_get_name(0)
+                    },
+                    function(input)
+                      source_file = input
+                    end
+                  )
+
+                  vim.ui.input({
+                      prompt = 'Target: ',
+                      completion = 'file',
+                      default = source_file
+                    },
+                    function(input)
+                      target_file = input
+                    end
+                  )
+
+                  local params = {
+                    command = '_typescript.applyRenameFile',
+                    arguments = {
+                      {
+                        sourceUri = source_file,
+                        targetUri = target_file,
+                      },
+                    },
+                    title = ''
+                  }
+
+                  vim.lsp.util.rename(source_file, target_file, {})
+                  vim.lsp.buf.execute_command(params)
+                end
+              },
+            },
+          }
+        end
       }
 
       -- ########################### TYPESCRIPT ###########################
-      typescript_tools.setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        settings = {
-          expose_as_code_action = {'fix_all', 'add_missing_imports', 'remove_unused'}
-        }
-      }
-
       local function typescript_keymap(user_command, lsp_command, description)
         vim.keymap.set('n', user_command, lsp_command, {desc = 'Typescript: ' .. description})
       end
 
-      typescript_keymap('<leader>to', ':TSToolsOrganizeImports<CR>', 'Organize imports')
-      typescript_keymap('<leader>ts', ':TSToolsSortImports<CR>', 'Sort imports')
-      typescript_keymap('<leader>tr', ':TSToolsRemoveUnusedImports<CR>', 'Remove unused imports')
-      typescript_keymap('<leader>ta', ':TSToolsAddMissingImports<CR>', 'Add missing imports')
-      typescript_keymap('<leader>tf', ':TSToolsFixAll<CR>', 'Fix all')
+      typescript_keymap('<leader>to', ':OrganizeImports<CR>', 'Organize imports')
+      typescript_keymap('<leader>tr', ':RenameFile<CR>', 'Rename file')
 
       -- ########################### UFO ###########################
       local ufo = require('ufo')

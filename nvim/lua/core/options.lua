@@ -1,4 +1,4 @@
-vim.opt.guicursor = 'n-v-c:block,i-ci-ve:ver100/,a:blinkwait700-blinkoff400-blinkon250-lCursor'
+vim.opt.guicursor = 'n-v-c:block,i-ci-ve:ver100/,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
 vim.opt.cursorline = true                                   -- highlight the current line
 
 vim.opt.number = true                                       -- Set numbered lines
@@ -39,5 +39,6 @@ vim.opt.wildignore:append {'*/node_modules/*'}              -- Ignore when expan
 
 vim.opt.splitbelow = true                                   -- force all horizontal splits to go below current window
 vim.opt.splitright = true                                   -- force all vertical splits to go to the right of current window
+vim.opt.laststatus = 3                                      -- Global statusline when on split
 
 vim.g.markdown_recommended_style = 0                        -- Disable default markdown styles (see https://www.reddit.com/r/neovim/comments/z2lhyz/comment/ixjb7je)

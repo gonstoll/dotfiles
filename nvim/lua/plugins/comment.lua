@@ -1,1 +1,1 @@
-return {'numToStr/Comment.nvim', opts = {}}
+return {'numToStr/Comment.nvim', event = 'InsertEnter', opts = {}}

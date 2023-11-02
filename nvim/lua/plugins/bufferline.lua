@@ -43,8 +43,11 @@ return {
 
     if colorscheme == 'gruvbox-material' then
       local configuration = vim.fn['gruvbox_material#get_configuration']()
-      local gv_palette = vim.fn['gruvbox_material#get_palette'](configuration.background, configuration.foreground,
-        configuration.colors_override)
+      local gv_palette = vim.fn['gruvbox_material#get_palette'](
+        configuration.background,
+        configuration.foreground,
+        configuration.colors_override
+      )
 
       palette = {
         text = gv_palette.fg1[1],
@@ -60,7 +63,7 @@ return {
     return {
       options = {
         numbers = function(opts)
-          return string.format('%s.', opts.ordinal)
+          return string.format('%s:', opts.ordinal)
         end,
         style_preset = {
           bufferline.style_preset.no_italic,
