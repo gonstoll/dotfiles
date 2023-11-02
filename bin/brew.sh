@@ -41,3 +41,6 @@ brew install --cask raycast
 
 # Redis
 brew install redis
+
+# Neofetch
+brew install neofetch
