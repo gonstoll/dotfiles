@@ -434,12 +434,16 @@
 			<false/>
 			<key>Foreground Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<integer>1</integer>
 				<key>Blue Component</key>
-				<real>0.73333334922790527</real>
+				<real>0.66274509803921566</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.73333334922790527</real>
+				<real>0.80000000000000004</real>
 				<key>Red Component</key>
-				<real>0.73333334922790527</real>
+				<real>0.88627450980392153</real>
 			</dict>
 			<key>Guid</key>
 			<string>645D5D9B-DF22-49D4-9D5D-7675DE9B7158</string>
@@ -1574,12 +1578,16 @@
 			<false/>
 			<key>Foreground Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<integer>1</integer>
 				<key>Blue Component</key>
-				<real>0.73333334922790527</real>
+				<real>0.21176470588235294</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.73333334922790527</real>
+				<real>0.25098039215686274</real>
 				<key>Red Component</key>
-				<real>0.73333334922790527</real>
+				<real>0.31764705882352939</real>
 			</dict>
 			<key>Guid</key>
 			<string>80E0B9D0-886B-4EF2-AE73-B909AAE42991</string>

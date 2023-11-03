@@ -23,9 +23,11 @@
       },
       "Use Italic Font": true,
       "Foreground Color": {
-        "Green Component": 0.73333334922790527,
-        "Red Component": 0.73333334922790527,
-        "Blue Component": 0.73333334922790527
+        "Color Space": "sRGB",
+        "Alpha Component": 1,
+        "Red Component": 0.31764705882352939,
+        "Green Component": 0.25098039215686274,
+        "Blue Component": 0.21176470588235294
       },
       "Use Custom Window Title": false,
       "Show status bar": true,
