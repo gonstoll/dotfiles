@@ -5,7 +5,9 @@
       "Guid": "645D5D9B-DF22-49D4-9D5D-7675DE9B7158",
       "Working Directory": "/Users/gonzalo.stoll",
       "Prompt Before Closing 2": false,
-      "Dynamic Profile Filename": "/Users/gonzalostoll/Library/Application Support/iTerm2/DynamicProfiles/night-owl.json",
+      "Dynamic Profile Filename": "/Users/gonzalostoll/Library/Application Support/iTerm2/DynamicProfiles/gruvbox-material-dark.json",
+      "Right Option Key Changeable": true,
+      "Left Option Key Changeable": true,
       "Selected Text Color": {
         "Green Component": 0,
         "Red Component": 0,
@@ -494,7 +496,7 @@
       },
       "Send Code When Idle": false,
       "ASCII Anti Aliased": true,
-      "Tags": [],
+      "Tags": ["Dynamic"],
       "Ansi 9 Color": {
         "Red Component": 0.94901960784313721,
         "Color Space": "sRGB",
