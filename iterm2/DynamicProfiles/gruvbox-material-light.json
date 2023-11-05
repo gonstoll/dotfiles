@@ -5,7 +5,11 @@
       "Guid": "80E0B9D0-886B-4EF2-AE73-B909AAE42991",
       "Working Directory": "/Users/gonzalo.stoll",
       "Prompt Before Closing 2": false,
-      "Dynamic Profile Filename": "/Users/gonzalostoll/Library/Application Support/iTerm2/DynamicProfiles/night-owl.json",
+      "Dynamic Profile Filename": "/Users/gonzalostoll/Library/Application Support/iTerm2/DynamicProfiles/gruvbox-material-light.json",
+      "Right Option Key Changeable": true,
+      "Left Option Key Changeable": true,
+      "Option Key Sends": 2,
+      "Right Option Key Sends": 2,
       "Selected Text Color": {
         "Red Component": 0.95294117647058818,
         "Color Space": "sRGB",
@@ -23,13 +27,14 @@
       },
       "Use Italic Font": true,
       "Foreground Color": {
-        "Green Component": 0.73333334922790527,
-        "Red Component": 0.73333334922790527,
-        "Blue Component": 0.73333334922790527
+        "Color Space": "sRGB",
+        "Alpha Component": 1,
+        "Red Component": 0.31764705882352939,
+        "Green Component": 0.25098039215686274,
+        "Blue Component": 0.21176470588235294
       },
       "Use Custom Window Title": false,
       "Show status bar": true,
-      "Right Option Key Sends": 0,
       "Show Status Bar": true,
       "Character Encoding": 4,
       "Selection Color": {
@@ -494,7 +499,7 @@
       },
       "Send Code When Idle": false,
       "ASCII Anti Aliased": true,
-      "Tags": [],
+      "Tags": ["Dynamic"],
       "Ansi 9 Color": {
         "Red Component": 0.68627450980392157,
         "Color Space": "sRGB",
@@ -584,7 +589,6 @@
         "Alpha Component": 1,
         "Green Component": 0.25098039215686274
       },
-      "Option Key Sends": 0,
       "Only The Default BG Color Uses Transparency": false,
       "Minimum Contrast": 0,
       "Ansi 15 Color": {
