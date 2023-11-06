@@ -112,6 +112,12 @@ return {
   },
 
   {
+    'zeioth/garbage-day.nvim',
+    event = 'BufEnter',
+    opts = {notifications = true},
+  },
+
+  {
     'neovim/nvim-lspconfig',
     dependencies = {
       {
@@ -222,7 +228,6 @@ return {
         tailwindcss = {},
         cssls = {},
         astro = {},
-        efm = {},
         lua_ls = {
           Lua = {
             workspace = {checkThirdParty = false},
