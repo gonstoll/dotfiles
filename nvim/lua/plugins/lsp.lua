@@ -224,6 +224,7 @@ return {
         lineFoldingOnly = true
       }
       capabilities.textDocument.completion.completionItem.snippetSupport = true
+      require('lspconfig.ui.windows').default_options.border = 'rounded'
 
       local servers = {
         tailwindcss = {},
