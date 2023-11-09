@@ -1,7 +1,7 @@
 return {
   'akinsho/bufferline.nvim',
   lazy = true,
-  event = 'VimEnter',
+  event = 'UIEnter',
   dependencies = {'famiu/bufdelete.nvim'},
   opts = function()
     local bufferline = require('bufferline')

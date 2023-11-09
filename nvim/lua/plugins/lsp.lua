@@ -1,6 +1,7 @@
 return {
   {
     'onsails/lspkind-nvim',
+    event = 'VeryLazy',
     init = function()
       return {mode = 'symbol'}
     end,
@@ -119,6 +120,7 @@ return {
 
   {
     'neovim/nvim-lspconfig',
+    event = 'LspAttach',
     dependencies = {
       {
         'williamboman/mason.nvim',
@@ -126,11 +128,10 @@ return {
       },
       'williamboman/mason-lspconfig.nvim',
       'folke/neodev.nvim',
-      'b0o/schemastore.nvim',
+      {'b0o/schemastore.nvim', event = 'VeryLazy'},
       {
         'kevinhwang91/nvim-ufo',
         dependencies = 'kevinhwang91/promise-async',
-        event = 'VeryLazy',
       },
     },
     init = function()
@@ -227,7 +228,6 @@ return {
       local servers = {
         tailwindcss = {},
         cssls = {},
-        astro = {},
         lua_ls = {
           Lua = {
             workspace = {checkThirdParty = false},

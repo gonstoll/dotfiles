@@ -1,6 +1,6 @@
 return {
   'lukas-reineke/indent-blankline.nvim',
-  event = 'VimEnter',
+  event = 'UIEnter',
   main = 'ibl',
   opts = function()
     local isDarkTheme = vim.o.background == 'dark'

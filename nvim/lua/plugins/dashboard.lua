@@ -1,6 +1,6 @@
 return {
   'glepnir/dashboard-nvim',
-  event = 'VimEnter',
+  event = 'UIEnter',
   dependencies = {
     {'nvim-tree/nvim-web-devicons', lazy = true},
   },
