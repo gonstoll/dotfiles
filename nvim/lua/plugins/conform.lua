@@ -1,5 +1,6 @@
 return {
   'stevearc/conform.nvim',
+  event = 'LspAttach',
   opts = {
     quiet = true,
     formatters_by_ft = {
@@ -77,9 +78,10 @@ return {
       return args
     end
 
-    local beautysh = require('conform.formatters.beautysh')
-    conform.formatters.beautysh = vim.tbl_deep_extend('force', beautysh, {
-      args = util.extend_args(beautysh.args, {'--indent-size', '2', '--force-function-style', 'fnpar'})
-    })
+    conform.formatters.beautysh = {
+      prepend_args = function()
+        return {'--indent-size', '2', '--force-function-style', 'fnpar'}
+      end
+    }
   end,
 }

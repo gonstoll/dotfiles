@@ -1,20 +1,40 @@
 return {
   'nvim-pack/nvim-spectre',
   event = 'VeryLazy',
-  init = function()
-    vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").toggle()<CR>', {
+  keys = {
+    {
+      '<leader>S',
+      '<cmd>lua require("spectre").toggle()<CR>',
+      mode = 'n',
+      noremap = true,
+      silent = true,
       desc = 'Toggle Spectre',
-    })
-    vim.keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+    },
+    {
+      '<leader>sw',
+      '<cmd>lua require("spectre").open_visual({select_word=true})<CR>',
+      mode = 'n',
+      noremap = true,
+      silent = true,
       desc = 'Search current word (spectre)',
-    })
-    vim.keymap.set('v', '<leader>sw', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
+    },
+    {
+      '<leader>sw',
+      '<esc><cmd>lua require("spectre").open_visual()<CR>',
+      mode = 'v',
+      noremap = true,
+      silent = true,
       desc = 'Search current word (spectre)',
-    })
-    vim.keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+    },
+    {
+      '<leader>sp',
+      '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
+      mode = 'n',
+      noremap = true,
+      silent = true,
       desc = 'Search on current file (spectre)',
-    })
-  end,
+    },
+  },
   opts = {
     mapping = {
       ['toggle_line'] = {

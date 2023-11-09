@@ -1,6 +1,7 @@
 return {
   {
     'onsails/lspkind-nvim',
+    event = 'VeryLazy',
     init = function()
       return {mode = 'symbol'}
     end,
@@ -112,7 +113,14 @@ return {
   },
 
   {
+    'zeioth/garbage-day.nvim',
+    event = 'BufEnter',
+    opts = {notifications = true},
+  },
+
+  {
     'neovim/nvim-lspconfig',
+    event = 'LspAttach',
     dependencies = {
       {
         'williamboman/mason.nvim',
@@ -120,11 +128,10 @@ return {
       },
       'williamboman/mason-lspconfig.nvim',
       'folke/neodev.nvim',
-      'b0o/schemastore.nvim',
+      {'b0o/schemastore.nvim', event = 'VeryLazy'},
       {
         'kevinhwang91/nvim-ufo',
         dependencies = 'kevinhwang91/promise-async',
-        event = 'VeryLazy',
       },
     },
     init = function()
@@ -217,12 +224,11 @@ return {
         lineFoldingOnly = true
       }
       capabilities.textDocument.completion.completionItem.snippetSupport = true
+      require('lspconfig.ui.windows').default_options.border = 'rounded'
 
       local servers = {
         tailwindcss = {},
         cssls = {},
-        astro = {},
-        efm = {},
         lua_ls = {
           Lua = {
             workspace = {checkThirdParty = false},

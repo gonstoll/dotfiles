@@ -41,6 +41,7 @@ function SetGruvboxMaterialHighlights()
     DiffChange = {bg = 'none', fg = palette.yellow[1]},
     DiffDelete = {bg = 'none', fg = palette.red[1]},
     DiffText = {bg = 'none', fg = palette.blue[1]},
+    LspInfoBorder = {bg = 'none', fg = palette.fg0[1]},
   }
 
   for group, styles in pairs(highlights_groups) do
