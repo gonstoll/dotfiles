@@ -3,7 +3,7 @@ return {
 
   {
     'kdheepak/lazygit.nvim',
-    event = 'VeryLazy',
+    event = 'BufReadPre',
     dependencies = {'nvim-lua/plenary.nvim'},
   },
 

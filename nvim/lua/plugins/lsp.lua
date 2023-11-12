@@ -99,7 +99,8 @@ return {
 
   {
     'neovim/nvim-lspconfig',
-    event = 'LspAttach',
+    -- event = 'LspAttach',
+    event = {'BufReadPost', 'BufNewFile', 'BufWritePre'},
     dependencies = {
       'folke/neodev.nvim',
       {
@@ -109,7 +110,6 @@ return {
       'williamboman/mason-lspconfig.nvim',
       {
         'kevinhwang91/nvim-ufo',
-        event = 'BufReadPre',
         dependencies = {'kevinhwang91/promise-async', lazy = true},
       }
     },
