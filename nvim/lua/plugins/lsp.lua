@@ -101,17 +101,12 @@ return {
     'neovim/nvim-lspconfig',
     event = 'LspAttach',
     dependencies = {
+      'folke/neodev.nvim',
       {
         'williamboman/mason.nvim',
         build = ':MasonUpdate',
       },
       'williamboman/mason-lspconfig.nvim',
-      {'folke/neodev.nvim', lazy = true},
-      {
-        'kevinhwang91/nvim-ufo',
-        event = 'VeryLazy',
-        dependencies = {'kevinhwang91/promise-async', lazy = true},
-      },
     },
     init = function()
       vim.diagnostic.config({
@@ -338,10 +333,17 @@ return {
 
       typescript_keymap('<leader>to', ':OrganizeImports<CR>', 'Organize imports')
       typescript_keymap('<leader>tr', ':RenameFile<CR>', 'Rename file')
+    end,
+  },
 
-      -- ########################### UFO ###########################
+  {
+    'kevinhwang91/nvim-ufo',
+    event = 'BufReadPre',
+    dependencies = {'kevinhwang91/promise-async', lazy = true},
+    opts = {},
+    config = function(_, opts)
       local ufo = require('ufo')
-      ufo.setup()
+      ufo.setup(opts)
 
       vim.keymap.set('n', 'zR', ufo.openAllFolds)
       vim.keymap.set('n', 'zM', ufo.closeAllFolds)
@@ -351,6 +353,6 @@ return {
           vim.lsp.buf.hover()
         end
       end, {desc = 'LSP: Show hover documentation and folded code'})
-    end,
+    end
   },
 }
