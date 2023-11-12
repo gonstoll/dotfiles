@@ -89,7 +89,7 @@ return {
   -- Stops inactive LSP clients to free RAM
   {
     'zeioth/garbage-day.nvim',
-    event = 'BufEnter',
+    event = 'LspAttach',
     opts = {notifications = true},
   },
 
