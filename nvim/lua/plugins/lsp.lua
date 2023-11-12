@@ -14,10 +14,7 @@ return {
     },
     opts = {
       ui = {border = 'rounded'},
-      symbol_in_winbar = {
-        enable = false,
-        folder_level = 2,
-      },
+      symbol_in_winbar = {enable = false},
       lightbulb = {
         enable = false,
         sign = false,
@@ -29,14 +26,6 @@ return {
       },
     },
     keys = {
-      {
-        '<leader>gl',
-        '<Cmd>Lspsaga show_line_diagnostics<CR>',
-        mode = 'n',
-        noremap = true,
-        silent = true,
-        desc = "Diagnostics: Show line's (lspsaga)",
-      },
       {
         '<leader>gb',
         '<Cmd>Lspsaga show_buf_diagnostics<CR>',
