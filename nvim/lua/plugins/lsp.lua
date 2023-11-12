@@ -117,8 +117,7 @@ return {
         build = ':MasonUpdate',
       },
       'williamboman/mason-lspconfig.nvim',
-      {'folke/neodev.nvim',    lazy = true},
-      {'b0o/schemastore.nvim', event = 'VeryLazy'},
+      {'folke/neodev.nvim', lazy = true},
       {
         'kevinhwang91/nvim-ufo',
         event = 'VeryLazy',
@@ -241,17 +240,6 @@ return {
               },
             },
           },
-        },
-        jsonls = {
-          schemas = require('schemastore').json.schemas {
-            select = {
-              '.eslintrc',
-              'package.json',
-              'prettierrc.json',
-              'babelrc.json'
-            },
-          },
-          validate = {enable = true},
         },
         eslint = {format = false},
         emmet_language_server = {},
