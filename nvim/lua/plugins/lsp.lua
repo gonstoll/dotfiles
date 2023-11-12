@@ -1,7 +1,6 @@
 return {
   {
     'onsails/lspkind-nvim',
-    event = 'VeryLazy',
     init = function()
       return {mode = 'symbol'}
     end,
@@ -13,11 +12,10 @@ return {
       'nvim-treesitter/nvim-treesitter',
       {'nvim-tree/nvim-web-devicons', lazy = true},
     },
-    event = 'LspAttach',
     opts = {
       ui = {border = 'rounded'},
       symbol_in_winbar = {
-        enable = true,
+        enable = false,
         folder_level = 2,
       },
       lightbulb = {
@@ -31,22 +29,6 @@ return {
       },
     },
     keys = {
-      {
-        '<leader>gj',
-        '<Cmd>Lspsaga diagnostic_jump_next<CR>',
-        mode = 'n',
-        noremap = true,
-        silent = true,
-        desc = 'Diagnostics: Jump next (lspsaga)',
-      },
-      {
-        '<leader>gh',
-        '<Cmd>Lspsaga hover_doc<CR>',
-        mode = 'n',
-        noremap = true,
-        silent = true,
-        desc = 'Documentation on hover (lspsaga)'
-      },
       {
         '<leader>gl',
         '<Cmd>Lspsaga show_line_diagnostics<CR>',
@@ -88,14 +70,6 @@ return {
         desc = 'Peek type definition (lspsaga)',
       },
       {
-        '<leader>gr',
-        '<Cmd>Lspsaga rename<CR>',
-        mode = 'n',
-        noremap = true,
-        silent = true,
-        desc = 'Rename (lspsaga)',
-      },
-      {
         '<leader>go',
         '<Cmd>Lspsaga outline<CR>',
         mode = 'n',
@@ -112,10 +86,26 @@ return {
     },
   },
 
+  -- Stops inactive LSP clients to free RAM
   {
     'zeioth/garbage-day.nvim',
     event = 'BufEnter',
     opts = {notifications = true},
+  },
+
+  -- VS code like winbar with breadcrumbs
+  {
+    'utilyre/barbecue.nvim',
+    name = 'barbecue',
+    event = 'VeryLazy',
+    version = '*',
+    dependencies = {
+      'SmiteshP/nvim-navic',
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {
+      attach_navic = false,
+    },
   },
 
   {
@@ -127,11 +117,12 @@ return {
         build = ':MasonUpdate',
       },
       'williamboman/mason-lspconfig.nvim',
-      'folke/neodev.nvim',
+      {'folke/neodev.nvim',    lazy = true},
       {'b0o/schemastore.nvim', event = 'VeryLazy'},
       {
         'kevinhwang91/nvim-ufo',
-        dependencies = 'kevinhwang91/promise-async',
+        event = 'VeryLazy',
+        dependencies = {'kevinhwang91/promise-async', lazy = true},
       },
     },
     init = function()
@@ -162,7 +153,7 @@ return {
         ui = {border = 'rounded'}
       })
 
-      local function on_attach(_, bufnr)
+      local function on_attach(client, bufnr)
         local function nmap(keys, func, desc)
           if desc then
             desc = 'LSP: ' .. desc
@@ -206,6 +197,10 @@ return {
           end
           require('conform').format({async = true, lsp_fallback = true, range = range})
         end, {range = true})
+
+        if client.server_capabilities['documentSymbolProvider'] then
+          require('nvim-navic').attach(client, bufnr)
+        end
       end
 
       local mason_lspconfig = require('mason-lspconfig')
@@ -279,7 +274,7 @@ return {
         tsserver = function()
           lspconfig.tsserver.setup {
             capabilities = capabilities,
-            on_attach = on_attach(),
+            on_attach = on_attach,
             settings = {
               javascript = {
                 format = {

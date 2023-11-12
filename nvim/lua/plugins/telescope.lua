@@ -29,8 +29,6 @@ return {
         return vim.fn.expand('%:p:h')
       end
 
-      vim.cmd('hi TelescopePreviewDirectory guifg=#ea9a97')
-
       telescope.setup {
         defaults = {
           mappings = {

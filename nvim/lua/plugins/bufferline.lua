@@ -103,6 +103,12 @@ return {
           '|', -- left
           '|', -- right
         },
+        custom_filter = function(bufnr, bufnrs)
+          -- Don't show buffers created by oil.nvim
+          if vim.bo[bufnr].filetype ~= 'oil' then
+            return true
+          end
+        end
       },
       highlights = {
         tab = {
