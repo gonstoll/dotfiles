@@ -1,1 +1,1 @@
-return {'petertriho/nvim-scrollbar', opts = {}}
+return {'petertriho/nvim-scrollbar', opts = {}, event = 'VeryLazy'}
