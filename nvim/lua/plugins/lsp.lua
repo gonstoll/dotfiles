@@ -107,6 +107,11 @@ return {
         build = ':MasonUpdate',
       },
       'williamboman/mason-lspconfig.nvim',
+      {
+        'kevinhwang91/nvim-ufo',
+        event = 'BufReadPre',
+        dependencies = {'kevinhwang91/promise-async', lazy = true},
+      }
     },
     config = function()
       local mason = require('mason')
@@ -332,17 +337,10 @@ return {
 
       typescript_keymap('<leader>to', ':OrganizeImports<CR>', 'Organize imports')
       typescript_keymap('<leader>tr', ':RenameFile<CR>', 'Rename file')
-    end,
-  },
 
-  {
-    'kevinhwang91/nvim-ufo',
-    event = 'BufReadPre',
-    dependencies = {'kevinhwang91/promise-async', lazy = true},
-    opts = {},
-    config = function(_, opts)
+      -- ########################### UFO ###########################
       local ufo = require('ufo')
-      ufo.setup(opts)
+      ufo.setup()
 
       vim.keymap.set('n', 'zR', ufo.openAllFolds)
       vim.keymap.set('n', 'zM', ufo.closeAllFolds)
@@ -352,6 +350,6 @@ return {
           vim.lsp.buf.hover()
         end
       end, {desc = 'LSP: Show hover documentation and folded code'})
-    end
+    end,
   },
 }
