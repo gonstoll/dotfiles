@@ -108,27 +108,6 @@ return {
       },
       'williamboman/mason-lspconfig.nvim',
     },
-    init = function()
-      vim.diagnostic.config({
-        virtual_text = false,
-        severity_sort = true,
-        float = {
-          border = 'rounded',
-          source = 'always',
-          title = 'Diagnostics',
-        },
-      })
-
-      vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-        vim.lsp.handlers.hover,
-        {border = 'rounded', title = 'Hover'}
-      )
-
-      vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-        vim.lsp.handlers.signature_help,
-        {border = 'rounded'}
-      )
-    end,
     config = function()
       local mason = require('mason')
 
@@ -137,6 +116,26 @@ return {
       })
 
       local function on_attach(client, bufnr)
+        vim.diagnostic.config({
+          virtual_text = false,
+          severity_sort = true,
+          float = {
+            border = 'rounded',
+            source = 'always',
+            title = 'Diagnostics',
+          },
+        })
+
+        vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+          vim.lsp.handlers.hover,
+          {border = 'rounded', title = 'Hover'}
+        )
+
+        vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+          vim.lsp.handlers.signature_help,
+          {border = 'rounded'}
+        )
+
         local function nmap(keys, func, desc)
           if desc then
             desc = 'LSP: ' .. desc
