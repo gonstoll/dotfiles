@@ -22,10 +22,6 @@ return {
 
       local fb_actions = telescope.extensions.file_browser.actions
 
-      local function telescope_buffer_dir()
-        return vim.fn.expand('%:p:h')
-      end
-
       telescope.setup {
         defaults = {
           mappings = {
