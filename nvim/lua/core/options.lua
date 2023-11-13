@@ -2,6 +2,7 @@ vim.opt.guicursor = 'n-v-c:block,i-ci-ve:ver100/,a:blinkwait700-blinkoff400-blin
 vim.opt.cursorline = true                                   -- highlight the current line
 
 vim.opt.number = true                                       -- Set numbered lines
+vim.opt.relativenumber = true                               -- Set relative numbered lines
 vim.opt.list = false                                        -- Hide characters on tabs and spaces
 vim.opt.scrolloff = 8                                       -- Minimal number of screen lines to keep above and below the cursor
 vim.opt.fillchars.eob = ' '                                 -- Empty lines at the end of a buffer as ` `
