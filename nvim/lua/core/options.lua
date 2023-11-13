@@ -11,6 +11,7 @@ vim.opt.linebreak = true                                    -- Wrap long lines a
 vim.opt.textwidth = 120                                     -- Maximum width of text that is being inserted
 vim.cmd('set fo-=1')                                        -- Don't break lines after a one-letter word
 
+vim.opt.showtabline = 2                                     -- Always show tabs
 vim.opt.tabstop = 2                                         -- Insert 2 spaces for a tab
 vim.opt.softtabstop = 2                                     -- Number of spaces tabs count for while editing
 vim.opt.shiftwidth = 2                                      -- the number of spaces inserted for each indentation

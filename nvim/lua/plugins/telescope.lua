@@ -1,7 +1,7 @@
 return {
   {
     'nvim-telescope/telescope-file-browser.nvim',
-    event = 'VeryLazy',
+    event = 'BufReadPre',
     dependencies = {'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim'}
   },
 
@@ -12,6 +12,7 @@ return {
       'nvim-lua/plenary.nvim',
       {'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},
     },
+    event = 'BufReadPre',
     config = function()
       local telescope = require('telescope')
       local builtin = require('telescope.builtin')
@@ -47,9 +48,7 @@ return {
         },
         extensions = {
           file_browser = {
-            hidden = true,
             hijack_netrw = true,
-            respect_gitignore = false,
             mappings = {
               -- your custom insert mode mappings
               ['i'] = {
@@ -95,10 +94,6 @@ return {
       vim.keymap.set('n', 'sf', function()
         telescope.extensions.file_browser.file_browser({
           path = '%:p:h',
-          cwd = telescope_buffer_dir(),
-          respect_gitignore = false,
-          hidden = true,
-          grouped = false,
         })
       end, {desc = '[S]earch [F]iles'})
 

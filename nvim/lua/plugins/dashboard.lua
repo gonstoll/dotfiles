@@ -7,6 +7,13 @@ return {
   opts = {
     theme = 'hyper',
     config = {
+      project = {
+        enable = true,
+        limit = 8,
+        action = function(path)
+          require('telescope.builtin').find_files({cwd = path})
+        end
+      },
       shortcut = {
         {
           desc = 'Dev projects',
@@ -40,7 +47,7 @@ return {
         'Do, or do not.',
         'There is no try.',
         [[]],
-      }
+      },
     }
   },
   config = function(_, opts)

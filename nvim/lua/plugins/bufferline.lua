@@ -3,8 +3,7 @@ return {
 
   {
     'akinsho/bufferline.nvim',
-    lazy = true,
-    event = 'UIEnter',
+    event = 'BufReadPre',
     opts = function()
       local bufferline = require('bufferline')
       local groups = require('bufferline.groups')
@@ -25,8 +24,6 @@ return {
       local is_dark_theme = vim.o.background == 'dark'
       local white_color = '#ffffff'
       local black_color = '#1c1c27'
-
-      print(is_dark_theme)
 
       local colorscheme = vim.g.colors_name
       local palette = {}

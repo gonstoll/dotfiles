@@ -12,14 +12,18 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require('lazy').setup({
-  spec = 'plugins',
+  spec = {
+    {import = 'plugins'},
+  },
   change_detection = {
     notify = false,
     enabled = true,
   },
   install = {
-    missing = true, -- install missing plugins on startup.
     colorscheme = {'gruvbox-material'},
+  },
+  performance = {
+    cache = {enabled = true},
   },
   ui = {
     border = 'rounded',
