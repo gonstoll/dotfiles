@@ -1,1 +1,1 @@
-return {'tpope/vim-surround', config = false, event = 'VeryLazy'}
+return {'tpope/vim-surround', config = false, event = 'BufReadPre'}
