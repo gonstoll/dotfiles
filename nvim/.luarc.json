@@ -1,5 +1,5 @@
 {
-  "workspace.checkThirdParty": false,
+  "workspace.checkThirdParty": "Disable",
   "diagnostics.disable": ["deprecated", "missing-fields"],
   "format": {
     "enable": true,

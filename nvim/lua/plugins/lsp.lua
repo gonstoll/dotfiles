@@ -78,7 +78,8 @@ return {
   -- Stops inactive LSP clients to free RAM
   {
     'zeioth/garbage-day.nvim',
-    event = 'LspAttach',
+    event = {'BufReadPost', 'BufNewFile', 'BufWritePre'},
+    dependencies = 'neovim/nvim-lspconfig',
     opts = {notifications = true},
   },
 
@@ -99,7 +100,6 @@ return {
 
   {
     'neovim/nvim-lspconfig',
-    -- event = 'LspAttach',
     event = {'BufReadPost', 'BufNewFile', 'BufWritePre'},
     dependencies = {
       'folke/neodev.nvim',
