@@ -6,17 +6,12 @@ return {
   },
 
   {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'make',
-    cond = function()
-      return vim.fn.executable('make') == 1
-    end,
-  },
-
-  {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.2',
-    dependencies = {'nvim-lua/plenary.nvim'},
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      {'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},
+    },
     config = function()
       local telescope = require('telescope')
       local builtin = require('telescope.builtin')
