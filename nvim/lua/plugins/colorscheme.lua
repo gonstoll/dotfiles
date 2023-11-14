@@ -2,7 +2,7 @@ return {
   {
     'rose-pine/neovim',
     name = 'rose-pine',
-    lazy = true,
+    event = 'BufAdd',
     opts = {
       variant = 'auto',
       dark_variant = 'moon',
