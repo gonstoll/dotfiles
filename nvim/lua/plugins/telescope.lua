@@ -36,13 +36,10 @@ return {
           file_browser = {
             hijack_netrw = true,
             mappings = {
-              -- your custom insert mode mappings
               ['i'] = {
-                ['<C-w>'] = function() vim.cmd('normal vbd') end,
                 ['<C-p>'] = actions.move_selection_previous,
               },
               ['n'] = {
-                -- your custom normal mode mappings
                 ['C'] = fb_actions.create,
                 ['R'] = fb_actions.rename,
                 ['h'] = fb_actions.goto_parent_dir,
@@ -64,7 +61,6 @@ return {
 
       local function telescope_keymap(map, command, desc)
         local description = desc .. ' (Telescope)'
-
         vim.keymap.set('n', map, command, {desc = description})
       end
 
