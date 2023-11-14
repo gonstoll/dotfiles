@@ -18,21 +18,11 @@ return {
       local builtin = require('telescope.builtin')
       local utils = require('telescope.utils')
       local actions = require('telescope.actions')
-      local trouble = require('trouble.providers.telescope')
 
       local fb_actions = telescope.extensions.file_browser.actions
 
       telescope.setup {
         defaults = {
-          mappings = {
-            i = {
-              ['<C-t>'] = trouble.open_with_trouble,
-              ['<C-p>'] = actions.move_selection_previous,
-            },
-            n = {
-              ['<C-t>'] = trouble.open_with_trouble,
-            },
-          },
           theme = 'center',
           sorting_strategy = 'ascending',
           layout_config = {
