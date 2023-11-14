@@ -66,48 +66,46 @@ return {
       telescope.load_extension('fzf')
       telescope.load_extension('file_browser')
 
-      vim.keymap.set('n', ';f', function()
-        builtin.find_files({
-          no_ignore = false,
-          hidden = true
-        })
-      end, {desc = 'Find files respecting gitignore'})
-
-      vim.keymap.set('n', ';;', function()
-        builtin.resume()
-      end, {desc = 'Resume'})
-
-      vim.keymap.set('n', ';se', function()
-        builtin.diagnostics()
-      end, {desc = 'Get workspace diagnostics (Telescope)'})
-
-      vim.keymap.set('n', ';e', function()
-        builtin.diagnostics({bufnr = 0})
-      end, {desc = 'Get file diagnostics (Telescope)'})
-
-      vim.keymap.set('n', ';x', vim.diagnostic.open_float, {desc = 'Line Diagnostics (Telescope)'})
-
       vim.keymap.set('n', 'sf', function()
         telescope.extensions.file_browser.file_browser({
           path = '%:p:h',
         })
-      end, {desc = '[S]earch [F]iles'})
+      end, {desc = '[S]earch [F]iles (Telescope file browser)'})
 
-      vim.keymap.set('n', ';sk', ':Telescope keymaps<CR>', {desc = 'Telescope keymaps'})
-      vim.keymap.set('n', ';?', builtin.oldfiles, {desc = 'Find recently opened files'})
-      vim.keymap.set('n', ';y', builtin.buffers, {desc = 'Find opened buffers in current neovim instance'})
-      vim.keymap.set('n', ';gf', builtin.git_files, {desc = 'Search Git Files'})
-      vim.keymap.set('n', ';sf', builtin.find_files, {desc = 'Search Files'})
-      vim.keymap.set('n', ';sh', builtin.help_tags, {desc = 'Search Help'})
-      vim.keymap.set('n', ';sw', builtin.grep_string, {desc = 'Search current Word'})
-      vim.keymap.set('n', ';sg', builtin.live_grep, {desc = 'Search by Grep'})
-      vim.keymap.set('n', ';sd', builtin.diagnostics, {desc = 'Search Diagnostics (Telescope)'})
-      vim.keymap.set('n', ';sc', builtin.colorscheme, {desc = 'Search Colorscheme'})
-      vim.keymap.set('n', ';ss', builtin.search_history, {desc = 'Get list of searches'})
-      vim.keymap.set('n', ';/', builtin.current_buffer_fuzzy_find, {desc = 'Fuzzily search in current buffer'})
-      vim.keymap.set('n', ';cd', function()
+      local function telescope_keymap(map, command, desc)
+        local description = desc .. ' (Telescope)'
+
+        vim.keymap.set('n', map, command, {desc = description})
+      end
+
+      telescope_keymap(';f', function()
+        builtin.find_files({
+          no_ignore = true,
+          hidden = true
+        })
+      end, 'Find files respecting gitignore')
+
+      telescope_keymap(';se', function()
+        builtin.diagnostics({bufnr = 0})
+      end, 'Get file diagnostics')
+
+      telescope_keymap(';cd', function()
         builtin.find_files({cwd = utils.buffer_dir()})
-      end, {desc = 'Search in Current buffer Directory'})
+      end, 'Search in Current buffer Directory')
+
+      telescope_keymap(';sf', builtin.find_files, 'Search Files')
+      telescope_keymap(';sg', builtin.live_grep, 'Search by Grep')
+      telescope_keymap(';gf', builtin.git_files, 'Search Git Files')
+      telescope_keymap(';sk', ':Telescope keymaps<CR>', 'Keymaps')
+      telescope_keymap(';sd', builtin.diagnostics, 'Search Diagnostics')
+      telescope_keymap(';sw', builtin.grep_string, 'Search current Word')
+      telescope_keymap(';?', builtin.oldfiles, 'Find recently opened files')
+      telescope_keymap(';y', builtin.buffers, 'Find opened buffers in current neovim instance')
+      telescope_keymap(';sh', builtin.help_tags, 'Search Help')
+      telescope_keymap(';sc', builtin.colorscheme, 'Search Colorscheme')
+      telescope_keymap(';ss', builtin.search_history, 'Get list of searches')
+      telescope_keymap(';/', builtin.current_buffer_fuzzy_find, 'Fuzzily search in current buffer')
+      telescope_keymap(';;', builtin.resume, 'Resume')
     end,
   }
 }

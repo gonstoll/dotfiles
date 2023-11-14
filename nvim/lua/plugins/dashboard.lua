@@ -19,7 +19,17 @@ return {
           desc = 'Dev projects',
           group = 'DashboardShortCut',
           key = 'd',
-          action = 'Telescope file_browser cwd=~/Dev/projects'
+          action = function()
+            require('telescope').extensions.file_browser.file_browser({cwd = '~/Dev/projects'})
+          end,
+        },
+        {
+          desc = 'Dotfiles',
+          group = 'DashboardShortCut',
+          key = 'f',
+          action = function()
+            require('telescope.builtin').find_files({cwd = '~/dotfiles'})
+          end,
         },
       },
       header = {
