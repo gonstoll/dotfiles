@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-ZSHRC_PATH=$(readlink .zshrc) # get the path of the .zshrc symlink
+ZSHRC_PATH=$(readlink $HOME/.zshrc) # get the path of the .zshrc symlink
 ZSH_PATH=$(dirname $ZSHRC_PATH) # get the path of the zsh folder
 
 # Get updates automatically
