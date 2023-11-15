@@ -56,6 +56,7 @@ return {
       vim.keymap.set('n', 'sf', function()
         telescope.extensions.file_browser.file_browser({
           path = '%:p:h',
+          hidden = true,
         })
       end, {desc = '[S]earch [F]iles (Telescope file browser)'})
 
