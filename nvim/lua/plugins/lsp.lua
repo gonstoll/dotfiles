@@ -232,6 +232,7 @@ return {
         eslint = {format = false},
         emmet_language_server = {},
         tsserver = {},
+        bashls = {},
       }
 
       mason_lspconfig.setup {
