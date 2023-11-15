@@ -44,3 +44,9 @@ vim.keymap.set('n', '<leader>;h', ':set hlsearch!<CR>', {desc = 'Toggle highligh
 
 -- Save without formatting
 vim.keymap.set('n', ';wf', ':noautocmd w<CR>', {desc = 'Save without formatting'})
+
+-- Cursor navigating on insert mode
+vim.keymap.set('i', '<M-h>', '<left>', {desc = 'Move cursor left'})
+vim.keymap.set('i', '<M-l>', '<right>', {desc = 'Move cursor left'})
+vim.keymap.set('i', '<M-j>', '<down>', {desc = 'Move cursor left'})
+vim.keymap.set('i', '<M-k>', '<up>', {desc = 'Move cursor left'})
