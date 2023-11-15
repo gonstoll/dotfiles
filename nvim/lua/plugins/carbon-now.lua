@@ -2,7 +2,7 @@ return {
   'kristijanhusak/vim-carbon-now-sh',
   keys = {
     {
-      '<F5>',
+      '<F2>',
       ':CarbonNowSh<CR>',
       mode = {'v', 'n'},
       desc = 'Take code snapshot',
