@@ -1,50 +1,3 @@
-local dark_colors = {
-  ansi = {
-    dark = '#141617',
-    red = '#f2594b',
-    green = '#b0b846',
-    yellow = '#e9b143',
-    blue = '#80aa9e',
-    magenta = '#d3869b',
-    cyan = '#8bba7f',
-    white = '#ffffff',
-  },
-  brights = {
-    dark = '#706f8c',
-    red = '#f2594b',
-    green = '#b0b846',
-    yellow = '#e9b143',
-    blue = '#80aa9e',
-    magenta = '#d3869b',
-    cyan = '#8bba7f',
-    white = '#ffffff',
-  },
-}
-
-local light_colors = {
-  ansi = {
-    dark = '#141617',
-    red = '#af2528',
-    green = '#72761e',
-    yellow = '#b4730e',
-    blue = '#266b79',
-    magenta = '#924f79',
-    cyan = '#477a5b',
-    white = '#ffffff',
-  },
-  brights = {
-    dark = '#706f8c',
-    red = '#af2528',
-    green = '#72761e',
-    yellow = '#b4730e',
-    blue = '#266b79',
-    magenta = '#924f79',
-    cyan = '#477a5b',
-    white = '#ffffff',
-  },
-}
-
-
 local dark_palette = {
   bg_dim = '#141617',
   bg0 = '#1d2021',
@@ -64,6 +17,21 @@ local dark_palette = {
   bg_visual_blue = '#2e3b3b',
   bg_visual_yellow = '#473c29',
   bg_current_word = '#32302f',
+  fg0 = '#e2cca9',
+  fg1 = '#e2cca9',
+  red = '#f2594b',
+  orange = '#f28534',
+  yellow = '#e9b143',
+  green = '#b0b846',
+  aqua = '#8bba7f',
+  blue = '#80aa9e',
+  purple = '#d3869b',
+  bg_red = '#db4740',
+  bg_green = '#b0b846',
+  bg_yellow = '#e9b143',
+  grey0 = '#7c6f64',
+  grey1 = '#928374',
+  grey2 = '#a89984',
 }
 
 local light_palette = {
@@ -85,13 +53,74 @@ local light_palette = {
   bg_visual_blue = '#d9e1cc',
   bg_visual_yellow = '#f9eabf',
   bg_current_word = '#f3eac7',
+  fg0 = '#514036',
+  fg1 = '#514036',
+  red = '#af2528',
+  orange = '#b94c07',
+  yellow = '#b4730e',
+  green = '#72761e',
+  aqua = '#477a5b',
+  blue = '#266b79',
+  purple = '#924f79',
+  bg_red = '#ae5858',
+  bg_green = '#6f8352',
+  bg_yellow = '#a96b2c',
+  grey0 = '#a89984',
+  grey1 = '#928374',
+  grey2 = '#7c6f64',
+}
+
+local dark_colors = {
+  ansi = {
+    dark = dark_palette.bg0,
+    red = dark_palette.red,
+    green = dark_palette.green,
+    yellow = dark_palette.yellow,
+    blue = dark_palette.blue,
+    magenta = dark_palette.purple,
+    cyan = dark_palette.aqua,
+    white = '#ffffff',
+  },
+  brights = {
+    dark = '#706f8c',
+    red = dark_palette.red,
+    green = dark_palette.green,
+    yellow = dark_palette.yellow,
+    blue = dark_palette.blue,
+    magenta = dark_palette.purple,
+    cyan = dark_palette.aqua,
+    white = '#ffffff',
+  },
+}
+
+local light_colors = {
+  ansi = {
+    dark = light_palette.fg0,
+    red = light_palette.red,
+    green = light_palette.green,
+    yellow = light_palette.yellow,
+    blue = light_palette.blue,
+    magenta = light_palette.purple,
+    cyan = light_palette.aqua,
+    white = '#ffffff',
+  },
+  brights = {
+    dark = '#706f8c',
+    red = light_palette.red,
+    green = light_palette.green,
+    yellow = light_palette.yellow,
+    blue = light_palette.blue,
+    magenta = light_palette.purple,
+    cyan = light_palette.aqua,
+    white = '#ffffff',
+  },
 }
 
 local colors = {
-  dark_colors = dark_colors,
-  light_colors = light_colors,
   dark_palette = dark_palette,
   light_palette = light_palette,
+  dark_colors = dark_colors,
+  light_colors = light_colors,
 }
 
 return colors

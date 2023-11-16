@@ -6,7 +6,6 @@ return {
     foreground = '#e2cca9',
     cursor_bg = '#e2cca9',
     cursor_fg = '#141617',
-    -- ansi table with values from dark_colors.ansi properties
     ansi = {
       colors.dark_colors.ansi.dark,
       colors.dark_colors.ansi.red,

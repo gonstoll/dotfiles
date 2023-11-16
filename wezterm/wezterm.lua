@@ -2,38 +2,6 @@ local wezterm = require('wezterm')
 local colors = require('colors')
 local color_schemes = require('color_schemes')
 
--- local function scheme_for_appearance(appearance)
---   if appearance:find 'Dark' then
---     return 'Gruvbox Material Dark'
---   else
---     return 'Gruvbox Material Light'
---   end
--- end
---
--- wezterm.on('window-config-reloaded', function(window, pane)
---   local overrides = window:get_config_overrides() or {}
---   local appearance = window:get_appearance()
---   local scheme = scheme_for_appearance(appearance)
---   if overrides.color_scheme ~= scheme then
---     overrides.color_scheme = scheme
---     window:set_config_overrides(overrides)
---   end
--- end)
-
--- wezterm.on('update-right-status', function(window, pane)
---   -- "Wed Mar 3 08:14"
---   local date = wezterm.strftime('%a %b %-d %H:%M ')
---
---   local bat = ''
---   for _, b in ipairs(wezterm.battery_info()) do
---     bat = '🔋 ' .. string.format('%.0f%%', b.state_of_charge * 100)
---   end
---
---   window:set_right_status(wezterm.format {
---     {Text = bat .. ' - ' .. date},
---   })
--- end)
-
 wezterm.on('update-right-status', function(window, pane)
   -- Each element holds the text for a cell in a "powerline" style << fade
   local cells = {}
@@ -147,15 +115,10 @@ wezterm.on('toggle-colorscheme', function(window, pane)
   window:set_config_overrides(overrides)
 end)
 
-local appearance = wezterm.gui.get_appearance()
-local scheme = 'light'
-if appearance:find('Dark') then
-  scheme = 'dark'
-end
-
 return {
   font = wezterm.font('FiraCode Nerd Font', {weight = 'Regular', italic = false}),
   font_size = 16.0,
+  harfbuzz_features = {'calt=0', 'clig=0', 'liga=0'},
   color_schemes = color_schemes,
   color_scheme = 'Gruvbox Material Dark',
 
@@ -165,7 +128,7 @@ return {
   window_frame = {
     font = wezterm.font({family = 'FiraCode Nerd Font'}),
     font_size = 14.0,
-    active_titlebar_bg = scheme == 'dark' and colors.dark_colors.ansi.dark or colors.light_colors.ansi.red,
+    active_titlebar_bg = colors.dark_colors.ansi.dark,
     inactive_titlebar_bg = '#000000',
   },
 
@@ -184,7 +147,7 @@ return {
     {
       key = 'e',
       mods = 'CTRL',
-      action = wezterm.action.EmitEvent 'toggle-colorscheme',
+      action = wezterm.action.EmitEvent('toggle-colorscheme'),
     },
   },
 }
