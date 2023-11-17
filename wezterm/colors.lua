@@ -1,4 +1,6 @@
-local dark_palette = {
+local M = {}
+
+M.dark_palette = {
   bg_dim = '#141617',
   bg0 = '#1d2021',
   bg1 = '#282828',
@@ -34,7 +36,7 @@ local dark_palette = {
   grey2 = '#a89984',
 }
 
-local light_palette = {
+M.light_palette = {
   bg_dim = '#f3eac7',
   bg0 = '#f9f5d7',
   bg1 = '#f5edca',
@@ -70,57 +72,4 @@ local light_palette = {
   grey2 = '#7c6f64',
 }
 
-local dark_colors = {
-  ansi = {
-    dark = dark_palette.bg0,
-    red = dark_palette.red,
-    green = dark_palette.green,
-    yellow = dark_palette.yellow,
-    blue = dark_palette.blue,
-    magenta = dark_palette.purple,
-    cyan = dark_palette.aqua,
-    white = '#ffffff',
-  },
-  brights = {
-    dark = '#706f8c',
-    red = dark_palette.red,
-    green = dark_palette.green,
-    yellow = dark_palette.yellow,
-    blue = dark_palette.blue,
-    magenta = dark_palette.purple,
-    cyan = dark_palette.aqua,
-    white = '#ffffff',
-  },
-}
-
-local light_colors = {
-  ansi = {
-    dark = light_palette.fg0,
-    red = light_palette.red,
-    green = light_palette.green,
-    yellow = light_palette.yellow,
-    blue = light_palette.blue,
-    magenta = light_palette.purple,
-    cyan = light_palette.aqua,
-    white = '#ffffff',
-  },
-  brights = {
-    dark = '#706f8c',
-    red = light_palette.red,
-    green = light_palette.green,
-    yellow = light_palette.yellow,
-    blue = light_palette.blue,
-    magenta = light_palette.purple,
-    cyan = light_palette.aqua,
-    white = '#ffffff',
-  },
-}
-
-local colors = {
-  dark_palette = dark_palette,
-  light_palette = light_palette,
-  dark_colors = dark_colors,
-  light_colors = light_colors,
-}
-
-return colors
+return M

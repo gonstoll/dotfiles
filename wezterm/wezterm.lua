@@ -108,9 +108,14 @@ wezterm.on('toggle-colorscheme', function(window, pane)
 end)
 
 return {
+  -- Font
   font = wezterm.font('FiraCode Nerd Font', {weight = 'Regular', italic = false}),
   font_size = 16.0,
   harfbuzz_features = {'calt=0', 'clig=0', 'liga=0'},
+
+  -- Colors
+  color_schemes = color_schemes,
+  color_scheme = 'Gruvbox Material Dark',
   colors = {
     tab_bar = {
       background = colors.dark_palette.bg0,
@@ -124,13 +129,11 @@ return {
       },
     },
   },
-  color_schemes = color_schemes,
-  color_scheme = 'Gruvbox Material Dark',
 
   -- Window
+  window_decorations = 'RESIZE',
   use_fancy_tab_bar = false,
   tab_bar_at_bottom = true,
-  window_decorations = 'RESIZE',
   window_frame = {
     font = wezterm.font({family = 'FiraCode Nerd Font'}),
     font_size = 14.0,
@@ -143,6 +146,9 @@ return {
     top = '15px',
     bottom = '15px',
   },
+  initial_rows = 120,
+  initial_cols = 350,
+  enable_scroll_bar = false,
 
   -- Opacity and blur
   window_background_opacity = 0.86,
