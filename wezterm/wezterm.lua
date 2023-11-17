@@ -151,7 +151,7 @@ return {
   keys = {
     {
       key = 'e',
-      mods = 'CTRL',
+      mods = 'CMD',
       action = act.EmitEvent('toggle-colorscheme'),
     },
     {
