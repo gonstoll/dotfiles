@@ -48,7 +48,7 @@ wezterm.on('update-right-status', function(window, pane)
   end
 
   -- I like my date/time in this style: "Wed Mar 3 08:14"
-  local date = wezterm.strftime '%a %b %-d %H:%M'
+  local date = wezterm.strftime('%a %b %-d %H:%M')
   table.insert(cells, date)
 
   -- An entry for each battery (typically 0 or 1 battery)
@@ -56,26 +56,18 @@ wezterm.on('update-right-status', function(window, pane)
     table.insert(cells, string.format('%.0f%%', b.state_of_charge * 100))
   end
 
-  -- The powerline < symbol
-  local LEFT_ARROW = utf8.char(0xe0b3)
-  -- The filled in variant of the < symbol
   local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
 
-  -- Color palette for the backgrounds of each cell
   local statusline_colors = {
-    '#3c1361',
-    '#52307c',
-    '#663a82',
-    '#7c5295',
-    '#b491c8',
+    colors.dark_palette.bg0,
+    colors.dark_palette.bg1,
+    colors.dark_palette.bg4,
+    colors.dark_palette.bg5,
   }
 
-  -- Foreground color for the text across the fade
-  local text_fg = '#c0c0c0'
+  local text_fg = colors.dark_palette.fg0
 
-  -- The elements to be formatted
   local elements = {}
-  -- How many cells have been formatted
   local num_cells = 0
 
   -- Translate a cell into elements
@@ -119,17 +111,33 @@ return {
   font = wezterm.font('FiraCode Nerd Font', {weight = 'Regular', italic = false}),
   font_size = 16.0,
   harfbuzz_features = {'calt=0', 'clig=0', 'liga=0'},
+  colors = {
+    tab_bar = {
+      background = colors.dark_palette.bg0,
+      active_tab = {
+        bg_color = colors.dark_palette.bg1,
+        fg_color = colors.dark_palette.fg0,
+      },
+      inactive_tab = {
+        bg_color = colors.dark_palette.bg0,
+        fg_color = colors.dark_palette.fg1,
+      },
+    },
+  },
   color_schemes = color_schemes,
   color_scheme = 'Gruvbox Material Dark',
 
   -- Window
   use_fancy_tab_bar = false,
+  tab_bar_at_bottom = true,
   window_decorations = 'RESIZE',
   window_frame = {
     font = wezterm.font({family = 'FiraCode Nerd Font'}),
     font_size = 14.0,
-    active_titlebar_bg = colors.dark_colors.ansi.dark,
-    inactive_titlebar_bg = '#000000',
+    active_titlebar_bg = colors.dark_palette.bg0,
+    active_titlebar_fg = colors.dark_palette.fg0,
+    inactive_titlebar_bg = colors.dark_palette.bg1,
+    inactive_titlebar_fg = colors.dark_palette.fg1,
   },
 
   -- Opacity and blur
