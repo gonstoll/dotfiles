@@ -139,6 +139,10 @@ return {
     inactive_titlebar_bg = colors.dark_palette.bg1,
     inactive_titlebar_fg = colors.dark_palette.fg1,
   },
+  window_padding = {
+    top = '15px',
+    bottom = '15px',
+  },
 
   -- Opacity and blur
   window_background_opacity = 0.86,
