@@ -96,31 +96,26 @@ end)
 
 return {
   -- Font
-  font = wezterm.font('FiraCode Nerd Font', {weight = 'Regular', italic = false}),
+  font = wezterm.font_with_fallback({
+    {
+      family = 'FiraCode Nerd Font',
+      weight = 450,
+      italic = false,
+      stretch = 'Normal',
+    },
+  }),
   font_size = 16.0,
   harfbuzz_features = {'calt=0', 'clig=0', 'liga=0'},
 
   -- Colors
   color_schemes = color_schemes,
   color_scheme = 'Gruvbox Material Dark',
-  colors = {
-    tab_bar = {
-      background = colors.dark_palette.bg0,
-      active_tab = {
-        bg_color = colors.dark_palette.bg1,
-        fg_color = colors.dark_palette.fg0,
-      },
-      inactive_tab = {
-        bg_color = colors.dark_palette.bg0,
-        fg_color = colors.dark_palette.fg1,
-      },
-    },
-  },
 
   -- Window
   window_decorations = 'RESIZE',
   use_fancy_tab_bar = false,
   tab_bar_at_bottom = true,
+  tab_max_width = 26,
   window_frame = {
     font = wezterm.font({family = 'FiraCode Nerd Font'}),
     font_size = 14.0,
