@@ -1,29 +1,54 @@
+_G.__foldcolumn = function()
+  local chars = vim.opt.fillchars:get()
+  local fc = '%#FoldColumn#'
+  local clf = '%#CursorLineFold#'
+  local hl = vim.fn.line('.') == vim.v.lnum and clf or fc
+  local text = ' '
+
+  if vim.fn.foldlevel(vim.v.lnum) > vim.fn.foldlevel(vim.v.lnum - 1) then
+    if vim.fn.foldclosed(vim.v.lnum) == -1 then
+      text = hl .. (chars.foldopen or ' ')
+    else
+      text = hl .. (chars.foldclose or ' ')
+    end
+  elseif vim.fn.foldlevel(vim.v.lnum) == 0 then
+    text = hl .. ' '
+  else
+    text = hl .. (chars.foldsep or ' ')
+  end
+
+  return text
+end
+
 vim.opt.guicursor = 'n-v-c:block,i-ci-ve:ver100/,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
-vim.opt.cursorline = true                                   -- highlight the current line
+vim.opt.cursorline = true     -- highlight the current line
 
-vim.opt.number = true                                       -- Set numbered lines
-vim.opt.relativenumber = true                               -- Set relative numbered lines
-vim.opt.list = false                                        -- Hide characters on tabs and spaces
-vim.opt.scrolloff = 8                                       -- Minimal number of screen lines to keep above and below the cursor
-vim.opt.fillchars.eob = ' '                                 -- Empty lines at the end of a buffer as ` `
-vim.opt.wrap = false                                        -- Display long lines as just one line
-vim.opt.sidescrolloff = 8                                   -- minimal number of screen columns to keep to the left and right of the cursor if wrap is `false`
-vim.opt.linebreak = true                                    -- Wrap long lines at a character in 'breakat'
-vim.opt.textwidth = 120                                     -- Maximum width of text that is being inserted
-vim.cmd('set fo-=1')                                        -- Don't break lines after a one-letter word
+vim.opt.number = true         -- Set numbered lines
+vim.opt.relativenumber = true -- Set relative numbered lines
+vim.opt.list = false          -- Hide characters on tabs and spaces
+vim.opt.scrolloff = 8         -- Minimal number of screen lines to keep above and below the cursor
+vim.opt.fillchars.eob = ' '   -- Empty lines at the end of a buffer as ` `
+vim.opt.wrap = false          -- Display long lines as just one line
+vim.opt.sidescrolloff = 8     -- minimal number of screen columns to keep to the left and right of the cursor if wrap is `false`
+vim.opt.linebreak = true      -- Wrap long lines at a character in 'breakat'
+vim.opt.textwidth = 120       -- Maximum width of text that is being inserted
+vim.cmd('set fo-=1')          -- Don't break lines after a one-letter word
 
-vim.opt.showtabline = 2                                     -- Always show tabs
-vim.opt.tabstop = 2                                         -- Insert 2 spaces for a tab
-vim.opt.softtabstop = 2                                     -- Number of spaces tabs count for while editing
-vim.opt.shiftwidth = 2                                      -- the number of spaces inserted for each indentation
-vim.opt.expandtab = true                                    -- convert tabs to spaces
-vim.opt.smartindent = true                                  -- Makes indenting smart
+vim.opt.showtabline = 2       -- Always show tabs
+vim.opt.tabstop = 2           -- Insert 2 spaces for a tab
+vim.opt.softtabstop = 2       -- Number of spaces tabs count for while editing
+vim.opt.shiftwidth = 2        -- the number of spaces inserted for each indentation
+vim.opt.expandtab = true      -- convert tabs to spaces
+vim.opt.smartindent = true    -- Makes indenting smart
 
-vim.opt.signcolumn = 'yes'                                  -- Always show the signcolumn
-vim.opt.foldcolumn = '1'                                    -- '0' is not bad
-vim.opt.foldlevel = 99                                      -- Using ufo provider need a large value, feel free to decrease the value
-vim.opt.foldlevelstart = 99                                 -- Using ufo provider need a large value, feel free to decrease the value
-vim.opt.foldenable = true                                   -- Enable folding
+vim.opt.signcolumn = 'yes'    -- Always show the signcolumn
+vim.opt.foldcolumn = '1'      -- '0' is not bad
+vim.opt.foldlevel = 99        -- Using ufo provider need a large value, feel free to decrease the value
+vim.opt.foldlevelstart = 99   -- Using ufo provider need a large value, feel free to decrease the value
+vim.opt.foldenable = true     -- Enable folding
+vim.opt.statuscolumn =
+"%{%v:lua.__foldcolumn()%} %s%=%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum < 10 ? v:lnum . ' ' : v:lnum) : ''} "
+-- vim.opt.statuscolumn = "%=%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum < 10 ? v:lnum . '  ' : v:lnum) : ''}%=%s"
 
 vim.opt.hlsearch = false                                    -- Highlight on search
 vim.opt.incsearch = true                                    -- While typing a search command, show where the pattern matches
@@ -45,3 +70,10 @@ vim.opt.laststatus = 3                                      -- Global statusline
 
 vim.g.markdown_recommended_style = 0                        -- Disable default markdown styles (see https://www.reddit.com/r/neovim/comments/z2lhyz/comment/ixjb7je)
 -- vim.opt.listchars = 'eol:↲'
+vim.opt.fillchars = {
+  eob = ' ',
+  fold = ' ',
+  foldopen = '',
+  foldclose = '',
+  foldsep = ' ', -- or "│" to use bar for show fold area
+}
