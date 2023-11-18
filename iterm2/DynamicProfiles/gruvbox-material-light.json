@@ -10,6 +10,7 @@
       "Left Option Key Changeable": true,
       "Option Key Sends": 2,
       "Right Option Key Sends": 2,
+      "Icon": 1,
       "Selected Text Color": {
         "Red Component": 0.95294117647058818,
         "Color Space": "sRGB",
