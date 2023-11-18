@@ -3,6 +3,9 @@ local act = wezterm.action
 local colors = require('colors')
 local color_schemes = require('color_schemes')
 
+local light_theme = 'Gruvbox Material Light'
+local dark_theme = 'Gruvbox Material Dark'
+
 wezterm.on('update-right-status', function(window, pane)
   local cells = {}
 
@@ -45,7 +48,7 @@ wezterm.on('update-right-status', function(window, pane)
   end
 
   local overrides = window:get_config_overrides() or {}
-  local is_dark_theme = not overrides.color_scheme and true or overrides.color_scheme == 'Gruvbox Material Dark'
+  local is_dark_theme = not overrides.color_scheme and true or overrides.color_scheme == dark_theme
   local statusline_fg = is_dark_theme and colors.dark_palette.fg0 or colors.light_palette.fg0
   local statusline_bg = {
     is_dark_theme and colors.dark_palette.bg0 or colors.light_palette.bg0,
@@ -80,13 +83,9 @@ wezterm.on('toggle-colorscheme', function(window, pane)
   local overrides = window:get_config_overrides() or {}
 
   if not overrides.color_scheme then
-    overrides.color_scheme = 'Gruvbox Material Dark'
+    overrides.color_scheme = dark_theme
   else
-    if overrides.color_scheme == 'Gruvbox Material Light' then
-      overrides.color_scheme = 'Gruvbox Material Dark'
-    else
-      overrides.color_scheme = 'Gruvbox Material Light'
-    end
+    overrides.color_scheme = overrides.color_scheme == light_theme and dark_theme or light_theme
   end
 
   window:set_config_overrides(overrides)
