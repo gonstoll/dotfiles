@@ -44,16 +44,27 @@ wezterm.on('update-right-status', function(window, pane)
     table.insert(cells, string.format('%.0f%%', b.state_of_charge * 100))
   end
 
-  -- local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
+  local overrides = window:get_config_overrides() or {}
+  local is_dark_theme = overrides.color_scheme == 'Gruvbox Material Dark'
+  local statusline_colors
 
-  local statusline_colors = {
-    colors.dark_palette.bg0,
-    colors.dark_palette.bg1,
-    colors.dark_palette.bg4,
-    colors.dark_palette.bg5,
-  }
+  if is_dark_theme then
+    statusline_colors = {
+      colors.dark_palette.bg0,
+      colors.dark_palette.bg1,
+      colors.dark_palette.bg4,
+      colors.dark_palette.bg5,
+    }
+  else
+    statusline_colors = {
+      colors.light_palette.bg0,
+      colors.light_palette.bg1,
+      colors.light_palette.bg3,
+      colors.light_palette.bg5,
+    }
+  end
 
-  local text_fg = colors.dark_palette.fg0
+  local text_fg = is_dark_theme and colors.dark_palette.fg0 or colors.light_palette.fg0
 
   local elements = {}
   local num_cells = 0
@@ -65,7 +76,6 @@ wezterm.on('update-right-status', function(window, pane)
     table.insert(elements, {Text = ' ' .. text .. ' '})
     if not is_last then
       table.insert(elements, {Foreground = {Color = statusline_colors[cell_no + 1]}})
-      -- table.insert(elements, {Text = SOLID_LEFT_ARROW})
     end
     num_cells = num_cells + 1
   end
