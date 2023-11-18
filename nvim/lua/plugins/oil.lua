@@ -15,7 +15,7 @@ return {
     })
 
     vim.api.nvim_create_autocmd('BufEnter', {
-      group = vim.api.nvim_create_augroup('telescope-file-browser.nvim', {clear = true}),
+      group = vim.api.nvim_create_augroup('oil.nvim', {clear = true}),
       pattern = '*',
       callback = function()
         vim.schedule(function()
