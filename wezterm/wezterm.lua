@@ -44,41 +44,26 @@ wezterm.on('update-right-status', function(window, pane)
     table.insert(cells, string.format('%.0f%%', b.state_of_charge * 100))
   end
 
-  local overrides = window:get_config_overrides() or nil
-  local is_dark_theme = true
-
-  if overrides then
-    is_dark_theme = overrides.color_scheme == 'Gruvbox Material Dark'
-  end
-
-  local statusline_colors = {
-    colors.dark_palette.bg0,
-    colors.dark_palette.bg1,
-    colors.dark_palette.bg4,
-    colors.dark_palette.bg5,
+  local overrides = window:get_config_overrides() or {}
+  local is_dark_theme = not overrides.color_scheme and true or overrides.color_scheme == 'Gruvbox Material Dark'
+  local statusline_fg = is_dark_theme and colors.dark_palette.fg0 or colors.light_palette.fg0
+  local statusline_bg = {
+    is_dark_theme and colors.dark_palette.bg0 or colors.light_palette.bg0,
+    is_dark_theme and colors.dark_palette.bg1 or colors.light_palette.bg1,
+    is_dark_theme and colors.dark_palette.bg4 or colors.light_palette.bg3,
+    is_dark_theme and colors.dark_palette.bg5 or colors.light_palette.bg5,
   }
-
-  if not is_dark_theme then
-    statusline_colors = {
-      colors.light_palette.bg0,
-      colors.light_palette.bg1,
-      colors.light_palette.bg3,
-      colors.light_palette.bg5,
-    }
-  end
-
-  local text_fg = is_dark_theme and colors.dark_palette.fg0 or colors.light_palette.fg0
 
   local elements = {}
   local num_cells = 0
 
   local function push(text, is_last)
     local cell_no = num_cells + 1
-    table.insert(elements, {Foreground = {Color = text_fg}})
-    table.insert(elements, {Background = {Color = statusline_colors[cell_no]}})
+    table.insert(elements, {Foreground = {Color = statusline_fg}})
+    table.insert(elements, {Background = {Color = statusline_bg[cell_no]}})
     table.insert(elements, {Text = ' ' .. text .. ' '})
     if not is_last then
-      table.insert(elements, {Foreground = {Color = statusline_colors[cell_no + 1]}})
+      table.insert(elements, {Foreground = {Color = statusline_bg[cell_no + 1]}})
     end
     num_cells = num_cells + 1
   end
