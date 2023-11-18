@@ -28,6 +28,18 @@ return {
       colors.dark_palette.aqua,
       '#ffffff',
     },
+
+    tab_bar = {
+      background = colors.dark_palette.bg0,
+      active_tab = {
+        bg_color = colors.dark_palette.bg3,
+        fg_color = colors.dark_palette.fg0,
+      },
+      inactive_tab = {
+        bg_color = colors.dark_palette.bg0,
+        fg_color = colors.dark_palette.fg1,
+      },
+    },
   },
 
   ['Gruvbox Material Light'] = {
@@ -57,5 +69,18 @@ return {
       colors.light_palette.aqua,
       '#ffffff',
     },
+
+    tab_bar = {
+      background = colors.light_palette.bg0,
+      active_tab = {
+        bg_color = colors.light_palette.bg3,
+        fg_color = colors.light_palette.fg0,
+      },
+      inactive_tab = {
+        bg_color = colors.light_palette.bg0,
+        fg_color = colors.light_palette.fg1,
+      },
+    },
+
   }
 }
