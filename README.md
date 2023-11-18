@@ -11,7 +11,7 @@ These are my dotfiles, use with caution and at your own risk! For the moment, th
 
 - Editor - [Neovim](https://neovim.io/). Want more pics? Check them out [here](https://github.com/gonstoll/dotfiles/blob/master/nvim/README.md)
 - Shell - [Zsh](https://www.zsh.org/)
-- Terminal - [iTerm2](https://iterm2.com/)
+- Terminal - [WezTerm](https://wezfurlong.org/wezterm/index.html)
 - Launcher - [Raycast](https://www.raycast.com/)
 
 ## Basic Installation
