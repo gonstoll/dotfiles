@@ -44,18 +44,21 @@ wezterm.on('update-right-status', function(window, pane)
     table.insert(cells, string.format('%.0f%%', b.state_of_charge * 100))
   end
 
-  local overrides = window:get_config_overrides() or {}
-  local is_dark_theme = overrides.color_scheme == 'Gruvbox Material Dark'
-  local statusline_colors
+  local overrides = window:get_config_overrides() or nil
+  local is_dark_theme = true
 
-  if is_dark_theme then
-    statusline_colors = {
-      colors.dark_palette.bg0,
-      colors.dark_palette.bg1,
-      colors.dark_palette.bg4,
-      colors.dark_palette.bg5,
-    }
-  else
+  if overrides then
+    is_dark_theme = overrides.color_scheme == 'Gruvbox Material Dark'
+  end
+
+  local statusline_colors = {
+    colors.dark_palette.bg0,
+    colors.dark_palette.bg1,
+    colors.dark_palette.bg4,
+    colors.dark_palette.bg5,
+  }
+
+  if not is_dark_theme then
     statusline_colors = {
       colors.light_palette.bg0,
       colors.light_palette.bg1,
