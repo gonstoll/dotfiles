@@ -106,7 +106,7 @@ return {
 
   -- Colors
   color_schemes = color_schemes,
-  color_scheme = 'Gruvbox Material Dark',
+  color_scheme = dark_theme,
 
   -- Window
   window_decorations = 'RESIZE',
