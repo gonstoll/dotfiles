@@ -111,6 +111,7 @@ return {
   -- Window
   window_decorations = 'RESIZE',
   use_fancy_tab_bar = false,
+  show_new_tab_button_in_tab_bar = false,
   tab_bar_at_bottom = true,
   tab_max_width = 26,
   window_frame = {
@@ -131,7 +132,7 @@ return {
 
   -- Opacity and blur
   window_background_opacity = 0.86,
-  macos_window_background_blur = 20,
+  macos_window_background_blur = 15,
 
   -- Cursor
   cursor_blink_rate = 500,
@@ -150,6 +151,47 @@ return {
       key = 'k',
       mods = 'CMD',
       action = act.ClearScrollback('ScrollbackAndViewport'),
+    },
+    {
+      key = 'd',
+      mods = 'CMD',
+      action = wezterm.action.SplitPane {
+        direction = 'Right',
+        size = {Percent = 50},
+      },
+    },
+    {
+      key = 'd',
+      mods = 'CMD|SHIFT',
+      action = wezterm.action.SplitPane {
+        direction = 'Down',
+        size = {Percent = 50},
+      },
+    },
+    {
+      key = 'w',
+      mods = 'CMD',
+      action = wezterm.action.CloseCurrentPane {confirm = true},
+    },
+    {
+      key = 'h',
+      mods = 'CTRL|CMD',
+      action = act.ActivatePaneDirection 'Left',
+    },
+    {
+      key = 'l',
+      mods = 'CTRL|CMD',
+      action = act.ActivatePaneDirection 'Right',
+    },
+    {
+      key = 'k',
+      mods = 'CTRL|CMD',
+      action = act.ActivatePaneDirection 'Up',
+    },
+    {
+      key = 'j',
+      mods = 'CTRL|CMD',
+      action = act.ActivatePaneDirection 'Down',
     },
   },
 }

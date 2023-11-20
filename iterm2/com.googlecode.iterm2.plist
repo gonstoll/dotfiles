@@ -451,6 +451,8 @@
 			<false/>
 			<key>Horizontal Spacing</key>
 			<integer>1</integer>
+			<key>Icon</key>
+			<integer>1</integer>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Jobs to Ignore</key>
@@ -1599,6 +1601,8 @@
 			<false/>
 			<key>Horizontal Spacing</key>
 			<integer>1</integer>
+			<key>Icon</key>
+			<integer>1</integer>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Jobs to Ignore</key>
@@ -2743,6 +2747,8 @@
 			<false/>
 			<key>Horizontal Spacing</key>
 			<integer>1</integer>
+			<key>Icon</key>
+			<integer>1</integer>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Jobs to Ignore</key>
@@ -3886,6 +3892,8 @@
 			<key>Has Hotkey</key>
 			<false/>
 			<key>Horizontal Spacing</key>
+			<integer>1</integer>
+			<key>Icon</key>
 			<integer>1</integer>
 			<key>Idle Code</key>
 			<integer>0</integer>
