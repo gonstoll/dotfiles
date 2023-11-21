@@ -19,12 +19,18 @@ wezterm.on('update-right-status', function(window, pane)
       hostname = cwd_uri.host or wezterm.hostname()
     else
       cwd_uri = cwd_uri:sub(8)
-      local slash = cwd_uri:find '/'
+      local slash = cwd_uri:find('/')
+
       if slash then
         hostname = cwd_uri:sub(1, slash - 1)
-        cwd = cwd_uri:sub(slash):gsub('%%(%x%x)', function(hex)
-          return string.char(tonumber(hex, 16))
-        end)
+        cwd = cwd_uri
+            :sub(slash)
+            :gsub(wezterm.home_dir, '~')
+            :gsub('%%(%x%x)', function(hex)
+              return string.char(tonumber(hex, 16))
+            end)
+        -- local home_dir = cwd:find(wezterm.home_dir)
+        -- cwd = home_dir and cwd:gsub(wezterm.home_dir, '~') or cwd
       end
     end
 
@@ -50,12 +56,13 @@ wezterm.on('update-right-status', function(window, pane)
   local overrides = window:get_config_overrides() or {}
   local is_dark_theme = not overrides.color_scheme and true or overrides.color_scheme == dark_theme
   local statusline_fg = is_dark_theme and colors.dark_palette.fg0 or colors.light_palette.fg0
-  local statusline_bg = {
-    is_dark_theme and colors.dark_palette.bg0 or colors.light_palette.bg0,
-    is_dark_theme and colors.dark_palette.bg1 or colors.light_palette.bg1,
-    is_dark_theme and colors.dark_palette.bg4 or colors.light_palette.bg3,
-    is_dark_theme and colors.dark_palette.bg5 or colors.light_palette.bg5,
-  }
+  local statusline_bg = is_dark_theme and colors.dark_palette.bg3 or colors.light_palette.bg3
+  -- local statusline_bg = {
+  --   is_dark_theme and colors.dark_palette.bg0 or colors.light_palette.bg0,
+  --   is_dark_theme and colors.dark_palette.bg1 or colors.light_palette.bg1,
+  --   is_dark_theme and colors.dark_palette.bg4 or colors.light_palette.bg3,
+  --   is_dark_theme and colors.dark_palette.bg5 or colors.light_palette.bg5,
+  -- }
 
   local elements = {}
   local num_cells = 0
@@ -63,10 +70,11 @@ wezterm.on('update-right-status', function(window, pane)
   local function push(text, is_last)
     local cell_no = num_cells + 1
     table.insert(elements, {Foreground = {Color = statusline_fg}})
-    table.insert(elements, {Background = {Color = statusline_bg[cell_no]}})
+    table.insert(elements, {Background = {Color = statusline_bg}})
     table.insert(elements, {Text = ' ' .. text .. ' '})
     if not is_last then
-      table.insert(elements, {Foreground = {Color = statusline_bg[cell_no + 1]}})
+      table.insert(elements, {Foreground = {Color = statusline_fg}})
+      table.insert(elements, {Text = '|'})
     end
     num_cells = num_cells + 1
   end
@@ -152,6 +160,12 @@ return {
       mods = 'CMD',
       action = act.ClearScrollback('ScrollbackAndViewport'),
     },
+    {
+      key = 'c',
+      mods = 'CMD|SHIFT',
+      action = wezterm.action.ActivateCopyMode,
+    },
+    -- Pane navigation
     {
       key = 'd',
       mods = 'CMD',
