@@ -3,6 +3,7 @@ return {
   dependencies = {'windwp/nvim-ts-autotag'},
   cmd = {'TSInstall', 'TSBufEnable', 'TSBufDisable', 'TSModuleInfo'},
   build = ':TSUpdate',
+  ft = {'oil'},
   config = function()
     local treesitter_config = require('nvim-treesitter.configs')
     local treesitter_parsers = require('nvim-treesitter.parsers')
