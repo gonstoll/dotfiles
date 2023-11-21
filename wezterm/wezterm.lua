@@ -169,43 +169,43 @@ return {
     {
       key = 'd',
       mods = 'CMD',
-      action = wezterm.action.SplitPane {
+      action = wezterm.action.SplitPane({
         direction = 'Right',
         size = {Percent = 50},
-      },
+      }),
     },
     {
       key = 'd',
       mods = 'CMD|SHIFT',
-      action = wezterm.action.SplitPane {
+      action = wezterm.action.SplitPane({
         direction = 'Down',
         size = {Percent = 50},
-      },
+      }),
     },
     {
       key = 'w',
       mods = 'CMD',
-      action = wezterm.action.CloseCurrentPane {confirm = true},
+      action = wezterm.action.CloseCurrentPane({confirm = true}),
     },
     {
       key = 'h',
       mods = 'CTRL|CMD',
-      action = act.ActivatePaneDirection 'Left',
+      action = act.ActivatePaneDirection('Left'),
     },
     {
       key = 'l',
       mods = 'CTRL|CMD',
-      action = act.ActivatePaneDirection 'Right',
+      action = act.ActivatePaneDirection('Right'),
     },
     {
       key = 'k',
       mods = 'CTRL|CMD',
-      action = act.ActivatePaneDirection 'Up',
+      action = act.ActivatePaneDirection('Up'),
     },
     {
       key = 'j',
       mods = 'CTRL|CMD',
-      action = act.ActivatePaneDirection 'Down',
+      action = act.ActivatePaneDirection('Down'),
     },
   },
 }
