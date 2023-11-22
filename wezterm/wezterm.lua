@@ -99,6 +99,20 @@ wezterm.on('toggle-colorscheme', function(window, pane)
   window:set_config_overrides(overrides)
 end)
 
+
+wezterm.on(
+  'format-tab-title',
+  function(tab)
+    local title = tab.tab_title
+    if not title or #title == 0 then
+      title = tab.active_pane.title
+    end
+    return {
+      {Text = ' ' .. tab.tab_index + 1 .. ':' .. title .. ' '},
+    }
+  end
+)
+
 return {
   -- Font
   font = wezterm.font_with_fallback({
