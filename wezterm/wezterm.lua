@@ -131,8 +131,7 @@ return {
     inactive_titlebar_fg = colors.dark_palette.fg1,
   },
   window_padding = {
-    top = '15px',
-    bottom = '15px',
+    bottom = 0,
   },
   initial_rows = 120,
   initial_cols = 350,
