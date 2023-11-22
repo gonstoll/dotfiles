@@ -21,10 +21,6 @@ return {
       vim.keymap.set('n', '<leader>XA', function() bufferline.close_others() end,
         {desc = 'Close all other visible buffers'})
 
-      local is_dark_theme = vim.o.background == 'dark'
-      local white_color = '#ffffff'
-      local black_color = '#1c1c27'
-
       local colorscheme = vim.g.colors_name
       local palette = {}
 
@@ -118,7 +114,7 @@ return {
           },
           tab_selected = {
             bg = 'none',
-            fg = is_dark_theme and white_color or black_color,
+            fg = palette.text,
           },
           buffer_visible = {
             bg = 'none',
@@ -126,7 +122,7 @@ return {
           },
           buffer_selected = {
             bg = 'none',
-            fg = is_dark_theme and white_color or black_color,
+            fg = palette.text,
             bold = false,
           },
           separator = {
@@ -149,7 +145,7 @@ return {
             fg = palette.dim,
           },
           hint_selected = {
-            fg = is_dark_theme and white_color or black_color,
+            fg = palette.text,
           },
           hint_diagnostic = {
             fg = palette.purple,
@@ -167,7 +163,7 @@ return {
             fg = palette.dim,
           },
           error_selected = {
-            fg = is_dark_theme and white_color or black_color,
+            fg = palette.text,
           },
           error_diagnostic = {
             fg = palette.red,
@@ -185,7 +181,7 @@ return {
             fg = palette.dim,
           },
           warning_selected = {
-            fg = is_dark_theme and white_color or black_color,
+            fg = palette.text,
           },
           warning_diagnostic = {
             fg = palette.yellow,
@@ -203,7 +199,7 @@ return {
             fg = palette.dim,
           },
           info_selected = {
-            fg = is_dark_theme and white_color or black_color,
+            fg = palette.text,
           },
           info_diagnostic = {
             fg = palette.blue,
