@@ -87,7 +87,7 @@ wezterm.on('update-right-status', function(window, pane)
   window:set_right_status(wezterm.format(elements))
 end)
 
-wezterm.on('toggle-colorscheme', function(window, pane)
+wezterm.on('toggle-colorscheme', function(window)
   local overrides = window:get_config_overrides() or {}
 
   if not overrides.color_scheme then
@@ -100,18 +100,15 @@ wezterm.on('toggle-colorscheme', function(window, pane)
 end)
 
 
-wezterm.on(
-  'format-tab-title',
-  function(tab)
-    local title = tab.tab_title
-    if not title or #title == 0 then
-      title = tab.active_pane.title
-    end
-    return {
-      {Text = ' ' .. tab.tab_index + 1 .. ':' .. title .. ' '},
-    }
+wezterm.on('format-tab-title', function(tab)
+  local title = tab.tab_title
+  if not title or #title == 0 then
+    title = tab.active_pane.title
   end
-)
+  return {
+    {Text = ' ' .. tab.tab_index + 1 .. ':' .. title .. ' '},
+  }
+end)
 
 return {
   -- Font
