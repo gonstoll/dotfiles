@@ -71,14 +71,14 @@ return {
     },
 
     tab_bar = {
-      background = colors.light_palette.bg0,
+      background = colors.light_palette.bg3,
       active_tab = {
         bg_color = colors.light_palette.bg3,
         fg_color = colors.light_palette.fg0,
       },
       inactive_tab = {
-        bg_color = colors.light_palette.bg0,
-        fg_color = colors.light_palette.fg1,
+        bg_color = colors.light_palette.bg3,
+        fg_color = colors.light_palette.grey1,
       },
     },
 
