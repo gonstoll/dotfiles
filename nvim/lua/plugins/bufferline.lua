@@ -17,13 +17,11 @@ return {
       vim.keymap.set('n', '<leader>x', ':Bdelete!<CR>', {desc = 'Close buffer'})
       vim.keymap.set('n', '<S-l>', function() bufferline.cycle(1) end, {desc = 'Next buffer'})
       vim.keymap.set('n', '<S-h>', function() bufferline.cycle(-1) end, {desc = 'Previous buffer'})
+      vim.keymap.set('n', '[b', function() bufferline.move(-1) end, {desc = 'Move buffer left'})
+      vim.keymap.set('n', ']b', function() bufferline.move(1) end, {desc = 'Move buffer right'})
       vim.keymap.set('n', '<leader>P', function() groups.toggle_pin() end, {desc = 'Toggle pin buffer'})
       vim.keymap.set('n', '<leader>XA', function() bufferline.close_others() end,
         {desc = 'Close all other visible buffers'})
-
-      local is_dark_theme = vim.o.background == 'dark'
-      local white_color = '#ffffff'
-      local black_color = '#1c1c27'
 
       local colorscheme = vim.g.colors_name
       local palette = {}
@@ -109,7 +107,8 @@ return {
             if vim.bo[bufnr].filetype ~= 'oil' then
               return true
             end
-          end
+          end,
+          sort_by = 'insert_at_end',
         },
         highlights = {
           tab = {
@@ -118,7 +117,7 @@ return {
           },
           tab_selected = {
             bg = 'none',
-            fg = is_dark_theme and white_color or black_color,
+            fg = palette.text,
           },
           buffer_visible = {
             bg = 'none',
@@ -126,7 +125,7 @@ return {
           },
           buffer_selected = {
             bg = 'none',
-            fg = is_dark_theme and white_color or black_color,
+            fg = palette.text,
             bold = false,
           },
           separator = {
@@ -149,7 +148,7 @@ return {
             fg = palette.dim,
           },
           hint_selected = {
-            fg = is_dark_theme and white_color or black_color,
+            fg = palette.text,
           },
           hint_diagnostic = {
             fg = palette.purple,
@@ -167,7 +166,7 @@ return {
             fg = palette.dim,
           },
           error_selected = {
-            fg = is_dark_theme and white_color or black_color,
+            fg = palette.text,
           },
           error_diagnostic = {
             fg = palette.red,
@@ -185,7 +184,7 @@ return {
             fg = palette.dim,
           },
           warning_selected = {
-            fg = is_dark_theme and white_color or black_color,
+            fg = palette.text,
           },
           warning_diagnostic = {
             fg = palette.yellow,
@@ -203,7 +202,7 @@ return {
             fg = palette.dim,
           },
           info_selected = {
-            fg = is_dark_theme and white_color or black_color,
+            fg = palette.text,
           },
           info_diagnostic = {
             fg = palette.blue,
