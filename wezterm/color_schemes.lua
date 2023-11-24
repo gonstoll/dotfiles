@@ -1,11 +1,12 @@
+local wezterm = require('wezterm')
 local colors = require('colors')
 
 return {
   ['Gruvbox Material Dark'] = {
-    background = '#1d2021',
-    foreground = '#e2cca9',
-    cursor_bg = '#e2cca9',
-    cursor_fg = '#141617',
+    background = colors.dark_palette.bg0,
+    foreground = colors.dark_palette.fg0,
+    cursor_bg = colors.dark_palette.fg0,
+    cursor_fg = colors.dark_palette.bg0,
     scrollbar_thumb = colors.dark_palette.bg5,
 
     ansi = {
@@ -43,10 +44,10 @@ return {
   },
 
   ['Gruvbox Material Light'] = {
-    background = '#f9f5d7',
-    foreground = '#514036',
-    cursor_bg = '#514036',
-    cursor_fg = '#f3eac7',
+    background = colors.light_palette.bg0,
+    foreground = colors.light_palette.fg0,
+    cursor_bg = colors.light_palette.fg0,
+    cursor_fg = colors.light_palette.bg_dim,
     scrollbar_thumb = colors.dark_palette.bg5,
 
     ansi = {
