@@ -2,7 +2,8 @@ local keys = {
   {
     desc = 'Search Files',
     lhs = 'sf',
-    rhs = '<cmd>lua require("telescope").extensions.file_browser.file_browser({path = "%:p:h", hidden = true})<CR>',
+    rhs =
+    '<cmd>lua require("telescope").extensions.file_browser.file_browser({path = "%:p:h", hidden = true, respect_gitignore = false,})<CR>',
   },
   {
     desc = 'Find files respecting gitignore',

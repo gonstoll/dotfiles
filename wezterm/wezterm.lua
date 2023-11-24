@@ -208,5 +208,25 @@ return {
       mods = 'CTRL|CMD',
       action = act.ActivatePaneDirection('Down'),
     },
+    {
+      key = 'LeftArrow',
+      mods = 'CTRL|CMD',
+      action = act.AdjustPaneSize({'Left', 1}),
+    },
+    {
+      key = 'RightArrow',
+      mods = 'CTRL|CMD',
+      action = act.AdjustPaneSize({'Right', 1}),
+    },
+    {
+      key = 'UpArrow',
+      mods = 'CTRL|CMD',
+      action = act.AdjustPaneSize({'Up', 1}),
+    },
+    {
+      key = 'DownArrow',
+      mods = 'CTRL|CMD',
+      action = act.AdjustPaneSize({'Down', 1}),
+    },
   },
 }
