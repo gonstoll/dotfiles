@@ -33,11 +33,11 @@ return {
       background = colors.dark_palette.bg3,
       active_tab = {
         bg_color = colors.dark_palette.bg3,
-        fg_color = colors.dark_palette.fg0,
+        fg_color = colors.dark_palette.purple,
       },
       inactive_tab = {
         bg_color = colors.dark_palette.bg3,
-        fg_color = colors.dark_palette.grey1,
+        fg_color = colors.dark_palette.fg0,
       },
     },
   },
@@ -74,11 +74,11 @@ return {
       background = colors.light_palette.bg3,
       active_tab = {
         bg_color = colors.light_palette.bg3,
-        fg_color = colors.light_palette.fg0,
+        fg_color = colors.light_palette.purple,
       },
       inactive_tab = {
         bg_color = colors.light_palette.bg3,
-        fg_color = colors.light_palette.grey1,
+        fg_color = colors.light_palette.fg0,
       },
     },
 

@@ -29,8 +29,6 @@ wezterm.on('update-right-status', function(window, pane)
             :gsub('%%(%x%x)', function(hex)
               return string.char(tonumber(hex, 16))
             end)
-        -- local home_dir = cwd:find(wezterm.home_dir)
-        -- cwd = home_dir and cwd:gsub(wezterm.home_dir, '~') or cwd
       end
     end
 
@@ -57,18 +55,11 @@ wezterm.on('update-right-status', function(window, pane)
   local is_dark_theme = not overrides.color_scheme and true or overrides.color_scheme == dark_theme
   local statusline_fg = is_dark_theme and colors.dark_palette.fg0 or colors.light_palette.fg0
   local statusline_bg = is_dark_theme and colors.dark_palette.bg3 or colors.light_palette.bg3
-  -- local statusline_bg = {
-  --   is_dark_theme and colors.dark_palette.bg0 or colors.light_palette.bg0,
-  --   is_dark_theme and colors.dark_palette.bg1 or colors.light_palette.bg1,
-  --   is_dark_theme and colors.dark_palette.bg4 or colors.light_palette.bg3,
-  --   is_dark_theme and colors.dark_palette.bg5 or colors.light_palette.bg5,
-  -- }
 
   local elements = {}
   local num_cells = 0
 
   local function push(text, is_last)
-    local cell_no = num_cells + 1
     table.insert(elements, {Foreground = {Color = statusline_fg}})
     table.insert(elements, {Background = {Color = statusline_bg}})
     table.insert(elements, {Text = ' ' .. text .. ' '})
@@ -106,7 +97,7 @@ wezterm.on('format-tab-title', function(tab)
     title = tab.active_pane.title
   end
   return {
-    {Text = ' ' .. tab.tab_index + 1 .. ':' .. title .. ' '},
+    {Text = ' [' .. tab.tab_index + 1 .. ':' .. title .. ']'},
   }
 end)
 
