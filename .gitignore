@@ -2,6 +2,9 @@
 
 # zsh
 z
+.histfile
+.zcompdump
+.zsh_*
 
 # Wallpapers
 /system/wallpapers/images/*/*.jpg

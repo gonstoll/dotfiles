@@ -22,9 +22,6 @@ brew install gh
 # Pnpm
 brew install pnpm
 
-# Zsh
-brew install zsh-syntax-highlighting
-
 # Fzf
 brew install fd fzf
 
@@ -33,8 +30,8 @@ brew install tmux
 
 # Runtime
 brew install node
-brew tap oven-sh/bun # for macOS and Linux
-brew install bun
+# brew tap oven-sh/bun # for macOS and Linux
+# brew install bun
 
 # Raycast
 brew install --cask raycast
