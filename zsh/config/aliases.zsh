@@ -3,6 +3,7 @@ alias fd="cd ~ && cd \$(find * -type d | fzf)" # cd into a directory
 
 # Lazygit
 alias lg="lazygit"
+alias g="git"
 
 # Neovim
 alias vim="nvim"
