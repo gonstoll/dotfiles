@@ -1,3 +1,6 @@
 [submodule "system/wallpapers/wallpapper"]
 	path = system/wallpapers/wallpapper
 	url = https://github.com/mczachurski/wallpapper
+[submodule "zsh/plugins/fast-syntax-highlighting"]
+	path = zsh/plugins/fast-syntax-highlighting
+	url = https://github.com/zdharma-continuum/fast-syntax-highlighting
