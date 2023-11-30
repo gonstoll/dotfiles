@@ -9,7 +9,8 @@ These are my dotfiles, use with caution and at your own risk! For the moment, th
 
 ## Features
 
-- Editor - [Neovim](https://neovim.io/). Want more pics? Check them out [here](https://github.com/gonstoll/dotfiles/blob/master/nvim/README.md)
+- Editor - [Neovim](https://neovim.io/). Want more pics? Check them out
+  [here](https://github.com/gonstoll/dotfiles/blob/master/nvim/README.md)
 - Shell - [Zsh](https://www.zsh.org/)
 - Terminal - [WezTerm](https://wezfurlong.org/wezterm/index.html)
 - Launcher - [Raycast](https://www.raycast.com/)
@@ -34,5 +35,13 @@ First, this script will let you choose whether to install or not a set of script
 
 Then, it will install the aforementioned features by symlinking them to their corresponding locations.
 
+## Zsh
+
+This script will place the `.zshrc` file under `~/.config/zsh`, which differs from the traditional location `~/.zshrc`.
+
+## Consideration
+
 Already have your own git/iTerm/nvim/etc configuration and don't want to lose it? Fear not! This script will let you
 skip overriding them, or even back them up in case you want them for future reference.
+
+Having said that, it may also install undesired configurations on your machine, so use at your own risk!
