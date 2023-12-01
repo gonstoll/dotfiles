@@ -10,24 +10,24 @@ return {
     scrollbar_thumb = colors.dark_palette.bg5,
 
     ansi = {
-      colors.dark_palette.bg0,
-      colors.dark_palette.red,
-      colors.dark_palette.green,
-      colors.dark_palette.yellow,
-      colors.dark_palette.blue,
-      colors.dark_palette.purple,
-      colors.dark_palette.aqua,
-      '#ffffff',
+      colors.dark_palette.bg0,    -- Black
+      colors.dark_palette.red,    -- Red
+      colors.dark_palette.green,  -- Green
+      colors.dark_palette.yellow, -- Yellow
+      colors.dark_palette.blue,   -- Blue
+      colors.dark_palette.purple, -- Magenta
+      colors.dark_palette.aqua,   -- Cyan
+      colors.dark_palette.fg0,    -- White
     },
     brights = {
-      '#706f8c',
-      colors.dark_palette.red,
-      colors.dark_palette.green,
-      colors.dark_palette.yellow,
-      colors.dark_palette.blue,
-      colors.dark_palette.purple,
-      colors.dark_palette.aqua,
-      '#ffffff',
+      wezterm.color.parse(colors.dark_palette.bg0):lighten(0.4), -- Black
+      colors.dark_palette.red,                                   -- Red
+      colors.dark_palette.green,                                 -- Green
+      colors.dark_palette.yellow,                                -- Yellow
+      colors.dark_palette.blue,                                  -- Blue
+      colors.dark_palette.purple,                                -- Magenta
+      colors.dark_palette.aqua,                                  -- Cyan
+      colors.dark_palette.fg0,                                   -- White
     },
 
     tab_bar = {
@@ -51,24 +51,24 @@ return {
     scrollbar_thumb = colors.dark_palette.bg5,
 
     ansi = {
-      colors.light_palette.fg0,
-      colors.light_palette.red,
-      colors.light_palette.green,
-      colors.light_palette.yellow,
-      colors.light_palette.blue,
-      colors.light_palette.purple,
-      colors.light_palette.aqua,
-      '#ffffff',
+      colors.light_palette.fg0,    -- Black
+      colors.light_palette.red,    -- Red
+      colors.light_palette.green,  -- Green
+      colors.light_palette.yellow, -- Yellow
+      colors.light_palette.blue,   -- Blue
+      colors.light_palette.purple, -- Magenta
+      colors.light_palette.aqua,   -- Cyan
+      colors.light_palette.bg0,    -- White
     },
     brights = {
-      '#706f8c',
-      colors.light_palette.red,
-      colors.light_palette.green,
-      colors.light_palette.yellow,
-      colors.light_palette.blue,
-      colors.light_palette.purple,
-      colors.light_palette.aqua,
-      '#ffffff',
+      wezterm.color.parse(colors.light_palette.fg0):lighten(0.4), -- Black
+      colors.light_palette.red,                                   -- Red
+      colors.light_palette.green,                                 -- Green
+      colors.light_palette.yellow,                                -- Yellow
+      colors.light_palette.blue,                                  -- Blue
+      colors.light_palette.purple,                                -- Magenta
+      colors.light_palette.aqua,                                  -- Cyan
+      colors.light_palette.bg0,                                   -- White
     },
 
     tab_bar = {

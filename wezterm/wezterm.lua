@@ -101,7 +101,15 @@ wezterm.on('format-tab-title', function(tab)
   }
 end)
 
+-- local tmux = {}
+-- if wezterm.target_triple == 'aarch64-apple-darwin' then
+--   tmux = {'/opt/homebrew/bin/tmux', 'new', '-As0'}
+-- else
+--   tmux = {'tmux', 'new', '-As0'}
+-- end
+
 return {
+  -- default_prog = tmux,
   -- Font
   font = wezterm.font_with_fallback({
     {
@@ -122,6 +130,7 @@ return {
   window_decorations = 'RESIZE',
   use_fancy_tab_bar = false,
   show_new_tab_button_in_tab_bar = false,
+  hide_tab_bar_if_only_one_tab = true,
   tab_bar_at_bottom = true,
   tab_max_width = 26,
   window_frame = {

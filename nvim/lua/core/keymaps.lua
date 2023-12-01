@@ -1,5 +1,5 @@
 -- Select all
-vim.keymap.set('n', '<C-a>', 'gg<S-v>G', {desc = 'Select all'})
+vim.keymap.set('n', '<C-b>', 'gg<S-v>G', {desc = 'Select all'})
 
 -- New tab
 vim.keymap.set('n', 'tn', ':tabnew %<CR>', {desc = 'New tab'})
