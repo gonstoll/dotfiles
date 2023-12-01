@@ -44,7 +44,7 @@ wezterm.on('update-right-status', function(window, pane)
     table.insert(cells, hostname)
   end
 
-  local date = wezterm.strftime('%a %-d %b - %H:%M:%S')
+  local date = wezterm.strftime('%a %d %b - %H:%M:%S')
   table.insert(cells, date)
 
   for _, b in ipairs(wezterm.battery_info()) do
