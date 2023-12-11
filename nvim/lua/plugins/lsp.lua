@@ -152,7 +152,7 @@ return {
 
         vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
           vim.lsp.handlers.signature_help,
-          {border = 'rounded'}
+          {title = 'Signature', border = 'rounded'}
         )
 
         local function nmap(keys, func, desc)
@@ -161,6 +161,14 @@ return {
           end
 
           vim.keymap.set('n', keys, func, {buffer = bufnr, desc = desc})
+        end
+
+        local function imap(keys, func, desc)
+          if desc then
+            desc = 'LSP: ' .. desc
+          end
+
+          vim.keymap.set('i', keys, func, {buffer = bufnr, desc = desc})
         end
 
         nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
@@ -182,6 +190,8 @@ return {
         nmap('<leader>f', function()
           require('conform').format({async = true, lsp_fallback = true})
         end, 'Format current buffer with LSP')
+
+        imap('<C-s>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
         -- Create a command `:Format` local to the LSP buffer
         vim.api.nvim_create_user_command('Format', function(args)
