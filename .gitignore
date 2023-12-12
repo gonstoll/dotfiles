@@ -1,10 +1,10 @@
 .DS_Store
 
 # zsh
-z
 .histfile
 .zcompdump
 .zsh_*
+.z_database
 
 # Wallpapers
 /system/wallpapers/images/*/*.jpg

@@ -1,6 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+ZSHRC_PATH="$(readlink $HOME/.config/zsh)/.zshrc" # get the path of the .zshrc symlink
+ZSH_PATH=$(dirname $ZSHRC_PATH) # get the path of the zsh folder
+
 # Powerlevel10k
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh//.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -9,12 +12,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source $ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme
-
-# POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-
-ZSHRC_PATH="$(readlink $HOME/.config/zsh)/.zshrc" # get the path of the .zshrc symlink
-ZSH_PATH=$(dirname $ZSHRC_PATH) # get the path of the zsh folder
+source $ZSH_PATH/plugins/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh//.p10k.zsh.
 [[ ! -f $ZSH_PATH/.p10k.zsh ]] || source $ZSH_PATH/.p10k.zsh
@@ -28,8 +26,11 @@ fi
 
 export TERM=xterm-256color
 # export TERMINFO='/usr/share/terminfo/'
+export _Z_DATA="$ZSH_PATH/plugins/z/.z_database"
 
-[ -s "$HOME/.config/bun/_bun" ] && source "$HOME/.config/bun/_bun"
+if [[ -s "$HOME/.config/bun/_bun" ]]; then
+  source "$HOME/.config/bun/_bun"
+fi
 export BUN_INSTALL="$HOME/.config/bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
@@ -44,7 +45,10 @@ source $ZSH_PATH/plugins/iterm2_shell_integration/iterm2_shell_integration.zsh
 # Configs
 source $ZSH_PATH/config/options.zsh
 source $ZSH_PATH/config/aliases.zsh
-[ -f $ZSH_PATH/config/custom.zsh ] && source $ZSH_PATH/config/custom.zsh # Custom zsh configurations
+# custom zsh configurations
+if [[ -f $ZSH_PATH/config/custom.zsh ]]; then
+  source $ZSH_PATH/config/custom.zsh
+fi
 
 # History
 HISTSIZE=110000
