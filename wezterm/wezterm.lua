@@ -118,6 +118,12 @@ return {
       italic = false,
       stretch = 'Normal',
     },
+    {
+      family = 'Hack Nerd Font',
+      weight = 400,
+      italic = false,
+      stretch = 'Normal',
+    },
   }),
   font_size = 16.0,
   harfbuzz_features = {'calt=0', 'clig=0', 'liga=0'},
@@ -142,6 +148,8 @@ return {
     inactive_titlebar_fg = colors.dark_palette.fg1,
   },
   window_padding = {
+    left = '10px',
+    right = '10px',
     bottom = 0,
   },
   initial_rows = 120,

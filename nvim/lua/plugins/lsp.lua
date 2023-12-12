@@ -131,11 +131,6 @@ return {
           },
         })
 
-        -- vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-        --   vim.lsp.handlers.hover,
-        --   {border = 'rounded', title = 'Hover'}
-        -- )
-
         vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
           config = require('utils').mergeTable(config or {}, {border = 'rounded', title = 'Hover'})
           config.focus_id = ctx.method
