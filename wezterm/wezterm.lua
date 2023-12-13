@@ -150,6 +150,7 @@ return {
   window_padding = {
     left = '10px',
     right = '10px',
+    top = '10px',
     bottom = 0,
   },
   initial_rows = 120,
