@@ -1,6 +1,15 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# History
+HISTSIZE=110000
+SAVEHIST=100000
+HISTFILE=$ZDOTDIR/.histfile
+
+zstyle :compinstall $ZDOTDIR/.zshrc
+autoload -Uz compinit
+compinit
+
 ZSHRC_PATH="$(readlink $HOME/.config/zsh)/.zshrc" # get the path of the .zshrc symlink
 ZSH_PATH=$(dirname $ZSHRC_PATH) # get the path of the zsh folder
 
@@ -26,16 +35,15 @@ fi
 
 export TERM=xterm-256color
 # export TERMINFO='/usr/share/terminfo/'
-export _Z_DATA="$ZSH_PATH/plugins/z/.z_database"
 
 if [[ -s "$HOME/.config/bun/_bun" ]]; then
   source "$HOME/.config/bun/_bun"
 fi
 export BUN_INSTALL="$HOME/.config/bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH=$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
 
 # Plugins
-source $ZSH_PATH/plugins/z/z.sh
 source $ZSH_PATH/plugins/fzf/fzf.zsh
 source $ZSH_PATH/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source $ZSH_PATH/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
@@ -50,11 +58,8 @@ if [[ -f $ZSH_PATH/config/custom.zsh ]]; then
   source $ZSH_PATH/config/custom.zsh
 fi
 
-# History
-HISTSIZE=110000
-SAVEHIST=100000
-HISTFILE=$ZDOTDIR/.histfile
+# Zoxide
+eval "$(zoxide init zsh)"
 
-zstyle :compinstall $ZDOTDIR/.zshrc
-autoload -Uz compinit
-compinit
+# Tmux
+export T_FZF_BORDER_LABEL='tmux finder'
