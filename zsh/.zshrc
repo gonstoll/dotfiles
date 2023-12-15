@@ -34,7 +34,7 @@ else
 fi
 
 export TERM=xterm-256color
-# export TERMINFO='/usr/share/terminfo/'
+export TERMINFO='/usr/share/terminfo/'
 
 if [[ -s "$HOME/.config/bun/_bun" ]]; then
   source "$HOME/.config/bun/_bun"

@@ -182,7 +182,6 @@ return {
   -- Keymaps
   keys = {
     {key = 'e', mods = 'CMD', action = act.EmitEvent('toggle-colorscheme')},
-    {key = 'k', mods = 'CMD', action = act.ClearScrollback('ScrollbackAndViewport')},
     {key = 'c', mods = 'CMD|SHIFT', action = wezterm.action.ActivateCopyMode},
 
     -- Pane navigation

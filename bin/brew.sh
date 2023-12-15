@@ -41,3 +41,6 @@ brew install redis
 
 # Neofetch
 brew install neofetch
+
+# Terminal navigation
+brew install zoxide
