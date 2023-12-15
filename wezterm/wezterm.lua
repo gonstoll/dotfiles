@@ -113,6 +113,12 @@ return {
   -- Font
   font = wezterm.font_with_fallback({
     {
+      family = 'JetBrainsMono Nerd Font',
+      weight = 400,
+      italic = false,
+      stretch = 'Normal',
+    },
+    {
       family = 'FiraCode Nerd Font',
       weight = 450,
       italic = false,
@@ -124,8 +130,14 @@ return {
       italic = false,
       stretch = 'Normal',
     },
+    {
+      family = 'LiterationMono Nerd Font',
+      weight = 450,
+      italic = false,
+      stretch = 'Normal',
+    },
   }),
-  font_size = 16.0,
+  font_size = 18.0,
   harfbuzz_features = {'calt=0', 'clig=0', 'liga=0'},
 
   -- Colors
@@ -169,82 +181,20 @@ return {
 
   -- Keymaps
   keys = {
-    {
-      key = 'e',
-      mods = 'CMD',
-      action = act.EmitEvent('toggle-colorscheme'),
-    },
-    {
-      key = 'k',
-      mods = 'CMD',
-      action = act.ClearScrollback('ScrollbackAndViewport'),
-    },
-    {
-      key = 'c',
-      mods = 'CMD|SHIFT',
-      action = wezterm.action.ActivateCopyMode,
-    },
+    {key = 'e',          mods = 'CMD',       action = act.EmitEvent('toggle-colorscheme')},
+    {key = 'k',          mods = 'CMD',       action = act.ClearScrollback('ScrollbackAndViewport')},
+    {key = 'c',          mods = 'CMD|SHIFT', action = wezterm.action.ActivateCopyMode},
     -- Pane navigation
-    {
-      key = 'd',
-      mods = 'CMD',
-      action = wezterm.action.SplitPane({
-        direction = 'Right',
-        size = {Percent = 50},
-      }),
-    },
-    {
-      key = 'd',
-      mods = 'CMD|SHIFT',
-      action = wezterm.action.SplitPane({
-        direction = 'Down',
-        size = {Percent = 50},
-      }),
-    },
-    {
-      key = 'w',
-      mods = 'CMD',
-      action = wezterm.action.CloseCurrentPane({confirm = true}),
-    },
-    {
-      key = 'h',
-      mods = 'CTRL|CMD',
-      action = act.ActivatePaneDirection('Left'),
-    },
-    {
-      key = 'l',
-      mods = 'CTRL|CMD',
-      action = act.ActivatePaneDirection('Right'),
-    },
-    {
-      key = 'k',
-      mods = 'CTRL|CMD',
-      action = act.ActivatePaneDirection('Up'),
-    },
-    {
-      key = 'j',
-      mods = 'CTRL|CMD',
-      action = act.ActivatePaneDirection('Down'),
-    },
-    {
-      key = 'LeftArrow',
-      mods = 'CTRL|CMD',
-      action = act.AdjustPaneSize({'Left', 1}),
-    },
-    {
-      key = 'RightArrow',
-      mods = 'CTRL|CMD',
-      action = act.AdjustPaneSize({'Right', 1}),
-    },
-    {
-      key = 'UpArrow',
-      mods = 'CTRL|CMD',
-      action = act.AdjustPaneSize({'Up', 1}),
-    },
-    {
-      key = 'DownArrow',
-      mods = 'CTRL|CMD',
-      action = act.AdjustPaneSize({'Down', 1}),
-    },
+    {key = 'd',          mods = 'CMD',       action = wezterm.action.SplitPane({direction = 'Right', size = {Percent = 50}})},
+    {key = 'd',          mods = 'CMD|SHIFT', action = wezterm.action.SplitPane({direction = 'Down', size = {Percent = 50}})},
+    {key = 'w',          mods = 'CMD',       action = wezterm.action.CloseCurrentPane({confirm = true})},
+    {key = 'h',          mods = 'CTRL|CMD',  action = act.ActivatePaneDirection('Left')},
+    {key = 'l',          mods = 'CTRL|CMD',  action = act.ActivatePaneDirection('Right')},
+    {key = 'k',          mods = 'CTRL|CMD',  action = act.ActivatePaneDirection('Up')},
+    {key = 'j',          mods = 'CTRL|CMD',  action = act.ActivatePaneDirection('Down')},
+    {key = 'LeftArrow',  mods = 'CTRL|CMD',  action = act.AdjustPaneSize({'Left', 1})},
+    {key = 'RightArrow', mods = 'CTRL|CMD',  action = act.AdjustPaneSize({'Right', 1})},
+    {key = 'UpArrow',    mods = 'CTRL|CMD',  action = act.AdjustPaneSize({'Up', 1})},
+    {key = 'DownArrow',  mods = 'CTRL|CMD',  action = act.AdjustPaneSize({'Down', 1})},
   },
 }
