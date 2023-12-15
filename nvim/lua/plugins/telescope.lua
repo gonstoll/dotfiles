@@ -130,6 +130,7 @@ return {
       {'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},
     },
     keys = get_lazy_keys(),
+    cmd = 'Telescope',
     config = function()
       local telescope = require('telescope')
       local actions = require('telescope.actions')
