@@ -63,3 +63,7 @@ eval "$(zoxide init zsh)"
 
 # Tmux
 export T_FZF_BORDER_LABEL='tmux finder'
+
+# zsh-vi-mode
+export ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
+export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
