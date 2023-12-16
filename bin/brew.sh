@@ -14,6 +14,7 @@ brew install tree-sitter
 brew install ripgrep
 brew install gnu-sed
 brew install --cask font-sf-mono-nerd-font
+
 # Git
 brew install git
 brew install lazygit
@@ -21,12 +22,6 @@ brew install gh
 
 # Pnpm
 brew install pnpm
-
-# Fzf
-brew install fd fzf
-
-# Tmux
-brew install tmux
 
 # Runtime
 brew install node
@@ -39,8 +34,9 @@ brew install --cask raycast
 # Redis
 brew install redis
 
-# Neofetch
+# Terminal
 brew install neofetch
-
-# Terminal navigation
 brew install zoxide
+brew install gum
+brew install tmux
+brew install fd fzf

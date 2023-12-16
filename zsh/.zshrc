@@ -42,6 +42,7 @@ fi
 export BUN_INSTALL="$HOME/.config/bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH=$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
+export PATH=$PATH:$HOME/dotfiles/bin/u
 
 # Plugins
 source $ZSH_PATH/plugins/fzf/fzf.zsh

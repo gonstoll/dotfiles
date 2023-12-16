@@ -7,6 +7,8 @@ export DOTFILES=$(pwd -P)
 echo ">>> Setup started"
 echo ""
 
+chmod +x $DOTFILES/bin/u
+
 function install_system() {
   read -p "Do you want to install system packages? (y/n) " yn < /dev/tty
   case $yn in
