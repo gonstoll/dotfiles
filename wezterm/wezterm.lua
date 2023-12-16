@@ -9,8 +9,8 @@ local dark_theme = 'Gruvbox Material Dark'
 
 wezterm.on('update-right-status', function(window, pane)
   local cells = {}
-
   local cwd_uri = pane:get_current_working_dir()
+
   if cwd_uri then
     local cwd = ''
     local hostname = ''
@@ -149,7 +149,7 @@ return {
 
   -- Keymaps
   keys = {
-    {key = 'e', mods = 'CMD', action = act.EmitEvent('toggle-colorscheme')},
+    {key = 'e', mods = 'CMD', action = act.Multiple({act.EmitEvent('toggle-colorscheme'), act.SendString('\x01\x45')})}, -- Toggle wezterm and tmux theme
     {key = 'c', mods = 'CMD|SHIFT', action = wezterm.action.ActivateCopyMode},
 
     -- Pane navigation

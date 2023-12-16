@@ -39,6 +39,18 @@ Then, it will install the aforementioned features by symlinking them to their co
 
 This script will place the `.zshrc` file under `~/.config/zsh`, which differs from the traditional location `~/.zshrc`.
 
+## tmux
+
+In order the get full advantage of the `tmux` configuration, firstly run:
+
+```bash
+chmod +x ~/dotfiles/tmux/bin/toggle-theme.sh
+```
+
+This will unblock some keybindings to toggle `tmux` theme.
+
+Then, from within a `tmux` session press `<C-I>` (ctrl + shift + i) to install `tmux`'s plugins.
+
 ## Consideration
 
 Already have your own git/iTerm/nvim/etc configuration and don't want to lose it? Fear not! This script will let you
