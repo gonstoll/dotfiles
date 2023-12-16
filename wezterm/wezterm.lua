@@ -102,15 +102,7 @@ wezterm.on('format-tab-title', function(tab)
   }
 end)
 
--- local tmux = {}
--- if wezterm.target_triple == 'aarch64-apple-darwin' then
---   tmux = {'/opt/homebrew/bin/tmux', 'new', '-As0'}
--- else
---   tmux = {'tmux', 'new', '-As0'}
--- end
-
 return {
-  -- default_prog = tmux,
   -- Font
   font = wezterm.font_with_fallback(fonts.getFonts()),
   font_size = 18.0,
