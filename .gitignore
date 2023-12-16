@@ -11,6 +11,3 @@
 /system/wallpapers/images/*/*.png
 /system/wallpapers/images/*/*.jpeg
 !/system/wallpapers/images/*/output.heic
-
-# tmux
-tmux/plugins/
