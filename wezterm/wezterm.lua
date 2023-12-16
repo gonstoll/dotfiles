@@ -1,5 +1,6 @@
 local wezterm = require('wezterm')
 local act = wezterm.action
+local fonts = require('fonts')
 local colors = require('colors')
 local color_schemes = require('color_schemes')
 
@@ -111,32 +112,7 @@ end)
 return {
   -- default_prog = tmux,
   -- Font
-  font = wezterm.font_with_fallback({
-    {
-      family = 'JetBrainsMono Nerd Font',
-      weight = 400,
-      italic = false,
-      stretch = 'Normal',
-    },
-    {
-      family = 'FiraCode Nerd Font',
-      weight = 450,
-      italic = false,
-      stretch = 'Normal',
-    },
-    {
-      family = 'Hack Nerd Font',
-      weight = 400,
-      italic = false,
-      stretch = 'Normal',
-    },
-    {
-      family = 'LiterationMono Nerd Font',
-      weight = 450,
-      italic = false,
-      stretch = 'Normal',
-    },
-  }),
+  font = wezterm.font_with_fallback(fonts.getFonts()),
   font_size = 18.0,
   harfbuzz_features = {'calt=0', 'clig=0', 'liga=0'},
 

@@ -13,7 +13,7 @@ brew install efm-langserver
 brew install tree-sitter
 brew install ripgrep
 brew install gnu-sed
-
+brew install --cask font-sf-mono-nerd-font
 # Git
 brew install git
 brew install lazygit
