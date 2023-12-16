@@ -13,9 +13,3 @@
 [submodule "zsh/plugins/zsh-vi-mode"]
 	path = zsh/plugins/zsh-vi-mode
 	url = https://github.com/jeffreytse/zsh-vi-mode
-[submodule "tmux/plugins/tpm"]
-	path = tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
-[submodule "tmux/plugins/t-smart-tmux-session-manager"]
-	path = tmux/plugins/t-smart-tmux-session-manager
-	url = https://github.com/joshmedeski/t-smart-tmux-session-manager.git
