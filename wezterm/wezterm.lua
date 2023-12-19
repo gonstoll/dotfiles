@@ -1,5 +1,6 @@
 local wezterm = require('wezterm')
 local act = wezterm.action
+local keys = require('utils.keys')
 local fonts = require('fonts')
 local colors = require('colors')
 local color_schemes = require('color_schemes')
@@ -149,7 +150,7 @@ return {
 
   -- Keymaps
   keys = {
-    {key = 'e', mods = 'CMD', action = act.Multiple({act.EmitEvent('toggle-colorscheme'), act.SendString('\x01\x45')})}, -- Toggle wezterm and tmux theme
+    {key = 'e', mods = 'CMD', action = act.Multiple({act.EmitEvent('toggle-colorscheme'), keys.send_tmux_key('E')})}, -- Toggle wezterm and tmux theme
     {key = 'c', mods = 'CMD|SHIFT', action = wezterm.action.ActivateCopyMode},
 
     -- Pane navigation
@@ -166,6 +167,20 @@ return {
     {key = 'DownArrow', mods = 'CTRL|CMD', action = act.AdjustPaneSize({'Down', 1})},
 
     -- tmux
-    {key = 'j', mods = 'CMD', action = wezterm.action.SendString('\x01\x54')}, -- Open t - tmux smart session manager
+    keys.key_to_tmux('CMD', 'j', 'T'), -- Open t - tmux smart session manager
+    keys.key_to_tmux('CMD', '0', '0'),
+    keys.key_to_tmux('CMD', '1', '1'),
+    keys.key_to_tmux('CMD', '2', '2'),
+    keys.key_to_tmux('CMD', '3', '3'),
+    keys.key_to_tmux('CMD', '4', '4'),
+    keys.key_to_tmux('CMD', '5', '5'),
+    keys.key_to_tmux('CMD', '6', '6'),
+    keys.key_to_tmux('CMD', '7', '7'),
+    keys.key_to_tmux('CMD', '8', '8'),
+    keys.key_to_tmux('CMD', '9', '9'),
+    keys.key_to_tmux('CMD', 'c', 'c'),
+    keys.key_to_tmux('CMD', ']', 'n'),
+    keys.key_to_tmux('CMD', '[', 'p'),
+    keys.key_to_tmux('CMD', 'x', 'x'),
   },
 }

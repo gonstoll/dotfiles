@@ -5,6 +5,7 @@
 .zcompdump
 .zsh_*
 .z_database
+custom.zsh
 
 # Wallpapers
 /system/wallpapers/images/*/*.jpg

@@ -1,6 +1,11 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# custom zsh configurations
+if [[ -f $ZSH_PATH/config/custom.zsh ]]; then
+  source $ZSH_PATH/config/custom.zsh
+fi
+
 # History
 HISTSIZE=110000
 SAVEHIST=100000
@@ -54,10 +59,6 @@ source $ZSH_PATH/plugins/iterm2_shell_integration/iterm2_shell_integration.zsh
 # Configs
 source $ZSH_PATH/config/options.zsh
 source $ZSH_PATH/config/aliases.zsh
-# custom zsh configurations
-if [[ -f $ZSH_PATH/config/custom.zsh ]]; then
-  source $ZSH_PATH/config/custom.zsh
-fi
 
 # Zoxide
 eval "$(zoxide init zsh)"
@@ -68,3 +69,6 @@ export T_FZF_BORDER_LABEL='tmux finder'
 # zsh-vi-mode
 export ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
 export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
+
+# bun completions
+[ -s "$HOME/.config/bun/_bun" ] && source "$HOME/.config/bun/_bun"
