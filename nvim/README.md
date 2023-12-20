@@ -1,15 +1,12 @@
 # Neovim configuration
 
+<img src="__images/screenshot.png" alt="Dotfiles screenshot" />
+
 This is my Neovim configuration. As you might've guessed by the screenshots, this configuration is heavily inclined for
 Frontend development, with support for Typescript, tsx, tailwind, and more. That being said, it's completely extendable
 to suit any of your needs :)
 
 Take from it what you need!
-
-| Dark mode                                                                             | Light mode                                                                              |
-| ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| <img src="/__images/dark-mode-1.png" alt="Neovim dark mode screenshot - Dashboard" /> | <img src="/__images/light-mode-1.png" alt="Neovim light mode screenshot - Dashboard" /> |
-| <img src="/__images/dark-mode-2.png" alt="Neovim dark mode screenshot" />             | <img src="/__images/light-mode-2.png" alt="Neovim light mode screenshot" />             |
 
 Always a WIP 😅
 
@@ -30,6 +27,7 @@ Always a WIP 😅
   - [`cmp-emoji`](https://github.com/hrsh7th/cmp-emoji) - nvim-cmp source for emoji
   - [`cmp-path`](https://github.com/hrsh7th/cmp-path) - nvim-cmp source for path
   - [`lspkind-nvim`](https://github.com/onsails/lspkind.nvim) - vscode-like pictograms for neovim lsp completion items
+- [`oil.nvim`](https://github.com/stevearc/oil.nvim) - Neovim file explorer: edit your filesystem like a buffer
 - [`telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim) - Find, Filter, Preview, Pick. All lua, all the time
   - [`telescope-file-browser.nvim`](https://github.com/nvim-telescope/telescope-file-browser.nvim) - File Browser extension for telescope.nvim
   - [`telescope-fzf-native.nvim`](https://github.com/nvim-telescope/telescope-fzf-native.nvim) - FZF sorter for telescope written in c
@@ -71,12 +69,3 @@ Always a WIP 😅
 - [`plenary.nvim`](https://github.com/nvim-lua/plenary.nvim) - All the lua functions I don't want to write twice
 - [`promise-async`](https://github.com/kevinhwang91/promise-async) - Promise & Async in Lua
 - [`duck.nvim`](https://github.com/tamton-aquib/duck.nvim/tree/main) - A duck that waddles arbitrarily in neovim
-
-## More screenshots
-
-<img src="/__images/neovim/neovim-1.png" alt="Neovim and telescope screenshot" />
-<img src="/__images/neovim/neovim-2.png" alt="Neovim and lazygit screenshot" />
-<img src="/__images/neovim/neovim-3.png" alt="Neovim and tailwind classes screenshot" />
-<img src="/__images/neovim/neovim-4.png" alt="Neovim and tailwind colors screenshot" />
-<img src="/__images/neovim/neovim-5.png" alt="Neovim and auto-import screenshot" />
-<img src="/__images/neovim/neovim-6.png" alt="Neovim and splits screenshot" />

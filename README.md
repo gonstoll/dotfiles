@@ -1,19 +1,15 @@
-# Dotfiles
+# Gonzalo Stoll's dotfiles
+
+<img src="__images/screenshot.png" alt="Dotfiles screenshot" />
 
 These are my dotfiles, use with caution and at your own risk! For the moment, this only works for macOS users.
 
-| Dark mode                                                                            | Light mode                                                                             |
-| ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
-| <img src="__images/dark-mode-1.png" alt="Neovim dark mode screenshot - Dashboard" /> | <img src="__images/light-mode-1.png" alt="Neovim light mode screenshot - Dashboard" /> |
-| <img src="__images/dark-mode-2.png" alt="Neovim dark mode screenshot" />             | <img src="__images/light-mode-2.png" alt="Neovim light mode screenshot" />             |
-
 ## Features
 
-- Editor - [Neovim](https://neovim.io/). Want more pics? Check them out
-  [here](https://github.com/gonstoll/dotfiles/blob/master/nvim/README.md)
+- Editor - [Neovim](https://neovim.io/)
 - Shell - [Zsh](https://www.zsh.org/)
 - Terminal - [WezTerm](https://wezfurlong.org/wezterm/index.html)
-- Launcher - [Raycast](https://www.raycast.com/)
+- Multiplexer - [tmux](https://github.com/tmux/tmux/wiki)
 
 ## Basic Installation
 
@@ -31,7 +27,7 @@ First, this script will let you choose whether to install or not a set of script
   here](https://github.com/gonstoll/dotfiles/blob/master/bin/brew.sh))
 - MacOS settings (things like key-repeat rate, menu bar icons. It even features mczachurski's
   [wallpapper](https://github.com/mczachurski/wallpapper) to let you easily setup dynamic wallpapers)
-- Runtime packages (`npm` global packages)
+- Runtime scripts (like `npm` global packages)
 
 Then, it will install the aforementioned features by symlinking them to their corresponding locations.
 
@@ -49,7 +45,8 @@ chmod +x ~/dotfiles/tmux/bin/toggle-theme.sh
 
 This will unblock some keybindings to toggle `tmux` theme.
 
-Then, from within a `tmux` session press `<C-I>` (ctrl + shift + i) to install `tmux`'s plugins.
+Then, from within a `tmux` session (run `tmux` to start one) press `<C-a>` + `<C-I>` (ctrl/a + ctrl/shift/i) to install
+`tmux`'s plugins.
 
 ## Consideration
 
