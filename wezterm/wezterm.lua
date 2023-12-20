@@ -178,9 +178,9 @@ return {
     keys.key_to_tmux('CMD', '7', '7'),
     keys.key_to_tmux('CMD', '8', '8'),
     keys.key_to_tmux('CMD', '9', '9'),
-    keys.key_to_tmux('CMD', 'c', 'c'),
-    keys.key_to_tmux('CMD', ']', 'n'),
-    keys.key_to_tmux('CMD', '[', 'p'),
-    keys.key_to_tmux('CMD', 'x', 'x'),
+    keys.key_to_tmux('CMD', 'c', 'c'), --  Create new window
+    keys.key_to_tmux('CMD', ']', 'n'), -- Next window
+    keys.key_to_tmux('CMD', '[', 'p'), -- Previous window
+    keys.key_to_tmux('CMD', 'x', 'x'), -- Kill pane
   },
 }
