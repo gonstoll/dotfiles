@@ -30,20 +30,20 @@ return {
   },
   config = function(_, opts)
     local conform = require('conform')
-    local util = require('conform.util')
-
     conform.setup(opts)
 
     -- Customize prettier args
     require('conform.formatters.prettier').args = function(ctx)
+      local prettier_roots = {'.prettierrc', '.prettierrc.json', 'prettier.config.js'}
       local args = {'--stdin-filepath', '$FILENAME'}
-      local localPrettierConfig = vim.fs.find('.prettierrc.json', {
+
+      local localPrettierConfig = vim.fs.find(prettier_roots, {
         upward = true,
         path = ctx.dirname,
         type = 'file'
       })[1]
-      local globalPrettierConfig = vim.fs.find('.prettierrc.json', {
-        path = vim.fn.expand('~/.config/nvim'),
+      local globalPrettierConfig = vim.fs.find(prettier_roots, {
+        path = vim.fn.stdpath('config'),
         type = 'file'
       })[1]
 
@@ -54,25 +54,14 @@ return {
         vim.list_extend(args, {'--config', globalPrettierConfig})
       end
 
-      local isUsingTailwind = vim.fs.find('tailwind.config.js', {
+      local hasTailwindPrettierPlugin = vim.fs.find('node_modules/prettier-plugin-tailwindcss', {
         upward = true,
         path = ctx.dirname,
-        type = 'file'
-      })[1]
-      local localTailwindcssPlugin = vim.fs.find('node_modules/prettier-plugin-tailwindcss/dist/index.mjs', {
-        upward = true,
-        path = ctx.dirname,
-        type = 'file'
+        type = 'directory'
       })[1]
 
-      if localTailwindcssPlugin then
-        vim.list_extend(args, {'--plugin', localTailwindcssPlugin})
-      else
-        if isUsingTailwind then
-          vim.notify(
-            'Tailwind was detected for your project. You can really benefit from automatic class sorting. Please run npm i -D prettier-plugin-tailwindcss',
-            vim.log.levels.WARN)
-        end
+      if hasTailwindPrettierPlugin then
+        vim.list_extend(args, {'--plugin', 'prettier-plugin-tailwindcss'})
       end
 
       return args
