@@ -132,7 +132,7 @@ return {
         })
 
         vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
-          config = require('utils').mergeTable(config or {}, {border = 'rounded', title = 'Hover'})
+          config = require('utils').mergeTable(config or {}, {border = 'rounded', title = 'Hover', max_width = 100})
           config.focus_id = ctx.method
           if not (result and result.contents) then
             return
@@ -215,14 +215,15 @@ return {
       neodev.setup()
 
       -- ########################### LSP ###########################
+      require('lspconfig.ui.windows').default_options.border = 'rounded'
+
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
       capabilities.textDocument.foldingRange = {
         dynamicRegistration = false,
         lineFoldingOnly = true
       }
-      capabilities.textDocument.completion.completionItem.snippetSupport = true
-      require('lspconfig.ui.windows').default_options.border = 'rounded'
 
       local servers = {
         tailwindcss = {},
