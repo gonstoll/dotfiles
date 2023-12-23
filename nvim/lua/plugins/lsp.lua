@@ -100,7 +100,6 @@ return {
 
   {
     'neovim/nvim-lspconfig',
-    event = {'BufReadPost', 'BufNewFile', 'BufWritePre'},
     dependencies = {
       'folke/neodev.nvim',
       {
@@ -175,9 +174,7 @@ return {
         nmap('<leader>sd', vim.lsp.buf.signature_help, 'Signature Documentation')
         nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, 'Workspace Add Folder')
         nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, 'Workspace Remove Folder')
-        nmap('<leader>wl', function()
-          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end, 'Workspace List Folders')
+        nmap('<leader>wl', vim.lsp.buf.list_workspace_folders, 'Workspace List Folders')
         nmap('<leader>f', function()
           require('conform').format({async = true, lsp_fallback = true})
         end, 'Format current buffer with LSP')
