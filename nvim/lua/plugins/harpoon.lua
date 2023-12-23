@@ -6,6 +6,11 @@ return {
     local harpoon = require('harpoon')
     local utils = require('utils')
 
+    local menu_opts = {
+      border = 'rounded',
+      title_pos = 'center',
+    }
+
     local function km(rhs, command, opts)
       vim.keymap.set(
         'n',
@@ -38,7 +43,7 @@ return {
     })
 
     km(';a', function() harpoon:list():append() end, {desc = 'Add to list'})
-    km(';h', function() harpoon.ui:toggle_quick_menu(harpoon:list(), {border = 'rounded'}) end, {desc = 'Open menu'})
+    km(';h', function() harpoon.ui:toggle_quick_menu(harpoon:list(), menu_opts) end, {desc = 'Open menu'})
 
     km(';1', function() harpoon:list():select(1) end, {desc = 'Select file 1'})
     km(';2', function() harpoon:list():select(2) end, {desc = 'Select file 2'})
