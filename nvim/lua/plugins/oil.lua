@@ -2,7 +2,7 @@ return {
   'stevearc/oil.nvim',
   dependencies = {
     {'nvim-treesitter/nvim-treesitter'},
-    {'nvim-tree/nvim-web-devicons',    lazy = true},
+    {'nvim-tree/nvim-web-devicons', lazy = true},
   },
   keys = {
     {
