@@ -4,13 +4,6 @@ return {
     {'nvim-treesitter/nvim-treesitter'},
     {'nvim-tree/nvim-web-devicons', lazy = true},
   },
-  -- keys = {
-  --   {
-  --     '-',
-  --     '<cmd>lua require("oil").open_float()<CR>',
-  --     desc = 'Open parent directory',
-  --   },
-  -- },
   opts = {
     default_file_explorer = true,
     view_options = {
