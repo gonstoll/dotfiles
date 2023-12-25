@@ -100,13 +100,14 @@ return {
 
   {
     'neovim/nvim-lspconfig',
+    event = {'BufReadPost', 'BufNewFile', 'BufWritePre'},
     dependencies = {
       'folke/neodev.nvim',
+      'williamboman/mason-lspconfig.nvim',
       {
         'williamboman/mason.nvim',
         build = ':MasonUpdate',
       },
-      'williamboman/mason-lspconfig.nvim',
     },
     config = function()
       local mason = require('mason')

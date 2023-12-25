@@ -1,7 +1,6 @@
 return {
   'github/copilot.vim',
   config = false,
-  event = 'InsertEnter',
   init = function()
     vim.keymap.set('i', '<C-j>', 'copilot#Accept("<CR>")', {
       noremap = true,
