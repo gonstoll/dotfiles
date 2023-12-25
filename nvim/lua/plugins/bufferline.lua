@@ -4,6 +4,7 @@ return {
   {
     'akinsho/bufferline.nvim',
     event = 'BufReadPre',
+    enabled = false,
     opts = function()
       local bufferline = require('bufferline')
       local groups = require('bufferline.groups')
@@ -15,8 +16,8 @@ return {
       vim.cmd('command! -nargs=1 GoToBuffer lua GoToBuffer(<f-args>)')
 
       vim.keymap.set('n', '<leader>x', ':Bdelete!<CR>', {desc = 'Close buffer'})
-      vim.keymap.set('n', '<S-l>', function() bufferline.cycle(1) end, {desc = 'Next buffer'})
-      vim.keymap.set('n', '<S-h>', function() bufferline.cycle(-1) end, {desc = 'Previous buffer'})
+      -- vim.keymap.set('n', '<S-l>', function() bufferline.cycle(1) end, {desc = 'Next buffer'})
+      -- vim.keymap.set('n', '<S-h>', function() bufferline.cycle(-1) end, {desc = 'Previous buffer'})
       vim.keymap.set('n', '[b', function() bufferline.move(-1) end, {desc = 'Move buffer left'})
       vim.keymap.set('n', ']b', function() bufferline.move(1) end, {desc = 'Move buffer right'})
       vim.keymap.set('n', '<leader>P', function() groups.toggle_pin() end, {desc = 'Toggle pin buffer'})

@@ -103,15 +103,11 @@ return {
     event = {'BufReadPost', 'BufNewFile', 'BufWritePre'},
     dependencies = {
       'folke/neodev.nvim',
+      'williamboman/mason-lspconfig.nvim',
       {
         'williamboman/mason.nvim',
         build = ':MasonUpdate',
       },
-      'williamboman/mason-lspconfig.nvim',
-      {
-        'kevinhwang91/nvim-ufo',
-        dependencies = {'kevinhwang91/promise-async', lazy = true},
-      }
     },
     config = function()
       local mason = require('mason')
@@ -179,9 +175,7 @@ return {
         nmap('<leader>sd', vim.lsp.buf.signature_help, 'Signature Documentation')
         nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, 'Workspace Add Folder')
         nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, 'Workspace Remove Folder')
-        nmap('<leader>wl', function()
-          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end, 'Workspace List Folders')
+        nmap('<leader>wl', vim.lsp.buf.list_workspace_folders, 'Workspace List Folders')
         nmap('<leader>f', function()
           require('conform').format({async = true, lsp_fallback = true})
         end, 'Format current buffer with LSP')
@@ -315,19 +309,6 @@ return {
       end
 
       typescript_keymap('<leader>to', ':OrganizeImports<CR>', 'Organize imports')
-
-      -- ########################### UFO ###########################
-      local ufo = require('ufo')
-      ufo.setup()
-
-      vim.keymap.set('n', 'zR', ufo.openAllFolds)
-      vim.keymap.set('n', 'zM', ufo.closeAllFolds)
-      vim.keymap.set('n', 'K', function()
-        local winid = ufo.peekFoldedLinesUnderCursor(true)
-        if not winid then
-          vim.lsp.buf.hover()
-        end
-      end, {desc = 'LSP: Show hover documentation and folded code'})
     end,
   },
 }
