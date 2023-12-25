@@ -21,13 +21,7 @@ M.config = function()
     {
       'neovim/nvim-lspconfig',
       event = {'BufReadPost', 'BufNewFile', 'BufWritePre'},
-      dependencies = {
-        'folke/neodev.nvim',
-        {
-          'kevinhwang91/nvim-ufo',
-          dependencies = {'kevinhwang91/promise-async', lazy = true},
-        }
-      },
+      dependencies = {'folke/neodev.nvim'},
       init = function()
         vim.diagnostic.config({
           virtual_text = false,
@@ -161,19 +155,6 @@ M.config = function()
         -- ########################### NEODEV ###########################
         local neodev = require('neodev')
         neodev.setup()
-
-        -- ########################### UFO ###########################
-        local ufo = require('ufo')
-        ufo.setup()
-
-        vim.keymap.set('n', 'zR', ufo.openAllFolds)
-        vim.keymap.set('n', 'zM', ufo.closeAllFolds)
-        vim.keymap.set('n', 'K', function()
-          local winid = ufo.peekFoldedLinesUnderCursor(true)
-          if not winid then
-            vim.lsp.buf.hover()
-          end
-        end, {desc = 'LSP: Show hover documentation and folded code'})
       end,
     },
   }
