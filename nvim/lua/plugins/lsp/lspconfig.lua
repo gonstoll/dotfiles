@@ -54,6 +54,11 @@ M.config = function()
         )
       end,
       config = function()
+        -- ########################### NEODEV ###########################
+        local neodev = require('neodev')
+        neodev.setup()
+
+        -- ########################### LSP ###########################
         local function on_attach(client, bufnr)
           local function nmap(keys, func, desc)
             if desc then
@@ -113,7 +118,7 @@ M.config = function()
 
         local lspconfig = require('lspconfig')
 
-        -- ########################### LSP ###########################
+        -- LSP float border
         require('lspconfig.ui.windows').default_options.border = 'rounded'
 
         local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -125,10 +130,10 @@ M.config = function()
         }
 
         local lsp_servers = {
-          tailwindcss = {},
-          cssls = {},
-          emmet_language_server = {},
-          bashls = {},
+          tailwindcss = nil,
+          cssls = nil,
+          emmet_language_server = nil,
+          bashls = nil,
           eslint = require('plugins.lsp.configs.eslint').setup(capabilities, on_attach),
           lua_ls = require('plugins.lsp.configs.lua_ls').setup(capabilities, on_attach),
           tsserver = require('plugins.lsp.configs.tsserver').setup(capabilities, on_attach),
@@ -151,10 +156,6 @@ M.config = function()
         end
 
         typescript_keymap('<leader>to', ':OrganizeImports<CR>', 'Organize imports')
-
-        -- ########################### NEODEV ###########################
-        local neodev = require('neodev')
-        neodev.setup()
       end,
     },
   }
