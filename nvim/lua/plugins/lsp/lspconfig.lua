@@ -1,6 +1,6 @@
 local M = {}
 
-M.config = function()
+M.setup = function()
   return {
     {
       'williamboman/mason.nvim',
@@ -130,24 +130,17 @@ M.config = function()
         }
 
         local lsp_servers = {
-          tailwindcss = nil,
-          cssls = nil,
-          emmet_language_server = nil,
-          bashls = nil,
+          tailwindcss = {capabilities = capabilities, on_attach = on_attach},
+          cssls = {capabilities = capabilities, on_attach = on_attach},
+          emmet_language_server = {capabilities = capabilities, on_attach = on_attach},
+          bashls = {capabilities = capabilities, on_attach = on_attach},
           eslint = require('plugins.lsp.configs.eslint').setup(capabilities, on_attach),
           lua_ls = require('plugins.lsp.configs.lua_ls').setup(capabilities, on_attach),
           tsserver = require('plugins.lsp.configs.tsserver').setup(capabilities, on_attach),
         }
 
         for server_name, server_config in pairs(lsp_servers) do
-          if (server_config == nil) then
-            lspconfig[server_name].setup {
-              capabilities = capabilities,
-              on_attach = on_attach,
-            }
-          else
-            lspconfig[server_name].setup(server_config)
-          end
+          lspconfig[server_name].setup(server_config)
         end
 
         -- ########################### TYPESCRIPT ###########################
