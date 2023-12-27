@@ -46,11 +46,12 @@ return {
         path = vim.fn.stdpath('config'),
         type = 'file'
       })[1]
+      local disableGlobalPrettierConfig = os.getenv('DISABLE_GLOBAL_PRETTIER_CONFIG')
 
       -- Project config takes precedence over global config
       if localPrettierConfig then
         vim.list_extend(args, {'--config', localPrettierConfig})
-      elseif globalPrettierConfig then
+      elseif globalPrettierConfig and not disableGlobalPrettierConfig then
         vim.list_extend(args, {'--config', globalPrettierConfig})
       end
 
