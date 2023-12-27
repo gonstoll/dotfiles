@@ -47,7 +47,6 @@ return {
 
     km(';a', function() harpoon:list():append() end, {desc = 'Add to list'})
     km(';h', function() harpoon.ui:toggle_quick_menu(harpoon:list(), menu_opts) end, {desc = 'Open menu'})
-
     km(';1', function() harpoon:list():select(1) end, {desc = 'Select file 1'})
     km(';2', function() harpoon:list():select(2) end, {desc = 'Select file 2'})
     km(';3', function() harpoon:list():select(3) end, {desc = 'Select file 3'})
@@ -56,9 +55,7 @@ return {
     km(';6', function() harpoon:list():select(6) end, {desc = 'Select file 6'})
     km(';7', function() harpoon:list():select(7) end, {desc = 'Select file 7'})
     km(';8', function() harpoon:list():select(8) end, {desc = 'Select file 8'})
-    km(';9', function() harpoon:list():select(9) end, {desc = 'Select file 9'})
-    -- If I ever have more than 9 tabs open, time to rethink my life choices
-
+    km(';9', function() harpoon:list():select(9) end, {desc = 'Select file 9'}) -- If I ever have more than 9 tabs open, time to rethink my life choices
     km('<S-h>', function() harpoon:list():prev() end, {desc = 'Previous file'})
     km('<S-l>', function() harpoon:list():next() end, {desc = 'Next file'})
   end
