@@ -11,13 +11,15 @@ end
 
 M.send_tmux_key = function(tmux_key)
   return act.Multiple({
-    act.SendKey({mods = 'CTRL', key = 'a'}),
+    act.SendKey({mods = 'CTRL', key = 'z'}),
     act.SendKey({key = tmux_key}),
   })
 end
 
-M.key_to_tmux = function(mods, key, tmux_key)
-  return M.key_table(mods, key, M.send_tmux_key(tmux_key))
+---@alias KeyToTmux {mods: string, key: string, tmux_key: string}
+---@param opts KeyToTmux
+M.key_to_tmux = function(opts)
+  return M.key_table(opts.mods, opts.key, M.send_tmux_key(opts.tmux_key))
 end
 
 return M

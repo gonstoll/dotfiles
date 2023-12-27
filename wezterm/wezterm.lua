@@ -167,20 +167,20 @@ return {
     {key = 'DownArrow', mods = 'CTRL|CMD', action = act.AdjustPaneSize({'Down', 1})},
 
     -- tmux
-    keys.key_to_tmux('CMD', 'j', 'T'), -- Open t - tmux smart session manager
-    keys.key_to_tmux('CMD', '0', '0'),
-    keys.key_to_tmux('CMD', '1', '1'),
-    keys.key_to_tmux('CMD', '2', '2'),
-    keys.key_to_tmux('CMD', '3', '3'),
-    keys.key_to_tmux('CMD', '4', '4'),
-    keys.key_to_tmux('CMD', '5', '5'),
-    keys.key_to_tmux('CMD', '6', '6'),
-    keys.key_to_tmux('CMD', '7', '7'),
-    keys.key_to_tmux('CMD', '8', '8'),
-    keys.key_to_tmux('CMD', '9', '9'),
-    keys.key_to_tmux('CMD', 'c', 'c'), --  Create new window
-    keys.key_to_tmux('CMD', ']', 'n'), -- Next window
-    keys.key_to_tmux('CMD', '[', 'p'), -- Previous window
-    keys.key_to_tmux('CMD', 'x', 'x'), -- Kill pane
+    keys.key_to_tmux({mods = 'CMD', key = 'j', tmux_key = 'T'}), -- Open t - tmux smart session manager
+    keys.key_to_tmux({mods = 'CMD', key = '0', tmux_key = '0'}),
+    keys.key_to_tmux({mods = 'CMD', key = '1', tmux_key = '1'}),
+    keys.key_to_tmux({mods = 'CMD', key = '2', tmux_key = '2'}),
+    keys.key_to_tmux({mods = 'CMD', key = '3', tmux_key = '3'}),
+    keys.key_to_tmux({mods = 'CMD', key = '4', tmux_key = '4'}),
+    keys.key_to_tmux({mods = 'CMD', key = '5', tmux_key = '5'}),
+    keys.key_to_tmux({mods = 'CMD', key = '6', tmux_key = '6'}),
+    keys.key_to_tmux({mods = 'CMD', key = '7', tmux_key = '7'}),
+    keys.key_to_tmux({mods = 'CMD', key = '8', tmux_key = '8'}),
+    keys.key_to_tmux({mods = 'CMD', key = '9', tmux_key = '9'}),
+    keys.key_to_tmux({mods = 'CMD', key = 'c', tmux_key = 'c'}), -- Create new window
+    keys.key_to_tmux({mods = 'CMD', key = ']', tmux_key = 'n'}), -- Next window
+    keys.key_to_tmux({mods = 'CMD', key = '[', tmux_key = 'p'}), -- Previous window
+    keys.key_to_tmux({mods = 'CMD', key = 'x', tmux_key = 'x'}), -- Kill pane
   },
 }
