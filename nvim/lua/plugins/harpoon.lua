@@ -21,7 +21,7 @@ return {
       )
     end
 
-    harpoon:setup({})
+    harpoon:setup({settings = {save_on_toggle = true, sync_on_ui_close = true}})
     harpoon:extend(extensions.builtins.command_on_nav('UfoEnableFold'))
     harpoon:extend({
       UI_CREATE = function(cx)
