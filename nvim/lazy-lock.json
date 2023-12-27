@@ -20,7 +20,7 @@
   "garbage-day.nvim": { "branch": "main", "commit": "c46a037e807ff9ce024b8bfdb3b9f40a5fd931e7" },
   "gitsigns.nvim": { "branch": "main", "commit": "175e74f87d3d2e4d20952d390af5f2a794f5ed7e" },
   "gruvbox-material": { "branch": "master", "commit": "7f56d9f9c4860df528031539d321a61f6e081dee" },
-  "harpoon": { "branch": "harpoon2", "commit": "31701337377991c66eebb57ebd23ef01eb587352" },
+  "harpoon": { "branch": "harpoon2", "commit": "2d3abde3c4db4981294f9405ca11e3156ae78323" },
   "indent-blankline.nvim": { "branch": "master", "commit": "29be0919b91fb59eca9e90690d76014233392bef" },
   "lazy.nvim": { "branch": "main", "commit": "96584866b9c5e998cbae300594d0ccfd0c464627" },
   "lazygit.nvim": { "branch": "main", "commit": "de35012036d43bca03628d40d083f7c02a4cda3f" },
