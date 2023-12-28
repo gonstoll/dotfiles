@@ -25,6 +25,8 @@ return {
         GitSignsAdd = {fg = 'iris', bg = 'none'},
         GitSignsChange = {fg = 'foam', bg = 'none'},
         GitSignsDelete = {fg = 'rose', bg = 'none'},
+        DashboardHeader = {fg = 'text'},
+        DashboardFooter = {fg = 'love'},
       }
     },
   },
