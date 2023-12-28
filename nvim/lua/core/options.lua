@@ -50,8 +50,3 @@ vim.opt.fillchars = {
   foldsep = ' ', -- Open fold middle marker
   foldclose = '', -- Folded text
 }
-
-
-
--- vim.opt.list = true
--- vim.opt.listchars = 'eol:↲'

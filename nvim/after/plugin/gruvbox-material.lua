@@ -8,8 +8,6 @@ function SetGruvboxMaterialHighlights()
     configuration.colors_override
   )
 
-  local isDarkTheme = vim.o.background == 'dark'
-
   local highlights_groups = {
     FoldColumn = {bg = 'none', fg = palette.grey0[1]},
     SignColumn = {bg = 'none'},
@@ -30,8 +28,6 @@ function SetGruvboxMaterialHighlights()
     TelescopePromptCounter = {bg = 'none', fg = palette.fg0[1]},
     TelescopeMatching = {bold = false, bg = 'none', fg = palette.green[1]},
     Visual = {bg = palette.bg_visual_red[1]},
-    -- Cursor = {bg = isDarkTheme and palette.green[1] or palette.fg0[1], fg = palette.bg_dim[1]},
-    -- CursorReset = {bg = palette.fg0[1], fg = palette.bg_dim[1]},
     ColorColumn = {bg = palette.bg_visual_blue[1]},
     CursorLine = {bg = palette.bg5[1], blend = 25},
     GitSignsAdd = {bg = 'none', fg = palette.green[1]},

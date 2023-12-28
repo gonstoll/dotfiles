@@ -2,7 +2,7 @@ return {
   {
     'rose-pine/neovim',
     name = 'rose-pine',
-    event = 'BufAdd',
+    cmd = 'RosePine',
     opts = {
       variant = 'auto',
       dark_variant = 'moon',
@@ -51,5 +51,5 @@ return {
 
       vim.cmd.colorscheme('gruvbox-material')     -- For highlights customizations go to lua/core/highlights
     end
-  }
+  },
 }
