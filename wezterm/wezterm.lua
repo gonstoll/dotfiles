@@ -139,8 +139,8 @@ return {
   enable_scroll_bar = false,
 
   -- Opacity and blur
-  window_background_opacity = 0.86,
-  macos_window_background_blur = 15,
+  window_background_opacity = 0.9,
+  macos_window_background_blur = 25,
 
   -- Cursor
   cursor_blink_rate = 500,
