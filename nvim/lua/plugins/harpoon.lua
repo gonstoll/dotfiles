@@ -7,10 +7,7 @@ return {
   config = function()
     local harpoon = require('harpoon')
     local extensions = require('harpoon.extensions')
-    local menu_opts = {
-      border = 'rounded',
-      title_pos = 'center',
-    }
+    local menu_opts = {border = 'rounded', title_pos = 'center'}
 
     harpoon:setup({settings = {save_on_toggle = true, sync_on_ui_close = true}})
     harpoon:extend(extensions.builtins.command_on_nav('UfoEnableFold'))

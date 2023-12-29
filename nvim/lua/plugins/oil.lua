@@ -14,9 +14,7 @@ return {
         return vim.startswith(name, '.DS_Store')
       end,
     },
-    float = {
-      padding = 4,
-    },
+    float = {padding = 4},
   },
   config = function(_, opts)
     local oil = require('oil')
