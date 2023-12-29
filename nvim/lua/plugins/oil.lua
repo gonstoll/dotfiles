@@ -1,3 +1,5 @@
+local desc = require('utils').pluginKeymapDescriptor('oil')
+
 return {
   'stevearc/oil.nvim',
   dependencies = {
@@ -8,7 +10,7 @@ return {
     default_file_explorer = true,
     view_options = {
       show_hidden = true,
-      is_always_hidden = function(name, bufnr)
+      is_always_hidden = function(name, _)
         return vim.startswith(name, '.DS_Store')
       end,
     },
@@ -17,7 +19,8 @@ return {
     },
   },
   config = function(_, opts)
-    require('oil').setup(opts)
-    vim.keymap.set('n', '-', require('oil').open, {desc = 'Open parent directory'})
+    local oil = require('oil')
+    oil.setup(opts)
+    vim.keymap.set('n', '-', oil.open, {desc = desc('Open parent directory')})
   end
 }
