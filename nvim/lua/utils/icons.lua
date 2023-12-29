@@ -6,9 +6,9 @@ local M = {
     Info = ' '
   },
   git = {
-    added = '',
+    added = '',
     changed = '',
-    deleted = '',
+    deleted = '',
   },
 }
 
