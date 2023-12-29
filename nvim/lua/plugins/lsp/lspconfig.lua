@@ -53,8 +53,8 @@ M.setup = function()
           {title = 'Signature', border = 'rounded', max_width = 100}
         )
 
-        local icons = require('utils.icons').diagnostics
-        for type, icon in pairs(icons) do
+        local icons = require('utils.icons')
+        for type, icon in pairs(icons.diagnostics) do
           local hl = 'DiagnosticSign' .. type
           vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
         end

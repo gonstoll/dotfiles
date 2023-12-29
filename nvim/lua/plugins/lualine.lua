@@ -15,6 +15,9 @@ return {
       end,
     }
 
+    local filetype = {'filetype', colored = true}
+    local branch = {'branch', icon = ''}
+
     local diagnostics = {
       'diagnostics',
       sources = {'nvim_diagnostic'},
@@ -37,7 +40,7 @@ return {
       path = 4,
       shorting_target = 40,
       symbols = {
-        modified = icons.git.changed,
+        modified = '●',
         readonly = icons.git.deleted,
         newfile = icons.git.added,
       }
@@ -65,8 +68,6 @@ return {
       end,
     }
 
-    local filetype = {'filetype', colored = true}
-
     return {
       options = {
         theme = theme,
@@ -76,7 +77,7 @@ return {
       },
       sections = {
         lualine_a = {mode},
-        lualine_b = {filename, 'branch', diff},
+        lualine_b = {filename, branch, diff},
         lualine_c = {},
         lualine_x = {},
         lualine_y = {},
