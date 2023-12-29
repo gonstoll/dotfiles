@@ -72,3 +72,7 @@ export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
 
 # bun completions
 [ -s "$HOME/.config/bun/_bun" ] && source "$HOME/.config/bun/_bun"
+
+# rust
+export RUSTUP_HOME="$HOME/.config/rust/.rustup"
+export CARGO_HOME="$HOME/.config/rust/.cargo"

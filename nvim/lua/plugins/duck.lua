@@ -2,7 +2,7 @@ return {
   'tamton-aquib/duck.nvim',
   keys = {
     {
-      '<leader>dd',
+      ',dd',
       function()
         require('duck').hatch('🐈')
       end,
@@ -12,7 +12,7 @@ return {
       desc = 'Hatch a duck',
     },
     {
-      '<leader>dk',
+      ',dk',
       '<cmd>lua require("duck").cook()<cr>',
       function()
         require('duck').cook()

@@ -4,6 +4,7 @@
 .histfile
 .zcompdump
 .zsh_*
+.zshenv
 .z_database
 custom.zsh
 

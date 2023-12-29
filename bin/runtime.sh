@@ -8,6 +8,9 @@ npm install -g depcheck eslint prettier prettier-plugin-tailwindss typescript ty
 # Bun
 curl -fsSL https://bun.sh/install | bash
 
+# Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
 # Tmux Plugin Manager
 git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 ~/.config/tmux/plugins/tpm/bin/install_plugins

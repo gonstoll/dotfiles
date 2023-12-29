@@ -108,6 +108,7 @@ return {
   font = wezterm.font_with_fallback(fonts.getFonts()),
   font_size = 18.0,
   harfbuzz_features = {'calt=0', 'clig=0', 'liga=0'},
+  use_cap_height_to_scale_fallback_fonts = true,
 
   -- Colors
   color_schemes = color_schemes,

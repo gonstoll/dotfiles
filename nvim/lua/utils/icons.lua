@@ -10,6 +10,13 @@ local M = {
     changed = '',
     deleted = '',
   },
+  dap = {
+    Stopped = {'󰁕 ', 'DiagnosticSignWarn', 'DapStoppedLine'},
+    Breakpoint = {' ', 'DiagnosticSignInfo'},
+    BreakpointCondition = {' ', 'DiagnosticSignHint'},
+    BreakpointRejected = {' ', 'DiagnosticSignError'},
+    LogPoint = '.>',
+  },
 }
 
 return M

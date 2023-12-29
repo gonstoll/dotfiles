@@ -32,6 +32,7 @@ M.getFonts = function()
       italic = false,
       stretch = 'Normal',
     },
+    {family = 'Apple Color Emoji'},
   }
 end
 
