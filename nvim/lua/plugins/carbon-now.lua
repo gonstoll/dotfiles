@@ -1,11 +1,8 @@
+local desc = require('utils').pluginKeymapDescriptor('carbon now')
+
 return {
   'kristijanhusak/vim-carbon-now-sh',
   keys = {
-    {
-      '<F2>',
-      ':CarbonNowSh<CR>',
-      mode = {'v', 'n'},
-      desc = 'Take code snapshot',
-    },
+    {'<F2>', ':CarbonNowSh<CR>', desc = desc('Take code snapshot'), mode = {'v', 'n'}},
   },
 }
