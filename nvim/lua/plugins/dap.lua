@@ -1,3 +1,7 @@
+-- Config inspired from https://github.com/nikolovlazar/dotfiles/blob/main/.config/nvim/lua/plugins/dap.lua
+-- and Lazyvim's https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/dap/core.lua
+-- For further explanation, see https://www.youtube.com/watch?v=Ul_WPhS2bis
+
 local js_based_languages = {'typescript', 'javascript', 'typescriptreact', 'javascriptreact'}
 
 ---@param config {args?:string[]|fun():string[]?}
@@ -33,11 +37,6 @@ return {
       dap.listeners.before.event_terminated['dapui_config'] = function() dapui.close({}) end
       dap.listeners.before.event_exited['dapui_config'] = function() dapui.close({}) end
     end,
-  },
-
-  {
-    'theHamsta/nvim-dap-virtual-text',
-    opts = {},
   },
 
   {
@@ -156,6 +155,10 @@ return {
         opts = {
           debugger_path = vim.fn.resolve(vim.fn.stdpath('data') .. '/lazy/vscode-js-debug'),
         },
+      },
+      {
+        'theHamsta/nvim-dap-virtual-text',
+        opts = {},
       },
       -- {
       --   'Joakker/lua-json5',
