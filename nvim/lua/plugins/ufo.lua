@@ -1,3 +1,5 @@
+local desc = require('utils').pluginKeymapDescriptor('ufo')
+
 -- Custom fold text handler for ufo showing line count folded
 local handler = function(virtText, lnum, endLnum, width, truncate)
   local newVirtText = {}
@@ -55,11 +57,10 @@ return {
     },
     config = function(_, opts)
       local ufo = require('ufo')
-
       ufo.setup(opts)
 
-      vim.keymap.set('n', 'zR', ufo.openAllFolds)
-      vim.keymap.set('n', 'zM', ufo.closeAllFolds)
+      vim.keymap.set('n', 'zR', ufo.openAllFolds, {desc = desc('Open all folds')})
+      vim.keymap.set('n', 'zM', ufo.closeAllFolds, {desc = desc('Close all folds')})
       vim.keymap.set('n', 'K', function()
         local winid = ufo.peekFoldedLinesUnderCursor(true)
         if not winid then

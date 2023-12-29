@@ -4,6 +4,7 @@ return {
   'akinsho/toggleterm.nvim',
   version = '*',
   keys = open_mapping,
+  enabled = false,
   opts = {
     direction = 'vertical',
     size = 80,
