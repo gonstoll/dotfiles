@@ -13,7 +13,6 @@
   "conform.nvim": { "branch": "master", "commit": "b3e0752a6c566b97e2896b486caafd4b25f4683a" },
   "copilot.vim": { "branch": "release", "commit": "5b19fb001d7f31c4c7c5556d7a97b243bd29f45f" },
   "dashboard-nvim": { "branch": "master", "commit": "63df28409d940f9cac0a925df09d3dc369db9841" },
-  "diagnostic-window.nvim": { "branch": "main", "commit": "2b4d9618382502740c7945c4023853ee524adc4c" },
   "dressing.nvim": { "branch": "master", "commit": "94b0d24483d56f3777ee0c8dc51675f21709318c" },
   "duck.nvim": { "branch": "main", "commit": "977b4aa4004726ed3d87b2437f543cef2153b8ea" },
   "friendly-snippets": { "branch": "main", "commit": "53d3df271d031c405255e99410628c26a8f0d2b0" },
