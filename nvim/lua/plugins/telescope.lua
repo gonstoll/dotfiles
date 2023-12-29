@@ -1,116 +1,112 @@
+local desc = require('utils').pluginKeymapDescriptor('telescope')
+
 local keys = {
   {
-    desc = 'Search Files',
+    desc = desc('Search Files'),
     lhs = 'sf',
-    rhs =
-    '<cmd>lua require("telescope").extensions.file_browser.file_browser({path = "%:p:h", hidden = true, respect_gitignore = false,})<CR>',
+    rhs = function() require('telescope').extensions.file_browser.file_browser({path = '%:p:h', hidden = true, respect_gitignore = false,}) end,
   },
   {
-    desc = 'Find files respecting gitignore',
+    desc = desc('Find files respecting gitignore'),
     lhs = ';f',
-    rhs = '<cmd>lua require("telescope.builtin").find_files({no_ignore = true, hidden = true})<CR>',
+    rhs = function() require('telescope.builtin').find_files({no_ignore = true, hidden = true}) end,
   },
   {
-    desc = 'Get file diagnostics',
+    desc = desc('Get file diagnostics'),
     lhs = ';se',
-    rhs = '<cmd>lua require("telescope.builtin").diagnostics({bufnr = 0})<CR>',
+    rhs = function() require('telescope.builtin').diagnostics({bufnr = 0}) end,
   },
   {
-    desc = 'Search in Current buffer Directory',
+    desc = desc('Search in Current buffer Directory'),
     lhs = ';cd',
-    rhs = '<cmd>lua require("telescope.builtin").find_files({cwd = require("telescope.utils").buffer_dir()})<CR>',
+    rhs = function() require('telescope.builtin').find_files({cwd = require('telescope.utils').buffer_dir()}) end,
   },
   {
-    desc = 'Search Files',
+    desc = desc('Search Files'),
     lhs = ';sf',
-    rhs = '<cmd>lua require("telescope.builtin").find_files()<CR>',
+    rhs = function() require('telescope.builtin').find_files() end,
   },
   {
-    desc = 'Search by Grep',
+    desc = desc('Search by Grep'),
     lhs = ';sg',
-    rhs = '<cmd>lua require("telescope.builtin").live_grep()<CR>',
+    rhs = function() require('telescope.builtin').live_grep() end,
   },
   {
-    desc = 'Search Git Files',
+    desc = desc('Search Git Files'),
     lhs = ';gf',
-    rhs = '<cmd>lua require("telescope.builtin").git_files()<CR>',
+    rhs = function() require('telescope.builtin').git_files() end,
   },
   {
-    desc = 'Keymaps',
+    desc = desc('Keymaps'),
     lhs = ';sk',
-    rhs = '<cmd>lua require("telescope.builtin").keymaps()<CR>',
+    rhs = function() require('telescope.builtin').keymaps() end,
   },
   {
-    desc = 'Search Diagnostics',
+    desc = desc('Search Diagnostics'),
     lhs = ';sd',
-    rhs = '<cmd>lua require("telescope.builtin").diagnostics()<CR>',
+    rhs = function() require('telescope.builtin').diagnostics() end,
   },
   {
-    desc = 'Search current Word',
+    desc = desc('Search current Word'),
     lhs = ';sw',
-    rhs = '<cmd>lua require("telescope.builtin").grep_string()<CR>',
+    rhs = function() require('telescope.builtin').grep_string() end,
   },
   {
-    desc = 'Find recently opened files',
+    desc = desc('Find recently opened files'),
     lhs = ';?',
-    rhs = '<cmd>lua require("telescope.builtin").oldfiles()<CR>',
+    rhs = function() require('telescope.builtin').oldfiles() end,
   },
   {
-    desc = 'Find opened buffers in current neovim instance',
+    desc = desc('Find opened buffers in current neovim instance'),
     lhs = ';y',
-    rhs = '<cmd>lua require("telescope.builtin").buffers()<CR>',
+    rhs = function() require('telescope.builtin').buffers() end,
   },
   {
-    desc = 'Search Help',
+    desc = desc('Search Help'),
     lhs = ';sh',
-    rhs = '<cmd>lua require("telescope.builtin").help_tags()<CR>',
+    rhs = function() require('telescope.builtin').help_tags() end,
   },
   {
-    desc = 'Search Colorscheme',
+    desc = desc('Search Colorscheme'),
     lhs = ';sc',
-    rhs = '<cmd>lua require("telescope.builtin").colorscheme()<CR>',
+    rhs = function() require('telescope.builtin').colorscheme() end,
   },
   {
-    desc = 'Get list of searches',
+    desc = desc('Get list of searches'),
     lhs = ';ss',
-    rhs = '<cmd>lua require("telescope.builtin").search_history()<CR>',
+    rhs = function() require('telescope.builtin').search_history() end,
   },
   {
-    desc = 'Fuzzily search in current buffer',
+    desc = desc('Fuzzily search in current buffer'),
     lhs = ';/',
-    rhs = '<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>',
+    rhs = function() require('telescope.builtin').current_buffer_fuzzy_find() end,
   },
   {
-    desc = 'Resume',
+    desc = desc('Resume'),
     lhs = ';;',
-    rhs = '<cmd>lua require("telescope").extensions.resume.resume()<CR>',
+    rhs = function() require('telescope').extensions.resume.resume() end,
   },
   {
-    desc = 'Document Symbols',
+    desc = desc('Document Symbols'),
     lhs = '<leader>ds',
-    rhs = '<cmd>lua require("telescope.builtin").lsp_document_symbols()<CR>',
+    rhs = function() require('telescope.builtin').lsp_document_symbols() end,
   },
   {
-    desc = 'Workspace Symbols',
+    desc = desc('Workspace Symbols'),
     lhs = '<leader>ws',
-    rhs = '<cmd>lua require("telescope.builtin").lsp_dynamic_workspace_symbols()<CR>',
+    rhs = function() require('telescope.builtin').lsp_dynamic_workspace_symbols() end,
   },
   {
-    desc = 'Goto References',
+    desc = desc('Goto References'),
     lhs = 'gr',
-    rhs = '<cmd>lua require("telescope.builtin").lsp_references()<CR>',
+    rhs = function() require('telescope.builtin').lsp_references() end,
   },
 }
-
-local function get_desc(description)
-  return description .. ' (Telescope)'
-end
 
 local function get_lazy_keys()
   local lazy_keys = {}
   for _, key in ipairs(keys) do
-    local desc = get_desc(key.desc)
-    table.insert(lazy_keys, {key.lhs, key.rhs, desc = desc})
+    table.insert(lazy_keys, {key.lhs, key.rhs, desc = key.desc})
   end
   return lazy_keys
 end
@@ -169,7 +165,7 @@ return {
       telescope.load_extension('file_browser')
 
       for _, key in ipairs(keys) do
-        vim.keymap.set('n', key.lhs, key.rhs, {desc = get_desc(key.desc)})
+        vim.keymap.set('n', key.lhs, key.rhs, {desc = key.desc})
       end
     end,
   }
