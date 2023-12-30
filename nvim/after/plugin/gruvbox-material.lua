@@ -29,7 +29,7 @@ function SetGruvboxMaterialHighlights()
     TelescopeMatching = {bold = false, bg = 'none', fg = palette.green[1]},
     Visual = {bg = palette.bg_visual_red[1]},
     ColorColumn = {bg = palette.bg_visual_blue[1]},
-    -- CursorLine = {bg = palette.bg3[1], blend = 25},
+    CursorLine = {bg = palette.bg3[1], blend = 25},
     GitSignsAdd = {bg = 'none', fg = palette.green[1]},
     GitSignsChange = {bg = 'none', fg = palette.yellow[1]},
     GitSignsDelete = {bg = 'none', fg = palette.red[1]},
@@ -38,7 +38,7 @@ function SetGruvboxMaterialHighlights()
     DiffDelete = {bg = 'none', fg = palette.red[1]},
     DiffText = {bg = 'none', fg = palette.blue[1]},
     LspInfoBorder = {bg = 'none', fg = palette.fg0[1]},
-    -- MatchParen = {bg = palette.bg1[1], fg = palette.fg0[1]},
+    MatchParen = {bg = palette.grey2[1], fg = palette.bg0[1]},
   }
 
   for group, styles in pairs(highlights_groups) do
