@@ -31,15 +31,15 @@ function install_preferences() {
   echo "> Finished installing system preferences"
 }
 
-function install_runtime_packages() {
-  read -p "Do you want to install global runtime packages? (y/n) " yn < /dev/tty
+function install_misc_packages() {
+  read -p "Do you want to install global misc packages? (y/n) " yn < /dev/tty
   case $yn in
-    [Yy]* ) source ./bin/runtime.sh; break ;;
-    [Nn]* ) echo "> Skipped installing global runtime packages"; return ;;
+    [Yy]* ) source ./bin/misc.sh; break ;;
+    [Nn]* ) echo "> Skipped installing global misc packages"; return ;;
     * ) echo "> Incorrect option, skipping"; return ;;
   esac
 
-  echo "> Finished installing global runtime packages"
+  echo "> Finished installing global misc packages"
 }
 
 function link_files() {
@@ -108,7 +108,7 @@ install_system
 echo ""
 install_preferences
 echo ""
-install_runtime_packages
+install_misc_packages
 echo ""
 install_dotfiles
 

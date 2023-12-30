@@ -1,6 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+ZSHRC_PATH="$(readlink $HOME/.config/zsh)/.zshrc" # get the path of the .zshrc symlink
+ZSH_PATH=$(dirname $ZSHRC_PATH) # get the path of the zsh folder
+
 # custom zsh configurations
 if [[ -f $ZSH_PATH/config/custom.zsh ]]; then
   source $ZSH_PATH/config/custom.zsh
@@ -14,9 +17,6 @@ HISTFILE=$ZDOTDIR/.histfile
 zstyle :compinstall $ZDOTDIR/.zshrc
 autoload -Uz compinit
 compinit
-
-ZSHRC_PATH="$(readlink $HOME/.config/zsh)/.zshrc" # get the path of the .zshrc symlink
-ZSH_PATH=$(dirname $ZSHRC_PATH) # get the path of the zsh folder
 
 # Powerlevel10k
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh//.zshrc.
@@ -38,8 +38,8 @@ else
   export EDITOR='nvim'
 fi
 
-export TERM=xterm-256color
-export TERMINFO='/usr/share/terminfo/'
+export TERM=wezterm
+export TERMINFO="$HOME/.terminfo/"
 
 if [[ -s "$HOME/.config/bun/_bun" ]]; then
   source "$HOME/.config/bun/_bun"
