@@ -7,7 +7,7 @@ local M = {
   },
   git = {
     added = '',
-    changed = '',
+    changed = '',
     deleted = '',
   },
   dap = {

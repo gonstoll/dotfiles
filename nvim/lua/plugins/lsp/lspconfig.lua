@@ -1,3 +1,4 @@
+local desc = require('utils').pluginKeymapDescriptor('LSP')
 local M = {}
 
 M.setup = function()
@@ -66,43 +67,31 @@ M.setup = function()
 
         -- ########################### LSP ###########################
         local function on_attach(client, bufnr)
-          local function nmap(keys, func, desc)
-            if desc then
-              desc = 'LSP: ' .. desc
-            end
-
-            vim.keymap.set('n', keys, func, {buffer = bufnr, desc = desc})
+          local function map(mode, keys, func, description)
+            vim.keymap.set(mode, keys, func, {buffer = bufnr, desc = desc(description)})
           end
 
-          local function imap(keys, func, desc)
-            if desc then
-              desc = 'LSP: ' .. desc
-            end
-
-            vim.keymap.set('i', keys, func, {buffer = bufnr, desc = desc})
-          end
-
-          nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
-          nmap('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
-          nmap('gd', vim.lsp.buf.definition, 'Goto Definition')
-          nmap('gD', vim.lsp.buf.declaration, 'Goto Declaration')
-          nmap('gi', vim.lsp.buf.implementation, 'Goto Implementation')
-          nmap('gl', vim.diagnostic.open_float, 'Open diagnostics')
-          nmap('[d', vim.diagnostic.goto_prev, 'Previous diagnostic')
-          nmap(']d', vim.diagnostic.goto_next, 'Next diagnostic')
-          nmap('<leader>td', vim.lsp.buf.type_definition, 'Type Definition')
-          nmap('<leader>hd', vim.lsp.buf.hover, 'Hover Documentation')
-          nmap('<leader>sd', vim.lsp.buf.signature_help, 'Signature Documentation')
-          nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, 'Workspace Add Folder')
-          nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, 'Workspace Remove Folder')
-          nmap('<leader>wl', function()
+          map('n', '<leader>rn', vim.lsp.buf.rename, 'Rename')
+          map('n', '<leader>ca', vim.lsp.buf.code_action, 'Code Action')
+          map('n', 'gd', vim.lsp.buf.definition, 'Goto Definition')
+          map('n', 'gD', vim.lsp.buf.declaration, 'Goto Declaration')
+          map('n', 'gi', vim.lsp.buf.implementation, 'Goto Implementation')
+          map('n', 'gl', vim.diagnostic.open_float, 'Open diagnostics')
+          map('n', '[d', vim.diagnostic.goto_prev, 'Previous diagnostic')
+          map('n', ']d', vim.diagnostic.goto_next, 'Next diagnostic')
+          map('n', '<leader>td', vim.lsp.buf.type_definition, 'Type Definition')
+          map('n', '<leader>hd', vim.lsp.buf.hover, 'Hover Documentation')
+          map('n', '<leader>sd', vim.lsp.buf.signature_help, 'Signature Documentation')
+          map('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, 'Workspace Add Folder')
+          map('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, 'Workspace Remove Folder')
+          map('n', '<leader>wl', function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
           end, 'Workspace List Folders')
-          nmap('<leader>f', function()
+          map('n', '<leader>f', function()
             require('conform').format({async = true, lsp_fallback = true})
           end, 'Format current buffer with LSP')
 
-          imap('<C-s>', vim.lsp.buf.signature_help, 'Signature Documentation')
+          map('i', '<C-s>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
           -- Create a command `:Format` local to the LSP buffer
           vim.api.nvim_create_user_command('Format', function(args)
@@ -123,17 +112,12 @@ M.setup = function()
         end
 
         local lspconfig = require('lspconfig')
-
-        -- LSP float border
         require('lspconfig.ui.windows').default_options.border = 'rounded'
 
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
         capabilities.textDocument.completion.completionItem.snippetSupport = true
-        capabilities.textDocument.foldingRange = {
-          dynamicRegistration = false,
-          lineFoldingOnly = true
-        }
+        capabilities.textDocument.foldingRange = {dynamicRegistration = false, lineFoldingOnly = true}
 
         local lsp_servers = {
           tailwindcss = {capabilities = capabilities, on_attach = on_attach},
