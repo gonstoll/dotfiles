@@ -39,6 +39,7 @@ function SetGruvboxMaterialHighlights()
     DiffText = {bg = 'none', fg = palette.blue[1]},
     LspInfoBorder = {bg = 'none', fg = palette.fg0[1]},
     MatchParen = {bg = palette.grey2[1], fg = palette.bg0[1]},
+    DiagnosticSignWarn = {bg = 'none', fg = palette.yellow[1]},
   }
 
   for group, styles in pairs(highlights_groups) do

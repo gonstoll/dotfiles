@@ -12,7 +12,7 @@ local M = {
   },
   dap = {
     Stopped = {'󰁕 ', 'DiagnosticSignWarn', 'DapStoppedLine'},
-    Breakpoint = {' ', 'DiagnosticSignInfo'},
+    Breakpoint = {' ', 'DiagnosticSignInfo'},
     BreakpointCondition = {' ', 'DiagnosticSignHint'},
     BreakpointRejected = {' ', 'DiagnosticSignError'},
     LogPoint = '.>',
