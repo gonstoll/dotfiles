@@ -1,5 +1,5 @@
 return {
-  {'famiu/bufdelete.nvim', event = 'BufReadPre'},
+  {'famiu/bufdelete.nvim', event = 'BufReadPre', enabled = false},
 
   {
     'akinsho/bufferline.nvim',

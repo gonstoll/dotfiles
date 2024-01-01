@@ -8,26 +8,20 @@ return {
       project = {
         enable = true,
         limit = 8,
-        action = function(path)
-          require('telescope.builtin').find_files({cwd = path})
-        end
+        action = function(path) require('telescope.builtin').find_files({cwd = path}) end
       },
       shortcut = {
         {
           desc = 'Dev projects',
           group = 'DashboardShortCut',
           key = 'd',
-          action = function()
-            require('telescope').extensions.file_browser.file_browser({cwd = '~/Dev/projects'})
-          end,
+          action = function() require('telescope').extensions.file_browser.file_browser({cwd = '~/Dev/projects'}) end,
         },
         {
           desc = 'Dotfiles',
           group = 'DashboardShortCut',
           key = 'f',
-          action = function()
-            require('telescope.builtin').find_files({cwd = '~/dotfiles'})
-          end,
+          action = function() require('telescope.builtin').find_files({cwd = '~/dotfiles'}) end,
         },
       },
       header = {

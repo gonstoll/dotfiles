@@ -11,7 +11,7 @@ return {
     'hrsh7th/cmp-calc',
     'hrsh7th/cmp-emoji',
   },
-  event = 'BufReadPre',
+  event = 'InsertEnter',
   config = function()
     local cmp = require('cmp')
     local lspkind = require('lspkind')
@@ -88,6 +88,7 @@ return {
       formatting = {
         fields = {'menu', 'abbr', 'kind'},
         format = lspkind.cmp_format({
+          mode = 'symbol',
           maxwidth = 200,
           ellipsis_char = '...',
           before = function(entry, item)

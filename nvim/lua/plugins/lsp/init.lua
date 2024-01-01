@@ -4,10 +4,7 @@ local desc = require('utils').pluginKeymapDescriptor('lspsaga')
 return {
   lspconfig.setup(),
 
-  {
-    'onsails/lspkind-nvim',
-    init = function() return {mode = 'symbol'} end,
-  },
+  {'onsails/lspkind-nvim', config = false},
 
   {
     'nvimdev/lspsaga.nvim',
