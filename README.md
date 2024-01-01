@@ -1,6 +1,7 @@
 # Gonzalo Stoll's dotfiles
 
 <img src="__images/screenshot.png" alt="Dotfiles screenshot" />
+<img src="__images/screenshot2.png" alt="Dotfiles screenshot with debugging tools" />
 
 These are my dotfiles, use with caution and at your own risk! For the moment, this only works for macOS users.
 
