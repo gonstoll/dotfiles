@@ -40,9 +40,7 @@ function SetGruvboxMaterialHighlights()
     LspInfoBorder = {bg = 'none', fg = palette.fg0[1]},
     MatchParen = {bg = palette.grey2[1], fg = palette.bg0[1]},
     DiagnosticSignWarn = {bg = 'none', fg = palette.yellow[1]},
-    TodoBgTODO = {bg = palette.blue[1], fg = palette.fg0[1], bold = false},
-    TodoBgWARN = {bg = palette.yellow[1], fg = palette.bg0[1], bold = false},
-    TodoBgNOTE = {bg = palette.green[1], fg = palette.bg0[1], bold = false},
+    ErrorMsg = {fg = palette.red[1]},
   }
 
   for group, styles in pairs(highlights_groups) do
