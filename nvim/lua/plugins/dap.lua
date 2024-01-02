@@ -21,7 +21,6 @@ local function get_args(config)
 end
 
 return {
-
   {
     'mfussenegger/nvim-dap',
     dependencies = {
@@ -33,7 +32,7 @@ return {
         },
         opts = {},
       },
-      -- Install the vscode-js-debug adapter
+      -- vscode-js-debug adapter
       {
         'microsoft/vscode-js-debug',
         -- After install, build it and rename the dist directory to out
@@ -42,14 +41,9 @@ return {
       },
       {
         'mxsdev/nvim-dap-vscode-js',
-        opts = {
-          debugger_path = vim.fn.resolve(vim.fn.stdpath('data') .. '/lazy/vscode-js-debug'),
-        },
+        opts = {debugger_path = vim.fn.resolve(vim.fn.stdpath('data') .. '/lazy/vscode-js-debug')},
       },
-      {
-        'theHamsta/nvim-dap-virtual-text',
-        opts = {},
-      },
+      {'theHamsta/nvim-dap-virtual-text', opts = {}},
       -- {
       --   'Joakker/lua-json5',
       --   build = './install.sh',
