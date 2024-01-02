@@ -12,7 +12,7 @@ return {
     event = 'BufReadPre',
     opts = function()
       local icons = require('utils.icons')
-      local desc = require('utils').pluginKeymapDescriptor('gitsigns')
+      local desc = require('utils').plugin_keymap_desc('gitsigns')
 
       return {
         signs = {

@@ -1,4 +1,4 @@
-local desc = require('utils').pluginKeymapDescriptor('LSP')
+local desc = require('utils').plugin_keymap_desc('LSP')
 local M = {}
 
 M.setup = function()
@@ -36,7 +36,7 @@ M.setup = function()
         })
 
         vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
-          config = require('utils').mergeTable(config or {}, {border = 'rounded', title = 'Hover', max_width = 100})
+          config = require('utils').merge_table(config or {}, {border = 'rounded', title = 'Hover', max_width = 100})
           config.focus_id = ctx.method
           if not (result and result.contents) then
             return

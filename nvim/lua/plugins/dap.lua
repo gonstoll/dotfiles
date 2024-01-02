@@ -2,7 +2,7 @@
 -- and Lazyvim's https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/dap/core.lua
 -- For further explanation, see https://www.youtube.com/watch?v=Ul_WPhS2bis
 
-local desc = require('utils').pluginKeymapDescriptor('dap')
+local desc = require('utils').plugin_keymap_desc('dap')
 local js_based_languages = {'typescript', 'javascript', 'typescriptreact', 'javascriptreact'}
 
 ---@param config {args?:string[]|fun():string[]?}

@@ -1,4 +1,4 @@
-local desc = require('utils').pluginKeymapDescriptor('telescope')
+local desc = require('utils').plugin_keymap_desc('telescope')
 
 local keys = {
   {

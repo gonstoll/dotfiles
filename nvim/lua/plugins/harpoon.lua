@@ -1,4 +1,4 @@
-local desc = require('utils').pluginKeymapDescriptor('harpoon')
+local desc = require('utils').plugin_keymap_desc('harpoon')
 
 return {
   'ThePrimeagen/harpoon',

@@ -1,4 +1,4 @@
-local desc = require('utils').pluginKeymapDescriptor('duck')
+local desc = require('utils').plugin_keymap_desc('duck')
 
 return {
   'tamton-aquib/duck.nvim',

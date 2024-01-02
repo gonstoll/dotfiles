@@ -1,4 +1,4 @@
-local desc = require('utils').pluginKeymapDescriptor('spectre')
+local desc = require('utils').plugin_keymap_desc('spectre')
 
 return {
   'nvim-pack/nvim-spectre',

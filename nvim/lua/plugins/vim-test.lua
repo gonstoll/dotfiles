@@ -1,4 +1,4 @@
-local desc = require('utils').pluginKeymapDescriptor('vim test')
+local desc = require('utils').plugin_keymap_desc('vim test')
 
 return {
   'vim-test/vim-test',

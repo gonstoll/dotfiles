@@ -1,4 +1,4 @@
-local desc = require('utils').pluginKeymapDescriptor('diagnostic window')
+local desc = require('utils').plugin_keymap_desc('diagnostic window')
 
 return {
   'cseickel/diagnostic-window.nvim',

@@ -1,4 +1,4 @@
-local desc = require('utils').pluginKeymapDescriptor('ufo')
+local desc = require('utils').plugin_keymap_desc('ufo')
 
 -- Custom fold text handler for ufo showing line count folded
 local handler = function(virtText, lnum, endLnum, width, truncate)

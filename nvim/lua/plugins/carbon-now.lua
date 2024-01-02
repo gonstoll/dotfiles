@@ -1,4 +1,4 @@
-local desc = require('utils').pluginKeymapDescriptor('carbon now')
+local desc = require('utils').plugin_keymap_desc('carbon now')
 
 return {
   'kristijanhusak/vim-carbon-now-sh',

@@ -1,5 +1,5 @@
 local lspconfig = require('plugins.lsp.lspconfig')
-local desc = require('utils').pluginKeymapDescriptor('lspsaga')
+local desc = require('utils').plugin_keymap_desc('lspsaga')
 
 return {
   lspconfig.setup(),

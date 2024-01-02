@@ -1,4 +1,4 @@
-local desc = require('utils').pluginKeymapDescriptor('TODO comments')
+local desc = require('utils').plugin_keymap_desc('TODO comments')
 
 return {
   'folke/todo-comments.nvim',
