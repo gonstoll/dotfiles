@@ -16,6 +16,8 @@ return {
       vim.g.gruvbox_material_background = 'hard'
       vim.g.gruvbox_material_ui_contrast = 'high' -- The contrast of line numbers, indent lines, etc.
       vim.g.gruvbox_material_float_style = 'dim'  -- Background of floating windows
+
+      vim.cmd('colorscheme gruvbox-material')
     end
   },
 
@@ -45,6 +47,10 @@ return {
           DiffText = {bg = 'none'},
         }
       end,
-    }
+    },
+    config = function(_, opts)
+      require('kanagawa').setup(opts)
+      -- vim.cmd('colorscheme kanagawa')
+    end
   },
 }
