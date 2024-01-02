@@ -63,7 +63,9 @@ M.setup = function()
       config = function()
         -- ########################### NEODEV ###########################
         local neodev = require('neodev')
-        neodev.setup()
+        neodev.setup({
+          library = {plugins = {'nvim-dap-ui'}, types = true},
+        })
 
         -- ########################### LSP ###########################
         local function on_attach(client, bufnr)
