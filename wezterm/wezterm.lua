@@ -2,11 +2,16 @@ local wezterm = require('wezterm')
 local act = wezterm.action
 local keys = require('utils.keys')
 local fonts = require('fonts')
-local colors = require('colors')
-local color_schemes = require('color_schemes')
 
-local light_theme = 'Gruvbox Material Light'
-local dark_theme = 'Gruvbox Material Dark'
+local gruvbox = require('colors.gruvbox')
+local kanagawa = require('colors.kanagawa')
+
+local function merge_table(t1, t2)
+  for k, v in pairs(t2) do
+    t1[k] = v
+  end
+  return t1
+end
 
 wezterm.on('update-right-status', function(window, pane)
   local cells = {}
@@ -54,9 +59,9 @@ wezterm.on('update-right-status', function(window, pane)
   end
 
   local overrides = window:get_config_overrides() or {}
-  local is_dark_theme = not overrides.color_scheme and true or overrides.color_scheme == dark_theme
-  local statusline_fg = is_dark_theme and colors.dark_palette.fg0 or colors.light_palette.fg0
-  local statusline_bg = is_dark_theme and colors.dark_palette.bg3 or colors.light_palette.bg3
+  local is_dark_theme = not overrides.color_scheme and true or overrides.color_scheme == gruvbox.dark
+  local statusline_fg = is_dark_theme and gruvbox.colors.dark_palette.fg0 or gruvbox.colors.light_palette.fg0
+  local statusline_bg = is_dark_theme and gruvbox.colors.dark_palette.bg3 or gruvbox.colors.light_palette.bg3
 
   local elements = {}
   local num_cells = 0
@@ -80,18 +85,33 @@ wezterm.on('update-right-status', function(window, pane)
   window:set_right_status(wezterm.format(elements))
 end)
 
-wezterm.on('toggle-colorscheme', function(window)
+wezterm.on('toggle-gruvbox-theme', function(window)
   local overrides = window:get_config_overrides() or {}
 
   if not overrides.color_scheme then
-    overrides.color_scheme = dark_theme
-  else
-    overrides.color_scheme = overrides.color_scheme == light_theme and dark_theme or light_theme
+    overrides.color_scheme = gruvbox.dark
+  end
+
+  if string.find(overrides.color_scheme, 'Gruvbox') then
+    overrides.color_scheme = overrides.color_scheme == gruvbox.dark and gruvbox.light or gruvbox.dark
   end
 
   window:set_config_overrides(overrides)
 end)
 
+wezterm.on('toggle-kanagawa-theme', function(window)
+  local overrides = window:get_config_overrides() or {}
+
+  if not overrides.color_scheme then
+    overrides.color_scheme = kanagawa.dark
+  end
+
+  if string.find(overrides.color_scheme, 'kanagawa') then
+    overrides.color_scheme = overrides.color_scheme == kanagawa.dark and kanagawa.light or kanagawa.dark
+  end
+
+  window:set_config_overrides(overrides)
+end)
 
 wezterm.on('format-tab-title', function(tab)
   local title = tab.tab_title
@@ -111,8 +131,8 @@ return {
   use_cap_height_to_scale_fallback_fonts = true,
 
   -- Colors
-  color_schemes = color_schemes,
-  color_scheme = dark_theme,
+  color_schemes = merge_table(gruvbox.color_schemes, kanagawa.color_schemes),
+  color_scheme = gruvbox.dark,
 
   -- Window
   window_decorations = 'RESIZE',
@@ -124,10 +144,10 @@ return {
   window_frame = {
     font = wezterm.font({family = 'FiraCode Nerd Font'}),
     font_size = 14.0,
-    active_titlebar_bg = colors.dark_palette.bg0,
-    active_titlebar_fg = colors.dark_palette.fg0,
-    inactive_titlebar_bg = colors.dark_palette.bg1,
-    inactive_titlebar_fg = colors.dark_palette.fg1,
+    active_titlebar_bg = gruvbox.colors.dark_palette.bg0,
+    active_titlebar_fg = gruvbox.colors.dark_palette.fg0,
+    inactive_titlebar_bg = gruvbox.colors.dark_palette.bg1,
+    inactive_titlebar_fg = gruvbox.colors.dark_palette.fg1,
   },
   window_padding = {
     left = '10px',
@@ -151,7 +171,8 @@ return {
 
   -- Keymaps
   keys = {
-    {key = 'e', mods = 'CMD', action = act.Multiple({act.EmitEvent('toggle-colorscheme'), keys.send_tmux_key('E')})}, -- Toggle wezterm and tmux theme
+    {key = 'e', mods = 'CMD', action = act.Multiple({act.EmitEvent('toggle-gruvbox-theme'), keys.send_tmux_key('E')})},  -- Toggle wezterm and tmux theme
+    {key = 'k', mods = 'CMD', action = act.Multiple({act.EmitEvent('toggle-kanagawa-theme'), keys.send_tmux_key('E')})}, -- Toggle wezterm and tmux theme
     {key = 'c', mods = 'CMD|SHIFT', action = wezterm.action.ActivateCopyMode},
 
     -- Pane navigation
