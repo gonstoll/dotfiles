@@ -1,6 +1,6 @@
 return {
   'nvim-lualine/lualine.nvim',
-  event = 'BufReadPre',
+  -- event = 'BufReadPre',
   opts = function()
     local icons = require('utils.icons')
     local theme = require('utils.plugins.lualine').getTheme()
@@ -70,7 +70,7 @@ return {
 
     return {
       options = {
-        theme = theme,
+        theme = theme or 'auto',
         component_separators = '',
         section_separators = '',
         globalstatus = true,

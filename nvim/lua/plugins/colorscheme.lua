@@ -32,19 +32,27 @@ return {
       colors = {
         theme = {
           all = {
-            ui = {bg_gutter = 'none'},
+            ui = {
+              bg_gutter = 'none',
+              float = {
+                bg = 'none',
+                bg_border = 'none',
+              },
+            },
+            diff = {
+              add = 'none',
+              change = 'none',
+              delete = 'none',
+              text = 'none',
+            }
           }
         },
       },
       overrides = function(colors)
         return {
-          NormalFloat = {bg = 'none'},
-          FloatBorder = {bg = 'none'},
-          FloatTitle = {bg = 'none'},
-          DiffAdd = {bg = 'none'},
-          DiffChange = {bg = 'none'},
-          DiffDelete = {bg = 'none'},
-          DiffText = {bg = 'none'},
+          CursorLineNr = {bold = false},
+          FloatTitle = {bold = false},
+          Title = {bold = false},
         }
       end,
     },
