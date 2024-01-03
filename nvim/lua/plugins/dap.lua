@@ -196,10 +196,7 @@ return {
           url = function()
             local co = coroutine.running()
             return coroutine.create(function()
-              vim.ui.input({
-                prompt = 'Enter URL: ',
-                default = 'http://localhost:3000',
-              }, function(url)
+              vim.ui.input({prompt = 'Enter URL: ', default = 'http://localhost:3000'}, function(url)
                 if url == nil or url == '' then
                   return
                 else
@@ -213,6 +210,16 @@ return {
           sourceMaps = true,
           userDataDir = false,
         },
+        {
+          type = 'pwa-chrome',
+          request = 'attach',
+          name = 'Attach Program (pwa-chrome = { port: 9222 })',
+          program = '${file}',
+          cwd = vim.fn.getcwd(),
+          sourceMaps = true,
+          port = 9222,
+          webRoot = '${workspaceFolder}',
+        },
         -- Divider for the launch.json derived configs
         {
           name = '----- ↓ launch.json configs (if available) ↓ -----',
@@ -223,4 +230,3 @@ return {
     end
   end,
 }
-
