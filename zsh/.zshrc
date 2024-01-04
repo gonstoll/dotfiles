@@ -67,8 +67,9 @@ eval "$(zoxide init zsh)"
 export T_FZF_BORDER_LABEL='tmux finder'
 
 # zsh-vi-mode
+export ZVM_CURSOR_STYLE_ENABLED=false
 export ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
-export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
+export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
 
 # bun completions
 [ -s "$HOME/.config/bun/_bun" ] && source "$HOME/.config/bun/_bun"

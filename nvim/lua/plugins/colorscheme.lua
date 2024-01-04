@@ -2,8 +2,7 @@ return {
   {
     'sainnhe/gruvbox-material',
     name = 'gruvbox-material',
-    lazy = false,
-    priority = 1000,
+    event = 'VeryLazy',
     config = function()
       vim.g.gruvbox_material_better_performance = 1
       -- Fonts
@@ -17,17 +16,20 @@ return {
       vim.g.gruvbox_material_ui_contrast = 'high' -- The contrast of line numbers, indent lines, etc.
       vim.g.gruvbox_material_float_style = 'dim'  -- Background of floating windows
 
-      vim.cmd('colorscheme gruvbox-material')
+      -- vim.cmd('colorscheme gruvbox-material')
     end
   },
 
   {
     'rebelot/kanagawa.nvim',
-    event = 'VeryLazy',
+    lazy = false,
+    priority = 1000,
     opts = {
-      commentStyle = {italic = false},
-      keywordStyle = {italic = false},
-      statementStyle = {bold = false},
+      commentStyle = {italic = false, bold = false},
+      keywordStyle = {italic = false, bold = false},
+      statementStyle = {italic = false, bold = false},
+      functionStyle = {italic = false, bold = false},
+      typeStyle = {italic = false, bold = false},
       background = {dark = 'dragon', light = 'lotus'},
       colors = {
         theme = {
@@ -58,7 +60,7 @@ return {
     },
     config = function(_, opts)
       require('kanagawa').setup(opts)
-      -- vim.cmd('colorscheme kanagawa')
+      vim.cmd('colorscheme kanagawa')
     end
   },
 }

@@ -132,7 +132,7 @@ return {
 
   -- Colors
   color_schemes = merge_table(gruvbox.color_schemes, kanagawa.color_schemes),
-  color_scheme = gruvbox.dark,
+  color_scheme = kanagawa.dark,
 
   -- Window
   window_decorations = 'RESIZE',
@@ -160,8 +160,8 @@ return {
   enable_scroll_bar = false,
 
   -- Opacity and blur
-  window_background_opacity = 0.9,
-  macos_window_background_blur = 25,
+  -- window_background_opacity = 0.9,
+  -- macos_window_background_blur = 25,
 
   -- Cursor
   cursor_blink_rate = 500,
