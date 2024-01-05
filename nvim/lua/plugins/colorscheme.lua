@@ -55,6 +55,10 @@ return {
           CursorLineNr = {bold = false},
           FloatTitle = {bold = false},
           Title = {bold = false},
+          Boolean = {bold = false},
+          ['@lsp.typemod.function.readonly'] = {link = 'Function'},
+          ['@boolean'] = {link = 'Boolean'},
+          ['@keyword.operator'] = {link = 'Keyword'},
         }
       end,
     },
