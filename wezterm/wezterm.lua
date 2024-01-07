@@ -171,8 +171,8 @@ return {
 
   -- Keymaps
   keys = {
-    {key = 'e', mods = 'CMD', action = act.Multiple({act.EmitEvent('toggle-gruvbox-theme'), keys.send_tmux_key('E')})},  -- Toggle wezterm and tmux theme
-    {key = 'k', mods = 'CMD', action = act.Multiple({act.EmitEvent('toggle-kanagawa-theme'), keys.send_tmux_key('E')})}, -- Toggle wezterm and tmux theme
+    {key = 'e', mods = 'CMD', action = act.Multiple({act.EmitEvent('toggle-gruvbox-theme'), keys.send_tmux_key('e')})},  -- Toggle wezterm and tmux theme
+    {key = 'k', mods = 'CMD', action = act.Multiple({act.EmitEvent('toggle-kanagawa-theme'), keys.send_tmux_key('e')})}, -- Toggle wezterm and tmux theme
     {key = 'c', mods = 'CMD|SHIFT', action = wezterm.action.ActivateCopyMode},
 
     -- Pane navigation
