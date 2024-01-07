@@ -51,11 +51,15 @@ return {
         },
       },
       overrides = function(colors)
+        local theme = colors.theme
+
         return {
           CursorLineNr = {bold = false},
           FloatTitle = {bold = false},
           Title = {bold = false},
           Boolean = {bold = false},
+          IblIndent = {fg = theme.ui.bg_p1},
+          IblScope = {fg = theme.ui.whitespace},
           ['@lsp.typemod.function.readonly'] = {link = 'Function'},
           ['@boolean'] = {link = 'Boolean'},
           ['@keyword.operator'] = {link = 'Keyword'},
