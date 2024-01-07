@@ -93,14 +93,15 @@ return {
           ellipsis_char = '...',
           before = function(entry, item)
             local menu_icon = {
-              nvim_lsp = 'λ',
-              luasnip = '✎',
-              path = 'Ψ',
-              emoji = '🤌',
-              nvim_lua = 'Π',
-              calc = 'Σ',
-              buffer = 'Ω',
-              cmdline = '⋗',
+              nvim_lsp = '[LSP]',
+              luasnip = '[snip]',
+              path = '[path]',
+              emoji = '[🤌]',
+              nvim_lua = '[api]',
+              calc = '[calc]',
+              buffer = '[buf]',
+              cmdline = '[cmd]',
+              gh_issues = '[issues]',
             }
 
             item = formatForTailwindCSS(entry, item)
