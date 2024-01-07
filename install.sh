@@ -12,7 +12,7 @@ chmod +x $DOTFILES/bin/u
 function install_system() {
   read -p "Do you want to install system packages? (y/n) " yn < /dev/tty
   case $yn in
-    [Yy]* ) source ./bin/brew.sh; break ;;
+    [Yy]* ) source ./scripts/brew.sh; break ;;
     [Nn]* ) echo "> Skipped installing system packages"; return ;;
     * ) echo "> Incorrect option, skipping"; return ;;
   esac
@@ -23,7 +23,7 @@ function install_system() {
 function install_preferences() {
   read -p "Do you want to install system preferences? (y/n) " yn < /dev/tty
   case $yn in
-    [Yy]* ) source ./bin/macos.sh; break ;;
+    [Yy]* ) source ./scripts/macos.sh; break ;;
     [Nn]* ) echo "> Skipped installing system preferences"; return ;;
     * ) echo "> Incorrect option, skipping"; return ;;
   esac
@@ -34,7 +34,7 @@ function install_preferences() {
 function install_misc_packages() {
   read -p "Do you want to install global misc packages? (y/n) " yn < /dev/tty
   case $yn in
-    [Yy]* ) source ./bin/misc.sh; break ;;
+    [Yy]* ) source ./scripts/misc.sh; break ;;
     [Nn]* ) echo "> Skipped installing global misc packages"; return ;;
     * ) echo "> Incorrect option, skipping"; return ;;
   esac
