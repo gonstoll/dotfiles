@@ -65,6 +65,7 @@ eval "$(zoxide init zsh)"
 
 # Tmux
 export T_FZF_BORDER_LABEL='tmux finder'
+export FZF_TMUX_OPTS="-p 100%,100%"
 
 # zsh-vi-mode
 export ZVM_CURSOR_STYLE_ENABLED=false
