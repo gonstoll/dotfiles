@@ -189,7 +189,8 @@ return {
     {key = 'DownArrow', mods = 'CTRL|CMD', action = act.AdjustPaneSize({'Down', 1})},
 
     -- tmux
-    keys.key_to_tmux({mods = 'CMD', key = 'j', tmux_key = 'T'}), -- Open t - tmux smart session manager
+    keys.key_to_tmux({mods = 'CMD', key = 's', tmux_key = 'f', tmux_mods = 'CTRL'}), -- Open tmux-sessionizer
+    keys.key_to_tmux({mods = 'CMD', key = 'j', tmux_key = 'T'}),                     -- Open t - tmux smart session manager
     keys.key_to_tmux({mods = 'CMD', key = '0', tmux_key = '0'}),
     keys.key_to_tmux({mods = 'CMD', key = '1', tmux_key = '1'}),
     keys.key_to_tmux({mods = 'CMD', key = '2', tmux_key = '2'}),
