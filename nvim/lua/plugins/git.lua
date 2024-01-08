@@ -72,12 +72,5 @@ return {
         end,
       }
     end,
-    config = function(_, opts)
-      local gitsigns = require('gitsigns')
-      gitsigns.setup(opts)
-
-      local scrollbar_handler = require('scrollbar.handlers.gitsigns')
-      scrollbar_handler.setup()
-    end
   }
 }

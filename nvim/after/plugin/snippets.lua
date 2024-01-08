@@ -1,22 +1,8 @@
 local desc = require('utils').plugin_keymap_desc('luasnip')
 
 local ls = require('luasnip')
-local types = require('luasnip.util.types')
 local fmt = require('luasnip.extras.fmt').fmt
 local rep = require('luasnip.extras').rep
-
-ls.config.set_config({
-  history = true,
-  updateevents = 'TextChanged,TextChangedI',
-  enable_autosnippets = true,
-  ext_opts = {
-    [types.choiceNode] = {
-      active = {
-        virt_text = {{'<-', 'Current choice'}},
-      }
-    },
-  },
-})
 
 local t = ls.text_node
 local i = ls.insert_node
@@ -27,7 +13,7 @@ local snippet = ls.s
 local snippet_from_nodes = ls.sn
 
 -- Keymaps
-vim.keymap.set('n', '<leader><leader>s', '<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<CR>', {
+vim.keymap.set('n', '<leader><leader>s', '<cmd>source ~/.config/nvim/after/plugin/snippets.lua<CR>', {
   desc = desc('Source snippets')
 })
 vim.keymap.set({'i', 's'}, '<C-l>', function()
