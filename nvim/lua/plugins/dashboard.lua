@@ -2,6 +2,7 @@ return {
   'glepnir/dashboard-nvim',
   event = 'UIEnter',
   dependencies = {'nvim-tree/nvim-web-devicons'},
+  enabled = false,
   opts = {
     theme = 'hyper',
     config = {

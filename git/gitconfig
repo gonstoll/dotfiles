@@ -15,5 +15,8 @@
 [core]
   editor = nvim
   ignorecase = false
+[user]
+  name = Gonzalo Stoll
+  email = stollgonzalo@gmail.com
 [github]
   user = gonstoll
