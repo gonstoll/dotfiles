@@ -36,6 +36,10 @@ vim.keymap.set('n', 'N', 'Nzzzv', {desc = 'Jump to previous search term'})
 -- Pastes copied buffer and keeps it in the register
 vim.keymap.set('x', '<leader>p', '\"_dP')
 
+-- Sources current buffer
+vim.keymap.set('n', '<leader><leader>', function() vim.cmd('so') end)
+
+-- Opens lazygit/fugitive
 vim.keymap.set('n', '<leader>gg', vim.cmd.LazyGit, {desc = 'Lazygit: Open git console'})
 vim.keymap.set('n', '<leader>gs', vim.cmd.Git, {desc = 'Fugitive: Open git console'})
 
