@@ -27,8 +27,8 @@ local keys = {
     rhs = function() require('telescope.builtin').find_files() end,
   },
   {
-    desc = desc('Search by Grep'),
-    lhs = ';sg',
+    desc = desc('Search by live grep'),
+    lhs = ';sl',
     rhs = function() require('telescope.builtin').live_grep() end,
   },
   {
@@ -47,9 +47,19 @@ local keys = {
     rhs = function() require('telescope.builtin').diagnostics() end,
   },
   {
-    desc = desc('Search current Word'),
+    desc = desc('Search by grep'),
+    lhs = ';sg',
+    rhs = function() require('telescope.builtin').grep_string({search = vim.fn.input('Grep > ')}) end,
+  },
+  {
+    desc = desc('Search word under cursor'),
     lhs = ';sw',
-    rhs = function() require('telescope.builtin').grep_string() end,
+    rhs = function() require('telescope.builtin').grep_string({search = vim.fn.expand('<cword>')}) end,
+  },
+  {
+    desc = desc('Search WORD under cursor'),
+    lhs = ';sW',
+    rhs = function() require('telescope.builtin').grep_string({search = vim.fn.expand('<cWORD>')}) end,
   },
   {
     desc = desc('Find recently opened files'),

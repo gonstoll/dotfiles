@@ -58,6 +58,7 @@ return {
           FloatTitle = {bold = false},
           Title = {bold = false},
           Boolean = {bold = false},
+          MatchParen = {bold = false},
           IblIndent = {fg = theme.ui.bg_p1},
           IblScope = {fg = theme.ui.whitespace},
           ['@lsp.typemod.function.readonly'] = {link = 'Function'},
