@@ -21,6 +21,28 @@ au({'BufNewFile', 'BufRead'}, {
   group = disable_node_modules_eslint_group,
 })
 
+-- Fugitive keymaps
+local fugitive_group = ag('Fugitive', {})
+au('BufWinEnter', {
+  group = fugitive_group,
+  pattern = '*',
+  callback = function()
+    if (vim.bo.filetype ~= 'fugitive') then
+      return
+    end
+
+    -- Only run this on fugitive buffers
+    local bufnr = vim.api.nvim_get_current_buf()
+    vim.keymap.set('n', '<leader>p', function()
+      vim.cmd.Git('push')
+    end, {buffer = bufnr, remap = false, desc = 'Fugitive: Push'})
+    vim.keymap.set('n', '<leader>P', function()
+      vim.cmd.Git({'pull', '--rebase'})
+    end, {buffer = bufnr, remap = false, desc = 'Fugitive: Pull'})
+  end,
+})
+
+
 -- Disable commenting new lines
 vim.cmd('autocmd BufEnter * set formatoptions-=cro')
 vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')
