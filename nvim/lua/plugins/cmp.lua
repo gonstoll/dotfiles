@@ -16,11 +16,6 @@ return {
     local cmp = require('cmp')
     local lspkind = require('lspkind')
     local luasnip = require('luasnip')
-
-    require('luasnip/loaders/from_vscode').lazy_load({
-      paths = {'~/.config/nvim/snippets'}
-    });
-
     local cmp_select_opts = {behavior = cmp.SelectBehavior.Select}
 
     local function formatForTailwindCSS(entry, vim_item)
@@ -101,11 +96,10 @@ return {
               calc = '[calc]',
               buffer = '[buf]',
               cmdline = '[cmd]',
-              gh_issues = '[issues]',
             }
 
             item = formatForTailwindCSS(entry, item)
-            item.menu = menu_icon[entry.source.name] or entry.source.name
+            item.menu = menu_icon[entry.source.name] or '[' .. entry.source.name .. ']'
 
             return item
           end
