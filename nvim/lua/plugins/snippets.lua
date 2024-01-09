@@ -11,7 +11,7 @@ return {
       ext_opts = {
         [types.choiceNode] = {
           active = {
-            virt_text = {{'', 'Current choice'}},
+            virt_text = {{' Current choice', 'NonText'}},
           }
         },
       },
