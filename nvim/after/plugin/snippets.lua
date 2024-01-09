@@ -63,11 +63,11 @@ local typescript_snippets = {
   snippet('func', {
     c(1, {
       fmt([[export function {}() {{
-        {}
-      }}]], {i(1), i(0)}),
+  {}
+}}]], {i(1), i(2)}),
       fmt([[export async function {}() {{
-        {}
-      }}]], {i(1), i(0)}),
+  {}
+}}]], {i(1), i(2)}),
     })
   }),
 }
@@ -79,7 +79,7 @@ local react_snippets = {
 
 export function {}() {{
   return <div />{}
-}}]], {i(1), i(0)}),
+}}]], {i(1), i(2)}),
       fmt([[import * as React from 'react'
 
 type Props = {{
@@ -88,7 +88,7 @@ type Props = {{
 
 export function {}({{{}}}: Props) {{
   return <div />{}
-}}]], {i(3), i(2), i(1), i(0)}),
+}}]], {i(1), i(2), i(3), i(4)}),
     })
   }),
   snippet('izod', t("import {z} from 'zod'")),
