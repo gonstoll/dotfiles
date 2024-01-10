@@ -17,7 +17,7 @@ require('lazy').setup('plugins', {
     enabled = true,
   },
   install = {
-    colorscheme = {'gruvbox-material'},
+    colorscheme = {'kanagawa'},
   },
   performance = {
     cache = {enabled = true},
