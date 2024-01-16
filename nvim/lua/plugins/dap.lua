@@ -217,8 +217,20 @@ return {
           program = '${file}',
           cwd = vim.fn.getcwd(),
           sourceMaps = true,
+          protocol = 'inspector',
           port = 9222,
           webRoot = '${workspaceFolder}',
+        },
+        {
+          type = 'chrome',
+          request = 'attach',
+          name = 'Attach Program (chrome = { port: 9222 })',
+          program = '${file}',
+          cwd = vim.fn.getcwd(),
+          sourceMaps = true,
+          protocol = 'inspector',
+          port = 9222,
+          webRoot = '${workspaceFolder}'
         },
         -- Divider for the launch.json derived configs
         {
@@ -228,5 +240,11 @@ return {
         },
       }
     end
+
+    dap.adapters.chrome = {
+      type = 'executable',
+      command = 'node',
+      args = {vim.fn.resolve(vim.fn.stdpath('data') .. '/lazy/vscode-js-debug')}
+    }
   end,
 }
