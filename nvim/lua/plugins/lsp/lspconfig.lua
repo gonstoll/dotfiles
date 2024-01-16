@@ -13,6 +13,7 @@ M.setup = function()
 
     {
       'williamboman/mason-lspconfig.nvim',
+      event = 'VeryLazy',
       opts = {
         ensure_installed = {'tailwindcss', 'cssls', 'lua_ls', 'eslint', 'emmet_language_server', 'tsserver', 'bashls'},
         automatic_installation = true,
