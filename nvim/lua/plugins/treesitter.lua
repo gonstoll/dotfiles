@@ -4,10 +4,10 @@ return {
   cmd = {'TSInstall', 'TSBufEnable', 'TSBufDisable', 'TSModuleInfo'},
   build = ':TSUpdate',
   config = function()
-    local treesitter_config = require('nvim-treesitter.configs')
-    local treesitter_parsers = require('nvim-treesitter.parsers')
+    local configs = require('nvim-treesitter.configs')
+    local parsers = require('nvim-treesitter.parsers')
 
-    treesitter_config.setup {
+    configs.setup {
       highlight = {
         enable = true,
         disable = {},
@@ -64,7 +64,7 @@ return {
       },
     }
 
-    local parser_config = treesitter_parsers.get_parser_configs();
-    parser_config.tsx.filetype_to_parsername = {'javascript', 'typescript.tsx'}
+    local parser_configs = parsers.get_parser_configs();
+    parser_configs.tsx.filetype_to_parsername = {'javascript', 'typescript.tsx'}
   end
 }
