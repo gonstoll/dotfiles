@@ -110,7 +110,7 @@ return {
       'mxsdev/nvim-dap-vscode-js',
       opts = {
         debugger_path = vim.fn.resolve(vim.fn.stdpath('data') .. '/lazy/vscode-js-debug'),
-        adapters = {'chrome', 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'pwa-extensionHost', 'node-terminal'},
+        adapters = {'chrome', 'node', 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'pwa-extensionHost', 'node-terminal'},
       }
     },
     {'theHamsta/nvim-dap-virtual-text', opts = {}},
@@ -140,8 +140,10 @@ return {
           dap_vscode.json_decode = decode_json
           dap_vscode.load_launchjs(nil, {
             ['chrome'] = js_based_languages,
+            ['node'] = js_based_languages,
             ['pwa-node'] = js_based_languages,
             ['pwa-chrome'] = js_based_languages,
+            ['node-terminal'] = js_based_languages,
           })
         end
         require('dap').continue({before = get_args})
@@ -154,9 +156,10 @@ return {
     local dapui = require('dapui')
     local icons = require('utils.icons')
 
-    dap.listeners.after.event_initialized['dapui_config'] = function() dapui.open({}) end
-    dap.listeners.before.event_terminated['dapui_config'] = function() dapui.close({}) end
-    dap.listeners.before.event_exited['dapui_config'] = function() dapui.close({}) end
+    dap.listeners.before.attach.dapui_config = function() dapui.open() end
+    dap.listeners.before.launch.dapui_config = function() dapui.open() end
+    dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
+    dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
 
     vim.api.nvim_set_hl(0, 'DapStoppedLine', {default = true, link = 'Visual'})
 
@@ -209,28 +212,6 @@ return {
           protocol = 'inspector',
           sourceMaps = true,
           userDataDir = false,
-        },
-        {
-          type = 'pwa-chrome',
-          request = 'attach',
-          name = 'Attach Program (pwa-chrome = { port: 9222 })',
-          program = '${file}',
-          cwd = vim.fn.getcwd(),
-          sourceMaps = true,
-          protocol = 'inspector',
-          port = 9222,
-          webRoot = '${workspaceFolder}',
-        },
-        {
-          type = 'chrome',
-          request = 'attach',
-          name = 'Attach Program (chrome = { port: 9222 })',
-          program = '${file}',
-          cwd = vim.fn.getcwd(),
-          sourceMaps = true,
-          protocol = 'inspector',
-          port = 9222,
-          webRoot = '${workspaceFolder}'
         },
         -- Divider for the launch.json derived configs
         {
