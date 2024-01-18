@@ -87,7 +87,7 @@
               },
               "layout advanced configuration dictionary value": {
                 "remove empty components": true,
-                "font": "FiraCodeNF-Ret 14",
+                "font": "DankMonoNF-Regular 14",
                 "algorithm": 1,
                 "auto-rainbow style": 0
               }
@@ -108,7 +108,7 @@
               },
               "layout advanced configuration dictionary value": {
                 "remove empty components": true,
-                "font": "FiraCodeNF-Ret 14",
+                "font": "DankMonoNF-Regular 14",
                 "algorithm": 1,
                 "auto-rainbow style": 0
               }
@@ -122,7 +122,7 @@
               },
               "layout advanced configuration dictionary value": {
                 "remove empty components": true,
-                "font": "FiraCodeNF-Ret 14",
+                "font": "DankMonoNF-Regular 14",
                 "algorithm": 1,
                 "auto-rainbow style": 0
               }
@@ -148,7 +148,7 @@
               },
               "layout advanced configuration dictionary value": {
                 "remove empty components": true,
-                "font": "FiraCodeNF-Ret 14",
+                "font": "DankMonoNF-Regular 14",
                 "algorithm": 1,
                 "auto-rainbow style": 0
               }
@@ -162,7 +162,7 @@
               },
               "layout advanced configuration dictionary value": {
                 "remove empty components": true,
-                "font": "FiraCodeNF-Ret 14",
+                "font": "DankMonoNF-Regular 14",
                 "algorithm": 1,
                 "auto-rainbow style": 0
               }
@@ -183,7 +183,7 @@
               },
               "layout advanced configuration dictionary value": {
                 "remove empty components": true,
-                "font": "FiraCodeNF-Ret 14",
+                "font": "DankMonoNF-Regular 14",
                 "algorithm": 1,
                 "auto-rainbow style": 0
               }
@@ -218,7 +218,7 @@
               },
               "layout advanced configuration dictionary value": {
                 "remove empty components": true,
-                "font": "FiraCodeNF-Ret 14",
+                "font": "DankMonoNF-Regular 14",
                 "algorithm": 1,
                 "auto-rainbow style": 0
               }
@@ -227,7 +227,7 @@
         ],
         "advanced configuration": {
           "remove empty components": true,
-          "font": "FiraCodeNF-Ret 14",
+          "font": "DankMonoNF-Regular 14",
           "algorithm": 1,
           "auto-rainbow style": 0
         }
@@ -568,7 +568,7 @@
       },
       "Session Close Undo Timeout": 20,
       "Blur": true,
-      "Normal Font": "FiraCodeNF-Ret 16",
+      "Normal Font": "DankMonoNF-Regular 18",
       "Vertical Spacing": 1,
       "Use Underline Color": true,
       "Ansi 7 Color": {
@@ -614,7 +614,7 @@
       },
       "Screen": -1,
       "Bound Hosts": [],
-      "Non Ascii Font": "FiraCodeNF-Ret 16",
+      "Non Ascii Font": "DankMonoNF-Regular 16",
       "Ansi 13 Color": {
         "Red Component": 0.82745098039215681,
         "Color Space": "sRGB",

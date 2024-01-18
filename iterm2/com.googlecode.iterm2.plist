@@ -874,13 +874,13 @@
 			<key>Name</key>
 			<string>Gruvbox material dark</string>
 			<key>Non Ascii Font</key>
-			<string>FiraCodeNF-Ret 16</string>
+			<string>DankMonoNF-Regular 16</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Non-ASCII Ligatures</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>FiraCodeNF-Ret 16</string>
+			<string>DankMonoNF-Regular 18</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Option Key Sends</key>
@@ -944,7 +944,7 @@
 					<key>auto-rainbow style</key>
 					<integer>0</integer>
 					<key>font</key>
-					<string>FiraCodeNF-Ret 14</string>
+					<string>DankMonoNF-Regular 14</string>
 					<key>remove empty components</key>
 					<true/>
 				</dict>
@@ -984,7 +984,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Ret 14</string>
+								<string>DankMonoNF-Regular 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -1020,7 +1020,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Ret 14</string>
+								<string>DankMonoNF-Regular 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -1043,7 +1043,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Ret 14</string>
+								<string>DankMonoNF-Regular 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -1089,7 +1089,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Ret 14</string>
+								<string>DankMonoNF-Regular 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -1112,7 +1112,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Ret 14</string>
+								<string>DankMonoNF-Regular 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -1148,7 +1148,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Ret 14</string>
+								<string>DankMonoNF-Regular 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -1210,7 +1210,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Ret 14</string>
+								<string>DankMonoNF-Regular 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -2024,13 +2024,13 @@
 			<key>Name</key>
 			<string>Gruvbox material light</string>
 			<key>Non Ascii Font</key>
-			<string>FiraCodeNF-Ret 16</string>
+			<string>DankMonoNF-Regular 16</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Non-ASCII Ligatures</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>FiraCodeNF-Ret 16</string>
+			<string>DankMonoNF-Regular 18</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Option Key Sends</key>
@@ -2098,7 +2098,7 @@
 					<key>auto-rainbow style</key>
 					<integer>0</integer>
 					<key>font</key>
-					<string>FiraCodeNF-Ret 14</string>
+					<string>DankMonoNF-Regular 14</string>
 					<key>remove empty components</key>
 					<true/>
 				</dict>
@@ -2138,7 +2138,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Ret 14</string>
+								<string>DankMonoNF-Regular 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -2174,7 +2174,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Ret 14</string>
+								<string>DankMonoNF-Regular 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -2197,7 +2197,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Ret 14</string>
+								<string>DankMonoNF-Regular 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -2243,7 +2243,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Ret 14</string>
+								<string>DankMonoNF-Regular 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -2266,7 +2266,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Ret 14</string>
+								<string>DankMonoNF-Regular 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -2302,7 +2302,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Ret 14</string>
+								<string>DankMonoNF-Regular 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
@@ -2364,7 +2364,7 @@
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
 								<key>font</key>
-								<string>FiraCodeNF-Ret 14</string>
+								<string>DankMonoNF-Regular 14</string>
 								<key>remove empty components</key>
 								<true/>
 							</dict>
