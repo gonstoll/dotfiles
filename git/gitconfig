@@ -12,6 +12,8 @@
   defaultBranch = master
 [pull]
   rebase = false
+[push]
+  autoSetupRemote = true
 [core]
   editor = nvim
   ignorecase = false

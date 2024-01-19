@@ -61,6 +61,7 @@ return {
           MatchParen = {bold = false},
           IblIndent = {fg = theme.ui.bg_p1},
           IblScope = {fg = theme.ui.whitespace},
+          ['@variable.builtin'] = {link = 'Special'},
           ['@lsp.typemod.function.readonly'] = {link = 'Function'},
           ['@boolean'] = {link = 'Boolean'},
           ['@keyword.operator'] = {link = 'Keyword'},

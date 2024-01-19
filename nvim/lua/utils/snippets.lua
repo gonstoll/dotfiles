@@ -94,7 +94,16 @@ export function {}({{{}}}: Props) {{
   snippet('izod', t("import {z} from 'zod'")),
 }
 
+local merged_snippets = {}
+for _, v in ipairs(typescript_snippets) do
+  table.insert(merged_snippets, v)
+end
+
+for _, v in ipairs(react_snippets) do
+  table.insert(merged_snippets, v)
+end
+
 ls.add_snippets('typescript', typescript_snippets)
 ls.add_snippets('javascript', typescript_snippets)
-ls.add_snippets('typescriptreact', require('utils').merge_table(typescript_snippets, react_snippets))
-ls.add_snippets('javascriptreact', require('utils').merge_table(typescript_snippets, react_snippets))
+ls.add_snippets('typescriptreact', merged_snippets)
+ls.add_snippets('javascriptreact', merged_snippets)
