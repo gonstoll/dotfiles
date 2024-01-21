@@ -41,7 +41,7 @@ vim.keymap.set('n', '<leader><leader>', function() vim.cmd('so') end)
 
 -- Opens lazygit/fugitive
 vim.keymap.set('n', '<leader>gg', vim.cmd.LazyGit, {desc = 'Lazygit: Open git console'})
-vim.keymap.set('n', '<leader>gs', vim.cmd.Git, {desc = 'Fugitive: Open git console'})
+vim.keymap.set('n', '<leader>gs', ':top Git<CR>', {desc = 'Fugitive: Open git console'})
 
 -- Toggle highlighting search
 vim.keymap.set('n', '<leader>;h', ':set hlsearch!<CR>', {desc = 'Toggle highlighting search'})

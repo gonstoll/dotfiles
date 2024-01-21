@@ -53,7 +53,13 @@ ls.add_snippets('lua', {
 
 local typescript_snippets = {
   snippet('iar', t("import * as React from 'react'")),
-  snippet('logging', fmt("console.log('logging {} ', {})", {i(1), i(0)})),
+  snippet('logging', fmt("console.log('logging {}: ', {})", {
+    f(function(import_name)
+      local parts = vim.split(import_name[1][1], '.', {plain = true})
+      return parts[#parts] or ''
+    end, {1}),
+    i(1)
+  })),
   snippet('rsc', {
     c(1, {
       t("'use server'"),

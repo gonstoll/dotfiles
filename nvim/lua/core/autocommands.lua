@@ -37,7 +37,7 @@ au('BufWinEnter', {
       vim.cmd.Git('push')
     end, {buffer = bufnr, remap = false, desc = 'Fugitive: Push'})
     vim.keymap.set('n', '<leader>P', function()
-      vim.cmd.Git({'pull', '--rebase'})
+      vim.cmd.Git('pull')
     end, {buffer = bufnr, remap = false, desc = 'Fugitive: Pull'})
   end,
 })
