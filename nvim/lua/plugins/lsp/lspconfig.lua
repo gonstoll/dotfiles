@@ -26,7 +26,7 @@ M.setup = function()
       dependencies = {'folke/neodev.nvim'},
       init = function()
         vim.diagnostic.config({
-          virtual_text = false,
+          virtual_text = true,
           severity_sort = true,
           float = {
             border = 'rounded',
@@ -115,8 +115,6 @@ M.setup = function()
         end
 
         local lspconfig = require('lspconfig')
-        require('lspconfig.ui.windows').default_options.border = 'rounded'
-
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
         capabilities.textDocument.completion.completionItem.snippetSupport = true

@@ -34,13 +34,7 @@ return {
       colors = {
         theme = {
           all = {
-            ui = {
-              bg_gutter = 'none',
-              float = {
-                bg = 'none',
-                bg_border = 'none',
-              },
-            },
+            ui = {bg_gutter = 'none'},
             diff = {
               add = 'none',
               change = 'none',
@@ -54,8 +48,17 @@ return {
         local theme = colors.theme
 
         return {
+          NormalFloat = {bg = theme.ui.bg_p1},
+          FloatBorder = {fg = theme.ui.shade0, bg = theme.ui.bg_p1},
+          FloatTitle = {fg = theme.ui.shade0, bg = theme.ui.bg_p1, bold = false},
+          FloatFooter = {fg = theme.ui.nontext, bg = theme.ui.bg_p1},
+
+          Pmenu = {fg = theme.ui.shade0, bg = theme.ui.bg_p1}, -- add `blend = vim.o.pumblend` to enable transparency
+          PmenuSel = {fg = 'NONE', bg = theme.ui.bg_p2},
+          PmenuSbar = {bg = theme.ui.bg_m1},
+          PmenuThumb = {bg = theme.ui.bg_p2},
+
           CursorLineNr = {bold = false},
-          FloatTitle = {bold = false},
           Title = {bold = false},
           Boolean = {bold = false},
           MatchParen = {bold = false},
@@ -65,6 +68,8 @@ return {
           ['@lsp.typemod.function.readonly'] = {link = 'Function'},
           ['@boolean'] = {link = 'Boolean'},
           ['@keyword.operator'] = {link = 'Keyword'},
+          ['@string.escape'] = {link = 'PrePoc'},
+          typescriptParens = {bg = 'none'},
         }
       end,
     },

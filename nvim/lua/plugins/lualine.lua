@@ -3,7 +3,7 @@ return {
   event = 'BufReadPre',
   opts = function()
     local icons = require('utils.icons')
-    local theme = require('utils.plugins.lualine').getTheme()
+    local theme = require('utils.plugins.lualine').get_theme()
 
     local mode = {
       'mode',

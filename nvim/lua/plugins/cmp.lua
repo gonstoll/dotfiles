@@ -42,12 +42,12 @@ return {
           luasnip.lsp_expand(args.body)
         end,
       },
-      window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
+      preselect = cmp.PreselectMode.None,
+      completion = {
+        completeopt = 'menu,menuone,noinsert,noselect',
       },
       mapping = {
-        ['<CR>'] = cmp.mapping.confirm({select = true, behavior = cmp.ConfirmBehavior.Replace}),
+        ['<CR>'] = cmp.mapping.confirm({select = false, behavior = cmp.ConfirmBehavior.Insert}),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
@@ -87,6 +87,7 @@ return {
           maxwidth = 200,
           ellipsis_char = '...',
           before = function(entry, item)
+            local fallback_name = '[' .. entry.source.name .. ']'
             local menu_icon = {
               nvim_lsp = '[LSP]',
               luasnip = '[snip]',
@@ -99,7 +100,7 @@ return {
             }
 
             item = formatForTailwindCSS(entry, item)
-            item.menu = menu_icon[entry.source.name] or '[' .. entry.source.name .. ']'
+            item.menu = menu_icon[entry.source.name] or fallback_name
 
             return item
           end

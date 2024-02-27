@@ -1,6 +1,6 @@
 local M = {}
 
-M.getTheme = function()
+M.get_theme = function()
   local lualineTheme = {}
   local is_kanagawa = vim.g.colors_name == 'kanagawa'
 

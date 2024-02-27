@@ -40,3 +40,6 @@ brew install zoxide
 brew install gum
 brew install tmux
 brew install fd fzf
+brew install tree
+brew install tldr
+brew install jq

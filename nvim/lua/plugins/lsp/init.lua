@@ -35,14 +35,6 @@ return {
     },
   },
 
-  -- Stops inactive LSP clients to free RAM
-  {
-    'zeioth/garbage-day.nvim',
-    event = {'BufReadPost', 'BufNewFile', 'BufWritePre'},
-    dependencies = 'neovim/nvim-lspconfig',
-    opts = {notifications = true},
-  },
-
   -- VS code like winbar with breadcrumbs
   {
     'utilyre/barbecue.nvim',
