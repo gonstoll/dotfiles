@@ -33,7 +33,7 @@ return {
     conform.setup(opts)
 
     -- Customize prettier args
-    require('conform.formatters.prettier').args = function(ctx)
+    require('conform.formatters.prettier').args = function(self, ctx)
       local prettier_roots = {'.prettierrc', '.prettierrc.json', 'prettier.config.js'}
       local args = {'--stdin-filepath', '$FILENAME'}
 
