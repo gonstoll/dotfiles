@@ -1,31 +1,13 @@
 {
   "workbench.startupEditor": "none",
   "window.zoomLevel": 1,
-  "workbench.colorTheme": "Gruvbox Material Dark",
   "window.titleBarStyle": "custom",
   "workbench.panel.defaultLocation": "right",
+  "workbench.colorTheme": "Kanagawa Dragon",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.editor.enablePreview": true,
-  "workbench.colorCustomizations": {
-    "editorCursor.background": "#000000",
-    "editorCursor.foreground": "#ffffff",
-    "terminalCursor.background": "#000000",
-    "terminalCursor.foreground": "#ffffff",
-    "[Gruvbox Material Dark]": {
-      "editorCursor.background": "#141617",
-      "editorCursor.foreground": "#db4740",
-      "terminalCursor.background": "#141617",
-      "terminalCursor.foreground": "#db4740"
-    },
-    "[Gruvbox Material Light]": {
-      "editorCursor.background": "#141617",
-      "editorCursor.foreground": "#db4740",
-      "terminalCursor.background": "#141617",
-      "terminalCursor.foreground": "#db4740"
-    }
-  },
   "editor.fontSize": 14,
-  "editor.fontFamily": "FiraCode Nerd Font",
+  "editor.fontFamily": "SFMono Nerd Font",
   "editor.lineHeight": 1.35,
   "editor.tabSize": 2,
   "editor.formatOnPaste": true,
@@ -87,10 +69,6 @@
   "terminal.integrated.fontSize": 15,
   "notebook.output.wordWrap": true,
   "files.associations": {"*.css": "tailwindcss"},
-  "vscode_vibrancy.theme": "Solarized Dark+",
-  "vscode_vibrancy.imports": [
-    "Users/gonzalostoll/dotfiles/vscode/vibrancy/night-owl.css"
-  ],
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
   "vim.leader": "<space>",
@@ -122,7 +100,5 @@
   "vim.highlightedyank.color": "#f2594b",
   "vim.highlightedyank.textColor": "#000000",
   "vim.enableNeovim": true,
-  "vim.neovimPath": "/opt/homebrew/bin/nvim",
-  "vim.neovimConfigPath": "~/.config/nvim/init.lua",
-  "vim.neovimUseConfigFile": true
+  "vim.neovimPath": "/opt/homebrew/bin/nvim"
 }
