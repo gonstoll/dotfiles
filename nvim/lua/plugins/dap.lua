@@ -5,74 +5,6 @@
 local desc = require('utils').plugin_keymap_desc('dap')
 local js_based_languages = {'typescript', 'javascript', 'typescriptreact', 'javascriptreact'}
 
----Splice out an inclusive range from a string
----@param string string
----@param start_idx number
----@param end_idx? number
----@return string
-local function str_splice(string, start_idx, end_idx)
-  local new_content = string:sub(1, start_idx - 1)
-  if end_idx then
-    return new_content .. string:sub(end_idx + 1)
-  else
-    return new_content
-  end
-end
-
----@param string string
----@param idx number
----@param needle string
----@return number?
-local function str_rfind(string, idx, needle)
-  for i = idx, 1, -1 do
-    if string:sub(i, i - 1 + needle:len()) == needle then
-      return i
-    end
-  end
-end
-
----@param string string
----@param idx number
----@return string
----@return number?
-local function get_to_line_end(string, idx)
-  local newline = string:find('\n', idx, true)
-  local to_end = newline and string:sub(idx, newline - 1) or string:sub(idx)
-  return to_end, newline
-end
-
----Decodes a json string that may contain comments or trailing commas
----@param content string
----@return any
-local function decode_json(content)
-  local ok, data = pcall(vim.json.decode, content, {luanil = {object = true}})
-  while not ok do
-    local char = data:match('invalid token at character (%d+)$')
-    if char then
-      local to_end, newline = get_to_line_end(content, char)
-      if to_end:match('^//') then
-        content = str_splice(content, char, newline)
-        goto continue
-      end
-    end
-
-    char = data:match('Expected object key string but found [^%s]+ at character (%d+)$')
-    char = char or data:match('Expected value but found T_ARR_END at character (%d+)')
-    if char then
-      local comma_idx = str_rfind(content, char, ',')
-      if comma_idx then
-        content = str_splice(content, comma_idx, comma_idx)
-        goto continue
-      end
-    end
-
-    error(data)
-    ::continue::
-    ok, data = pcall(vim.json.decode, content, {luanil = {object = true}})
-  end
-  return data
-end
-
 ---@param config {args?:string[]|fun():string[]?}
 local function get_args(config)
   local args = type(config.args) == 'function' and (config.args() or {}) or config.args or {}
@@ -91,20 +23,31 @@ end
 return {
   'mfussenegger/nvim-dap',
   dependencies = {
+    {'stevearc/overseer.nvim', opts = {dap = false}},
     {
       'rcarriga/nvim-dap-ui',
       keys = {
         {'<leader>du', function() require('dapui').toggle({}) end, desc = desc('Dap UI')},
         {'<leader>de', function() require('dapui').eval() end, desc = desc('Eval'), mode = {'n', 'v'}},
       },
-      opts = {},
+      opts = {
+        layouts = {
+          {
+            elements = {
+              {id = 'stacks', size = 0.33},
+              {id = 'breakpoints', size = 0.33},
+              {id = 'scopes', size = 0.33},
+            },
+            position = 'left',
+            size = 40,
+          },
+        },
+      },
     },
     -- vscode-js-debug adapter
     {
       'microsoft/vscode-js-debug',
-      -- After install, build it and rename the dist directory to out
-      build = 'npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle && rm -rf out && mv dist out',
-      version = '1.*',
+      build = 'npm i && npm run compile vsDebugServerBundle && rm -rf out && mv -f dist out',
     },
     {
       'mxsdev/nvim-dap-vscode-js',
@@ -114,6 +57,13 @@ return {
       }
     },
     {'theHamsta/nvim-dap-virtual-text', opts = {}},
+    -- Lua adapter
+    {
+      'jbyuki/one-small-step-for-vimkind',
+      keys = {
+        {'<leader>dl', function() require('osv').launch {port = 8086} end, desc = 'Launch Lua adapter'},
+      },
+    },
   },
   keys = {
     {'<leader>dB', function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = desc('Breakpoint Condition')},
@@ -137,7 +87,7 @@ return {
       function()
         if vim.fn.filereadable('.vscode/launch.json') then
           local dap_vscode = require('dap.ext.vscode')
-          dap_vscode.json_decode = decode_json
+          dap_vscode.json_decode = require('overseer.json').decode
           dap_vscode.load_launchjs(nil, {
             ['chrome'] = js_based_languages,
             ['node'] = js_based_languages,
@@ -156,10 +106,9 @@ return {
     local dapui = require('dapui')
     local icons = require('utils.icons')
 
-    dap.listeners.before.attach.dapui_config = function() dapui.open() end
-    dap.listeners.before.launch.dapui_config = function() dapui.open() end
-    dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
-    dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
+    dap.listeners.after.event_initialized['dapui_config'] = function() dapui.open({}) end
+    dap.listeners.before.event_terminated['dapui_config'] = function() dapui.close({}) end
+    dap.listeners.before.event_exited['dapui_config'] = function() dapui.close({}) end
 
     vim.api.nvim_set_hl(0, 'DapStoppedLine', {default = true, link = 'Visual'})
 
@@ -170,6 +119,9 @@ return {
         {text = sign[1], texthl = sign[2] or 'DiagnosticInfo', linehl = sign[3], numhl = sign[3]}
       )
     end
+
+    -- Use overseer for running preLaunchTask and postDebugTask.
+    require('overseer').patch_dap(true)
 
     for _, language in ipairs(js_based_languages) do
       dap.configurations[language] = {
@@ -190,6 +142,31 @@ return {
           processId = require('dap.utils').pick_process,
           cwd = vim.fn.getcwd(),
           sourceMaps = true,
+        },
+        {
+          type = 'pwa-node',
+          request = 'launch',
+          name = 'Launch Test Program (pwa-node with jest)',
+          cwd = vim.fn.getcwd(),
+          runtimeArgs = {'${workspaceFolder}/node_modules/.bin/jest'},
+          runtimeExecutable = 'node',
+          args = {'${file}', '--coverage', 'false'},
+          rootPath = '${workspaceFolder}',
+          sourceMaps = true,
+          console = 'integratedTerminal',
+          internalConsoleOptions = 'neverOpen',
+          skipFiles = {'<node_internals>/**', 'node_modules/**'},
+        },
+        {
+          type = 'pwa-node',
+          request = 'launch',
+          name = 'Launch Test Program (pwa-node with vitest)',
+          cwd = vim.fn.getcwd(),
+          program = '${workspaceFolder}/node_modules/vitest/vitest.mjs',
+          args = {'run', '${file}'},
+          autoAttachChildProcesses = true,
+          smartStep = true,
+          skipFiles = {'<node_internals>/**', 'node_modules/**'},
         },
         -- Debug web applications (client side)
         {
