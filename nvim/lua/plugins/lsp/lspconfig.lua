@@ -134,6 +134,8 @@ M.setup = function()
           lspconfig[server_name].setup(server_config)
         end
 
+        vim.keymap.set('n', '<leader>ef', ':EslintFixAll<CR>', {desc = 'Eslint: Fix all'})
+
         -- ########################### TYPESCRIPT ###########################
         local function typescript_keymap(user_command, lsp_command, description)
           vim.keymap.set('n', user_command, lsp_command, {desc = 'Typescript: ' .. description})

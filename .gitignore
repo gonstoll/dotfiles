@@ -16,3 +16,9 @@ custom.zsh
 
 # tmux
 tmux/plugins/
+
+# Binary files
+/bin/*
+!/bin/u
+!/bin/tmux-sessionizer
+!/bin/link.prop

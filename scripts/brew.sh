@@ -43,3 +43,4 @@ brew install fd fzf
 brew install tree
 brew install tldr
 brew install jq
+brew install orbstack
