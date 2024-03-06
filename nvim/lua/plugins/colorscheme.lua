@@ -58,6 +58,7 @@ return {
           PmenuSbar = {bg = theme.ui.bg_m1},
           PmenuThumb = {bg = theme.ui.bg_p2},
 
+          StatusLine = {bg = theme.ui.bg_p2, fg = theme.ui.fg},
           CursorLineNr = {bold = false},
           Title = {bold = false},
           Boolean = {bold = false},
