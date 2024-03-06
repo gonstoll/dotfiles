@@ -68,12 +68,12 @@ local typescript_snippets = {
   }),
   snippet('func', {
     c(1, {
-      fmt([[export function {}() {{
+      fmt([[function {}({}) {{
   {}
-}}]], {i(1), i(2)}),
-      fmt([[export async function {}() {{
+}}]], {i(1), i(2), i(3)}),
+      fmt([[async function {}({}) {{
   {}
-}}]], {i(1), i(2)}),
+}}]], {i(1), i(2), i(3)}),
     })
   }),
 }
