@@ -5,7 +5,7 @@ vim.keymap.set('i', '/', function()
     return '/'
   end
 
-  if node:type() == 'jsx_opening_element' then
+  if node:type() == 'jsx_opening_element' or node:type() == 'jsx_self_closing_element' then
     local char_at_cursor = vim.fn.strcharpart(vim.fn.strpart(vim.fn.getline '.', vim.fn.col '.' - 2), 0, 1)
     local already_have_space = char_at_cursor == ' '
 
