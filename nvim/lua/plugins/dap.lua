@@ -34,13 +34,21 @@ return {
         layouts = {
           {
             elements = {
-              {id = 'stacks', size = 0.33},
-              {id = 'breakpoints', size = 0.33},
-              {id = 'scopes', size = 0.33},
+              {id = 'scopes', size = 0.25},
+              {id = 'breakpoints', size = 0.25},
+              {id = 'stacks', size = 0.25},
+              {id = 'watches', size = 0.25}
             },
             position = 'left',
-            size = 40,
+            size = 40
           },
+          {
+            elements = {
+              {id = 'console', size = 1}
+            },
+            position = 'bottom',
+            size = 7,
+          }
         },
       },
     },
@@ -53,7 +61,8 @@ return {
       'mxsdev/nvim-dap-vscode-js',
       opts = {
         debugger_path = vim.fn.resolve(vim.fn.stdpath('data') .. '/lazy/vscode-js-debug'),
-        adapters = {'chrome', 'node', 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'pwa-extensionHost', 'node-terminal'},
+        -- debugger_path = vim.fn.resolve(vim.fn.stdpath('data') .. '/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js'),
+        adapters = {'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost'},
       }
     },
     {'theHamsta/nvim-dap-virtual-text', opts = {}},
@@ -61,7 +70,8 @@ return {
     {
       'jbyuki/one-small-step-for-vimkind',
       keys = {
-        {'<leader>dL', function() require('osv').launch {port = 8086} end, desc = desc('Launch Lua adapter')},
+        {'<leader>dL', function() require('osv').launch({port = 8086}) end, desc = desc('Launch Lua adapter')},
+        {'<leader>dT', function() require('osv').run_this() end, desc = desc('Lua adapter: Run this')},
       },
     },
   },
@@ -75,13 +85,13 @@ return {
     {'<leader>dj', function() require('dap').down() end, desc = desc('Down')},
     {'<leader>dk', function() require('dap').up() end, desc = desc('Up')},
     {'<leader>dl', function() require('dap').run_last() end, desc = desc('Run Last')},
-    {'<leader>do', function() require('dap').step_out() end, desc = desc('Step Out')},
-    {'<leader>dO', function() require('dap').step_over() end, desc = desc('Step Over')},
+    {'<leader>dO', function() require('dap').step_out() end, desc = desc('Step Out')},
+    {'<leader>do', function() require('dap').step_over() end, desc = desc('Step Over')},
     {'<leader>dp', function() require('dap').pause() end, desc = desc('Pause')},
     {'<leader>dr', function() require('dap').repl.toggle() end, desc = desc('Toggle REPL')},
     {'<leader>ds', function() require('dap').session() end, desc = desc('Session')},
     {'<leader>dt', function() require('dap').terminate() end, desc = desc('Terminate')},
-    {'<leader>dw', function() require('dap.ui.widgets').hover() end, desc = desc('Widgets')},
+    {'<leader>dh', function() require('dap.ui.widgets').hover() end, desc = desc('Widgets')},
     {
       '<leader>da',
       function()
@@ -131,7 +141,8 @@ return {
           request = 'launch',
           name = 'Launch file',
           program = '${file}',
-          cwd = vim.fn.getcwd(),
+          -- cwd = vim.fn.getcwd(),
+          cwd = '${workspaceFolder}',
           sourceMaps = true,
         },
         -- Debug nodejs processes (make sure to add --inspect when you run the process)
@@ -140,27 +151,29 @@ return {
           request = 'attach',
           name = 'Attach',
           processId = require('dap.utils').pick_process,
-          cwd = vim.fn.getcwd(),
+          -- cwd = vim.fn.getcwd(),
+          cwd = '${workspaceFolder}',
           sourceMaps = true,
         },
         {
           type = 'pwa-node',
           request = 'launch',
-          name = 'Launch Test Program (pwa-node with jest)',
-          cwd = vim.fn.getcwd(),
-          runtimeArgs = {'${workspaceFolder}/node_modules/.bin/jest'},
+          name = 'Debug Jest Tests',
           runtimeExecutable = 'node',
-          args = {'${file}', '--coverage', 'false'},
+          runtimeArgs = {'${workspaceFolder}/node_modules/.bin/jest', '--runInBand'},
           rootPath = '${workspaceFolder}',
-          sourceMaps = true,
+          -- cwd = vim.fn.getcwd(),
+          cwd = '${workspaceFolder}',
           console = 'integratedTerminal',
           internalConsoleOptions = 'neverOpen',
-          skipFiles = {'<node_internals>/**', 'node_modules/**'},
+          -- args = {'${file}', '--coverage', 'false'},
+          -- sourceMaps = true,
+          -- skipFiles = {'<node_internals>/**', 'node_modules/**'},
         },
         {
           type = 'pwa-node',
           request = 'launch',
-          name = 'Launch Test Program (pwa-node with vitest)',
+          name = 'Debug Vitest Tests',
           cwd = vim.fn.getcwd(),
           program = '${workspaceFolder}/node_modules/vitest/vitest.mjs',
           args = {'run', '${file}'},
