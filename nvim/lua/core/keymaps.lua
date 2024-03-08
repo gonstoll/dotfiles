@@ -13,6 +13,9 @@ vim.keymap.set('', '<C-k>', '<C-w>k', {desc = 'Move window (up)'})              
 vim.keymap.set('', '<C-j>', '<C-w>j', {desc = 'Move window (down)'})                    -- Down
 vim.keymap.set('', '<C-l>', '<C-w>l', {desc = 'Move window (right)'})                   -- Right
 
+vim.keymap.set('n', '<C-p>', '<cmd>cprev<CR>zz', {desc = 'Previous quickfix item'})
+vim.keymap.set('n', '<C-n>', '<cmd>cnext<CR>zz', {desc = 'Next quickfix item'})
+
 -- Resize window
 vim.keymap.set('n', '<C-w><left>', '<C-w><', {desc = 'Resize window (left)'})
 vim.keymap.set('n', '<C-w><right>', '<C-w>>', {desc = 'Resize window (right)'})
