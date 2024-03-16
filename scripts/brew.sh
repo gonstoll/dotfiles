@@ -44,3 +44,4 @@ brew install tree
 brew install tldr
 brew install jq
 brew install orbstack
+brew install tursodatabase/tap/turso
