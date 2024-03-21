@@ -94,6 +94,10 @@ export function {}({{{}}}: Props) {{
     })
   }),
   snippet('izod', t("import {z} from 'zod'")),
+  snippet('ust', fmt('const [{}] = React.useState({})', {i(1), i(2)})),
+  snippet('uef', fmt([[React.useEffect(() => {{
+  {}
+}}, [])]], {i(1)})),
 }
 
 local merged_snippets = {}
