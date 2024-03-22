@@ -10,6 +10,3 @@
 [submodule "zsh/plugins/zsh-autosuggestions"]
 	path = zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule "zsh/plugins/zsh-vi-mode"]
-	path = zsh/plugins/zsh-vi-mode
-	url = https://github.com/jeffreytse/zsh-vi-mode
