@@ -49,10 +49,24 @@ vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')
 -- Make sure any opened buffer which is contained in a git repo will be tracked
 vim.cmd('autocmd BufEnter * :lua require("lazygit.utils").project_root_dir()')
 
--- Change the cursor highlight to 'CursorReset' when leaving vim
--- vim.cmd([[
---   augroup RestoreCursorShapeOnExit
---     autocmd!
---     autocmd VimLeave * set guicursor=n-v-c:block,i-ci-ve:ver100/,a:blinkwait700-blinkoff400-blinkon250-CursorReset/lCursorReset
---   augroup END
--- ]])
+-- Statusline
+local statusline_group = ag('StatusLine', {})
+au({'WinEnter', 'BufEnter'}, {
+  pattern = '*',
+  group = statusline_group,
+  callback = function()
+    if (vim.bo.filetype == 'oil') then
+      vim.cmd('setlocal statusline=%!v:lua.Statusline.oil()')
+      return
+    end
+    vim.cmd('setlocal statusline=%!v:lua.Statusline.active()')
+  end,
+})
+
+au({'WinLeave', 'BufLeave'}, {
+  pattern = '*',
+  group = statusline_group,
+  callback = function()
+    vim.cmd('setlocal statusline=%!v:lua.Statusline.inactive()')
+  end,
+})

@@ -46,9 +46,9 @@ vim.opt.laststatus = 3 -- Global statusline when on split
 
 vim.g.markdown_recommended_style = 0 -- Disable default markdown styles (see https://www.reddit.com/r/neovim/comments/z2lhyz/comment/ixjb7je)
 vim.opt.fillchars = {
-	eob = ' ', -- suppress ~ at EndOfBuffer
-	fold = ' ', -- space character used for folding
-	foldopen = '', -- Unfolded text
-	foldsep = ' ', -- Open fold middle marker
-	foldclose = '', -- Folded text
+  eob = ' ', -- suppress ~ at EndOfBuffer
+  fold = ' ', -- space character used for folding
+  foldopen = '', -- Unfolded text
+  foldsep = ' ', -- Open fold middle marker
+  foldclose = '', -- Folded text
 }

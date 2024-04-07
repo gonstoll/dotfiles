@@ -1,6 +1,7 @@
 return {
   'nvim-lualine/lualine.nvim',
   event = 'BufReadPre',
+  enabled = false,
   opts = function()
     local icons = require('utils.icons')
     local theme = require('utils.plugins.lualine').get_theme()
