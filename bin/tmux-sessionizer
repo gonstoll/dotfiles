@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
-  selected=$(find ~/Dev/projects ~/Dev/oss ~/Dev/challenges ~/courses/epic-web/* ~ -mindepth 1 -maxdepth 1 -type d | fzf \
+  selected=$(find ~/Dev/projects ~/Dev/oss ~/Dev/challenges ~/courses/epic-web ~ -mindepth 1 -maxdepth 1 -type d | fzf \
       --border=rounded \
       --border-label="[tmux sessionizer]" \
       --prompt="  " \
