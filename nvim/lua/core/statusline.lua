@@ -21,6 +21,7 @@ local modes = {
   ['r?'] = '[Confirm]',
   ['!'] = '[Shell]',
   ['t'] = '[Terminal]',
+  ['nt'] = '[Terminal]',
 }
 
 local function mode()
@@ -41,7 +42,7 @@ local function update_mode_colors()
     mode_color = '%#StatuslineReplaceAccent#'
   elseif current_mode == 'c' then
     mode_color = '%#StatuslineCmdLineAccent#'
-  elseif current_mode == 't' then
+  elseif current_mode == 't' or current_mode == 'nt' then
     mode_color = '%#StatuslineTerminalAccent#'
   end
   return mode_color
