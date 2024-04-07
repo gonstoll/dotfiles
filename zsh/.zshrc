@@ -51,7 +51,6 @@ export PATH=$HOME/.local/bin:$PATH
 
 # Plugins
 source $ZSH_PATH/plugins/fzf/fzf.zsh
-source $ZSH_PATH/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source $ZSH_PATH/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source $ZSH_PATH/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source $ZSH_PATH/plugins/iterm2_shell_integration/iterm2_shell_integration.zsh
@@ -66,11 +65,6 @@ eval "$(zoxide init zsh)"
 # Tmux
 export T_FZF_BORDER_LABEL='tmux finder'
 export FZF_TMUX_OPTS="-p 100%,100%"
-
-# zsh-vi-mode
-export ZVM_CURSOR_STYLE_ENABLED=false
-export ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
-export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
 
 # bun completions
 [ -s "$HOME/.config/bun/_bun" ] && source "$HOME/.config/bun/_bun"

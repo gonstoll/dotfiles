@@ -8,3 +8,4 @@ setopt inc_append_history
 setopt histignorealldups
 setopt autocd
 setopt histignorespace
+set -o vi
