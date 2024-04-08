@@ -163,6 +163,6 @@ function Statusline.oil()
   return table.concat({
     update_mode_colors(),
     mode(),
-    '%#Statusline#  Oil'
+    '%#Statusline#  Oil',
   })
 end
