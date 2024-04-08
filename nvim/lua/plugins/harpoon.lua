@@ -35,7 +35,7 @@ return {
     })
 
     vim.keymap.set('n', ';h', function() harpoon.ui:toggle_quick_menu(harpoon:list(), menu_opts) end, {desc = desc('Open menu')})
-    vim.keymap.set('n', ';a', function() harpoon:list():append() end, {desc = desc('Add to list')})
+    vim.keymap.set('n', ';a', function() harpoon:list():add() end, {desc = desc('Add to list')})
     vim.keymap.set('n', ';1', function() harpoon:list():select(1) end, {desc = desc('Select file 1')})
     vim.keymap.set('n', ';2', function() harpoon:list():select(2) end, {desc = desc('Select file 2')})
     vim.keymap.set('n', ';3', function() harpoon:list():select(3) end, {desc = desc('Select file 3')})
