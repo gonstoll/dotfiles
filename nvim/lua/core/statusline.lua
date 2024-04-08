@@ -1,3 +1,5 @@
+-- Credit goes where credit is due. This is a modified version of:
+-- https://nuxsh.is-a.dev/blog/custom-nvim-statusline.html
 local icons = require('utils.icons')
 
 local modes = {
