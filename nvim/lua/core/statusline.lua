@@ -49,11 +49,10 @@ local function update_mode_colors()
 end
 
 local function filepath()
-  local fpath = vim.fn.fnamemodify(vim.fn.expand '%', ':~:.:h')
+  local fpath = vim.fn.fnamemodify(vim.fn.expand('%'), ':~:.:h')
   if fpath == '' or fpath == '.' then
     return ' '
   end
-
   return string.format('%%<%s/', fpath)
 end
 
@@ -139,8 +138,8 @@ end
 
 Statusline = {}
 
-Statusline.active = function()
-  return table.concat {
+function Statusline.active()
+  return table.concat({
     update_mode_colors(),
     mode(),
     '%#Statusline# ',
@@ -152,7 +151,7 @@ Statusline.active = function()
     lsp(),
     filetype(),
     lineinfo(),
-  }
+  })
 end
 
 function Statusline.inactive()
