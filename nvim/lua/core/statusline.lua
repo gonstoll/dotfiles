@@ -83,7 +83,7 @@ local function lsp()
   local info = ''
 
   if count['errors'] ~= 0 then
-    errors = ' %#StatuLineDiagnosticSignError#' .. icons.diagnostics.Error .. count['errors']
+    errors = ' %#StatusLineDiagnosticSignError#' .. icons.diagnostics.Error .. count['errors']
   end
   if count['warnings'] ~= 0 then
     warnings = ' %#StatusLineDiagnosticSignWarn#' .. icons.diagnostics.Warn .. count['warnings']
