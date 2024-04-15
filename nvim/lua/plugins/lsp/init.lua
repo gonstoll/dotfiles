@@ -34,15 +34,4 @@ return {
       {'<leader>ga', '<cmd>Lspsaga code_action<CR>', mode = {'n', 'v'}, desc = desc('Show code action')},
     },
   },
-
-  -- VS code like winbar with breadcrumbs
-  {
-    'utilyre/barbecue.nvim',
-    name = 'barbecue',
-    event = 'BufReadPre',
-    enabled = false,
-    version = '*',
-    dependencies = {'SmiteshP/nvim-navic', 'nvim-tree/nvim-web-devicons'},
-    opts = {attach_navic = false},
-  },
 }

@@ -35,17 +35,17 @@ local function update_mode_colors()
   local current_mode = vim.api.nvim_get_mode().mode
   local mode_color = '%#StatusLineAccent#'
   if current_mode == 'n' then
-    mode_color = '%#StatuslineAccent#'
+    mode_color = '%#StatusLineAccent#'
   elseif current_mode == 'i' or current_mode == 'ic' then
-    mode_color = '%#StatuslineInsertAccent#'
+    mode_color = '%#StatusLineInsertAccent#'
   elseif current_mode == 'v' or current_mode == 'V' or current_mode == '' then
-    mode_color = '%#StatuslineVisualAccent#'
+    mode_color = '%#StatusLineVisualAccent#'
   elseif current_mode == 'R' then
-    mode_color = '%#StatuslineReplaceAccent#'
+    mode_color = '%#StatusLineReplaceAccent#'
   elseif current_mode == 'c' then
-    mode_color = '%#StatuslineCmdLineAccent#'
+    mode_color = '%#StatusLineCmdLineAccent#'
   elseif current_mode == 't' or current_mode == 'nt' then
-    mode_color = '%#StatuslineTerminalAccent#'
+    mode_color = '%#StatusLineTerminalAccent#'
   end
   return mode_color
 end

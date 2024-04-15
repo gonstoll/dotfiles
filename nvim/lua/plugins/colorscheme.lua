@@ -52,12 +52,12 @@ return {
           -- Statusline
           StatusLine = {bg = theme.ui.bg_p2, fg = theme.ui.fg},
           --- modes
-          StatuslineAccent = {bg = 'none', fg = palette.sakuraPink},
-          StatuslineInsertAccent = {bg = 'none', fg = palette.springGreen},
-          StatuslineVisualAccent = {bg = 'none', fg = palette.peachRed},
-          StatuslineReplaceAccent = {bg = 'none', fg = palette.carpYellow},
-          StatuslineCmdLineAccent = {bg = 'none', fg = palette.crystalBlue},
-          StatuslineTerminalAccent = {bg = 'none', fg = palette.fujiGray},
+          StatusLineAccent = {bg = 'none', fg = palette.sakuraPink},
+          StatusLineInsertAccent = {bg = 'none', fg = palette.springGreen},
+          StatusLineVisualAccent = {bg = 'none', fg = palette.peachRed},
+          StatusLineReplaceAccent = {bg = 'none', fg = palette.carpYellow},
+          StatusLineCmdLineAccent = {bg = 'none', fg = palette.crystalBlue},
+          StatusLineTerminalAccent = {bg = 'none', fg = palette.fujiGray},
           --- gitsigns
           StatusLineGitSignsAdd = {bg = theme.ui.bg_p2, fg = theme.vcs.added},
           StatusLineGitSignsChange = {bg = theme.ui.bg_p2, fg = theme.vcs.changed},
