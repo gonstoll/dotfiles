@@ -1,22 +1,38 @@
 return {
   {
-    'sainnhe/gruvbox-material',
-    name = 'gruvbox-material',
+    'rose-pine/neovim',
+    name = 'rose-pine',
     event = 'VeryLazy',
-    config = function()
-      vim.g.gruvbox_material_better_performance = 1
-      -- Fonts
-      vim.g.gruvbox_material_disable_italic_comment = 1
-      vim.g.gruvbox_material_enable_italic = 0
-      vim.g.gruvbox_material_enable_bold = 0
-      vim.g.gruvbox_material_transparent_background = 1
-      -- Themes
-      vim.g.gruvbox_material_foreground = 'mix'
-      vim.g.gruvbox_material_background = 'hard'
-      vim.g.gruvbox_material_ui_contrast = 'high' -- The contrast of line numbers, indent lines, etc.
-      vim.g.gruvbox_material_float_style = 'dim'  -- Background of floating windows
-
-      -- vim.cmd('colorscheme gruvbox-material')
+    opts = {
+      styles = {
+        bold = false,
+        transparency = true,
+      },
+      highlight_groups = {
+        -- StatusLine
+        StatusLine = {bg = 'overlay', fg = 'subtle'},
+        --- modes
+        StatusLineAccent = {bg = 'none', fg = 'love'},
+        StatusLineInsertAccent = {bg = 'none', fg = 'gold'},
+        StatusLineVisualAccent = {bg = 'none', fg = 'rose'},
+        StatusLineReplaceAccent = {bg = 'none', fg = 'pine'},
+        StatusLineCmdLineAccent = {bg = 'none', fg = 'foam'},
+        StatusLineTerminalAccent = {bg = 'none', fg = 'iris'},
+        --- gitsigns
+        StatusLineGitSignsAdd = {bg = 'overlay', fg = 'foam'},
+        StatusLineGitSignsChange = {bg = 'overlay', fg = 'rose'},
+        StatusLineGitSignsDelete = {bg = 'overlay', fg = 'love'},
+        --- diagnostics
+        StatusLineDiagnosticSignError = {bg = 'overlay', fg = 'love'},
+        StatusLineDiagnosticSignWarn = {bg = 'overlay', fg = 'gold'},
+        StatusLineDiagnosticSignInfo = {bg = 'overlay', fg = 'foam'},
+        StatusLineDiagnosticSignHint = {bg = 'overlay', fg = 'iris'},
+        StatusLineDiagnosticSignOk = {bg = 'overlay', fg = 'pine'},
+      },
+    },
+    config = function(_, opts)
+      require('rose-pine').setup(opts)
+      -- vim.cmd('colorscheme rose-pine')
     end
   },
 
