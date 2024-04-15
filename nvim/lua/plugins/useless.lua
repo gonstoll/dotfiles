@@ -15,4 +15,8 @@ return {
       {',fml', '<cmd>CellularAutomaton make_it_rain<CR>', desc = cel_desc('Make it rain')},
     },
   },
+  {
+    'letieu/btw.nvim',
+    opts = {text = 'I use Neovim btw'},
+  }
 }
