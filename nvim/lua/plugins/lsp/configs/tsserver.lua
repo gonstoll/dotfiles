@@ -4,6 +4,9 @@ M.setup = function(capabilities, on_attach)
   return {
     capabilities = capabilities,
     on_attach = on_attach,
+    flags = {
+      allow_incremental_sync = false,
+    },
     settings = {
       javascript = {
         format = {
