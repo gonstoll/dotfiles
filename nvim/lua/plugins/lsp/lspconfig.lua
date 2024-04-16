@@ -141,7 +141,14 @@ M.setup = function()
           vim.keymap.set('n', user_command, lsp_command, {desc = 'Typescript: ' .. description})
         end
 
-        typescript_keymap('<leader>to', ':OrganizeImports<CR>', 'Organize imports')
+        local function organize_imports()
+          vim.lsp.buf.execute_command({
+            command = '_typescript.organizeImports',
+            arguments = {vim.fn.expand('%:p')}
+          })
+        end
+
+        typescript_keymap('<leader>to', organize_imports, 'Organize imports')
       end,
     },
   }
