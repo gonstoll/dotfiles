@@ -14,7 +14,6 @@
   "editor.acceptSuggestionOnCommitCharacter": false,
   "editor.bracketPairColorization.enabled": false,
   "editor.suggest.snippetsPreventQuickSuggestions": false,
-  "editor.renderWhitespace": "none",
   "editor.accessibilitySupport": "off",
   "editor.rulers": [90],
   "editor.wordWrapColumn": 90,
@@ -99,6 +98,5 @@
   "vim.highlightedyank.enable": true,
   "vim.highlightedyank.color": "#f2594b",
   "vim.highlightedyank.textColor": "#000000",
-  "vim.enableNeovim": true,
-  "vim.neovimPath": "/opt/homebrew/bin/nvim"
+  "vim.enableNeovim": true
 }
