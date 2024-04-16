@@ -28,6 +28,8 @@ return {
         StatusLineDiagnosticSignInfo = {bg = 'overlay', fg = 'foam'},
         StatusLineDiagnosticSignHint = {bg = 'overlay', fg = 'iris'},
         StatusLineDiagnosticSignOk = {bg = 'overlay', fg = 'pine'},
+
+        Cursor = {bg = 'text', fg = 'base'},
       },
     },
     config = function(_, opts)
