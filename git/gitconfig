@@ -22,3 +22,5 @@
   email = stollgonzalo@gmail.com
 [github]
   user = gonstoll
+[rerere]
+	enable = true
