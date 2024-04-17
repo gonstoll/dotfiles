@@ -131,6 +131,10 @@ local function filetype()
   return string.format(' %s ', vim.bo.filetype)
 end
 
+local function modified()
+  return '%m'
+end
+
 local function lineinfo()
   if vim.bo.filetype == 'alpha' then
     return ''
@@ -147,6 +151,7 @@ function Statusline.active()
     '%#Statusline# ',
     filepath(),
     filename(),
+    modified(),
     vcs(),
     '%#Statusline#',
     '%=%#StatusLineExtra#',
