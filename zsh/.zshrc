@@ -4,11 +4,6 @@
 ZSHRC_PATH="$(readlink $HOME/.config/zsh)/.zshrc" # get the path of the .zshrc symlink
 ZSH_PATH=$(dirname $ZSHRC_PATH) # get the path of the zsh folder
 
-# custom zsh configurations
-if [[ -f $ZSH_PATH/config/custom.zsh ]]; then
-  source $ZSH_PATH/config/custom.zsh
-fi
-
 # History
 HISTSIZE=110000
 SAVEHIST=100000
@@ -72,3 +67,8 @@ export FZF_TMUX_OPTS="-p 100%,100%"
 # rust
 export RUSTUP_HOME="$HOME/.config/rust/.rustup"
 export CARGO_HOME="$HOME/.config/rust/.cargo"
+
+# custom zsh configurations override the default ones
+if [[ -f $ZSH_PATH/config/custom.zsh ]]; then
+  source $ZSH_PATH/config/custom.zsh
+fi
