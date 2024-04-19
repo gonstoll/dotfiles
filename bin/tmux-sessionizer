@@ -1,9 +1,11 @@
 #!/usr/bin/env zsh
 
+directories=(~/Dev/projects ~/Dev/oss ~/Dev/challenges ~/Dev/misc ~/courses/epic-web ~)
+
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
-  selected=$(find ~/Dev/projects ~/Dev/oss ~/Dev/challenges ~/Dev/misc ~/courses/epic-web ~ -mindepth 1 -maxdepth 1 -type d | fzf \
+  selected=$(find $directories -mindepth 1 -maxdepth 1 -type d | fzf \
     --border=rounded \
     --border-label="[tmux sessionizer]" \
     --prompt="  " \
