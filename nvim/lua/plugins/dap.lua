@@ -61,7 +61,6 @@ return {
       'mxsdev/nvim-dap-vscode-js',
       opts = {
         debugger_path = vim.fn.resolve(vim.fn.stdpath('data') .. '/lazy/vscode-js-debug'),
-        -- debugger_path = vim.fn.resolve(vim.fn.stdpath('data') .. '/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js'),
         adapters = {'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost'},
       }
     },
@@ -137,28 +136,31 @@ return {
       dap.configurations[language] = {
         -- Debug single nodejs files
         {
+          name = 'Launch file',
           type = 'pwa-node',
           request = 'launch',
-          name = 'Launch file',
           program = '${file}',
           -- cwd = vim.fn.getcwd(),
           cwd = '${workspaceFolder}',
           sourceMaps = true,
+          sourceMapPathOverrides = {
+            ['./*'] = '${workspaceFolder}/src/*',
+          },
         },
         -- Debug nodejs processes (make sure to add --inspect when you run the process)
         {
+          name = 'Attach',
           type = 'pwa-node',
           request = 'attach',
-          name = 'Attach',
           processId = require('dap.utils').pick_process,
           -- cwd = vim.fn.getcwd(),
           cwd = '${workspaceFolder}',
           sourceMaps = true,
         },
         {
+          name = 'Debug Jest Tests',
           type = 'pwa-node',
           request = 'launch',
-          name = 'Debug Jest Tests',
           runtimeExecutable = 'node',
           runtimeArgs = {'${workspaceFolder}/node_modules/.bin/jest', '--runInBand'},
           rootPath = '${workspaceFolder}',
@@ -171,9 +173,9 @@ return {
           -- skipFiles = {'<node_internals>/**', 'node_modules/**'},
         },
         {
+          name = 'Debug Vitest Tests',
           type = 'pwa-node',
           request = 'launch',
-          name = 'Debug Vitest Tests',
           cwd = vim.fn.getcwd(),
           program = '${workspaceFolder}/node_modules/vitest/vitest.mjs',
           args = {'run', '${file}'},
@@ -183,9 +185,9 @@ return {
         },
         -- Debug web applications (client side)
         {
+          name = 'Launch & Debug Chrome',
           type = 'pwa-chrome',
           request = 'launch',
-          name = 'Launch & Debug Chrome',
           url = function()
             local co = coroutine.running()
             return coroutine.create(function()
@@ -202,6 +204,16 @@ return {
           protocol = 'inspector',
           sourceMaps = true,
           userDataDir = false,
+
+          -- From https://github.com/lukas-reineke/dotfiles/blob/master/vim/lua/plugins/dap.lua
+          -- To test how it behaves
+          rootPath = '${workspaceFolder}',
+          cwd = '${workspaceFolder}',
+          console = 'integratedTerminal',
+          internalConsoleOptions = 'neverOpen',
+          sourceMapPathOverrides = {
+            ['./*'] = '${workspaceFolder}/src/*',
+          },
         },
         -- Divider for the launch.json derived configs
         {
@@ -214,7 +226,7 @@ return {
 
     -- Lua configurations.
     dap.adapters.nlua = function(callback, config)
-      callback {type = 'server', host = config.host or '127.0.0.1', port = config.port or 8086}
+      callback({type = 'server', host = config.host or '127.0.0.1', port = config.port or 8086})
     end
 
     dap.configurations['lua'] = {
@@ -222,13 +234,8 @@ return {
         type = 'nlua',
         request = 'attach',
         name = 'Attach to running Neovim instance',
+        host = '127.0.0.1',
       },
-    }
-
-    dap.adapters.chrome = {
-      type = 'executable',
-      command = 'node',
-      args = {vim.fn.resolve(vim.fn.stdpath('data') .. '/lazy/vscode-js-debug')}
     }
   end,
 }
