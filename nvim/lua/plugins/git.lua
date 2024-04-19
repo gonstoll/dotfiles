@@ -3,7 +3,16 @@ return {
 
   {
     'kdheepak/lazygit.nvim',
-    event = 'BufReadPre',
+    cmd = {
+      'LazyGit',
+      'LazyGitConfig',
+      'LazyGitCurrentFile',
+      'LazyGitFilter',
+      'LazyGitFilterCurrentFile',
+    },
+    keys = {
+      {'<leader>gg', '<cmd>LazyGit<CR>', desc = 'LazyGit: Open'},
+    },
     dependencies = {'nvim-lua/plenary.nvim'},
   },
 

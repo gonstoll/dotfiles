@@ -42,8 +42,7 @@ vim.keymap.set('x', '<leader>p', '\"_dP')
 -- Sources current buffer
 vim.keymap.set('n', '<leader><leader>', function() vim.cmd('so') end)
 
--- Opens lazygit/fugitive
-vim.keymap.set('n', '<leader>gg', vim.cmd.LazyGit, {desc = 'Lazygit: Open git console'})
+-- Opens fugitive
 vim.keymap.set('n', '<leader>gs', ':top Git<CR>', {desc = 'Fugitive: Open git console'})
 
 -- Toggle highlighting search
