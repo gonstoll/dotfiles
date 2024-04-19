@@ -2,6 +2,16 @@ return {
   {'tpope/vim-fugitive', cmd = 'Git'},
 
   {
+    'FabijanZulj/blame.nvim',
+    cmd = 'BlameToggle',
+    opts = {
+      mappings = {
+        commit_info = 'K'
+      },
+    },
+  },
+
+  {
     'kdheepak/lazygit.nvim',
     cmd = {
       'LazyGit',
