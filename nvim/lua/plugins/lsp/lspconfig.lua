@@ -108,10 +108,6 @@ M.setup = function()
             end
             require('conform').format({async = true, lsp_fallback = true, range = range})
           end, {range = true})
-
-          if client.server_capabilities['documentSymbolProvider'] then
-            require('nvim-navic').attach(client, bufnr)
-          end
         end
 
         local lspconfig = require('lspconfig')
