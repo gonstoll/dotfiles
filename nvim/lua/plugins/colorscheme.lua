@@ -30,6 +30,7 @@ return {
         StatusLineDiagnosticSignOk = {bg = 'overlay', fg = 'pine'},
 
         Cursor = {bg = 'text', fg = 'base'},
+        CursorLine = {bg = 'none'},
       },
     },
     config = function(_, opts)
@@ -97,6 +98,7 @@ return {
           PmenuSbar = {bg = theme.ui.bg_m1},
           PmenuThumb = {bg = theme.ui.bg_p2},
 
+          CursorLine = {bg = 'none'},
           CursorLineNr = {bold = false},
           Title = {bold = false},
           Boolean = {bold = false},
