@@ -24,7 +24,7 @@ M.setup = function()
       'neovim/nvim-lspconfig',
       event = {'BufReadPost', 'BufNewFile', 'BufWritePre'},
       dependencies = {'folke/neodev.nvim'},
-      init = function()
+      config = function()
         vim.diagnostic.config({
           virtual_text = true,
           severity_sort = true,
@@ -60,8 +60,7 @@ M.setup = function()
           local hl = 'DiagnosticSign' .. type
           vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
         end
-      end,
-      config = function()
+
         -- ########################### NEODEV ###########################
         local neodev = require('neodev')
         neodev.setup({
