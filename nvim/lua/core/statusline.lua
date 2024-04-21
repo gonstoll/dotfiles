@@ -146,8 +146,8 @@ Statusline = {}
 
 function Statusline.active()
   return table.concat({
-    update_mode_colors(),
-    mode(),
+    -- update_mode_colors(),
+    -- mode(),
     '%#Statusline# ',
     filepath(),
     filename(),
@@ -167,8 +167,8 @@ end
 
 function Statusline.oil()
   return table.concat({
-    update_mode_colors(),
-    mode(),
+    -- update_mode_colors(),
+    -- mode(),
     '%#Statusline#  Oil',
   })
 end
