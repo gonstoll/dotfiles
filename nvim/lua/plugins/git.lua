@@ -1,3 +1,5 @@
+local gitlinker_desc = require('utils').plugin_keymap_desc('gitlinker')
+
 return {
   {'tpope/vim-fugitive', cmd = 'Git'},
 
@@ -13,17 +15,11 @@ return {
 
   {
     'kdheepak/lazygit.nvim',
-    cmd = {
-      'LazyGit',
-      'LazyGitConfig',
-      'LazyGitCurrentFile',
-      'LazyGitFilter',
-      'LazyGitFilterCurrentFile',
-    },
+    cmd = {'LazyGit', 'LazyGitConfig', 'LazyGitCurrentFile', 'LazyGitFilter', 'LazyGitFilterCurrentFile'},
+    dependencies = {'nvim-lua/plenary.nvim'},
     keys = {
       {'<leader>gg', '<cmd>LazyGit<CR>', desc = 'LazyGit: Open'},
     },
-    dependencies = {'nvim-lua/plenary.nvim'},
   },
 
   {
@@ -91,5 +87,57 @@ return {
         end,
       }
     end,
-  }
+  },
+
+  {
+    'ruifm/gitlinker.nvim',
+    dependencies = {'nvim-lua/plenary.nvim'},
+    keys = {
+      {
+        mode = 'n',
+        desc = gitlinker_desc('Copy line link'),
+        silent = true,
+        '<leader>gy',
+        function()
+          local gitlinker = require('gitlinker')
+          local actions = require('gitlinker.actions')
+          gitlinker.get_buf_range_url('n')
+        end,
+      },
+      {
+        mode = 'v',
+        desc = gitlinker_desc('Copy line(s) link'),
+        silent = true,
+        '<leader>gy',
+        function()
+          local gitlinker = require('gitlinker')
+          local actions = require('gitlinker.actions')
+          gitlinker.get_buf_range_url('v')
+        end,
+      },
+      {
+        mode = 'n',
+        desc = gitlinker_desc('Open line link in browser'),
+        silent = true,
+        '<leader>gY',
+        function()
+          local gitlinker = require('gitlinker')
+          local actions = require('gitlinker.actions')
+          gitlinker.get_buf_range_url('n', {action_callback = actions.open_in_browser})
+        end,
+      },
+      {
+        mode = 'v',
+        desc = gitlinker_desc('Open line(s) link in browser'),
+        silent = true,
+        '<leader>gY',
+        function()
+          local gitlinker = require('gitlinker')
+          local actions = require('gitlinker.actions')
+          gitlinker.get_buf_range_url('v', {action_callback = actions.open_in_browser})
+        end,
+      },
+    },
+    opts = {},
+  },
 }
