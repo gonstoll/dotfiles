@@ -98,22 +98,14 @@ return {
         desc = gitlinker_desc('Copy line link'),
         silent = true,
         '<leader>gy',
-        function()
-          local gitlinker = require('gitlinker')
-          local actions = require('gitlinker.actions')
-          gitlinker.get_buf_range_url('n')
-        end,
+        function() require('gitlinker').get_buf_range_url('n') end,
       },
       {
         mode = 'v',
         desc = gitlinker_desc('Copy line(s) link'),
         silent = true,
         '<leader>gy',
-        function()
-          local gitlinker = require('gitlinker')
-          local actions = require('gitlinker.actions')
-          gitlinker.get_buf_range_url('v')
-        end,
+        function() require('gitlinker').get_buf_range_url('v') end,
       },
       {
         mode = 'n',
