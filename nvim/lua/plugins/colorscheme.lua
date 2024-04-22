@@ -88,16 +88,20 @@ return {
           StatusLineDiagnosticSignHint = {bg = theme.ui.bg_p2, fg = theme.diag.hint},
           StatusLineDiagnosticSignOk = {bg = theme.ui.bg_p2, fg = theme.diag.ok},
 
+          --- floats
           NormalFloat = {bg = theme.ui.bg_p1},
           FloatBorder = {fg = theme.ui.shade0, bg = theme.ui.bg_p1},
           FloatTitle = {fg = theme.ui.shade0, bg = theme.ui.bg_p1, bold = false},
           FloatFooter = {fg = theme.ui.nontext, bg = theme.ui.bg_p1},
 
+          --- popups
           Pmenu = {fg = theme.ui.shade0, bg = theme.ui.bg_p1}, -- add `blend = vim.o.pumblend` to enable transparency
           PmenuSel = {fg = 'NONE', bg = theme.ui.bg_p2},
           PmenuSbar = {bg = theme.ui.bg_m1},
           PmenuThumb = {bg = theme.ui.bg_p2},
 
+          --- misc
+          TelescopeSelection = {bg = theme.ui.bg_p2},
           CursorLine = {bg = 'none'},
           CursorLineNr = {bold = false},
           Title = {bold = false},
