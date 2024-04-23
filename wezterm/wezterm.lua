@@ -150,8 +150,8 @@ return {
     inactive_titlebar_fg = gruvbox.colors.dark_palette.fg1,
   },
   window_padding = {
-    left = '10px',
-    right = '10px',
+    left = 0,
+    right = 0,
     top = '10px',
     bottom = 0,
   },
