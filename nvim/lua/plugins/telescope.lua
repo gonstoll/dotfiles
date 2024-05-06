@@ -68,7 +68,7 @@ local keys = {
   },
   {
     desc = desc('Find opened buffers in current neovim instance'),
-    lhs = ';y',
+    lhs = ';l',
     rhs = function() require('telescope.builtin').buffers() end,
   },
   {
