@@ -7,6 +7,7 @@
   "workbench.iconTheme": "material-icon-theme",
   "workbench.editor.enablePreview": true,
   "editor.fontSize": 14,
+  "editor.fontWeight": "300",
   "editor.fontFamily": "SFMono Nerd Font",
   "editor.lineHeight": 1.35,
   "editor.tabSize": 2,
