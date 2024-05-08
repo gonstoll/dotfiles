@@ -197,8 +197,11 @@
   },
   {
     "key": "space g g",
-    "command": "workbench.action.scm",
-    "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
+    "command": "runCommands",
+    "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)",
+    "args": {
+      "commands": ["workbench.view.scm", "workbench.scm.focus"]
+    }
   },
   {
     "key": "s v",
@@ -208,6 +211,16 @@
   {
     "key": "s s",
     "command": "workbench.action.splitEditorDown",
+    "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
+  },
+  {
+    "key": "escape",
+    "command": "workbench.view.explorer",
+    "when": "vim.mode == 'Normal' && workbench.scm.active"
+  },
+  {
+    "key": "-",
+    "command": "workbench.view.explorer",
     "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
   },
 
@@ -251,6 +264,11 @@
     "key": "g r",
     "command": "editor.action.goToReferences",
     "when": "vim.mode == 'Normal' && editorTextFocus"
+  },
+  {
+    "key": "ctrl-n",
+    "command": "editor.action.addSelectionToNextFindMatch",
+    "when": "(vim.mode == 'Normal' || vim.mode == 'Visual') && (editorTextFocus || !inputFocus)"
   },
 
   // File explorer
