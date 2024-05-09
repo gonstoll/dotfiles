@@ -4,11 +4,12 @@
 cd "$(dirname "$0")"
 export DOTFILES=$(pwd -P)
 
-echo ">>> Setup started"
+echo ">> Setup started"
 echo ""
 
 chmod +x $DOTFILES/bin/u
 chmod +x $DOTFILES/bin/code_extensions
+chmod +x $DOTFILES/tmux/bin/toggle-theme.sh
 
 function install_system() {
   read -p "Do you want to install system packages? (y/n) " yn < /dev/tty
@@ -115,4 +116,4 @@ install_dotfiles
 
 cd $HOME # Go home
 
-echo ">>> Setup finished"
+echo ">> Setup finished"
