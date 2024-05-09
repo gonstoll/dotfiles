@@ -69,7 +69,7 @@ return {
 
         return {
           -- Statusline
-          StatusLine = {bg = theme.ui.bg_p2, fg = theme.ui.fg},
+          StatusLine = {bg = theme.ui.bg_p1, fg = theme.ui.fg},
           --- modes
           StatusLineAccent = {bg = 'none', fg = palette.sakuraPink},
           StatusLineInsertAccent = {bg = 'none', fg = palette.springGreen},
@@ -78,15 +78,15 @@ return {
           StatusLineCmdLineAccent = {bg = 'none', fg = palette.crystalBlue},
           StatusLineTerminalAccent = {bg = 'none', fg = palette.fujiGray},
           --- gitsigns
-          StatusLineGitSignsAdd = {bg = theme.ui.bg_p2, fg = theme.vcs.added},
-          StatusLineGitSignsChange = {bg = theme.ui.bg_p2, fg = theme.vcs.changed},
-          StatusLineGitSignsDelete = {bg = theme.ui.bg_p2, fg = theme.vcs.removed},
+          StatusLineGitSignsAdd = {bg = theme.ui.bg_p1, fg = theme.vcs.added},
+          StatusLineGitSignsChange = {bg = theme.ui.bg_p1, fg = theme.vcs.changed},
+          StatusLineGitSignsDelete = {bg = theme.ui.bg_p1, fg = theme.vcs.removed},
           --- diagnostics
-          StatusLineDiagnosticSignError = {bg = theme.ui.bg_p2, fg = theme.diag.error},
-          StatusLineDiagnosticSignWarn = {bg = theme.ui.bg_p2, fg = theme.diag.warning},
-          StatusLineDiagnosticSignInfo = {bg = theme.ui.bg_p2, fg = theme.diag.info},
-          StatusLineDiagnosticSignHint = {bg = theme.ui.bg_p2, fg = theme.diag.hint},
-          StatusLineDiagnosticSignOk = {bg = theme.ui.bg_p2, fg = theme.diag.ok},
+          StatusLineDiagnosticSignError = {bg = theme.ui.bg_p1, fg = theme.diag.error},
+          StatusLineDiagnosticSignWarn = {bg = theme.ui.bg_p1, fg = theme.diag.warning},
+          StatusLineDiagnosticSignInfo = {bg = theme.ui.bg_p1, fg = theme.diag.info},
+          StatusLineDiagnosticSignHint = {bg = theme.ui.bg_p1, fg = theme.diag.hint},
+          StatusLineDiagnosticSignOk = {bg = theme.ui.bg_p1, fg = theme.diag.ok},
 
           --- floats
           NormalFloat = {bg = theme.ui.bg_p1},

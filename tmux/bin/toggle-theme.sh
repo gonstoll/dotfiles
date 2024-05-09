@@ -3,8 +3,8 @@
 # Toggle the current window (all panes) between light and dark themes.
 set -e
 
-dark_status_style='fg=white,bg=#393836'
-light_status_style='fg=black,bg=#e4d794'
+dark_status_style='fg=white,bg=#282727'
+light_status_style='fg=black,bg=#e7dba0'
 
 current_status_style=$(tmux show -Av status-style)
 

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+extension_list=$(cat bar)
+for i in ${extension_list[@]}; do
+  echo "Installing $i"
+  code --install-extension $i
+done

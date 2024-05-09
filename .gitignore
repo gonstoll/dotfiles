@@ -21,4 +21,6 @@ tmux/plugins/
 /bin/*
 !/bin/u
 !/bin/tmux-sessionizer
+!/bin/code_save_extensions
+!/bin/code_install_extensions
 !/bin/link.prop

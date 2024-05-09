@@ -7,6 +7,8 @@ export DOTFILES=$(pwd -P)
 echo ">>> Setup started"
 echo ""
 
+chmod +x $DOTFILES/bin/code_save_extensions
+chmod +x $DOTFILES/bin/code_install_extensions
 chmod +x $DOTFILES/bin/u
 
 function install_system() {
