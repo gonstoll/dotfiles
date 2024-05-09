@@ -1,0 +1,26 @@
+#!/bin/sh
+
+selected=$(gum choose "Save VSCode extensions" "Install VSCode extensions" "Exit")
+dotfiles_dir=$(pwd -P)
+extensios_dir=$dotfiles_dir/vscode/extensions
+
+if [[ $# -eq 1 ]] || [[ $selected == "Exit" ]]; then
+  exit 1
+fi
+
+if [[ $selected == "Save VSCode extensions" ]]; then
+  echo "Saving VSCode extensions..."
+  code --list-extensions > $extensions_dir
+fi
+
+if [[ $selected == "Install VSCode extensions" ]]; then
+  if [[ -f $extensios_dir ]]; then
+    echo "Installing VSCode extensions..."
+    extension_list=$(cat $extensios_dir)
+    for i in ${extension_list[@]}; do
+      code --install-extension $i
+    done
+  else
+    echo "VSCode extensions file not found."
+  fi
+fi

@@ -7,9 +7,8 @@ export DOTFILES=$(pwd -P)
 echo ">>> Setup started"
 echo ""
 
-chmod +x $DOTFILES/bin/code_save_extensions
-chmod +x $DOTFILES/bin/code_install_extensions
 chmod +x $DOTFILES/bin/u
+chmod +x $DOTFILES/bin/code_extensions
 
 function install_system() {
   read -p "Do you want to install system packages? (y/n) " yn < /dev/tty
