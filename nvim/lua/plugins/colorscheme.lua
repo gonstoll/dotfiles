@@ -106,7 +106,7 @@ return {
           CursorLineNr = {bold = false},
           Title = {bold = false},
           Boolean = {bold = false},
-          MatchParen = {bold = false},
+          MatchParen = {bold = false, bg = theme.ui.bg_p2},
           IblIndent = {fg = theme.ui.bg_p1},
           IblScope = {fg = theme.ui.whitespace},
           ['@variable.builtin'] = {link = 'Special'},
@@ -123,4 +123,13 @@ return {
       vim.cmd('colorscheme kanagawa')
     end
   },
+
+  {
+    'mcchrish/zenbones.nvim',
+    dependencies = {'rktjmp/lush.nvim'},
+    config = function()
+      -- vim.cmd('colorscheme rosebones')
+      vim.g.darkness = 'stark'
+    end
+  }
 }
