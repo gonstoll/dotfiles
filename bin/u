@@ -3,7 +3,7 @@
 
 gum style \
     --foreground 12 --border-foreground 12 --border double \
-    --align center --margin "1 0" --padding "0 2" \
+    --margin "1 0" --padding "0 2" \
     '
 ██╗   ██╗██████╗ ██████╗  █████╗ ████████╗███████╗
 ██║   ██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝
