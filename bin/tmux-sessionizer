@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-directories=(~/Dev/projects ~/Dev/oss ~/Dev/challenges ~/Dev/misc ~/courses/epic-web ~)
+directories=(~/Dev/backups ~/Dev/challenges ~/Dev/misc ~/Dev/oss ~/Dev/projects ~/courses/** ~)
 
 if [[ $# -eq 1 ]]; then
   selected=$1
