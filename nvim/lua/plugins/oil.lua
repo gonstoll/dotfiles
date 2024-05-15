@@ -7,12 +7,19 @@ return {
     {'nvim-tree/nvim-web-devicons', lazy = true},
   },
   opts = {
-    default_file_explorer = true,
     view_options = {
       show_hidden = true,
       is_always_hidden = function(name, _)
         return vim.startswith(name, '.DS_Store')
       end,
+    },
+    keymaps = {
+      ['<C-h>'] = false, -- Split
+      ['<C-s>'] = false, -- Vsplit
+      ['<C-l>'] = false, -- refresh
+      ['<M-s>'] = 'actions.select_split',
+      ['<M-v>'] = 'actions.select_vsplit',
+      ['<M-l>'] = 'actions.refresh',
     },
     float = {padding = 4},
   },
