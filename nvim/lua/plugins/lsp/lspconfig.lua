@@ -144,13 +144,37 @@ M.setup = function()
         end
 
         local function organize_imports()
-          vim.lsp.buf.execute_command({
-            command = '_typescript.organizeImports',
-            arguments = {vim.fn.expand('%:p')}
+          -- vim.lsp.buf.execute_command({
+          --   command = '_typescript.organizeImports',
+          --   arguments = {vim.fn.expand('%:p')}
+          -- })
+
+          vim.lsp.buf.code_action({
+            apply = true,
+            context = {
+              only = {'source.organizeImports.ts'},
+              diagnostics = {},
+            },
+          })
+        end
+
+        local function remove_unused_imports()
+          -- vim.lsp.buf.execute_command({
+          --   command = '_typescript.removeUnusedImports',
+          --   arguments = {vim.fn.expand('%:p')}
+          -- })
+
+          vim.lsp.buf.code_action({
+            apply = true,
+            context = {
+              only = {'source.removeUnused.ts'},
+              diagnostics = {},
+            },
           })
         end
 
         typescript_keymap('<leader>to', organize_imports, 'Organize imports')
+        typescript_keymap('<leader>tR', remove_unused_imports, 'Remove unused imports')
       end,
     },
   }

@@ -127,9 +127,10 @@ return {
   {
     'mcchrish/zenbones.nvim',
     dependencies = {'rktjmp/lush.nvim'},
+    event = 'VeryLazy',
     config = function()
       -- vim.cmd('colorscheme rosebones')
       vim.g.darkness = 'stark'
     end
-  }
+  },
 }
