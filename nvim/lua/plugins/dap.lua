@@ -75,6 +75,7 @@ return {
     },
   },
   keys = {
+    {'<leader>Td', function() require('neotest').run.run({strategy = 'dap'}) end, desc = desc('Debug Nearest')},
     {'<leader>dB', function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = desc('Breakpoint Condition')},
     {'<leader>db', function() require('dap').toggle_breakpoint() end, desc = desc('Toggle Breakpoint')},
     {'<leader>dc', function() require('dap').continue() end, desc = desc('Continue')},
