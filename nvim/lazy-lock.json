@@ -37,6 +37,8 @@
   "neogen": { "branch": "main", "commit": "0daffcec249bf42275e322361fe55b89a05ff278" },
   "neotest": { "branch": "master", "commit": "5caac5cc235d495a2382bc2980630ef36ac87032" },
   "neotest-jest": { "branch": "main", "commit": "514fd4eae7da15fd409133086bb8e029b65ac43f" },
+  "neotest-playwright": { "branch": "master", "commit": "39968792371cb48d395dc54c0498b7373ef73986" },
+  "neotest-vitest": { "branch": "main", "commit": "6965a714793d9d156dadbe734c99b3a307f65c61" },
   "nui.nvim": { "branch": "main", "commit": "cbd2668414331c10039278f558630ed19b93e69b" },
   "nvim-cmp": { "branch": "main", "commit": "ce16de5665c766f39c271705b17fff06f7bcb84f" },
   "nvim-dap": { "branch": "master", "commit": "6ae8a14828b0f3bff1721a35a1dfd604b6a933bb" },

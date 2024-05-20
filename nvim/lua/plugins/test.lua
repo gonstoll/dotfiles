@@ -7,7 +7,7 @@ return {
     keys = {
       {'<leader>TN', '<cmd>TestNearest<cr>', desc = vim_test_desc('Run nearest test')},
       {'<leader>TF', '<cmd>TestFile<cr>', desc = vim_test_desc('Run all tests in file')},
-      {'<leader>TS', '<cmd>TestSuite<cr>', desc = vim_test_desc('Run all tests in suite')},
+      {'<leader>TA', '<cmd>TestSuite<cr>', desc = vim_test_desc('Run all tests in suite')},
       {'<leader>TL', '<cmd>TestLast<cr>', desc = vim_test_desc('Run last test')},
       {'<leader>TV', '<cmd>TestVisit<cr>', desc = vim_test_desc('Visit test file')},
     },
@@ -15,7 +15,12 @@ return {
 
   {
     'nvim-neotest/neotest',
-    dependencies = {'nvim-neotest/nvim-nio', 'nvim-neotest/neotest-jest'},
+    dependencies = {
+      'nvim-neotest/nvim-nio',
+      'nvim-neotest/neotest-jest',
+      'marilari88/neotest-vitest',
+      'thenbe/neotest-playwright',
+    },
     keys = {
       {'<leader>Tt', function() require('neotest').run.run(vim.fn.expand('%')) end, desc = neotest_desc('Run File')},
       {'<leader>TT', function() require('neotest').run.run(vim.uv.cwd()) end, desc = neotest_desc('Run All Test Files')},
@@ -42,6 +47,12 @@ return {
           filter_dir = function(name, rel_path, root)
             return name ~= 'node_modules'
           end,
+        }),
+        require('neotest-playwright').adapter({
+          options = {
+            -- persist_project_selection = true,
+            -- enable_dynamic_test_discovery = true,
+          }
         }),
       }
       table.insert(opts, adapters)
