@@ -70,3 +70,12 @@ au({'WinLeave', 'BufLeave'}, {
     vim.cmd('setlocal statusline=%!v:lua.Statusline.inactive()')
   end,
 })
+
+au('TermOpen', {
+  group = ag('custom-term-open', {}),
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.opt_local.scrolloff = 0
+  end,
+})

@@ -28,6 +28,8 @@ vim.opt.foldenable = true -- Enable folding
 
 vim.opt.hlsearch = false -- Highlight on search
 vim.opt.incsearch = true -- While typing a search command, show where the pattern matches
+vim.opt.ignorecase = true -- Ignore case in search patterns
+vim.opt.smartcase = true -- Better search
 
 vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
 vim.opt.formatoptions = vim.o.formatoptions:gsub('cro', '') -- Avoid comments to continue on new lines
@@ -36,7 +38,6 @@ vim.opt.mouse = 'a' -- Enable mouse mode
 vim.opt.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim
 vim.opt.cmdheight = 1 -- More space in the neovim command line for displaying messages
 vim.opt.breakindent = true -- Enable break indent
-vim.opt.ignorecase = true -- Ignore case in search patterns
 vim.opt.smartcase = true -- Override `'ignorecase'` if the search pattern contains upper case characters
 vim.opt.wildignore:append {'*/node_modules/*'} -- Ignore when expanding wildcards, completing file or directory names
 
@@ -46,6 +47,7 @@ vim.opt.laststatus = 3 -- Global statusline when on split
 
 vim.opt.grepprg = 'rg --vimgrep' -- Use ripgrep for grepping
 vim.opt.grepformat = '%f:%l:%c:%m' -- Set the grep format
+vim.opt.inccommand = 'split' -- Show live preview of substitute commands
 
 vim.g.markdown_recommended_style = 0 -- Disable default markdown styles (see https://www.reddit.com/r/neovim/comments/z2lhyz/comment/ixjb7je)
 vim.opt.fillchars = {

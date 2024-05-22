@@ -101,6 +101,7 @@ return {
           PmenuThumb = {bg = theme.ui.bg_p2},
 
           --- misc
+          WinSeparator = {fg = theme.ui.bg_p2},
           TelescopeSelection = {bg = theme.ui.bg_p2},
           CursorLine = {bg = 'none'},
           CursorLineNr = {bold = false},

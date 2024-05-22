@@ -56,3 +56,13 @@ vim.keymap.set('i', '<M-h>', '<left>', {desc = 'Move cursor left'})
 vim.keymap.set('i', '<M-l>', '<right>', {desc = 'Move cursor left'})
 vim.keymap.set('i', '<M-j>', '<down>', {desc = 'Move cursor left'})
 vim.keymap.set('i', '<M-k>', '<up>', {desc = 'Move cursor left'})
+
+-- Easily hit escape in terminal mode.
+vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>')
+vim.keymap.set('n', ',st', function()
+  vim.cmd.new()
+  vim.cmd.wincmd('J')
+  vim.api.nvim_win_set_height(0, 12)
+  vim.wo.winfixheight = true
+  vim.cmd.term()
+end, {desc = 'Open terminal below'})

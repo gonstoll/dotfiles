@@ -7,8 +7,6 @@ alias g="git"
 
 # Neovim
 alias vim="nvim"
-alias nv="nvim"
-alias nvc="nvim ."
 
 # npm aliases
 alias ni="npm install"
