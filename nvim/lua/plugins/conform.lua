@@ -24,7 +24,7 @@ return {
         return
       end
 
-      return {timeout_ms = 500, lsp_fallback = true, async = true}
+      return {timeout_ms = 500, lsp_fallback = true}
     end,
     format_after_save = {lsp_fallback = true},
   },
@@ -33,9 +33,10 @@ return {
     conform.setup(opts)
 
     -- Customize prettier args
-    require('conform.formatters.prettier').args = function(self, ctx)
+    require('conform.formatters.prettier').args = function(_, ctx)
       local prettier_roots = {'.prettierrc', '.prettierrc.json', 'prettier.config.js'}
       local args = {'--stdin-filepath', '$FILENAME'}
+      local config_path = vim.fn.stdpath('config')
 
       local localPrettierConfig = vim.fs.find(prettier_roots, {
         upward = true,
@@ -43,7 +44,7 @@ return {
         type = 'file'
       })[1]
       local globalPrettierConfig = vim.fs.find(prettier_roots, {
-        path = vim.fn.stdpath('config'),
+        path = type(config_path) == 'string' and config_path or config_path[1],
         type = 'file'
       })[1]
       local disableGlobalPrettierConfig = os.getenv('DISABLE_GLOBAL_PRETTIER_CONFIG')

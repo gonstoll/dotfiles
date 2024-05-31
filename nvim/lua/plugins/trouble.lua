@@ -4,11 +4,11 @@ return {
   'folke/trouble.nvim',
   opts = {},
   keys = {
-    {'<leader>yy', function() require('trouble').open() end, desc = desc('Open Trouble')},
-    {'<leader>yw', function() require('trouble').open('workspace_diagnostics') end, desc = desc('Workspace diagnostics')},
-    {'<leader>yd', function() require('trouble').open('document_diagnostics') end, desc = desc('Document diagnostics')},
-    {'<leader>yl', function() require('trouble').open('quickfix') end, desc = desc('Open Trouble in quickfix mode')},
-    {'<leader>yq', function() require('trouble').open('loclist') end, desc = desc('Open Trouble in loclist mode')},
-    {'<leader>gR', function() require('trouble').open('lsp_references') end, desc = desc('Open Trouble in lsp references mode')},
+    {'<leader>xx', '<cmd>Trouble diagnostics toggle<cr>', desc = desc('Diagnostics')},
+    {'<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', desc = desc('Buffer Diagnostics')},
+    {'<leader>xs', '<cmd>Trouble symbols toggle focus=false<cr>', desc = desc('Symbols')},
+    {'<leader>xl', '<cmd>Trouble lsp toggle focus=false win.position=right<cr>', desc = desc('LSP Definitions / references / ...')},
+    {'<leader>xL', '<cmd>Trouble loclist toggle<cr>', desc = desc('Location List')},
+    {'<leader>xQ', '<cmd>Trouble qflist toggle<cr>', desc = desc('Quickfix List')},
   },
 }

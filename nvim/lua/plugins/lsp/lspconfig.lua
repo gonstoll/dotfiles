@@ -31,7 +31,7 @@ M.setup = function()
           underline = true,
           float = {
             border = 'rounded',
-            source = 'always',
+            source = true,
             title = 'Diagnostics',
             max_width = 100,
           },
@@ -69,7 +69,7 @@ M.setup = function()
         })
 
         -- ########################### LSP ###########################
-        local function on_attach(client, bufnr)
+        local function on_attach(_, bufnr)
           local function map(mode, keys, func, description)
             vim.keymap.set(mode, keys, func, {buffer = bufnr, desc = desc(description)})
           end
@@ -152,7 +152,7 @@ M.setup = function()
           vim.lsp.buf.code_action({
             apply = true,
             context = {
-              only = {'source.organizeImports.ts'},
+              only = {'source.organizeImports'},
               diagnostics = {},
             },
           })
@@ -167,7 +167,7 @@ M.setup = function()
           vim.lsp.buf.code_action({
             apply = true,
             context = {
-              only = {'source.removeUnused.ts'},
+              only = {'source.removeUnused'},
               diagnostics = {},
             },
           })
