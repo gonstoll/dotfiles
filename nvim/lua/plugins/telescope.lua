@@ -1,126 +1,5 @@
 local desc = require('utils').plugin_keymap_desc('telescope')
 
-local keys = {
-  {
-    desc = desc('Search Files'),
-    lhs = 'sf',
-    rhs = function() require('telescope').extensions.file_browser.file_browser({path = '%:p:h', hidden = true, respect_gitignore = false,}) end,
-  },
-  {
-    desc = desc('Find files respecting gitignore'),
-    lhs = ';f',
-    rhs = function() require('telescope.builtin').find_files({no_ignore = true, hidden = true}) end,
-  },
-  {
-    desc = desc('Get file diagnostics'),
-    lhs = ';se',
-    rhs = function() require('telescope.builtin').diagnostics({bufnr = 0}) end,
-  },
-  {
-    desc = desc('Search in Current buffer Directory'),
-    lhs = ';cd',
-    rhs = function() require('telescope.builtin').find_files({cwd = require('telescope.utils').buffer_dir()}) end,
-  },
-  {
-    desc = desc('Search Files'),
-    lhs = ';sf',
-    rhs = function() require('telescope.builtin').find_files() end,
-  },
-  {
-    desc = desc('Search by live grep'),
-    lhs = ';sl',
-    rhs = function() require('telescope.builtin').live_grep() end,
-  },
-  {
-    desc = desc('Search Git Files'),
-    lhs = ';gf',
-    rhs = function() require('telescope.builtin').git_files() end,
-  },
-  {
-    desc = desc('Keymaps'),
-    lhs = ';sk',
-    rhs = function() require('telescope.builtin').keymaps() end,
-  },
-  {
-    desc = desc('Search Diagnostics'),
-    lhs = ';sd',
-    rhs = function() require('telescope.builtin').diagnostics() end,
-  },
-  {
-    desc = desc('Search by grep'),
-    lhs = ';sg',
-    rhs = function() require('telescope.builtin').grep_string({search = vim.fn.input('Grep > ')}) end,
-  },
-  {
-    desc = desc('Search word under cursor'),
-    lhs = ';sw',
-    rhs = function() require('telescope.builtin').grep_string({search = vim.fn.expand('<cword>')}) end,
-  },
-  {
-    desc = desc('Search WORD under cursor'),
-    lhs = ';sW',
-    rhs = function() require('telescope.builtin').grep_string({search = vim.fn.expand('<cWORD>')}) end,
-  },
-  {
-    desc = desc('Find recently opened files'),
-    lhs = ';?',
-    rhs = function() require('telescope.builtin').oldfiles() end,
-  },
-  {
-    desc = desc('Find opened buffers in current neovim instance'),
-    lhs = ';l',
-    rhs = function() require('telescope.builtin').buffers() end,
-  },
-  {
-    desc = desc('Search Help'),
-    lhs = ';sh',
-    rhs = function() require('telescope.builtin').help_tags() end,
-  },
-  {
-    desc = desc('Search Colorscheme'),
-    lhs = ';sc',
-    rhs = function() require('telescope.builtin').colorscheme() end,
-  },
-  {
-    desc = desc('Get list of searches'),
-    lhs = ';ss',
-    rhs = function() require('telescope.builtin').search_history() end,
-  },
-  {
-    desc = desc('Fuzzily search in current buffer'),
-    lhs = ';/',
-    rhs = function() require('telescope.builtin').current_buffer_fuzzy_find() end,
-  },
-  {
-    desc = desc('Resume'),
-    lhs = ';;',
-    rhs = function() require('telescope').extensions.resume.resume() end,
-  },
-  {
-    desc = desc('Document Symbols'),
-    lhs = '<leader>ds',
-    rhs = function() require('telescope.builtin').lsp_document_symbols() end,
-  },
-  {
-    desc = desc('Workspace Symbols'),
-    lhs = '<leader>ws',
-    rhs = function() require('telescope.builtin').lsp_dynamic_workspace_symbols() end,
-  },
-  {
-    desc = desc('Goto References'),
-    lhs = 'gr',
-    rhs = function() require('telescope.builtin').lsp_references() end,
-  },
-}
-
-local function get_lazy_keys()
-  local lazy_keys = {}
-  for _, key in ipairs(keys) do
-    table.insert(lazy_keys, {key.lhs, key.rhs, desc = key.desc})
-  end
-  return lazy_keys
-end
-
 return {
   {
     'nvim-telescope/telescope-file-browser.nvim',
@@ -130,19 +9,49 @@ return {
 
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.2',
+    branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-ui-select.nvim',
       {'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},
     },
-    keys = get_lazy_keys(),
+    keys = function()
+      local telescope = require('telescope')
+      local builtin = require('telescope.builtin')
+
+      return {
+        {';?', builtin.oldfiles, desc = desc('Find recently opened files')},
+        {';l', builtin.buffers, desc = desc('Find opened buffers in current neovim instance')},
+        {';/', builtin.current_buffer_fuzzy_find, desc = desc('Fuzzily search in current buffer')},
+        {'gr', builtin.lsp_references, desc = desc('Goto References')},
+        {';sf', builtin.find_files, desc = desc('Search Files')},
+        {';sl', builtin.live_grep, desc = desc('Search by live grep')},
+        {';gf', builtin.git_files, desc = desc('Search Git Files')},
+        {';sk', builtin.keymaps, desc = desc('Keymaps')},
+        {';sd', builtin.diagnostics, desc = desc('Search Diagnostics')},
+        {';sh', builtin.help_tags, desc = desc('Search Help')},
+        {';sc', builtin.colorscheme, desc = desc('Search Colorscheme')},
+        {';ss', builtin.search_history, desc = desc('Get list of searches')},
+        {'<leader>ds', builtin.lsp_document_symbols, desc = desc('Document Symbols')},
+        {'<leader>ws', builtin.lsp_dynamic_workspace_symbols, desc = desc('Workspace Symbols')},
+        {'sf', function() telescope.extensions.file_browser.file_browser({path = '%:p:h', hidden = true, respect_gitignore = false}) end, desc = desc('Search Files')},
+        {';;', function() telescope.extensions.resume.resume() end, desc = desc('Resume')},
+        {';f', function() builtin.find_files({no_ignore = true, hidden = true}) end, desc = desc('Find files respecting gitignore')},
+        {';se', function() builtin.diagnostics({bufnr = 0}) end, desc = desc('Get file diagnostics')},
+        {';cd', function() builtin.find_files({cwd = require('telescope.utils').buffer_dir()}) end, desc = desc('Search in Current buffer Directory')},
+        {';sg', function() builtin.grep_string({search = vim.fn.input('Grep > ')}) end, desc = desc('Search by grep')},
+        {';sw', function() builtin.grep_string({search = vim.fn.expand('<cword>')}) end, desc = desc('Search word under cursor')},
+        {';sW', function() builtin.grep_string({search = vim.fn.expand('<cWORD>')}) end, desc = desc('Search WORD under cursor')},
+      }
+    end,
     cmd = 'Telescope',
     config = function()
       local telescope = require('telescope')
       local actions = require('telescope.actions')
+      local themes = require('telescope.themes')
       local fb_actions = telescope.extensions.file_browser.actions
 
-      telescope.setup {
+      telescope.setup({
         defaults = {
           theme = 'center',
           sorting_strategy = 'ascending',
@@ -154,6 +63,7 @@ return {
           },
         },
         extensions = {
+          ['ui-select'] = {themes.get_dropdown()},
           file_browser = {
             hijack_netrw = false,
             mappings = {
@@ -168,15 +78,11 @@ return {
             },
           },
         },
-      }
+      })
 
       -- Enable telescope fzf native, if installed
       telescope.load_extension('fzf')
       telescope.load_extension('file_browser')
-
-      for _, key in ipairs(keys) do
-        vim.keymap.set('n', key.lhs, key.rhs, {desc = key.desc})
-      end
     end,
   }
 }
