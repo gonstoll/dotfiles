@@ -14,6 +14,7 @@ return {
 
       cursor_fg = '#181616',
       cursor_bg = '#c5c9c5',
+      cursor_border = '#c8c093',
 
       selection_fg = '#181616',
       selection_bg = '#c5c9c5',
