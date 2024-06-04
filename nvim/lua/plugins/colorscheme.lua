@@ -109,7 +109,7 @@ return {
           Title = {bold = false},
           Boolean = {bold = false},
           MatchParen = {bold = false, bg = theme.ui.bg_p2},
-          IblIndent = {fg = theme.ui.bg_p1},
+          IblIndent = {fg = theme.ui.bg_p2},
           IblScope = {fg = theme.ui.whitespace},
           ['@variable.builtin'] = {link = 'Special'},
           ['@lsp.typemod.function.readonly'] = {link = 'Function'},

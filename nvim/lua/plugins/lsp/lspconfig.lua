@@ -99,6 +99,9 @@ M.setup = function()
           map('n', '<leader>f', function()
             require('conform').format({async = true, lsp_fallback = true})
           end, 'Format current buffer with LSP')
+          map('n', '<leader>it', function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({bufnr = bufnr}))
+          end, 'Toggle inlay hints')
 
           map('i', '<C-s>', vim.lsp.buf.signature_help, 'Signature Documentation')
 

@@ -17,6 +17,15 @@ M.setup = function(capabilities, on_attach)
         updateImportsOnFileMove = {
           enabled = 'always',
         },
+        inlayHints = {
+          includeInlayParameterNameHints = 'all',
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
       },
       typescript = {
         format = {
@@ -31,6 +40,15 @@ M.setup = function(capabilities, on_attach)
           didChangeWatchedFiles = {
             dynamicRegistration = true,
           },
+        },
+        inlayHints = {
+          includeInlayParameterNameHints = 'literal',
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = false,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
         },
       },
     },
