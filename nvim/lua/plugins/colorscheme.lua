@@ -1,45 +1,5 @@
 return {
   {
-    'rose-pine/neovim',
-    name = 'rose-pine',
-    event = 'VeryLazy',
-    opts = {
-      styles = {
-        bold = false,
-        transparency = true,
-      },
-      highlight_groups = {
-        -- StatusLine
-        StatusLine = {bg = 'overlay', fg = 'subtle'},
-        --- modes
-        StatusLineAccent = {bg = 'none', fg = 'love'},
-        StatusLineInsertAccent = {bg = 'none', fg = 'gold'},
-        StatusLineVisualAccent = {bg = 'none', fg = 'rose'},
-        StatusLineReplaceAccent = {bg = 'none', fg = 'pine'},
-        StatusLineCmdLineAccent = {bg = 'none', fg = 'foam'},
-        StatusLineTerminalAccent = {bg = 'none', fg = 'iris'},
-        --- gitsigns
-        StatusLineGitSignsAdd = {bg = 'overlay', fg = 'foam'},
-        StatusLineGitSignsChange = {bg = 'overlay', fg = 'rose'},
-        StatusLineGitSignsDelete = {bg = 'overlay', fg = 'love'},
-        --- diagnostics
-        StatusLineDiagnosticSignError = {bg = 'overlay', fg = 'love'},
-        StatusLineDiagnosticSignWarn = {bg = 'overlay', fg = 'gold'},
-        StatusLineDiagnosticSignInfo = {bg = 'overlay', fg = 'foam'},
-        StatusLineDiagnosticSignHint = {bg = 'overlay', fg = 'iris'},
-        StatusLineDiagnosticSignOk = {bg = 'overlay', fg = 'pine'},
-
-        Cursor = {bg = 'text', fg = 'base'},
-        CursorLine = {bg = 'none'},
-      },
-    },
-    config = function(_, opts)
-      require('rose-pine').setup(opts)
-      -- vim.cmd('colorscheme rose-pine')
-    end
-  },
-
-  {
     'rebelot/kanagawa.nvim',
     lazy = false,
     priority = 1000,
@@ -120,19 +80,11 @@ return {
         }
       end,
     },
-    config = function(_, opts)
-      require('kanagawa').setup(opts)
-      vim.cmd('colorscheme kanagawa')
-    end
   },
 
   {
     'mcchrish/zenbones.nvim',
     dependencies = {'rktjmp/lush.nvim'},
     event = 'VeryLazy',
-    config = function()
-      -- vim.cmd('colorscheme rosebones')
-      vim.g.darkness = 'stark'
-    end
   },
 }
