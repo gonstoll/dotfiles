@@ -51,8 +51,9 @@ return {
       foreground = '#545464',
       background = '#f2ecbc',
 
-      cursor_fg = '#f2ecbc',
-      cursor_bg = '#545464',
+      cursor_fg = '#181616',
+      cursor_bg = '#c5c9c5',
+      cursor_border = '#c8c093',
 
       selection_fg = '#f2ecbc',
       selection_bg = '#545464',

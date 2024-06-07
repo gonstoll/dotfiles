@@ -2,7 +2,6 @@ local wezterm = require('wezterm')
 local act = wezterm.action
 local keys = require('utils.keys')
 local fonts = require('fonts')
-
 local gruvbox = require('colors.gruvbox')
 local kanagawa = require('colors.kanagawa')
 
