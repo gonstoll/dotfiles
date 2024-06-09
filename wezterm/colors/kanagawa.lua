@@ -12,12 +12,12 @@ return {
       foreground = '#c5c9c5',
       background = '#181616',
 
-      cursor_fg = '#181616',
-      cursor_bg = '#c5c9c5',
+      cursor_bg = '#c8c093',
+      cursor_fg = '#c8c093',
       cursor_border = '#c8c093',
 
-      selection_fg = '#181616',
-      selection_bg = '#c5c9c5',
+      selection_fg = '#c8c093',
+      selection_bg = '#2d4f67',
 
       scrollbar_thumb = '#16161d',
       split = '#16161d',
