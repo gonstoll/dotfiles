@@ -169,6 +169,8 @@ return {
   cursor_blink_ease_out = 'Constant',
   force_reverse_video_cursor = true,
 
+  underline_thickness = 3.0,
+
   -- Keymaps
   keys = {
     {key = 'c', mods = 'CMD|SHIFT', action = wezterm.action.ActivateCopyMode},

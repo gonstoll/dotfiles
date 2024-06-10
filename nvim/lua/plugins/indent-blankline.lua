@@ -2,30 +2,12 @@ return {
   'lukas-reineke/indent-blankline.nvim',
   event = 'BufReadPre',
   main = 'ibl',
+  enable = false,
   opts = function()
-    -- local isDarkTheme = vim.o.background == 'dark'
-    --
-    -- local darkIndentHighlights = {
-    --   indent = '#4c4846',
-    --   scope = '#928374',
-    -- }
-    --
-    -- local lightIndentHighlights = {
-    --   indent = '#d4be98',
-    --   scope = '#928374',
-    -- }
-    --
-    -- if isDarkTheme then
-    --   vim.api.nvim_set_hl(0, 'IBLIndent', {fg = darkIndentHighlights.indent})
-    --   vim.api.nvim_set_hl(0, 'IBLScope', {fg = darkIndentHighlights.scope})
-    -- else
-    --   vim.api.nvim_set_hl(0, 'IBLIndent', {fg = lightIndentHighlights.indent})
-    --   vim.api.nvim_set_hl(0, 'IBLScope', {fg = lightIndentHighlights.scope})
-    -- end
-
     return {
       indent = {
-        char = '▏',
+        -- char = '▏',
+        char = '',
         highlight = {'IBLIndent'},
       },
       scope = {
