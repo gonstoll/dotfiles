@@ -72,3 +72,6 @@ export CARGO_HOME="$HOME/.config/rust/.cargo"
 if [[ -f $ZSH_PATH/config/custom.zsh ]]; then
   source $ZSH_PATH/config/custom.zsh
 fi
+
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
