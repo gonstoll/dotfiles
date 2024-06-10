@@ -23,7 +23,7 @@ return {
       split = '#16161d',
 
       ansi = {
-        '#181616', -- black
+        '#090618', -- black
         '#c34043', -- red
         '#76946a', -- green
         '#c0a36e', -- yellow

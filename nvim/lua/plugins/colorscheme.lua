@@ -29,7 +29,7 @@ return {
 
         return {
           -- Statusline
-          StatusLine = {bg = theme.ui.bg_p1, fg = theme.ui.fg},
+          StatusLine = {bg = theme.ui.bg_p1, fg = theme.syn.fun},
           --- modes
           StatusLineAccent = {bg = 'none', fg = palette.sakuraPink},
           StatusLineInsertAccent = {bg = 'none', fg = palette.springGreen},
