@@ -72,6 +72,10 @@ local typescript_snippets = {
 }}]], {i(1), i(2), i(3)}),
     })
   }),
+  snippet('ust', fmt('const [{}] = React.useState{}({})', {i(1), i(2), i(3)})),
+  snippet('uef', fmt([[React.useEffect(() => {{
+  {}
+}}, [])]], {i(1)})),
 }
 
 local react_snippets = {
@@ -94,10 +98,6 @@ export function {}({{{}}}: Props) {{
     })
   }),
   snippet('izod', t("import {z} from 'zod'")),
-  snippet('ust', fmt('const [{}] = React.useState{}({})', {i(1), i(2), i(3)})),
-  snippet('uef', fmt([[React.useEffect(() => {{
-  {}
-}}, [])]], {i(1)})),
 }
 
 local merged_snippets = {}

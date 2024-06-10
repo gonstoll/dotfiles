@@ -128,7 +128,7 @@ M.setup = function()
         local lsp_servers = {
           tailwindcss = {capabilities = capabilities, on_attach = on_attach},
           emmet_language_server = {capabilities = capabilities, on_attach = on_attach},
-          bashls = {capabilities = capabilities, on_attach = on_attach},
+          bashls = {capabilities = capabilities, on_attach = on_attach, filetypes = {'sh', 'zsh'}},
           cssls = require('plugins.lsp.configs.cssls').setup(capabilities, on_attach),
           eslint = require('plugins.lsp.configs.eslint').setup(capabilities, on_attach),
           lua_ls = require('plugins.lsp.configs.lua_ls').setup(capabilities, on_attach),

@@ -79,3 +79,10 @@ au('TermOpen', {
     vim.opt_local.scrolloff = 0
   end,
 })
+
+-- au('FileType', {
+--   pattern = {'fugitive', 'netrw', 'qf', 'help'},
+--   callback = function()
+--     vim.keymap.set('n', 'q', vim.cmd.close, {desc = 'Close the current buffer', buffer = true})
+--   end,
+-- })
