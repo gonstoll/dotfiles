@@ -16,11 +16,11 @@ vim.keymap.set('', '<C-l>', '<C-w>l', {desc = 'Move window (right)'})           
 vim.keymap.set('n', '<C-p>', '<cmd>cprev<CR>zz', {desc = 'Previous quickfix item'})
 vim.keymap.set('n', '<C-n>', '<cmd>cnext<CR>zz', {desc = 'Next quickfix item'})
 
--- Resize window
-vim.keymap.set('n', '<C-w><left>', '<C-w><', {desc = 'Resize window (left)'})
-vim.keymap.set('n', '<C-w><right>', '<C-w>>', {desc = 'Resize window (right)'})
-vim.keymap.set('n', '<C-w><up>', '<C-w>+', {desc = 'Resize window (up)'})
-vim.keymap.set('n', '<C-w><down>', '<C-w>-', {desc = 'Resize window (down)'})
+-- Resize splits
+vim.keymap.set('n', '<M-h>', '<C-w>5>', {desc = 'Resize window (left)'})
+vim.keymap.set('n', '<M-l>', '<C-w>5<', {desc = 'Resize window (right)'})
+vim.keymap.set('n', '<M-j>', '<C-w>5-', {desc = 'Resize window (down)'})
+vim.keymap.set('n', '<M-k>', '<C-w>5+', {desc = 'Resize window (up)'})
 
 -- Move lines
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", {desc = 'Move line down'})
@@ -50,12 +50,6 @@ vim.keymap.set('n', '<leader>;h', ':set hlsearch!<CR>', {desc = 'Toggle highligh
 
 -- Save without formatting
 vim.keymap.set('n', ';wf', ':noautocmd w<CR>', {desc = 'Save without formatting'})
-
--- Cursor navigating on insert mode
-vim.keymap.set('i', '<M-h>', '<left>', {desc = 'Move cursor left'})
-vim.keymap.set('i', '<M-l>', '<right>', {desc = 'Move cursor left'})
-vim.keymap.set('i', '<M-j>', '<down>', {desc = 'Move cursor left'})
-vim.keymap.set('i', '<M-k>', '<up>', {desc = 'Move cursor left'})
 
 -- Open terminal below
 vim.keymap.set('n', ',st', function()
