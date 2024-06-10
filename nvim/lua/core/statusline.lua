@@ -55,6 +55,9 @@ local function filepath()
   if fpath == '' or fpath == '.' then
     return ' '
   end
+  if string.find(fpath, 'oil://') then
+    fpath = string.gsub(fpath, 'oil://', '')
+  end
   return string.format('%%<%s/', fpath)
 end
 
@@ -167,8 +170,7 @@ end
 
 function Statusline.oil()
   return table.concat({
-    -- update_mode_colors(),
-    -- mode(),
-    '%#Statusline#  Oil',
+    '%#Statusline#  ',
+    filepath(),
   })
 end
