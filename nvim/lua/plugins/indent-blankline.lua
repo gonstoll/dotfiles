@@ -6,8 +6,7 @@ return {
   opts = function()
     return {
       indent = {
-        -- char = '▏',
-        char = '',
+        char = '▏',
         highlight = {'IBLIndent'},
       },
       scope = {
