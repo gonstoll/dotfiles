@@ -2,7 +2,7 @@ return {
   'lukas-reineke/indent-blankline.nvim',
   event = 'BufReadPre',
   main = 'ibl',
-  enable = false,
+  enabled = false,
   opts = function()
     return {
       indent = {
