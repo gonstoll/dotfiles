@@ -51,7 +51,6 @@ export PATH=$HOME/.local/bin:$PATH
 source $ZSH_PATH/plugins/fzf/fzf.zsh
 source $ZSH_PATH/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source $ZSH_PATH/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source $ZSH_PATH/plugins/iterm2_shell_integration/iterm2_shell_integration.zsh
 
 # Configs
 source $ZSH_PATH/config/options.zsh
