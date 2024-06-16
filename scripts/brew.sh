@@ -45,3 +45,5 @@ brew install tldr
 brew install jq
 brew install orbstack
 brew install tursodatabase/tap/turso
+brew install eza
+brew install bat
