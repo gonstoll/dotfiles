@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "> Setting system defaults"
+echo ">>> Setting system defaults"
 
 # ~/.macos — https://mths.be/macos
 

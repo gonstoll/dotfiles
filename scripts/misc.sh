@@ -1,6 +1,9 @@
 #!/bin/sh
 
-echo "> Installing runtime dependencies"
+echo ">>> Installing runtime dependencies"
+
+# Luarocks
+luarocks install --server=https://luarocks.org/dev luaformatter
 
 # NPM global packages
 npm install -g depcheck eslint prettier prettier-plugin-tailwindss typescript typescript-language-server vscode-langservers-extracted

@@ -1,9 +1,9 @@
 #!/bin/sh
 
-echo "> Installing Homebrew"
+echo ">>> Installing Homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-echo "> Installing Homebrew depedencies"
+echo ">>> Installing Homebrew depedencies"
 brew install --cask iterm2
 
 # Neovim
