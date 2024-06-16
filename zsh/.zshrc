@@ -97,3 +97,6 @@ fi
 
 # Eza (better ls)
 alias ls="eza --icons=always"
+
+# Bat
+export BAT_THEME="base16"
