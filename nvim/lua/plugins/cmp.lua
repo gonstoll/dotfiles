@@ -11,7 +11,7 @@ return {
     'hrsh7th/cmp-calc',
     'hrsh7th/cmp-emoji',
   },
-  event = 'InsertEnter',
+  event = 'VeryLazy',
   config = function()
     local cmp = require('cmp')
     local lspkind = require('lspkind')
