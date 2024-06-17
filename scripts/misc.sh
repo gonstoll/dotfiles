@@ -3,10 +3,14 @@
 echo ">>> Installing runtime dependencies"
 
 # Luarocks
-luarocks install --server=https://luarocks.org/dev luaformatter
+if command -v luarocks >/dev/null 2>&1; then
+  luarocks install --server=https://luarocks.org/dev luaformatter
+fi
 
 # NPM global packages
-npm install -g depcheck eslint prettier prettier-plugin-tailwindss typescript typescript-language-server vscode-langservers-extracted
+if command -v npm >/dev/null 2>&1; then
+  npm install -g depcheck eslint prettier prettier-plugin-tailwindss typescript typescript-language-server vscode-langservers-extracted
+fi
 
 # Bun
 curl -fsSL https://bun.sh/install | bash
