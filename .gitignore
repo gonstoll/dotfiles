@@ -22,4 +22,4 @@ tmux/plugins/
 !/bin/.local/bin/u
 !/bin/.local/bin/tmux-sessionizer
 !/bin/.local/bin/code_extensions
-!/bin/.local/bin/link.prop
+!/bin/.local/bin/stow-dotfiles

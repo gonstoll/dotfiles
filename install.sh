@@ -50,11 +50,25 @@ function install_misc_packages() {
   echo ">>> Finished installing global misc packages"
 }
 
+function install_dotfiles() {
+  STOW_PACKAGES=(bin git iterm2 neofetch nvim tmux vscode wezterm zsh)
+  read -p "Do you want to install package configurations? (y/n) " yn < /dev/tty
+  case $yn in
+    [Yy]* ) stow -v $STOW_PACKAGES; break ;;
+    [Nn]* ) echo ">>> Skipped installing package configurations"; return ;;
+    * ) echo ">>> Incorrect option, skipping"; return ;;
+  esac
+
+  echo ">>> Finished installing package configurations"
+}
+
 install_preferences
 echo ""
 install_packages
 echo ""
 install_misc_packages
+echo ""
+install_dotfiles
 
 cd $HOME # Go home
 
