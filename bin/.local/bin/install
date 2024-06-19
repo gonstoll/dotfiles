@@ -1,0 +1,64 @@
+#!/bin/bash
+
+DOTFILES_DIRECTORY="${HOME}/.dotfiles"
+DOTFILES_TARBALL_PATH="https://github.com/gonstoll/dotfiles/tarball/master"
+DOTFILES_GIT_REMOTE="https://github.com/gonstoll/dotfiles.git"
+
+# If missing, download and extract the dotfiles repository
+if [[ ! -d ${DOTFILES_DIRECTORY} ]]; then
+  printf "$(tput setaf 7)Downloading dotfiles...\033[m\n"
+  mkdir ${DOTFILES_DIRECTORY}
+  # Get the tarball
+  curl -fsSLo ${HOME}/dotfiles.tar.gz ${DOTFILES_TARBALL_PATH}
+  # Extract to the dotfiles directory
+  tar -zxf ${HOME}/dotfiles.tar.gz --strip-components 1 -C ${DOTFILES_DIRECTORY}
+  # Remove the tarball
+  rm -rf ${HOME}/dotfiles.tar.gz
+fi
+
+cd ${DOTFILES_DIRECTORY}
+source ./lib/utils
+chmod +x ./install.sh
+./install.sh
+
+# Test for known flags
+for opt in $@
+do
+  case $opt in
+    --no-packages) no_packages=true ;;
+    --no-sync) no_sync=true ;;
+    -*|--*) e_warning "Warning: invalid option $opt" ;;
+  esac
+done
+
+# Check for git
+if ! type_exists 'git'; then
+  e_header "Updating Homebrew..."
+  brew update
+  e_header "Installing Git..."
+  brew install git
+fi
+
+# Initialize the git repository if it's missing
+if ! is_git_repo; then
+  e_header "Initializing git repository..."
+  git init
+  git remote add origin ${DOTFILES_GIT_REMOTE}
+  git fetch origin master
+  # Reset the index and working tree to the fetched HEAD
+  # (submodules are cloned in the subsequent sync step)
+  git reset --hard FETCH_HEAD
+  # Remove any untracked files
+  git clean -fd
+fi
+
+# Conditionally sync with the remote repository
+if [[ $no_sync ]]; then
+  printf "Skipped dotfiles sync.\n"
+else
+  e_header "Syncing dotfiles..."
+  # Pull down the latest changes
+  git pull --rebase origin master
+  # Update submodules
+  git submodule update --recursive --init --quiet
+fi

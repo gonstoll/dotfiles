@@ -1,5 +1,4 @@
 #!/bin/sh
-# Script heavily inspired by https://github.com/andrew8088/dotfiles/blob/main/install/bootstrap.sh
 
 cd "$(dirname "$0")"
 export DOTFILES=$(pwd -P)
@@ -7,9 +6,10 @@ export DOTFILES=$(pwd -P)
 echo ">> Setup started"
 echo ""
 
-chmod +x $DOTFILES/bin/u
-chmod +x $DOTFILES/bin/code_extensions
-chmod +x $DOTFILES/tmux/bin/toggle-theme.sh
+chmod +x $DOTFILES/bin/.local/bin/u
+chmod +x $DOTFILES/bin/.local/bin/code_extensions
+chmod +x $DOTFILES/bin/.local/bin/stow-dotfiles
+chmod +x $DOTFILES/tmux/.config/tmux/bin/toggle-theme.sh
 
 function install_preferences() {
   read -p "Do you want to install system preferences? (y/n) " yn < /dev/tty
@@ -25,7 +25,7 @@ function install_preferences() {
 function install_packages() {
   read -p "Do you want to install system packages? (y/n) " yn < /dev/tty
   case $yn in
-    [Yy]* ) 
+    [Yy]* )
       echo ">>> Installing Homebrew"
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
@@ -51,66 +51,16 @@ function install_misc_packages() {
   echo ">>> Finished installing global misc packages"
 }
 
-function link_files() {
-  local src=$1 dst=$2
-
-  local skip=
-  local overwrite=
-  local backup=
-  local action=
-
-  if [ -f "$dst" ] || [ -d "$dst" ] || [ -L "$dst" ]
-  then
-
-    local first_line="Path to $dst already exists, what do you want to do?"
-    local second_line="[o]verwrite, [s]kip, [S]kip all, [b]ackup?"
-    read -p "$first_line $second_line " yn < /dev/tty
-
-    case $yn in
-      [S]* ) echo "> Skipped symlinking all duplicated files"; break ;;
-      [s]* ) echo "> Skipped symlinking $(basename "$src")"; skip=true ;;
-      [o]* ) overwrite=true ;;
-      [b]* ) backup=true ;;
-      * ) echo "> Incorrect option, skipping"; skip=true ;;
-    esac
-
-
-    if [ "$overwrite" == "true" ]
-    then
-      rm -rf "$dst"
-      echo "> Removed $dst"
-    fi
-
-    if [ "$backup" == "true" ]
-    then
-      mv "$dst" "${dst}.backup"
-      echo "> Moved $dst to ${dst}.backup"
-    fi
-
-  fi
-
-  if [ "$skip" != "true" ]
-  then
-    ln -s "$src" "$dst"
-    echo "> Linked $1 to $2"
-  fi
-
-  echo ""
-}
-
 function install_dotfiles() {
-  echo "> Installing dotfiles"
+  STOW_PACKAGES=(bin git iterm2 neofetch nvim tmux vscode wezterm zsh)
+  read -p "Do you want to install package configurations? (y/n) " yn < /dev/tty
+  case $yn in
+    [Yy]* ) stow -v "${STOW_PACKAGES[@]}"; break ;;
+    [Nn]* ) echo ">>> Skipped installing package configurations"; return ;;
+    * ) echo ">>> Incorrect option, skipping"; return ;;
+  esac
 
-  find . -name "link.prop" -type f -exec cat {} \; | while IFS= read -r line;
-  do
-    local src=$(eval echo "$line" | cut -d '=' -f 1)
-    local dst=$(eval echo "$line" | cut -d '=' -f 2)
-    local dir=$(dirname "$dst")
-
-    mkdir -p $dir
-
-    link_files "$src" "$dst"
-  done
+  echo ">>> Finished installing package configurations"
 }
 
 install_preferences

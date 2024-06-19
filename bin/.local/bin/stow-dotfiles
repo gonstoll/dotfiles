@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+STOW_PACKAGES=(bin git iterm2 neofetch nvim tmux vscode wezterm zsh)
+
+stow -v "${STOW_PACKAGES[@]}"

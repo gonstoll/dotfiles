@@ -1,4 +1,4 @@
-# Gonzalo Stoll's dotfiles
+## Gonzalo Stoll's dotfiles
 
 <img src="__images/screenshot.png" alt="Dotfiles screenshot" />
 <img src="__images/screenshot2.png" alt="Dotfiles screenshot with debugging tools" />
@@ -8,6 +8,8 @@ take whatever you want from them.
 
 ## Features
 
+Some of the programs and systems used in these dotfiles are:
+
 - Editor - [Neovim](https://neovim.io/)
 - Shell - [Zsh](https://www.zsh.org/)
 - Terminal - [WezTerm](https://wezfurlong.org/wezterm/index.html)
@@ -15,22 +17,20 @@ take whatever you want from them.
 
 ## Installation
 
-Clone this repo and execute the `install` script:
+Execute the following command:
 
 ```bash
-git clone --recurse-submodules https://github.com/gonstoll/dotfiles.git ~/dotfiles
-chmod +x ~/dotfiles/install.sh
-~/dotfiles/install.sh
+bash -c "$(curl -fsSL raw.github.com/gonstoll/dotfiles/master/bin/.local/bin/install)"
 ```
 
 First, this script will let you choose whether to install or not a set of
 scripts for some base configuration:
 
 - [Homebrew](https://brew.sh/) and a set of packages ([find them
-  here](https://github.com/gonstoll/dotfiles/blob/master/bin/brew.sh))
+  here](https://github.com/gonstoll/dotfiles/blob/master/Brewfile))
 - MacOS settings (things like key-repeat rate, menu bar icons. It even features mczachurski's
   [wallpapper](https://github.com/mczachurski/wallpapper) to let you easily setup dynamic wallpapers)
 - Runtime scripts (like `npm` global packages)
 
 Then, it will install the aforementioned features by symlinking them to their
-corresponding locations.
+corresponding locations using [GNU Stow](https://www.gnu.org/software/stow/).

@@ -51,7 +51,6 @@ export PATH=$HOME/.local/bin:$PATH
 source $ZSH_PATH/plugins/fzf/fzf.zsh
 source $ZSH_PATH/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source $ZSH_PATH/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source $ZSH_PATH/plugins/iterm2_shell_integration/iterm2_shell_integration.zsh
 
 # Configs
 source $ZSH_PATH/config/options.zsh
@@ -100,3 +99,14 @@ alias ls="eza --icons=always"
 
 # Bat
 export BAT_THEME="base16"
+
+# Yazi (file manager system)
+# Use yy to change the current directory when exiting yazi
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}

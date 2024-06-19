@@ -18,8 +18,9 @@ custom.zsh
 tmux/plugins/
 
 # Binary files
-/bin/*
-!/bin/u
-!/bin/tmux-sessionizer
-!/bin/code_extensions
-!/bin/link.prop
+/bin/.local/bin/*
+!/bin/.local/bin/u
+!/bin/.local/bin/tmux-sessionizer
+!/bin/.local/bin/code_extensions
+!/bin/.local/bin/stow-dotfiles
+!/bin/.local/bin/install

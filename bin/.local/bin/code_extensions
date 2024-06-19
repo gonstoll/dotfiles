@@ -20,7 +20,7 @@ gum style \
 
 selected=$(gum choose "Save VSCode extensions" "Install VSCode extensions" "Exit")
 dotfiles_dir=$(pwd -P)
-extensios_dir=$dotfiles_dir/vscode/extensions
+extensios_dir=$dotfiles_dir/vscode/Library/Application\ Support/Code/User/extensions
 
 if [[ $# -eq 1 ]] || [[ $selected == "Exit" ]]; then
   exit 1
