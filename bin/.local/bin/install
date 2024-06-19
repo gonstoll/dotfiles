@@ -1,0 +1,21 @@
+#!/bin/bash
+
+DOTFILES_DIRECTORY="${HOME}/.dotfiles"
+DOTFILES_TARBALL_PATH="https://github.com/gonstoll/dotfiles/tarball/master"
+DOTFILES_GIT_REMOTE="git@github.com:gonstoll/dotfiles.git"
+
+# If missing, download and extract the dotfiles repository
+if [[ ! -d ${DOTFILES_DIRECTORY} ]]; then
+    printf "$(tput setaf 7)Downloading dotfiles...\033[m\n"
+    mkdir ${DOTFILES_DIRECTORY}
+    # Get the tarball
+    curl -fsSLo ${HOME}/dotfiles.tar.gz ${DOTFILES_TARBALL_PATH}
+    # Extract to the dotfiles directory
+    tar -zxf ${HOME}/dotfiles.tar.gz --strip-components 1 -C ${DOTFILES_DIRECTORY}
+    # Remove the tarball
+    rm -rf ${HOME}/dotfiles.tar.gz
+fi
+
+cd ${DOTFILES_DIRECTORY}
+chmod +x ./install.sh
+./install.sh

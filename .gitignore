@@ -23,3 +23,4 @@ tmux/plugins/
 !/bin/.local/bin/tmux-sessionizer
 !/bin/.local/bin/code_extensions
 !/bin/.local/bin/stow-dotfiles
+!/bin/.local/bin/install

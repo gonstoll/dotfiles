@@ -20,9 +20,8 @@ Some of the programs and systems used in these dotfiles are:
 Execute the following command:
 
 ```bash
-git clone --recurse-submodules https://github.com/gonstoll/dotfiles.git ~/.dotfiles && cd ~/.dotfiles
-chmod +x ./install.sh && ./install.sh
-stow *
+bash -c "$(curl -fsSL
+raw.github.com/gonstoll/dotfiles/master/bin/.local/bin/install)"
 ```
 
 First, this script will let you choose whether to install or not a set of
