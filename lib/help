@@ -1,0 +1,19 @@
+#!/bin/bash
+
+run_help() {
+
+cat <<EOT
+Gonzalo Stoll dotfiles - https://gonzalostoll.com
+
+Usage: $(basename "$0") [options]
+
+Options:
+    -h, --help      Print this help text
+    -l, --list      Print a list of additional software to install
+    --no-packages   Suppress package updates
+    --no-sync       Suppress pulling from the remote repository
+
+Documentation can be found at https://github.com/gonstoll/dotfiles/
+EOT
+
+}
