@@ -9,7 +9,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-ZSHRC_PATH="$(readlink $HOME/.config/zsh)/.zshrc" # get the path of the .zshrc symlink
+ZSHRC_PATH="$(readlink -f - $HOME/.config/zsh)/.zshrc" # get the path of the .zshrc symlink
 ZSH_PATH=$(dirname $ZSHRC_PATH) # get the path of the zsh folder
 
 # History
@@ -63,7 +63,8 @@ eval "$(zoxide init zsh)"
 export T_FZF_BORDER_LABEL='tmux finder'
 export FZF_TMUX_OPTS="-p 100%,100%"
 
-# Fzf (taken from https://github.com/josean-dev/dev-environment-files/blob/main/.zshrc#L75-L93)
+# Fzf
+source <(fzf --zsh)
 show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 
@@ -115,3 +116,6 @@ function yy() {
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
+
+# Use fzf for history search
+bindkey '^R' fzf-history-widget
