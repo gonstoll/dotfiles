@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
 STOW_PACKAGES=(bin git iterm2 neofetch nvim tmux vscode wezterm zsh)
 

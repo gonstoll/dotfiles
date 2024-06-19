@@ -20,8 +20,10 @@ tmux/.config/tmux/plugins/*
 
 # Binary files
 /bin/.local/bin/*
-!/bin/.local/bin/u
-!/bin/.local/bin/tmux-sessionizer
+!/bin/.local/bin/arc
 !/bin/.local/bin/code_extensions
+!/bin/.local/bin/dotfiles
+!/bin/.local/bin/osxdefaults
 !/bin/.local/bin/stow-dotfiles
-!/bin/.local/bin/install
+!/bin/.local/bin/tmux-sessionizer
+!/bin/.local/bin/u

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+run_list() {
+
+cat <<EOT
+
+Gonzalo Stoll dotfiles - https://gonzalostoll.com
+
+Additional software to install
+
+Browsers:
+  Arc
+
+Other:
+  Raycast
+  Notion
+EOT
+
+}
