@@ -110,3 +110,8 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
+
+# Edit command line in vim
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
