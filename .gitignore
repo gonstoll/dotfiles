@@ -15,7 +15,8 @@ custom.zsh
 !/system/wallpapers/images/*/output.heic
 
 # tmux
-tmux/plugins/
+tmux/.config/tmux/plugins/*
+!/tmux/.config/tmux/plugins/tpm
 
 # Binary files
 /bin/.local/bin/*

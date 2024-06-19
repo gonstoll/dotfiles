@@ -10,3 +10,6 @@
 [submodule "system/wallpapers/wallpapper"]
 	path = system/wallpapers/wallpapper
 	url = https://github.com/mczachurski/wallpapper
+[submodule "tmux/.config/tmux/plugins/tpm"]
+	path = tmux/.config/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
