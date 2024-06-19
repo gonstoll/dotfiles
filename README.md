@@ -20,8 +20,7 @@ Some of the programs and systems used in these dotfiles are:
 Execute the following command:
 
 ```bash
-bash -c "$(curl -fsSL
-raw.github.com/gonstoll/dotfiles/master/bin/.local/bin/install)"
+bash -c "$(curl -fsSL raw.github.com/gonstoll/dotfiles/master/bin/.local/bin/install)"
 ```
 
 First, this script will let you choose whether to install or not a set of

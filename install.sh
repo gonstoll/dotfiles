@@ -6,8 +6,9 @@ export DOTFILES=$(pwd -P)
 echo ">> Setup started"
 echo ""
 
-chmod +x $DOTFILES/bin/u
-chmod +x $DOTFILES/bin/code_extensions
+chmod +x $DOTFILES/bin/.local/bin/u
+chmod +x $DOTFILES/bin/.local/bin/code_extensions
+chmod +x $DOTFILES/bin/.local/bin/stow-dotfiles
 chmod +x $DOTFILES/tmux/bin/toggle-theme.sh
 
 function install_preferences() {
