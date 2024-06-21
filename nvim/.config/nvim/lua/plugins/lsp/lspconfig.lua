@@ -133,18 +133,19 @@ M.setup = function()
           eslint = require('plugins.lsp.configs.eslint').setup(capabilities, on_attach),
           lua_ls = require('plugins.lsp.configs.lua_ls').setup(capabilities, on_attach),
           vtsls = require('plugins.lsp.configs.vtsls').setup(capabilities, on_attach),
+          -- tsserver = require('plugins.lsp.configs.tsserver').setup(capabilities, on_attach),
         }
 
         for server_name, server_config in pairs(lsp_servers) do
           lspconfig[server_name].setup(server_config)
         end
 
-        vim.keymap.set('n', '<leader>ef', ':EslintFixAll<CR>', {desc = 'Eslint: Fix all'})
-
-        -- ########################### TYPESCRIPT ###########################
-        local ts_keys = lsp_servers.vtsls.keys
-        for _, key in ipairs(ts_keys) do
-          vim.keymap.set('n', key[1], key[2], {desc = key.desc})
+        for _, server_config in pairs(lsp_servers) do
+          if server_config.keys then
+            for _, key in ipairs(server_config.keys) do
+              vim.keymap.set('n', key[1], key[2], {desc = key.desc})
+            end
+          end
         end
       end,
     },
