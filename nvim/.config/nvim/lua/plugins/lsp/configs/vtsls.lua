@@ -1,21 +1,6 @@
 local desc = require('utils').plugin_keymap_desc('typescript')
+local lsp_utils = require('plugins.lsp.utils')
 local M = {}
-
-local function execute(opts)
-  local params = {
-    command = opts.command,
-    arguments = opts.arguments,
-  }
-  if opts.open then
-    require('trouble').open({
-      mode = 'lsp_command',
-      params = params,
-    })
-  else
-    return vim.lsp.buf_request(0, 'workspace/executeCommand', params, opts.handler)
-  end
-end
-
 
 M.setup = function(capabilities, on_attach)
   return {
@@ -72,7 +57,7 @@ M.setup = function(capabilities, on_attach)
         '<leader>tD',
         function()
           local params = vim.lsp.util.make_position_params()
-          execute({
+          lsp_utils.execute({
             command = 'typescript.goToSourceDefinition',
             arguments = {params.textDocument.uri, params.position},
             open = true,
@@ -83,7 +68,7 @@ M.setup = function(capabilities, on_attach)
       {
         '<leader>tr',
         function()
-          execute({
+          lsp_utils.execute({
             command = 'typescript.findAllFileReferences',
             arguments = {vim.uri_from_bufnr(0)},
             open = true,
@@ -115,7 +100,7 @@ M.setup = function(capabilities, on_attach)
             },
           })
         end,
-        desc = desc('Organize imports'),
+        desc = desc('Add missing imports'),
       },
       {
         '<leader>tR',
@@ -146,7 +131,7 @@ M.setup = function(capabilities, on_attach)
       {
         '<leader>tt',
         function()
-          execute({command = 'typescript.selectTypeScriptVersion'})
+          lsp_utils.execute({command = 'typescript.selectTypeScriptVersion'})
         end,
         desc = desc('Select typescript version'),
       },
