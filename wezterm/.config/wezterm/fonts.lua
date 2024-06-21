@@ -5,19 +5,19 @@ M.getFonts = function(fontFamily)
   local families = {
     sf = {
       family = 'SFMono Nerd Font',
-      weight = 450,
+      weight = 'Regular',
       italic = false,
       stretch = 'Normal',
     },
     jetbrains = {
       family = 'JetBrainsMono Nerd Font',
-      weight = 400,
+      weight = 'Light',
       italic = false,
       stretch = 'Normal',
     },
     fira = {
       family = 'FiraCode Nerd Font',
-      weight = 450,
+      weight = 'Regular',
       italic = false,
       stretch = 'Normal',
     },

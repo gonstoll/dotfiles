@@ -81,10 +81,10 @@ return {
     {'<leader>dc', function() require('dap').continue() end, desc = desc('Continue')},
     {'<leader>dC', function() require('dap').run_to_cursor() end, desc = desc('Run to Cursor')},
     {'<leader>dg', function() require('dap').goto_() end, desc = desc('Go to line (no execute)')},
-    {'<leader>di', function() require('dap').step_into() end, desc = desc('Step Into')},
     {'<leader>dj', function() require('dap').down() end, desc = desc('Down')},
     {'<leader>dk', function() require('dap').up() end, desc = desc('Up')},
     {'<leader>dl', function() require('dap').run_last() end, desc = desc('Run Last')},
+    {'<leader>di', function() require('dap').step_into() end, desc = desc('Step Into')},
     {'<leader>dO', function() require('dap').step_out() end, desc = desc('Step Out')},
     {'<leader>do', function() require('dap').step_over() end, desc = desc('Step Over')},
     {'<leader>dp', function() require('dap').pause() end, desc = desc('Pause')},
@@ -141,8 +141,8 @@ return {
           type = 'pwa-node',
           request = 'launch',
           program = '${file}',
-          -- cwd = vim.fn.getcwd(),
           cwd = '${workspaceFolder}',
+          args = {'${file}'},
           sourceMaps = true,
           sourceMapPathOverrides = {
             ['./*'] = '${workspaceFolder}/src/*',
@@ -205,6 +205,10 @@ return {
           protocol = 'inspector',
           sourceMaps = true,
           userDataDir = false,
+          resolveSourceMapLocations = {
+            '${workspaceFolder}/**',
+            '!**/node_modules/**',
+          },
 
           -- From https://github.com/lukas-reineke/dotfiles/blob/master/vim/lua/plugins/dap.lua
           -- To test how it behaves
