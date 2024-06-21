@@ -132,7 +132,6 @@ M.setup = function()
           cssls = require('plugins.lsp.configs.cssls').setup(capabilities, on_attach),
           eslint = require('plugins.lsp.configs.eslint').setup(capabilities, on_attach),
           lua_ls = require('plugins.lsp.configs.lua_ls').setup(capabilities, on_attach),
-          -- tsserver = require('plugins.lsp.configs.tsserver').setup(capabilities, on_attach),
           vtsls = require('plugins.lsp.configs.vtsls').setup(capabilities, on_attach),
         }
 
@@ -147,95 +146,6 @@ M.setup = function()
         for _, key in ipairs(ts_keys) do
           vim.keymap.set('n', key[1], key[2], {desc = key.desc})
         end
-
-        -- local function typescript_keymap(user_command, lsp_command, description)
-        --   vim.keymap.set('n', user_command, lsp_command, {desc = 'Typescript: ' .. description})
-        -- end
-        --
-        -- local function execute(opts)
-        --   local params = {
-        --     command = opts.command,
-        --     arguments = opts.arguments,
-        --   }
-        --   if opts.open then
-        --     require('trouble').open({
-        --       mode = 'lsp_command',
-        --       params = params,
-        --     })
-        --   else
-        --     return vim.lsp.buf_request(0, 'workspace/executeCommand', params, opts.handler)
-        --   end
-        -- end
-        --
-        -- local function go_to_source_def()
-        --   local params = vim.lsp.util.make_position_params()
-        --   execute({
-        --     command = 'typescript.goToSourceDefinition',
-        --     arguments = {params.textDocument.uri, params.position},
-        --     open = true,
-        --   })
-        -- end
-        --
-        -- local function find_all_file_refs()
-        --   execute({
-        --     command = 'typescript.findAllFileReferences',
-        --     arguments = {vim.uri_from_bufnr(0)},
-        --     open = true,
-        --   })
-        -- end
-        --
-        -- local function organize_imports()
-        --   vim.lsp.buf.code_action({
-        --     apply = true,
-        --     context = {
-        --       only = {'source.organizeImports'},
-        --       diagnostics = {},
-        --     },
-        --   })
-        -- end
-        --
-        -- local function add_missing_imports()
-        --   vim.lsp.buf.code_action({
-        --     apply = true,
-        --     context = {
-        --       only = {'source.addMissingImports.ts'},
-        --       diagnostics = {},
-        --     },
-        --   })
-        -- end
-        --
-        --
-        -- local function remove_unused_imports()
-        --   vim.lsp.buf.code_action({
-        --     apply = true,
-        --     context = {
-        --       only = {'source.removeUnused.ts'},
-        --       diagnostics = {},
-        --     },
-        --   })
-        -- end
-        --
-        -- local function fix_all()
-        --   vim.lsp.buf.code_action({
-        --     apply = true,
-        --     context = {
-        --       only = {'source.fixAll.ts'},
-        --       diagnostics = {},
-        --     },
-        --   })
-        -- end
-        --
-        -- local function select_ts_version()
-        --   execute({command = 'typescript.selectTypeScriptVersion'})
-        -- end
-        --
-        -- typescript_keymap('<leader>tD', go_to_source_def, 'Go to source definition')
-        -- typescript_keymap('<leader>tr', find_all_file_refs, 'Find all file references')
-        -- typescript_keymap('<leader>to', organize_imports, 'Organize imports')
-        -- typescript_keymap('<leader>ta', add_missing_imports, 'Add missing imports')
-        -- typescript_keymap('<leader>tR', remove_unused_imports, 'Remove unused imports')
-        -- typescript_keymap('<leader>tf', fix_all, 'Fix all')
-        -- typescript_keymap('<leader>tt', select_ts_version, 'Select typescript version')
       end,
     },
   }
