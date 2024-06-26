@@ -1,32 +1,29 @@
 local utils = require('utils')
-local ag = vim.api.nvim_create_augroup
-local au = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
 
 -- Highlight yanked text
-local highlight_group = ag('YankHighlight', {clear = true})
-au('TextYankPost', {
+autocmd('TextYankPost', {
+  pattern = '*',
+  group = augroup('YankHighlight', {}),
   callback = function()
     vim.highlight.on_yank()
   end,
-  group = highlight_group,
-  pattern = '*',
 })
 
 -- Disable eslint on node_modules
-local disable_node_modules_eslint_group = ag('DisableEslintOnNodeModules', {clear = true})
-au({'BufNewFile', 'BufRead'}, {
+autocmd({'BufNewFile', 'BufRead'}, {
   pattern = {'**/node_modules/**', 'node_modules', '/node_modules/*'},
+  group = augroup('DisableEslintOnNodeModules', {}),
   callback = function()
     vim.diagnostic.disable(0)
   end,
-  group = disable_node_modules_eslint_group,
 })
 
 -- Fugitive keymaps
-local fugitive_group = ag('Fugitive', {})
-au('BufWinEnter', {
-  group = fugitive_group,
+autocmd('BufWinEnter', {
   pattern = '*',
+  group = augroup('Fugitive', {}),
   callback = function()
     if (vim.bo.filetype ~= 'fugitive') then
       return
@@ -51,8 +48,8 @@ vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')
 vim.cmd('autocmd BufEnter * :lua require("lazygit.utils").project_root_dir()')
 
 -- Statusline
-local statusline_group = ag('StatusLine', {})
-au({'WinEnter', 'BufEnter'}, {
+local statusline_group = augroup('StatusLine', {})
+autocmd({'WinEnter', 'BufEnter'}, {
   pattern = '*',
   group = statusline_group,
   callback = function()
@@ -64,7 +61,7 @@ au({'WinEnter', 'BufEnter'}, {
   end,
 })
 
-au({'WinLeave', 'BufLeave'}, {
+autocmd({'WinLeave', 'BufLeave'}, {
   pattern = '*',
   group = statusline_group,
   callback = function()
@@ -72,8 +69,8 @@ au({'WinLeave', 'BufLeave'}, {
   end,
 })
 
-au('TermOpen', {
-  group = ag('custom-term-open', {}),
+autocmd('TermOpen', {
+  group = augroup('custom-term-open', {}),
   callback = function()
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
@@ -88,8 +85,8 @@ au('TermOpen', {
 --   end,
 -- })
 
-au('LspAttach', {
-  group = ag('lsp-attach', {}),
+autocmd('LspAttach', {
+  group = augroup('lsp-attach', {}),
   callback = function(opts)
     local bufnr = opts.buf
     local function keyset(mode, keys, func, desc)
