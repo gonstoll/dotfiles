@@ -21,7 +21,7 @@ return {
 
       return {
         {';?', builtin.oldfiles, desc = desc('Find recently opened files')},
-        {';l', builtin.buffers, desc = desc('Find opened buffers in current neovim instance')},
+        {';;', builtin.buffers, desc = desc('Find opened buffers in current neovim instance')},
         {';/', builtin.current_buffer_fuzzy_find, desc = desc('Fuzzily search in current buffer')},
         {'gr', builtin.lsp_references, desc = desc('Goto References')},
         {';sl', builtin.live_grep, desc = desc('Search by live grep')},
@@ -34,7 +34,6 @@ return {
         {'<leader>ds', builtin.lsp_document_symbols, desc = desc('Document Symbols')},
         {'<leader>ws', builtin.lsp_dynamic_workspace_symbols, desc = desc('Workspace Symbols')},
         {'sf', function() telescope.extensions.file_browser.file_browser({path = '%:p:h', hidden = true, respect_gitignore = false}) end, desc = desc('Search Files')},
-        {';;', function() telescope.extensions.resume.resume() end, desc = desc('Resume')},
         {';f', function() builtin.find_files({no_ignore = true, hidden = true}) end, desc = desc('Find files not respecting gitignore')},
         {';sf', function() builtin.find_files({find_command = {'rg', '--files', '--hidden', '--ignore', '-g', '!.git'}}) end, desc = desc('Search files respecting gitignore')},
         {';cd', function() builtin.find_files({cwd = require('telescope.utils').buffer_dir()}) end, desc = desc('Search in Current buffer Directory')},
