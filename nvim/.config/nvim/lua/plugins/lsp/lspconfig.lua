@@ -22,7 +22,7 @@ M.setup = function()
     {
       'neovim/nvim-lspconfig',
       event = {'BufReadPost', 'BufNewFile', 'BufWritePre'},
-      dependencies = {'folke/neodev.nvim'},
+      dependencies = {'folke/neodev.nvim', 'davidosomething/format-ts-errors.nvim'},
       config = function()
         vim.diagnostic.config({
           virtual_text = true,
