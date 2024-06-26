@@ -1,9 +1,8 @@
 local M = {}
 
-M.setup = function(capabilities, on_attach)
+M.setup = function(capabilities)
   return {
     capabilities = capabilities,
-    on_attach = on_attach,
     settings = {
       Lua = {
         hint = {enable = true},

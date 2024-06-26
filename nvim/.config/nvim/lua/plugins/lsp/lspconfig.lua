@@ -1,4 +1,3 @@
-local desc = require('utils').plugin_keymap_desc('LSP')
 local M = {}
 
 M.setup = function()
@@ -68,56 +67,6 @@ M.setup = function()
         })
 
         -- ########################### LSP ###########################
-        local function on_attach(_, bufnr)
-          local function map(mode, keys, func, description)
-            vim.keymap.set(mode, keys, func, {buffer = bufnr, desc = desc(description)})
-          end
-
-          map('n', '<leader>rn', vim.lsp.buf.rename, 'Rename')
-          map('n', '<leader>ca', vim.lsp.buf.code_action, 'Code Action')
-          map('n', 'gd', vim.lsp.buf.definition, 'Goto Definition')
-          map('n', 'gD', vim.lsp.buf.declaration, 'Goto Declaration')
-          map('n', 'gi', vim.lsp.buf.implementation, 'Goto Implementation')
-          map('n', 'gl', vim.diagnostic.open_float, 'Open diagnostics')
-          map('n', '[d', function()
-            vim.diagnostic.goto_prev()
-            vim.cmd('normal! zz')
-          end, 'Previous diagnostic')
-          map('n', ']d', function()
-            vim.diagnostic.goto_next()
-            vim.cmd('normal! zz')
-          end, 'Next diagnostic')
-          map('n', '<leader>td', vim.lsp.buf.type_definition, 'Type Definition')
-          map('n', '<leader>hd', vim.lsp.buf.hover, 'Hover Documentation')
-          map('n', '<leader>sd', vim.lsp.buf.signature_help, 'Signature Documentation')
-          map('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, 'Workspace Add Folder')
-          map('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, 'Workspace Remove Folder')
-          map('n', '<leader>wl', function()
-            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-          end, 'Workspace List Folders')
-          map('n', '<leader>f', function()
-            require('conform').format({async = true, lsp_fallback = true})
-          end, 'Format current buffer with LSP')
-          map('n', '<leader>it', function()
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({bufnr = bufnr}))
-          end, 'Toggle inlay hints')
-
-          map('i', '<C-s>', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-          -- Create a command `:Format` local to the LSP buffer
-          vim.api.nvim_create_user_command('Format', function(args)
-            local range = nil
-            if args.count ~= -1 then
-              local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
-              range = {
-                start = {args.line1, 0},
-                ['end'] = {args.line2, end_line:len()},
-              }
-            end
-            require('conform').format({async = true, lsp_fallback = true, range = range})
-          end, {range = true})
-        end
-
         local lspconfig = require('lspconfig')
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -125,14 +74,14 @@ M.setup = function()
         capabilities.textDocument.foldingRange = {dynamicRegistration = false, lineFoldingOnly = true}
 
         local lsp_servers = {
-          tailwindcss = {capabilities = capabilities, on_attach = on_attach},
-          emmet_language_server = {capabilities = capabilities, on_attach = on_attach},
-          bashls = {capabilities = capabilities, on_attach = on_attach, filetypes = {'sh', 'zsh'}},
-          cssls = require('plugins.lsp.configs.cssls').setup(capabilities, on_attach),
-          eslint = require('plugins.lsp.configs.eslint').setup(capabilities, on_attach),
-          lua_ls = require('plugins.lsp.configs.lua_ls').setup(capabilities, on_attach),
-          vtsls = require('plugins.lsp.configs.vtsls').setup(capabilities, on_attach),
-          -- tsserver = require('plugins.lsp.configs.tsserver').setup(capabilities, on_attach),
+          tailwindcss = {capabilities = capabilities},
+          emmet_language_server = {capabilities = capabilities},
+          bashls = {capabilities = capabilities, filetypes = {'sh', 'zsh'}},
+          cssls = require('plugins.lsp.configs.cssls').setup(capabilities),
+          eslint = require('plugins.lsp.configs.eslint').setup(capabilities),
+          lua_ls = require('plugins.lsp.configs.lua_ls').setup(capabilities),
+          vtsls = require('plugins.lsp.configs.vtsls').setup(capabilities),
+          -- tsserver = require('plugins.lsp.configs.tsserver').setup(capabilities),
         }
 
         for server_name, server_config in pairs(lsp_servers) do

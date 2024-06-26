@@ -1,10 +1,9 @@
 local desc = require('utils').plugin_keymap_desc('eslint')
 local M = {}
 
-M.setup = function(capabilities, on_attach)
+M.setup = function(capabilities)
   return {
     capabilities = capabilities,
-    on_attach = on_attach,
     settings = {format = false},
     keys = {
       {

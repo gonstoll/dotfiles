@@ -2,10 +2,9 @@ local desc = require('utils').plugin_keymap_desc('typescript')
 local lsp_utils = require('plugins.lsp.utils')
 local M = {}
 
-M.setup = function(capabilities, on_attach)
+M.setup = function(capabilities)
   return {
     capabilities = capabilities,
-    on_attach = on_attach,
     flags = {
       allow_incremental_sync = false,
     },
