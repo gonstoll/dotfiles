@@ -58,6 +58,7 @@ local function filepath()
   if string.find(fpath, 'oil://') then
     fpath = string.gsub(fpath, 'oil://', '')
   end
+  fpath = fpath:gsub(vim.env.HOME, '~', 1)
   return string.format('%%<%s/', fpath)
 end
 
