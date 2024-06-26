@@ -32,13 +32,12 @@ M.setup = function()
           float = {
             border = 'rounded',
             source = true,
-            title = 'Diagnostics',
             max_width = 100,
           },
         })
 
         vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
-          config = require('utils').merge_table(config or {}, {border = 'rounded', title = 'Hover', max_width = 100})
+          config = require('utils').merge_table(config or {}, {border = 'rounded', max_width = 100})
           config.focus_id = ctx.method
           if not (result and result.contents) then
             return
