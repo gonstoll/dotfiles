@@ -1,6 +1,11 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# custom zsh configurations
+if [[ -f $ZSH_PATH/config/custom.zsh ]]; then
+  source $ZSH_PATH/config/custom.zsh
+fi
+
 # Powerlevel10k
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh//.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -89,11 +94,6 @@ _fzf_comprun() {
 # rust
 export RUSTUP_HOME="$HOME/.config/rust/.rustup"
 export CARGO_HOME="$HOME/.config/rust/.cargo"
-
-# custom zsh configurations override the default ones
-if [[ -f $ZSH_PATH/config/custom.zsh ]]; then
-  source $ZSH_PATH/config/custom.zsh
-fi
 
 # Eza (better ls)
 alias ls="eza --icons=always"
