@@ -22,7 +22,7 @@ M.setup = function()
     {
       'neovim/nvim-lspconfig',
       event = {'BufReadPost', 'BufNewFile', 'BufWritePre'},
-      dependencies = {'folke/neodev.nvim', 'davidosomething/format-ts-errors.nvim'},
+      dependencies = {'davidosomething/format-ts-errors.nvim'},
       config = function()
         vim.diagnostic.config({
           virtual_text = true,
@@ -60,13 +60,6 @@ M.setup = function()
           vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
         end
 
-        -- ########################### NEODEV ###########################
-        local neodev = require('neodev')
-        neodev.setup({
-          library = {plugins = {'nvim-dap-ui'}, types = true},
-        })
-
-        -- ########################### LSP ###########################
         local lspconfig = require('lspconfig')
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
