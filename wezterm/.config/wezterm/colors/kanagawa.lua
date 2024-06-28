@@ -23,28 +23,28 @@ return {
       split = '#16161d',
 
       ansi = {
-        '#090618', -- black
-        '#c34043', -- red
-        '#76946a', -- green
-        '#c0a36e', -- yellow
-        '#7e9cd8', -- blue
-        '#d27e99', -- magenta
-        '#6a9589', -- cyan
-        '#c5c9c5', -- white
+        '#0d0c0c', -- black
+        '#c4746e', -- red
+        '#8a9a7b', -- green
+        '#c4b28a', -- yellow
+        '#8ba4b0', -- blue
+        '#a292a3', -- magenta
+        '#8ea4a2', -- cyan
+        '#c8c093', -- white
       },
 
       brights = {
-        '#727169', -- black
-        '#e82424', -- red
-        '#98bb6c', -- green
-        '#e6c384', -- yellow
-        '#7fb4ca', -- blue
-        '#938aa9', -- magenta
-        '#7aa89f', -- cyan
-        '#dcd7ba', -- white
+        '#a6a69c', -- black
+        '#E46876', -- red
+        '#87a987', -- green
+        '#E6C384', -- yellow
+        '#7FB4CA', -- blue
+        '#938AA9', -- magenta
+        '#7AA89F', -- cyan
+        '#c5c9c5', -- white
       },
 
-      indexed = {[16] = '#ffa066', [17] = '#ff5d62'},
+      indexed = {[16] = '#b6927b', [17] = '#b98d7b'},
     },
 
     [theme_names.light] = {
