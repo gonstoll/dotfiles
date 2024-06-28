@@ -176,7 +176,7 @@ return {
     {key = 'c', mods = 'CMD|SHIFT', action = wezterm.action.ActivateCopyMode},
 
     -- Pane navigation
-    {key = 'd', mods = 'CMD', action = wezterm.action.SplitPane({direction = 'Right', size = {Percent = 50}})},
+    -- {key = 'd', mods = 'CMD', action = wezterm.action.SplitPane({direction = 'Right', size = {Percent = 50}})},
     {key = 'd', mods = 'CMD|SHIFT', action = wezterm.action.SplitPane({direction = 'Down', size = {Percent = 50}})},
     {key = 'w', mods = 'CMD', action = wezterm.action.CloseCurrentPane({confirm = true})},
     {key = 'h', mods = 'CTRL|CMD', action = act.ActivatePaneDirection('Left')},
@@ -191,9 +191,9 @@ return {
     -- tmux
     {key = 'e', mods = 'CMD', action = act.Multiple({act.EmitEvent('toggle-gruvbox-theme'), keys.send_tmux_key('e')})},  -- Toggle wezterm and tmux theme
     {key = 'k', mods = 'CMD', action = act.Multiple({act.EmitEvent('toggle-kanagawa-theme'), keys.send_tmux_key('e')})}, -- Toggle wezterm and tmux theme
-    keys.key_to_tmux({mods = 'CMD|SHIFT', key = 'b', tmux_key = 'B'}),                                                   -- Open dotfiles session
     keys.key_to_tmux({mods = 'CMD', key = 's', tmux_key = 'S'}),                                                         -- Open tmux-sessionizer
     keys.key_to_tmux({mods = 'CMD', key = 'j', tmux_key = 'T'}),                                                         -- Open t - tmux smart session manager
+    keys.key_to_tmux({mods = 'CMD', key = 'b', tmux_key = 'B'}),                                                         -- Open dotfiles session
     keys.key_to_tmux({mods = 'CMD', key = '0', tmux_key = '0'}),
     keys.key_to_tmux({mods = 'CMD', key = '1', tmux_key = '1'}),
     keys.key_to_tmux({mods = 'CMD', key = '2', tmux_key = '2'}),
