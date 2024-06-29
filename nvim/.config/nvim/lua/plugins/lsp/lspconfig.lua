@@ -11,6 +11,12 @@ M.setup = function()
     },
 
     {
+      'j-hui/fidget.nvim',
+      event = 'LspAttach',
+      opts = {},
+    },
+
+    {
       'williamboman/mason-lspconfig.nvim',
       event = 'VeryLazy',
       opts = {
