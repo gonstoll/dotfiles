@@ -6,7 +6,7 @@ M.setup = function()
       'williamboman/mason.nvim',
       build = ':MasonUpdate',
       opts = {
-        ui = {border = 'rounded'}
+        ui = {border = 'single'}
       },
     },
 
@@ -35,14 +35,14 @@ M.setup = function()
           severity_sort = true,
           underline = true,
           float = {
-            border = 'rounded',
+            border = 'single',
             source = true,
             max_width = 100,
           },
         })
 
         vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
-          config = require('utils').merge_table(config or {}, {border = 'rounded', max_width = 100})
+          config = require('utils').merge_table(config or {}, {border = 'single', max_width = 100})
           config.focus_id = ctx.method
           if not (result and result.contents) then
             return
@@ -57,7 +57,7 @@ M.setup = function()
 
         vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
           vim.lsp.handlers.signature_help,
-          {title = 'Signature', border = 'rounded', max_width = 100}
+          {title = 'Signature', border = 'single', max_width = 100}
         )
 
         local icons = require('utils.icons')

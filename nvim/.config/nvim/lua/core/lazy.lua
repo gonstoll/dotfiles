@@ -23,7 +23,7 @@ require('lazy').setup('plugins', {
     cache = {enabled = true},
   },
   ui = {
-    border = 'rounded',
+    border = 'single',
     size = {
       width = 0.7,
       height = 0.7,

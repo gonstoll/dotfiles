@@ -41,7 +41,7 @@ return {
         current_line_blame = true,
         current_line_blame_opts = {delay = 500},
         preview_config = {
-          border = 'rounded',
+          border = 'single',
           title = 'Preview changes',
           title_pos = 'center'
         },
