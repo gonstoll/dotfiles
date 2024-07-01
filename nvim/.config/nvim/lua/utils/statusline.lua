@@ -59,6 +59,13 @@ local function filepath()
     fpath = string.gsub(fpath, 'oil://', '')
   end
   fpath = fpath:gsub(vim.env.HOME, '~', 1)
+
+  local is_wide = vim.api.nvim_win_get_width(0) > 80
+
+  if not is_wide then
+    fpath = vim.fn.pathshorten(fpath)
+  end
+
   return string.format('%%<%s/', fpath)
 end
 
