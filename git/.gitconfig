@@ -8,6 +8,7 @@
 	pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
 	st = status
 	br = branch
+  undo = reset --soft HEAD~1
 [init]
   defaultBranch = master
 [pull]
