@@ -1,1 +1,1 @@
-return {'folke/which-key.nvim', event = 'BufReadPre', opts = {}}
+return {'folke/which-key.nvim', event = 'VeryLazy', opts = {}}
