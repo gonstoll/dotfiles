@@ -5,7 +5,25 @@ return {
     'williamboman/mason.nvim',
     build = ':MasonUpdate',
     opts = {
-      ui = {border = 'single'}
+      ui = {border = 'single'},
+    },
+  },
+
+  {
+    'williamboman/mason-lspconfig.nvim',
+    event = 'VeryLazy',
+    opts = {
+      ensure_installed = {
+        'tailwindcss',
+        'cssls',
+        'lua_ls',
+        'eslint',
+        'emmet_language_server',
+        'tsserver',
+        'bashls',
+        'vtsls',
+      },
+      automatic_installation = true,
     },
   },
 
@@ -13,15 +31,6 @@ return {
     'j-hui/fidget.nvim',
     event = 'LspAttach',
     opts = {},
-  },
-
-  {
-    'williamboman/mason-lspconfig.nvim',
-    event = 'VeryLazy',
-    opts = {
-      ensure_installed = {'tailwindcss', 'cssls', 'lua_ls', 'eslint', 'emmet_language_server', 'tsserver', 'bashls'},
-      automatic_installation = true,
-    },
   },
 
   {
