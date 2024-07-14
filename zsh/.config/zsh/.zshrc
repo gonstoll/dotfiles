@@ -76,7 +76,7 @@ export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 # Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
 # - You should make sure to pass the rest of the arguments to fzf.
-_fzf_comprun() {
+function _fzf_comprun() {
   local command=$1
   shift
 
@@ -104,12 +104,12 @@ export BAT_THEME="base16"
 # Yazi (file manager system)
 # Use yy to change the current directory when exiting yazi
 function yy() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
 }
 
 # Edit command line in vim
