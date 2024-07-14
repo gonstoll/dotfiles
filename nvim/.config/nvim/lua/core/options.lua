@@ -58,3 +58,9 @@ vim.opt.fillchars = {
   foldsep = ' ', -- Open fold middle marker
   foldclose = '', -- Folded text
 }
+
+vim.filetype.add({
+  extension = {
+    ['http'] = 'http',
+  },
+})
