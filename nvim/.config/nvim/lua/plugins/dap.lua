@@ -47,7 +47,7 @@ return {
               {id = 'console', size = 1}
             },
             position = 'bottom',
-            size = 8,
+            size = 10,
           }
         },
       },
