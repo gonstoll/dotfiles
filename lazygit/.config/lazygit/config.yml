@@ -1,0 +1,7 @@
+gui:
+  branchColors:
+    'master': red
+  nerdFontsVersion: '3'
+  theme:
+    selectedLineBgColor:
+      - reverse
