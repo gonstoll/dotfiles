@@ -1,7 +1,3 @@
--- Config inspired from https://github.com/nikolovlazar/dotfiles/blob/main/.config/nvim/lua/plugins/dap.lua
--- and Lazyvim's https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/dap/core.lua
--- For further explanation, see https://www.youtube.com/watch?v=Ul_WPhS2bis
-
 local desc = require('utils').plugin_keymap_desc('dap')
 local js_based_languages = {'typescript', 'javascript', 'typescriptreact', 'javascriptreact'}
 
@@ -9,14 +5,11 @@ local js_based_languages = {'typescript', 'javascript', 'typescriptreact', 'java
 local function get_args(config)
   local args = type(config.args) == 'function' and (config.args() or {}) or config.args or {}
   config = vim.deepcopy(config)
-
   ---@cast args string[]
   config.args = function()
-    ---@diagnostic disable-next-line: redundant-parameter
     local new_args = vim.fn.input('Run with args: ', table.concat(args, ' ')) --[[@as string]]
     return vim.split(vim.fn.expand(new_args) --[[@as string]], ' ')
   end
-
   return config
 end
 
@@ -80,6 +73,7 @@ return {
     {'<leader>dB', function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = desc('Breakpoint Condition')},
     {'<leader>db', function() require('dap').toggle_breakpoint() end, desc = desc('Toggle Breakpoint')},
     {'<leader>dc', function() require('dap').continue() end, desc = desc('Continue')},
+    {'<leader>da', function() require('dap').continue({before = get_args}) end, desc = desc('Run with Args')},
     {'<leader>dC', function() require('dap').run_to_cursor() end, desc = desc('Run to Cursor')},
     {'<leader>dg', function() require('dap').goto_() end, desc = desc('Go to line (no execute)')},
     {'<leader>dj', function() require('dap').down() end, desc = desc('Down')},
@@ -93,24 +87,6 @@ return {
     {'<leader>ds', function() require('dap').session() end, desc = desc('Session')},
     {'<leader>dt', function() require('dap').terminate() end, desc = desc('Terminate')},
     {'<leader>dh', function() require('dap.ui.widgets').hover() end, desc = desc('Widgets')},
-    {
-      '<leader>da',
-      function()
-        if vim.fn.filereadable('.vscode/launch.json') then
-          local dap_vscode = require('dap.ext.vscode')
-          dap_vscode.json_decode = require('overseer.json').decode
-          dap_vscode.load_launchjs(nil, {
-            ['chrome'] = js_based_languages,
-            ['node'] = js_based_languages,
-            ['pwa-node'] = js_based_languages,
-            ['pwa-chrome'] = js_based_languages,
-            ['node-terminal'] = js_based_languages,
-          })
-        end
-        require('dap').continue({before = get_args})
-      end,
-      desc = desc('Run with Args'),
-    },
   },
   config = function()
     local dap = require('dap')
@@ -118,8 +94,6 @@ return {
     local icons = require('utils.icons')
 
     dap.listeners.after.event_initialized['dapui_config'] = function() dapui.open({}) end
-    -- dap.listeners.before.event_terminated['dapui_config'] = function() dapui.close({}) end
-    -- dap.listeners.before.event_exited['dapui_config'] = function() dapui.close({}) end
 
     vim.api.nvim_set_hl(0, 'DapStoppedLine', {default = true, link = 'Visual'})
 
@@ -131,8 +105,18 @@ return {
       )
     end
 
-    -- Use overseer for running preLaunchTask and postDebugTask.
-    require('overseer').patch_dap(true)
+    -- setup dap config by VsCode launch.json file
+    local dap_vscode = require('dap.ext.vscode')
+    local json = require('plenary.json')
+    ---@diagnostic disable-next-line: duplicate-set-field
+    dap_vscode.json_decode = function(str)
+      return vim.json.decode(json.json_strip_comments(str, {}))
+    end
+
+    -- Extends dap.configurations with entries read from .vscode/launch.json
+    if vim.fn.filereadable('.vscode/launch.json') then
+      dap_vscode.load_launchjs()
+    end
 
     for _, language in ipairs(js_based_languages) do
       dap.configurations[language] = {
