@@ -1,11 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# custom zsh configurations
-if [[ -f $ZSH_PATH/config/custom.zsh ]]; then
-  source $ZSH_PATH/config/custom.zsh
-fi
-
 # Powerlevel10k
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh//.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -119,3 +114,8 @@ bindkey "^X^E" edit-command-line
 
 # Use fzf for history search
 bindkey '^R' fzf-history-widget
+
+# custom zsh configurations
+if [[ -f $ZSH_PATH/config/custom.zsh ]]; then
+  source $ZSH_PATH/config/custom.zsh
+fi
