@@ -1,5 +1,5 @@
 local desc = require('utils').plugin_keymap_desc('dap')
-local js_based_languages = {'typescript', 'javascript', 'typescriptreact', 'javascriptreact'}
+local js_filetypes = {'typescript', 'javascript', 'typescriptreact', 'javascriptreact'}
 
 ---@param config {args?:string[]|fun():string[]?}
 local function get_args(config)
@@ -95,6 +95,20 @@ return {
 
     dap.listeners.after.event_initialized['dapui_config'] = function() dapui.open({}) end
 
+    if not dap.adapters['node'] then
+      dap.adapters['node'] = function(cb, config)
+        if config.type == 'node' then
+          config.type = 'pwa-node'
+        end
+        local nativeAdapter = dap.adapters['pwa-node']
+        if type(nativeAdapter) == 'function' then
+          nativeAdapter(cb, config)
+        else
+          cb(nativeAdapter)
+        end
+      end
+    end
+
     vim.api.nvim_set_hl(0, 'DapStoppedLine', {default = true, link = 'Visual'})
 
     for name, sign in pairs(icons.dap) do
@@ -118,7 +132,9 @@ return {
       dap_vscode.load_launchjs()
     end
 
-    for _, language in ipairs(js_based_languages) do
+    dap_vscode.type_to_filetypes['node'] = js_filetypes
+
+    for _, language in ipairs(js_filetypes) do
       dap.configurations[language] = {
         -- Debug single nodejs files
         {
