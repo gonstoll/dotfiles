@@ -18,6 +18,9 @@ M.setup = function(capabilities)
         updateImportsOnFileMove = {
           enabled = 'always',
         },
+        preferences = {
+          importModuleSpecifier = 'project-relative',
+        },
         inlayHints = {
           includeInlayParameterNameHints = 'all',
           includeInlayParameterNameHintsWhenArgumentMatchesName = false,
@@ -41,6 +44,9 @@ M.setup = function(capabilities)
           didChangeWatchedFiles = {
             dynamicRegistration = true,
           },
+        },
+        preferences = {
+          importModuleSpecifier = 'project-relative',
         },
         inlayHints = {
           includeInlayParameterNameHints = 'literal',

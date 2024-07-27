@@ -23,7 +23,9 @@ M.setup = function(capabilities)
           insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
         },
         updateImportsOnFileMove = {enabled = 'always'},
-        suggest = {completeFunctionCalls = true},
+        preferences = {
+          importModuleSpecifier = 'project-relative',
+        },
         inlayHints = {
           enumMemberValues = {enabled = true},
           functionLikeReturnTypes = {enabled = true},
@@ -40,7 +42,9 @@ M.setup = function(capabilities)
           insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
         },
         updateImportsOnFileMove = {enabled = 'always'},
-        suggest = {completeFunctionCalls = true},
+        preferences = {
+          importModuleSpecifier = 'project-relative',
+        },
         inlayHints = {
           enumMemberValues = {enabled = true},
           functionLikeReturnTypes = {enabled = true},
