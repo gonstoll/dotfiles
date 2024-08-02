@@ -1,6 +1,6 @@
 local M = {}
 
----@param fontFamily 'sf' | 'jetbrains' | 'fira' | 'hack' | 'literation'
+---@param fontFamily 'sf' | 'jetbrains' | 'fira' | 'hack' | 'literation' | 'geist'
 M.getFonts = function(fontFamily)
   local families = {
     sf = {
@@ -30,6 +30,12 @@ M.getFonts = function(fontFamily)
     literation = {
       family = 'LiterationMono Nerd Font',
       weight = 450,
+      italic = false,
+      stretch = 'Normal',
+    },
+    geist = {
+      family = 'GeistMono Nerd Font',
+      weight = 400,
       italic = false,
       stretch = 'Normal',
     },
