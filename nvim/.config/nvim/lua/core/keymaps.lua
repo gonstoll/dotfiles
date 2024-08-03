@@ -7,8 +7,8 @@ keyset('n', '<C-b>', 'gg<S-v>G', {desc = 'Select all'})
 keyset('n', 'tn', ':tabnew %<CR>', {desc = 'New tab'})
 keyset('n', 'tc', ':tabclose<CR>', {desc = 'Close tab'})
 -- Split window
-keyset('n', 'ss', ':split<Return><C-w>w', {desc = 'Split window horizontally'}) -- Horizontal
-keyset('n', 'sv', ':vsplit<Return><C-w>w', {desc = 'Split window vertically'})  -- Vertical
+keyset('n', '<leader>ss', ':split<Return><C-w>w', {desc = 'Split window horizontally'}) -- Horizontal
+keyset('n', '<leader>sv', ':vsplit<Return><C-w>w', {desc = 'Split window vertically'})  -- Vertical
 
 -- Move between qf items
 keyset('n', '<C-p>', '<cmd>cprev<CR>zz', {desc = 'Previous quickfix item'})
