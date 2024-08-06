@@ -36,7 +36,7 @@ else
   export EDITOR='nvim'
 fi
 
-export TERM=wezterm
+export TERM="wezterm"
 export TERMINFO="$HOME/.terminfo/"
 
 if [[ -s "$HOME/.config/bun/_bun" ]]; then
