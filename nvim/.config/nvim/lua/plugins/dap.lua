@@ -50,6 +50,7 @@ return {
     {
       'microsoft/vscode-js-debug',
       build = 'npm i && npm run compile vsDebugServerBundle && rm -rf out && mv -f dist out',
+      version = '1.91.0',
     },
     {
       'mxsdev/nvim-dap-vscode-js',
