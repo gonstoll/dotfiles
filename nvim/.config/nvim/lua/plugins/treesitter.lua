@@ -1,6 +1,8 @@
 return {
   'nvim-treesitter/nvim-treesitter',
-  dependencies = {'windwp/nvim-ts-autotag'},
+  dependencies = {
+    {'windwp/nvim-ts-autotag', opts = {}},
+  },
   cmd = {'TSInstall', 'TSBufEnable', 'TSBufDisable', 'TSModuleInfo'},
   build = ':TSUpdate',
   config = function()
