@@ -9,16 +9,12 @@ return {
     local configs = require('nvim-treesitter.configs')
     local parsers = require('nvim-treesitter.parsers')
 
-    configs.setup {
+    configs.setup({
       highlight = {
         enable = true,
         disable = {},
       },
       indent = {
-        enable = true,
-        disable = {},
-      },
-      matchup = {
         enable = true,
         disable = {},
       },
@@ -45,12 +41,6 @@ return {
         'sql',
         'regex',
       },
-      autotag = {
-        enable = true,
-        enable_rename = true,
-        enable_close = true,
-        enable_close_on_slash = false,
-      },
       context_commentstring = {
         enable = true,
         enable_autocmd = false,
@@ -64,7 +54,7 @@ return {
           node_decremental = '<leader>gd',
         },
       },
-    }
+    })
 
     local parser_configs = parsers.get_parser_configs();
     parser_configs.tsx.filetype_to_parsername = {'javascript', 'typescript.tsx'}

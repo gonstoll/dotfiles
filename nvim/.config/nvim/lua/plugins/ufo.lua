@@ -61,7 +61,7 @@ return {
 
       vim.keymap.set('n', 'zR', ufo.openAllFolds, {desc = desc('Open all folds')})
       vim.keymap.set('n', 'zM', ufo.closeAllFolds, {desc = desc('Close all folds')})
-      vim.keymap.set('n', 'K', function()
+      vim.keymap.set('n', 'zK', function()
         local winid = ufo.peekFoldedLinesUnderCursor(true)
         if not winid then
           vim.lsp.buf.hover()
