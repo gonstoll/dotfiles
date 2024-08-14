@@ -43,7 +43,7 @@ M.setup = function(capabilities)
         },
         updateImportsOnFileMove = {enabled = 'always'},
         preferences = {
-          importModuleSpecifier = 'project-relative',
+          importModuleSpecifier = 'auto',
         },
         inlayHints = {
           enumMemberValues = {enabled = true},
