@@ -5,3 +5,5 @@ gui:
   theme:
     selectedLineBgColor:
       - reverse
+git:
+  overrideGpg: true
