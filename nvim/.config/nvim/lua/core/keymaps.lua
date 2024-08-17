@@ -15,10 +15,10 @@ keyset('n', '<C-p>', '<cmd>cprev<CR>zz', {desc = 'Previous quickfix item'})
 keyset('n', '<C-n>', '<cmd>cnext<CR>zz', {desc = 'Next quickfix item'})
 
 -- Resize splits
-keyset('n', '<M-h>', '<C-w>5>', {desc = 'Resize window (left)'})
-keyset('n', '<M-l>', '<C-w>5<', {desc = 'Resize window (right)'})
-keyset('n', '<M-j>', '<C-w>5-', {desc = 'Resize window (down)'})
-keyset('n', '<M-k>', '<C-w>5+', {desc = 'Resize window (up)'})
+keyset('n', '<M-Left>', '<C-w>5>', {desc = 'Resize window (left)'})
+keyset('n', '<M-Right>', '<C-w>5<', {desc = 'Resize window (right)'})
+keyset('n', '<M-Down>', '<C-w>5-', {desc = 'Resize window (down)'})
+keyset('n', '<M-Up>', '<C-w>5+', {desc = 'Resize window (up)'})
 
 -- Move lines
 keyset('v', 'J', ":m '>+1<CR>gv=gv", {desc = 'Move line down'})
