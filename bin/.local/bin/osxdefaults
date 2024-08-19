@@ -72,3 +72,6 @@ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 
 # Ctrl + Cmd and click to drag window from anywhere
 defaults write -g NSWindowShouldDragOnGesture -bool true
+
+# Group apps on macOS dock
+defaults write com.apple.dock expose-group-apps -bool true

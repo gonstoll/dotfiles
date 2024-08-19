@@ -1,5 +1,5 @@
 #!/bin/sh
 
-STOW_PACKAGES=(bin git iterm2 neofetch nvim tmux vscode wezterm zsh lazygit)
+STOW_PACKAGES=(bin git iterm2 neofetch nvim tmux vscode wezterm zsh lazygit aerospace)
 
 stow -v "${STOW_PACKAGES[@]}"

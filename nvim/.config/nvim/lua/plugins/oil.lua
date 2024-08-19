@@ -17,11 +17,10 @@ return {
     },
     keymaps = {
       ['<C-h>'] = false, -- Split
-      ['<C-s>'] = false, -- Vsplit
       ['<C-l>'] = false, -- refresh
-      ['<M-s>'] = 'actions.select_split',
-      ['<M-v>'] = 'actions.select_vsplit',
-      ['<M-l>'] = 'actions.refresh',
+      ['<C-s>'] = 'actions.select_split',
+      ['<C-v>'] = 'actions.select_vsplit',
+      ['<C-g>'] = 'actions.refresh',
     },
     float = {padding = 4},
   },
