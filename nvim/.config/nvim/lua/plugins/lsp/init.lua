@@ -36,7 +36,6 @@ return {
   {
     'neovim/nvim-lspconfig',
     event = {'BufReadPost', 'BufNewFile', 'BufWritePre'},
-    dependencies = {'davidosomething/format-ts-errors.nvim'},
     config = function()
       vim.diagnostic.config({
         virtual_text = true,
