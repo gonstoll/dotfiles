@@ -93,7 +93,7 @@ else
   run_misc_packages
 fi
 
-stow_dotfiles() {
+function stow_dotfiles() {
   bash ./bin/.local/bin/stow-dotfiles
   e_success "Dotfiles update complete!"
 }
@@ -102,11 +102,11 @@ stow_dotfiles() {
 seek_confirmation "Warning: This step may overwrite your existing stowed dotfiles."
 
 if is_confirmed; then
-    stow_dotfiles
-    source ./zsh/.config/zsh/.zshrc
+  stow_dotfiles
+  source ./zsh/.config/zsh/.zshrc
 else
-    printf "Aborting...\n"
-    exit 1
+  printf "Aborting...\n"
+  exit 1
 fi
 
 # Ask before potentially overwriting OS X defaults
