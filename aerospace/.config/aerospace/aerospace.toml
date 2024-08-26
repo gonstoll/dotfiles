@@ -103,7 +103,6 @@ alt-9 = 'workspace 9'
 alt-b = 'workspace B' # Browser
 alt-d = 'workspace D' # Design (Figma, Sketch, etc.)
 alt-e = 'workspace E' # File explorer (Finder)
-alt-g = 'workspace G' # Chrome/Chromium
 alt-m = 'workspace M' # Messaging
 alt-n = 'workspace N' # Notes
 alt-t = 'workspace T' # Terminal
@@ -123,7 +122,6 @@ alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-b = 'move-node-to-workspace B'
 alt-shift-d = 'move-node-to-workspace D'
 alt-shift-e = 'move-node-to-workspace E'
-alt-shift-g = 'move-node-to-workspace G'
 alt-shift-m = 'move-node-to-workspace M'
 alt-shift-n = 'move-node-to-workspace N'
 alt-shift-t = 'move-node-to-workspace T'
@@ -170,11 +168,7 @@ run = 'move-node-to-workspace B'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace G'
-
-[[on-window-detected]]
-if.app-id = 'com.chromium.Chromium'
-run = 'move-node-to-workspace G'
+run = 'move-node-to-workspace B'
 
 [[on-window-detected]]
 if.app-id = 'notion.id'
@@ -197,13 +191,12 @@ if.app-id = 'com.figma.Desktop'
 run = 'move-node-to-workspace D'
 
 [workspace-to-monitor-force-assignment]
-1 = '^built-in retina display$'
-2 = 'main'
-Z = '^built-in retina display$' # Put zoom where it belongs
+1 = 'main'
+2 = 'extended'
 
 [[on-window-detected]]
 if.app-id = 'us.zoom.xos'
-run = 'move-node-to-workspace Z'
+run = ['layout floating', 'move-node-to-workspace Z']
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
