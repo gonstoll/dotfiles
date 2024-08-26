@@ -129,7 +129,9 @@ local vcs = function()
     removed = ''
   end
   return table.concat({
-    '  ',
+    ' ',
+    icons.git.branch2,
+    ' ',
     git_info.head,
     '  ',
     added,

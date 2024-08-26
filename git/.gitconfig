@@ -16,7 +16,7 @@
 [push]
   autoSetupRemote = true
 [core]
-  editor = nvim
+  editor = "nvim"
   ignorecase = false
 [user]
   name = Gonzalo Stoll

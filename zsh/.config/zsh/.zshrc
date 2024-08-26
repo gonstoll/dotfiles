@@ -31,9 +31,13 @@ source $ZSH_PATH/plugins/powerlevel10k/powerlevel10k.zsh-theme
 
 # Variables
 if [[ -n $SSH_CONNECTION ]]; then
+  export VISUAL='vim'
   export EDITOR='vim'
+  export GIT_EDITOR='vim'
 else
+  export VISUAL='nvim'
   export EDITOR='nvim'
+  export GIT_EDITOR='nvim'
 fi
 
 export TERM="wezterm"

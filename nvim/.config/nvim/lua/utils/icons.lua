@@ -9,6 +9,8 @@ local M = {
     added = '',
     changed = '',
     deleted = '',
+    branch = '',
+    branch2 = '',
   },
   dap = {
     Stopped = {'󰁕 ', 'DiagnosticSignWarn', 'DapStoppedLine'},
@@ -16,6 +18,14 @@ local M = {
     BreakpointCondition = {' ', 'DiagnosticSignHint'},
     BreakpointRejected = {' ', 'DiagnosticSignError'},
     LogPoint = '.>',
+  },
+  misc = {
+    folder = '',
+    folder_outline = '',
+    file = '',
+    file2 = '',
+    file_outline = '󰧮',
+    search = '',
   },
 }
 
