@@ -140,3 +140,9 @@ autocmd('ColorScheme', {
     vim.api.nvim_set_hl(0, 'CursorLine', {bg = 'NONE'})
   end,
 })
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = 'aerospace.toml',
+  group = augroup('Aerospace', {}),
+  command = '!aerospace reload-config',
+})
