@@ -43,7 +43,7 @@ M.setup = function(capabilities)
         },
         updateImportsOnFileMove = {enabled = 'always'},
         preferences = {
-          importModuleSpecifier = 'auto',
+          importModuleSpecifier = os.getenv('LSP_TS_IMPORT_MODULE_SPECIFIER_PROJECT_RELATIVE') and 'project-relative' or 'auto',
         },
         inlayHints = {
           enumMemberValues = {enabled = true},
