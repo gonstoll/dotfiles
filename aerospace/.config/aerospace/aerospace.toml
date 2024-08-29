@@ -100,9 +100,9 @@ alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
+alt-a = 'workspace A' # File explorer (Finder)
 alt-b = 'workspace B' # Browser
 alt-d = 'workspace D' # Design (Figma, Sketch, etc.)
-alt-e = 'workspace E' # File explorer (Finder)
 alt-m = 'workspace M' # Messaging
 alt-n = 'workspace N' # Notes
 alt-t = 'workspace T' # Terminal
@@ -119,9 +119,9 @@ alt-shift-6 = 'move-node-to-workspace 6'
 alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
+alt-shift-a = 'move-node-to-workspace A'
 alt-shift-b = 'move-node-to-workspace B'
 alt-shift-d = 'move-node-to-workspace D'
-alt-shift-e = 'move-node-to-workspace E'
 alt-shift-m = 'move-node-to-workspace M'
 alt-shift-n = 'move-node-to-workspace N'
 alt-shift-t = 'move-node-to-workspace T'
@@ -184,15 +184,16 @@ run = 'move-node-to-workspace M'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
-run = 'move-node-to-workspace E'
+run = 'move-node-to-workspace A'
 
 [[on-window-detected]]
 if.app-id = 'com.figma.Desktop'
 run = 'move-node-to-workspace D'
 
 [workspace-to-monitor-force-assignment]
-1 = 'main'
-2 = 'extended'
+1 = 1
+2 = 'main'
+3 = 'secondary'
 
 [[on-window-detected]]
 if.app-id = 'us.zoom.xos'

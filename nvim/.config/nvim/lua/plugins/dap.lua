@@ -220,9 +220,8 @@ return {
             ['./*'] = '${workspaceFolder}/src/*',
           },
         },
-        -- Divider for the launch.json derived configs
         {
-          name = '----- ↓ launch.json configs (if available) ↓ -----',
+          name = '----- ↑ launch.json configs (if available) ↑ -----',
           type = '',
           request = 'launch',
         },

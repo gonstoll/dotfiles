@@ -14,7 +14,13 @@ return {
       scss = {'prettier'},
       markdown = {'prettier'},
       yaml = {'prettier'},
+      graphql = {'prettier'},
+      vue = {'prettier'},
+      angular = {'prettier'},
+      less = {'prettier'},
+      flow = {'prettier'},
       sh = {'beautysh'},
+      bash = {'beautysh'},
       zsh = {'beautysh'},
     },
     format_on_save = function(bufnr)
