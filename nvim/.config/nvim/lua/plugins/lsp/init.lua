@@ -19,7 +19,7 @@ return {
         'lua_ls',
         'eslint',
         'emmet_language_server',
-        'tsserver',
+        'ts_ls',
         'bashls',
         'vtsls',
       },
@@ -87,7 +87,7 @@ return {
         eslint = require('plugins.lsp.servers.eslint').setup(capabilities),
         lua_ls = require('plugins.lsp.servers.lua_ls').setup(capabilities),
         vtsls = require('plugins.lsp.servers.vtsls').setup(capabilities),
-        -- tsserver = require('plugins.lsp.servers.tsserver').setup(capabilities),
+        -- ts_ls = require('plugins.lsp.servers.ts_ls').setup(capabilities),
       }
 
       for server_name, server_config in pairs(lsp_servers) do
