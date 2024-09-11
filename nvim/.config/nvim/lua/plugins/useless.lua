@@ -9,6 +9,7 @@ return {
       {',dk', function() require('duck').cook() end, mode = 'n', desc = duck_desc('Cook')},
     },
   },
+
   {
     'eandrju/cellular-automaton.nvim',
     keys = {
