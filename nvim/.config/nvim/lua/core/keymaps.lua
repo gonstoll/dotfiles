@@ -40,13 +40,13 @@ keyset('x', '<leader>p', '\"_dP')
 keyset('n', '<leader><leader>', function() vim.cmd('so') end)
 
 -- Opens fugitive
-keyset('n', '<leader>gs', ':top Git<CR>', {desc = 'Fugitive: Open git console'})
+keyset('n', '<leader>gf', ':top Git<CR>', {desc = 'Fugitive: Open git console'})
 
 -- Toggle highlighting search
 keyset('n', '<leader>;h', ':set hlsearch!<CR>', {desc = 'Toggle highlighting search'})
 
 -- Save without formatting
-keyset('n', ';wf', ':noautocmd w<CR>', {desc = 'Save without formatting'})
+keyset('n', '<leader>wf', ':noautocmd w<CR>', {desc = 'Save without formatting'})
 
 -- Open terminal below
 keyset('n', ',st', function()

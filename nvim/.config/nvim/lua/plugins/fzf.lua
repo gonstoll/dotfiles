@@ -24,22 +24,17 @@ return {
   keys = function()
     local fzf = require('fzf-lua')
     return {
-      {';?', fzf.oldfiles, desc = desc('Find recently opened files')},
-      {';;', fzf.buffers, desc = desc('Find opened buffers in current neovim instance')},
-      {';/', fzf.lgrep_curbuf, desc = desc('Fuzzily search in current buffer')},
-      {';sf', fzf.files, desc = desc('Search files')},
-      {';sg', fzf.grep, desc = desc('Search by grep')},
-      {';sl', fzf.live_grep, desc = desc('Search by live grep')},
-      {';gf', fzf.git_files, desc = desc('Search Git Files')},
-      {';sk', fzf.keymaps, desc = desc('Keymaps')},
-      {';sh', fzf.helptags, desc = desc('Search Help')},
-      {';sm', fzf.manpages, desc = desc('Search man pages')},
-      {';ss', fzf.search_history, desc = desc('Get list of searches')},
-      {';se', fzf.lsp_document_diagnostics, desc = desc('Get file diagnostics')},
-      {';sd', fzf.lsp_workspace_diagnostics, desc = desc('Search Diagnostics')},
-      {';gr', fzf.lsp_references, desc = desc('Goto References')},
-      {';ds', fzf.lsp_document_symbols, desc = desc('Document Symbols')},
-      {';ws', fzf.lsp_live_workspace_symbols, desc = desc('Workspace Symbols')},
+      {'<leader>fo', fzf.buffers, desc = desc('Find opened buffers in current neovim instance')},
+      {'<leader>fs', fzf.lgrep_curbuf, desc = desc('Fuzzily search in current buffer')},
+      {'<leader>ff', fzf.files, desc = desc('Search files')},
+      {'<leader>fg', fzf.grep, desc = desc('Search by grep')},
+      {'<leader>fl', fzf.live_grep, desc = desc('Search by live grep')},
+      {'<leader>fk', fzf.keymaps, desc = desc('Keymaps')},
+      {'<leader>fh', fzf.search_history, desc = desc('Get list of searches')},
+      {'<leader>fd', fzf.lsp_document_diagnostics, desc = desc('Get file diagnostics')},
+      {'<leader>fr', fzf.lsp_references, desc = desc('Goto References')},
+      {'<leader>fy', fzf.lsp_document_symbols, desc = desc('Document Symbols')},
+      {'<leader>fw', fzf.lsp_live_workspace_symbols, desc = desc('Workspace Symbols')},
     }
   end,
   opts = function()

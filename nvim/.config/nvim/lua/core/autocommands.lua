@@ -110,7 +110,7 @@ autocmd('LspAttach', {
     keyset('n', '<leader>it', function()
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({bufnr = bufnr}))
     end, 'Toggle inlay hints')
-    keyset('n', '<leader>f', function()
+    keyset('n', '<leader>fa', function()
       require('conform').format({async = true, lsp_fallback = true})
     end, 'Format current buffer with LSP')
 
