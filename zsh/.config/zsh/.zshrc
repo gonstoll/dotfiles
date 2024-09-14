@@ -102,8 +102,8 @@ alias ls="eza --icons=always"
 export BAT_THEME="base16"
 
 # Yazi (file manager system)
-# Use yy to change the current directory when exiting yazi
-function yy() {
+# Use y to change the current directory when exiting yazi
+function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
   yazi "$@" --cwd-file="$tmp"
   if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then

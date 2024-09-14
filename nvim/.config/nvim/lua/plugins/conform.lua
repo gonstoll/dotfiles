@@ -22,6 +22,7 @@ return {
       sh = {'beautysh'},
       bash = {'beautysh'},
       zsh = {'beautysh'},
+      http = {'kulala-fmt'},
     },
     format_on_save = function(bufnr)
       -- Disable autoformat for files in a certain path

@@ -1,0 +1,45 @@
+[manager]
+find_keyword = {bg = "black", fg = "red", reversed = true}
+
+marker_copied   = {fg = "green", bg = "green"}
+marker_cut      = {fg = "red", bg = "red"}
+marker_marked   = {fg = "magenta", bg = "magenta"}
+marker_selected = {fg = "cyan", bg = "cyan"}
+
+cwd = {fg = "yellow"}
+hovered = {reversed = true}
+preview_hovered = {reversed = true}
+
+tab_active   = {reversed = true}
+tab_inactive = {}
+tab_width    = 1
+
+count_copied   = {fg = "black", bg = "green"}
+count_cut      = {fg = "black", bg = "red"}
+count_selected = {fg = "black", bg = "yellow"}
+
+border_style = {fg = "white"}
+
+[status]
+separator_open = ""
+separator_close = ""
+separator_style = {fg = "reset", bg = "reset"}
+
+mode_normal = {fg = "blue", bg = "reset"}
+mode_select = {fg = "magenta", bg = "reset"}
+mode_unset  = {fg = "yellow", bg = "reset"}
+
+progress_label  = {fg = "blue", bg = "black", bold = true}
+progress_normal = {fg = "darkgrey", bg = "black"}
+progress_error  = {fg = "darkgrey", bg = "black"}
+
+permissions_t = {fg = "green"}
+permissions_r = {fg = "yellow"}
+permissions_w = {fg = "red"}
+permissions_x = {fg = "cyan"}
+permissions_s = {fg = "magenta"}
+
+[select]
+border   = {fg = "blue"} # blue
+active   = {fg = "magenta"} # magenta
+inactive = {}
