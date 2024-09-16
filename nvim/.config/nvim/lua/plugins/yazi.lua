@@ -12,9 +12,9 @@ return {
     open_for_directories = false,
     keymaps = {
       show_help = '<f1>',
-      open_file_in_horizontal_split = '<c-s>',
+      open_file_in_horizontal_split = 'os',
+      open_file_in_vertical_split = 'ov',
       grep_in_directory = '<c-g>',
-      replace_in_directory = '<leader>rn',
     },
     highlight_groups = {
       -- hovered_buffer = {bg = 'none', fg = 'none'},

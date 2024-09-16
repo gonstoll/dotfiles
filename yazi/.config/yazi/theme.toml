@@ -40,6 +40,6 @@ permissions_x = {fg = "cyan"}
 permissions_s = {fg = "magenta"}
 
 [select]
-border   = {fg = "blue"} # blue
-active   = {fg = "magenta"} # magenta
+border = {fg = "blue"}
+active = {fg = "magenta"}
 inactive = {}

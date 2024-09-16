@@ -18,8 +18,8 @@ return {
     keymaps = {
       ['<C-h>'] = false, -- Split
       ['<C-l>'] = false, -- refresh
-      ['<C-s>'] = 'actions.select_split',
-      ['<C-v>'] = 'actions.select_vsplit',
+      ['<leader>os'] = 'actions.select_split',
+      ['<leader>ov'] = 'actions.select_vsplit',
       ['<C-g>'] = 'actions.refresh',
     },
     float = {padding = 4},
