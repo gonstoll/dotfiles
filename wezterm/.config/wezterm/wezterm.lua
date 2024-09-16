@@ -141,7 +141,7 @@ return {
   tab_bar_at_bottom = true,
   tab_max_width = 26,
   window_frame = {
-    font = wezterm.font({family = 'FiraCode Nerd Font'}),
+    font = wezterm.font_with_fallback(fonts.getFonts('sf')),
     font_size = 14.0,
     active_titlebar_bg = gruvbox.colors.dark_palette.bg0,
     active_titlebar_fg = gruvbox.colors.dark_palette.fg0,
@@ -204,9 +204,9 @@ return {
     keys.key_to_tmux({mods = 'CMD', key = '7', tmux_key = '7'}),
     keys.key_to_tmux({mods = 'CMD', key = '8', tmux_key = '8'}),
     keys.key_to_tmux({mods = 'CMD', key = '9', tmux_key = '9'}),
-    keys.key_to_tmux({mods = 'CMD', key = 'c', tmux_key = 'c'}), -- Create new window
-    keys.key_to_tmux({mods = 'CMD', key = ']', tmux_key = 'n'}), -- Next window
-    keys.key_to_tmux({mods = 'CMD', key = '[', tmux_key = 'p'}), -- Previous window
-    keys.key_to_tmux({mods = 'CMD', key = 'x', tmux_key = 'x'}), -- Kill pane
+    -- keys.key_to_tmux({mods = 'CMD', key = 'c', tmux_key = 'c'}), -- Create new window
+    -- keys.key_to_tmux({mods = 'CMD', key = ']', tmux_key = 'n'}), -- Next window
+    -- keys.key_to_tmux({mods = 'CMD', key = '[', tmux_key = 'p'}), -- Previous window
+    -- keys.key_to_tmux({mods = 'CMD', key = 'x', tmux_key = 'x'}), -- Kill pane
   },
 }

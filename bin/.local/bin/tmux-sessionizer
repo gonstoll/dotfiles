@@ -6,11 +6,11 @@ if [[ $# -eq 1 ]]; then
   selected=$1
 else
   selected=$(find $directories -mindepth 1 -maxdepth 1 -type d | fzf \
-    --border=rounded \
-    --border-label="[tmux sessionizer]" \
-    --prompt="  " \
-    --no-bold \
-  )
+      --border=rounded \
+      --border-label="[tmux sessionizer]" \
+      --prompt="  " \
+      --no-bold \
+    )
 fi
 
 if [[ -z $selected ]]; then
