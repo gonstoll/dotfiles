@@ -50,8 +50,9 @@ return {
         }),
         require('neotest-playwright').adapter({
           options = {
-            -- persist_project_selection = true,
-            -- enable_dynamic_test_discovery = true,
+            persist_project_selection = true,
+            enable_dynamic_test_discovery = true,
+            preset = 'headed',
           }
         }),
       }
