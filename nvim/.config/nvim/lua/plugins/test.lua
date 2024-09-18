@@ -1,62 +1,118 @@
-local vim_test_desc = require('utils').plugin_keymap_desc('vim test')
-local neotest_desc = require('utils').plugin_keymap_desc('neotest')
-
 return {
   {
     'vim-test/vim-test',
-    keys = {
-      {'<leader>TN', '<cmd>TestNearest<cr>', desc = vim_test_desc('Run nearest test')},
-      {'<leader>TF', '<cmd>TestFile<cr>', desc = vim_test_desc('Run all tests in file')},
-      {'<leader>TA', '<cmd>TestSuite<cr>', desc = vim_test_desc('Run all tests in suite')},
-      {'<leader>TL', '<cmd>TestLast<cr>', desc = vim_test_desc('Run last test')},
-      {'<leader>TV', '<cmd>TestVisit<cr>', desc = vim_test_desc('Visit test file')},
-    },
+    keys = function()
+      local desc = require('utils').plugin_keymap_desc('vim test')
+
+      return {
+        {'<leader>TN', '<cmd>TestNearest -strategy=tmuxify<cr>', desc = desc('Run nearest test')},
+        {'<leader>TF', '<cmd>TestFile -strategy=tmuxify<cr>', desc = desc('Run all tests in file')},
+        {'<leader>TA', '<cmd>TestSuite -strategy=tmuxify<cr>', desc = desc('Run all tests in suite')},
+        {'<leader>TL', '<cmd>TestLast -strategy=tmuxify<cr>', desc = desc('Run last test')},
+        {'<leader>TV', '<cmd>TestVisit -strategy=tmuxify<cr>', desc = desc('Visit test file')},
+      }
+    end,
   },
 
   {
     'nvim-neotest/neotest',
     dependencies = {
       'nvim-neotest/nvim-nio',
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-lua/plenary.nvim',
+      'antoinemadec/FixCursorHold.nvim',
+      -- Adapters
       'nvim-neotest/neotest-jest',
       'marilari88/neotest-vitest',
       'thenbe/neotest-playwright',
     },
-    keys = {
-      {'<leader>Tt', function() require('neotest').run.run(vim.fn.expand('%')) end, desc = neotest_desc('Run File')},
-      {'<leader>TT', function() require('neotest').run.run(vim.uv.cwd()) end, desc = neotest_desc('Run All Test Files')},
-      {'<leader>Tr', function() require('neotest').run.run() end, desc = neotest_desc('Run Nearest')},
-      {'<leader>Tl', function() require('neotest').run.run_last() end, desc = neotest_desc('Run Last')},
-      {'<leader>Ts', function() require('neotest').summary.toggle() end, desc = neotest_desc('Toggle Summary')},
-      {'<leader>To', function() require('neotest').output.open({enter = true, auto_close = true}) end, desc = neotest_desc('Show Output')},
-      {'<leader>TO', function() require('neotest').output_panel.toggle() end, desc = neotest_desc('Toggle Output Panel')},
-      {'<leader>TS', function() require('neotest').run.stop() end, desc = neotest_desc('Stop')},
-    },
+    keys = function()
+      local neotest = require('neotest')
+      local desc = require('utils').plugin_keymap_desc('neotest')
+
+      return {
+        {'<leader>Tt', function() neotest.run.run(vim.fn.expand('%')) end, desc = desc('Run File')},
+        {'<leader>TT', function() neotest.run.run(vim.uv.cwd()) end, desc = desc('Run All Test Files')},
+        {'<leader>Tr', function() neotest.run.run() end, desc = desc('Run Nearest')},
+        {'<leader>Tw', function() neotest.run.run({vim.fn.expand('%'), jestCommand = 'node_modules/.bin/jest --watch'}) end, desc = desc('Run test on watch mode')},
+        {'<leader>TW', function() neotest.watch.toggle(vim.fn.expand('%')) end, desc = desc('Toggle watch mode (not working with jest)')},
+        {'<leader>Tl', function() neotest.run.run_last() end, desc = desc('Run Last')},
+        {'<leader>Ts', function() neotest.summary.toggle() end, desc = desc('Toggle Summary')},
+        {'<leader>To', function() neotest.output.open({enter = true, auto_close = true}) end, desc = desc('Show Output')},
+        {'<leader>TO', function() neotest.output_panel.toggle() end, desc = desc('Toggle Output Panel')},
+        {'<leader>TS', function() neotest.run.stop() end, desc = desc('Stop')},
+      }
+    end,
     opts = {
       status = {virtual_text = true},
       output = {open_on_run = true},
-    },
-    config = function(_, opts)
-      local adapters = {
-        require('neotest-jest')({
-          jestCommand = 'npm test --',
-          jestConfigFile = 'custom.jest.config.ts',
+      output_panel = {
+        open = 'botright vsplit | vertical resize 80'
+      },
+      adapters = {
+        ['neotest-jest'] = {
           env = {CI = true},
-          cwd = function(path) return vim.fn.getcwd() end,
-        }),
-        require('neotest-vitest')({
+          jestCommand = 'npm test --',
+          jestConfigFile = 'jest.config.js',
+          -- jestConfigFile = function(file)
+          --   if string.find(file, '/apps/') then
+          --     return string.match(file, '(.-/[^/]+/)src') .. 'jest.config.ts'
+          --   end
+          --
+          --   return vim.fn.getcwd() .. '/jest.config.js'
+          -- end,
+          cwd = function(file)
+            if string.find(file, '/apps/') or string.find(file, '/packages/') then
+              return string.match(file, '(.-/[^/]+/)src')
+            end
+            return vim.fn.getcwd()
+          end
+        },
+        ['neotest-vitest'] = {
           filter_dir = function(name, rel_path, root)
             return name ~= 'node_modules'
           end,
-        }),
-        require('neotest-playwright').adapter({
-          options = {
-            persist_project_selection = true,
-            enable_dynamic_test_discovery = true,
-            preset = 'headed',
-          }
-        }),
-      }
-      table.insert(opts, adapters)
+        },
+      },
+    },
+    config = function(_, opts)
+      local neotest_ns = vim.api.nvim_create_namespace('neotest')
+      vim.diagnostic.config({
+        virtual_text = {
+          format = function(diagnostic)
+            -- Replace newline and tab characters with space for more compact diagnostics
+            local message = diagnostic.message:gsub('\n', ' '):gsub('\t', ' '):gsub('%s+', ' '):gsub('^%s+', '')
+            return message
+          end,
+        },
+      }, neotest_ns)
+
+      if opts.adapters then
+        local adapters = {}
+        for name, config in pairs(opts.adapters or {}) do
+          if type(name) == 'number' then
+            if type(config) == 'string' then
+              config = require(config)
+            end
+            adapters[#adapters + 1] = config
+          elseif config ~= false then
+            local adapter = require(name)
+            if type(config) == 'table' and not vim.tbl_isempty(config) then
+              local meta = getmetatable(adapter)
+              if adapter.setup then
+                adapter.setup(config)
+              elseif meta and meta.__call then
+                adapter(config)
+              else
+                error('Adapter ' .. name .. ' does not support setup')
+              end
+            end
+            adapters[#adapters + 1] = adapter
+          end
+        end
+        opts.adapters = adapters
+      end
+
       require('neotest').setup(opts)
     end
   },
