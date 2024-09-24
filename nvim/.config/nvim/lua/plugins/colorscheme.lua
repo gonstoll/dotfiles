@@ -106,6 +106,7 @@ return {
           PmenuThumb = {bg = theme.ui.bg_p2},
 
           --- misc
+          ModeMsg = {fg = theme.syn.comment, bold = false},
           WinSeparator = {fg = theme.ui.bg_p2},
           TelescopeSelection = {bg = theme.ui.bg_p2},
           Cursor = {bg = 'none'},
