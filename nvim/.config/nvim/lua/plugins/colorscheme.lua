@@ -35,8 +35,7 @@ end
 return {
   {
     'rebelot/kanagawa.nvim',
-    lazy = false,
-    priority = 1000,
+    lazy = true,
     opts = {
       commentStyle = {italic = false, bold = false},
       keywordStyle = {italic = false, bold = false},
@@ -130,7 +129,79 @@ return {
 
   {
     'mcchrish/zenbones.nvim',
+    priority = 1000,
     dependencies = {'rktjmp/lush.nvim'},
-    event = 'VeryLazy',
+    config = function()
+      ---@class ColorSet
+      ---@field bg string
+      ---@field bg1 string
+      ---@field bg_stark string
+      ---@field bg_warm string
+      ---@field fg string
+      ---@field fg1 string
+      ---@field blossom string
+      ---@field blossom1 string
+      ---@field leaf string
+      ---@field leaf1 string
+      ---@field rose string
+      ---@field rose1 string
+      ---@field sky string
+      ---@field sky1 string
+      ---@field water string
+      ---@field water1 string
+      ---@field wood string
+      ---@field wood1 string
+
+      ---@class Palette
+      ---@field dark ColorSet
+      ---@field light ColorSet
+
+      vim.g.zenbones_transparent_background = true
+      vim.g.rosebones_transparent_background = true
+
+      vim.api.nvim_create_autocmd('ColorScheme', {
+        group = vim.api.nvim_create_augroup('Customize Zenbones', {}),
+        callback = function()
+          local active_colorscheme = vim.g.colors_name
+
+          if (not string.find(active_colorscheme, 'bones')) then
+            return
+          end
+
+          local theme = require('zenbones')
+          ---@type Palette
+          local palette = require('zenbones.palette')
+          local lush = require('lush')
+          local bg = vim.o.background
+
+          ---@diagnostic disable: undefined-global
+          local specs = lush.parse(function()
+            return {
+              TermCursor({cterm = 'reverse', gui = 'reverse'}),
+              FloatBorder({theme.FloatBorder, bg = theme.NormalFloat.bg}),
+              FloatTitle({theme.FloatTitle, bg = theme.NormalFloat.bg}),
+              Special({theme.Special, gui = 'normal'}),
+              Statement({theme.Statement, gui = 'normal'}),
+              Directory({theme.Directory, gui = 'normal'}),
+              Function({theme.Function, fg = palette[bg].fg1, gui = 'italic'}),
+              -- Statusline
+              StatusLine({theme.StatusLine, bg = palette.dark.bg_warm}),
+              --- gitsigns
+              StatusLineGitSignsAdd({bg = palette.dark.bg_warm, fg = theme.GitSignsAdd.fg}),
+              StatusLineGitSignsChange({bg = palette.dark.bg_warm, fg = theme.GitSignsChange.fg}),
+              StatusLineGitSignsDelete({bg = palette.dark.bg_warm, fg = theme.GitSignsDelete.fg}),
+              --- diagnostics
+              StatusLineDiagnosticSignError({bg = palette.dark.bg_warm, fg = theme.DiagnosticError.fg}),
+              StatusLineDiagnosticSignWarn({bg = palette.dark.bg_warm, fg = theme.DiagnosticWarn.fg}),
+              StatusLineDiagnosticSignInfo({bg = palette.dark.bg_warm, fg = theme.DiagnosticInfo.fg}),
+              StatusLineDiagnosticSignHint({bg = palette.dark.bg_warm, fg = theme.DiagnosticHint.fg}),
+              StatusLineDiagnosticSignOk({bg = palette.dark.bg_warm, fg = theme.DiagnosticOk.fg}),
+            }
+          end)
+
+          lush.apply(lush.compile(specs))
+        end,
+      })
+    end,
   },
 }

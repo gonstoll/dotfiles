@@ -17,7 +17,7 @@ require('lazy').setup('plugins', {
     enabled = true,
   },
   install = {
-    colorscheme = {'kanagawa'},
+    colorscheme = {'zenbones'},
   },
   performance = {
     cache = {enabled = true},

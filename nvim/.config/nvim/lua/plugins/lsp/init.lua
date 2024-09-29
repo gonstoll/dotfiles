@@ -30,7 +30,14 @@ return {
   {
     'j-hui/fidget.nvim',
     event = 'LspAttach',
-    opts = {},
+    opts = {
+      notification = {
+        window = {
+          winblend = 1,
+          normal_hl = 'NormalFloat',
+        },
+      },
+    },
   },
 
   {
