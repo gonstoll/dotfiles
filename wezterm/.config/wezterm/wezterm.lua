@@ -157,6 +157,23 @@ return {
   initial_rows = 120,
   initial_cols = 350,
   enable_scroll_bar = false,
+  background = {
+    {
+      source = {Color = '#000000'},
+      height = '100%',
+      width = '100%',
+      opacity = 1,
+    },
+    {
+      source = {File = {path = os.getenv('HOME') .. '/.config/wezterm/wallpapers/vader.jpg'}},
+      repeat_x = 'NoRepeat',
+      repeat_y = 'NoRepeat',
+      height = 'Cover',
+      width = 'Cover',
+      horizontal_align = 'Center',
+      opacity = 0.3,
+    },
+  },
 
   -- Opacity and blur
   -- window_background_opacity = 0.9,
