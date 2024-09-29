@@ -1,0 +1,11 @@
+#!/bin/bash
+
+options=(
+	style=round
+	width=5.0
+	hidpi=on
+	active_color=0xfff6f8fa
+  blacklist="wezterm-gui"
+)
+
+borders "${options[@]}"

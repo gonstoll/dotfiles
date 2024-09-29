@@ -6,7 +6,16 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+# after-startup-command = ["""\
+#   exec-and-forget \
+#   borders \
+#   style=round \
+#   width=5.0 \
+#   hidpi=on \
+#   active_color=0xfff6f8fa \
+#   blacklist="wezterm-gui" \
+# """]
+after-startup-command = ['exec-and-forget brew services restart borders']
 
 # Start AeroSpace at login
 start-at-login = true
@@ -192,8 +201,7 @@ run = 'move-node-to-workspace D'
 
 [workspace-to-monitor-force-assignment]
 1 = 1
-2 = 'main'
-3 = 'secondary'
+2 = 'secondary'
 
 [[on-window-detected]]
 if.app-id = 'us.zoom.xos'
