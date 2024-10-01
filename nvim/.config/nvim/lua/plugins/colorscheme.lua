@@ -136,7 +136,6 @@ return {
       ---@field bg string
       ---@field bg1 string
       ---@field bg_stark string
-      ---@field bg_warm string
       ---@field fg string
       ---@field fg1 string
       ---@field blossom string
@@ -152,12 +151,18 @@ return {
       ---@field wood string
       ---@field wood1 string
 
-      ---@class Palette
-      ---@field dark ColorSet
-      ---@field light ColorSet
+      ---@class LightColorSet : ColorSet
+      ---@field bg_bright string
 
-      vim.g.zenbones_transparent_background = true
-      vim.g.rosebones_transparent_background = true
+      ---@class DarkColorSet : ColorSet
+      ---@field bg_warm string
+
+      ---@class Palette
+      ---@field dark DarkColorSet
+      ---@field light LightColorSet
+
+      -- vim.g.zenbones_transparent_background = true
+      -- vim.g.rosebones_transparent_background = true
 
       vim.api.nvim_create_autocmd('ColorScheme', {
         group = vim.api.nvim_create_augroup('Customize Zenbones', {}),
@@ -168,11 +173,12 @@ return {
             return
           end
 
-          local theme = require('zenbones')
+          local theme = require(active_colorscheme)
           ---@type Palette
-          local palette = require('zenbones.palette')
+          local palette = require(active_colorscheme .. '.palette')
           local lush = require('lush')
           local bg = vim.o.background
+          local statusline_bg = bg == 'dark' and palette.dark.bg_warm.li(10) or palette.light.bg1
 
           ---@diagnostic disable: undefined-global
           local specs = lush.parse(function()
@@ -183,19 +189,21 @@ return {
               Special({theme.Special, gui = 'normal'}),
               Statement({theme.Statement, gui = 'normal'}),
               Directory({theme.Directory, gui = 'normal'}),
-              Function({theme.Function, fg = palette[bg].fg1, gui = 'italic'}),
+              Function({theme.Function, fg = bg == 'dark' and palette.dark.bg.li(58) or palette.light.bg.sa(20).da(60)}),
+              TodoBgTODO({theme.TodoBgTODO, bg = palette[bg].water, fg = palette[bg].fg}),
+              TodoFgTODO({theme.TodoFgTODO, fg = palette[bg].water}),
               -- Statusline
-              StatusLine({theme.StatusLine, bg = palette.dark.bg_warm}),
+              StatusLine({theme.StatusLine, bg = statusline_bg}),
               --- gitsigns
-              StatusLineGitSignsAdd({bg = palette.dark.bg_warm, fg = theme.GitSignsAdd.fg}),
-              StatusLineGitSignsChange({bg = palette.dark.bg_warm, fg = theme.GitSignsChange.fg}),
-              StatusLineGitSignsDelete({bg = palette.dark.bg_warm, fg = theme.GitSignsDelete.fg}),
+              StatusLineGitSignsAdd({bg = statusline_bg, fg = theme.GitSignsAdd.fg}),
+              StatusLineGitSignsChange({bg = statusline_bg, fg = theme.GitSignsChange.fg}),
+              StatusLineGitSignsDelete({bg = statusline_bg, fg = theme.GitSignsDelete.fg}),
               --- diagnostics
-              StatusLineDiagnosticSignError({bg = palette.dark.bg_warm, fg = theme.DiagnosticError.fg}),
-              StatusLineDiagnosticSignWarn({bg = palette.dark.bg_warm, fg = theme.DiagnosticWarn.fg}),
-              StatusLineDiagnosticSignInfo({bg = palette.dark.bg_warm, fg = theme.DiagnosticInfo.fg}),
-              StatusLineDiagnosticSignHint({bg = palette.dark.bg_warm, fg = theme.DiagnosticHint.fg}),
-              StatusLineDiagnosticSignOk({bg = palette.dark.bg_warm, fg = theme.DiagnosticOk.fg}),
+              StatusLineDiagnosticSignError({bg = statusline_bg, fg = theme.DiagnosticError.fg}),
+              StatusLineDiagnosticSignWarn({bg = statusline_bg, fg = theme.DiagnosticWarn.fg}),
+              StatusLineDiagnosticSignInfo({bg = statusline_bg, fg = theme.DiagnosticInfo.fg}),
+              StatusLineDiagnosticSignHint({bg = statusline_bg, fg = theme.DiagnosticHint.fg}),
+              StatusLineDiagnosticSignOk({bg = statusline_bg, fg = theme.DiagnosticOk.fg}),
             }
           end)
 
