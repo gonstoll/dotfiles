@@ -1,5 +1,5 @@
 local desc = require('utils').plugin_keymap_desc('typescript')
-local lsp_utils = require('plugins.lsp.utils')
+local lsp_utils = require('utils.lsp')
 local M = {}
 
 M.setup = function(capabilities)
