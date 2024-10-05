@@ -35,9 +35,9 @@ if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
   export GIT_EDITOR='vim'
 else
-  export VISUAL='nvim'
-  export EDITOR='nvim'
-  export GIT_EDITOR='nvim'
+  export EDITOR="$(which nvim)"
+  export VISUAL="$EDITOR"
+  export GIT_EDITOR="$EDITOR"
 fi
 
 export TERM="wezterm"
@@ -69,9 +69,10 @@ export FZF_TMUX_OPTS="-p 100%,100%"
 
 # Fzf
 source <(fzf --zsh)
-eval "$(fzf --zsh)"
 show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+export FZF_CTRL_R_OPTS="--height 40%"
+export FZF_DEFAULT_OPTS="--height 40%"
 
 # Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
@@ -118,9 +119,11 @@ zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
 # Use fzf for history search
-bindkey '^R' fzf-history-widget
+# bindkey '^R' fzf-history-widget
 
 # custom zsh configurations
 if [[ -f $ZSH_PATH/config/custom.zsh ]]; then
   source $ZSH_PATH/config/custom.zsh
 fi
+
+export MANPAGER='nvim +Man!'

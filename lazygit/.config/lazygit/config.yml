@@ -1,3 +1,9 @@
+git:
+  overrideGpg: true
+
+os:
+  editPreset: nvim
+
 gui:
   branchColors:
     'master': red
@@ -5,6 +11,3 @@ gui:
   theme:
     selectedLineBgColor:
       - reverse
-
-git:
-  overrideGpg: true
