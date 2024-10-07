@@ -1,1 +1,1 @@
-return {'jakobkhansen/journal.nvim', opts = {root = '~/.journal'}}
+return {'jakobkhansen/journal.nvim', cmd = 'Journal', opts = {root = '~/.journal'}}

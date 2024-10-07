@@ -27,20 +27,18 @@ return {
       'thenbe/neotest-playwright',
     },
     keys = function()
-      local neotest = require('neotest')
       local desc = require('utils').plugin_keymap_desc('neotest')
-
       return {
-        {'<leader>Tt', function() neotest.run.run(vim.fn.expand('%')) end, desc = desc('Run File')},
-        {'<leader>TT', function() neotest.run.run(vim.uv.cwd()) end, desc = desc('Run All Test Files')},
-        {'<leader>Tr', function() neotest.run.run() end, desc = desc('Run Nearest')},
-        {'<leader>Tw', function() neotest.run.run({vim.fn.expand('%'), jestCommand = 'node_modules/.bin/jest --watch'}) end, desc = desc('Run test on watch mode')},
-        {'<leader>TW', function() neotest.watch.toggle(vim.fn.expand('%')) end, desc = desc('Toggle watch mode (not working with jest)')},
-        {'<leader>Tl', function() neotest.run.run_last() end, desc = desc('Run Last')},
-        {'<leader>Ts', function() neotest.summary.toggle() end, desc = desc('Toggle Summary')},
-        {'<leader>To', function() neotest.output.open({enter = true, auto_close = true}) end, desc = desc('Show Output')},
-        {'<leader>TO', function() neotest.output_panel.toggle() end, desc = desc('Toggle Output Panel')},
-        {'<leader>TS', function() neotest.run.stop() end, desc = desc('Stop')},
+        {'<leader>Tt', function() require('neotest').run.run(vim.fn.expand('%')) end, desc = desc('Run File')},
+        {'<leader>TT', function() require('neotest').run.run(vim.uv.cwd()) end, desc = desc('Run All Test Files')},
+        {'<leader>Tr', function() require('neotest').run.run() end, desc = desc('Run Nearest')},
+        {'<leader>Tw', function() require('neotest').run.run({vim.fn.expand('%'), jestCommand = 'node_modules/.bin/jest --watch'}) end, desc = desc('Run test on watch mode')},
+        {'<leader>TW', function() require('neotest').watch.toggle(vim.fn.expand('%')) end, desc = desc('Toggle watch mode (not working with jest)')},
+        {'<leader>Tl', function() require('neotest').run.run_last() end, desc = desc('Run Last')},
+        {'<leader>Ts', function() require('neotest').summary.toggle() end, desc = desc('Toggle Summary')},
+        {'<leader>To', function() require('neotest').output.open({enter = true, auto_close = true}) end, desc = desc('Show Output')},
+        {'<leader>TO', function() require('neotest').output_panel.toggle() end, desc = desc('Toggle Output Panel')},
+        {'<leader>TS', function() require('neotest').run.stop() end, desc = desc('Stop')},
       }
     end,
     opts = {
