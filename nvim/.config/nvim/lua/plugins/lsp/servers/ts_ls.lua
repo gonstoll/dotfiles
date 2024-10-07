@@ -2,6 +2,26 @@ local desc = require('utils').plugin_keymap_desc('typescript')
 local lsp_utils = require('utils.lsp')
 local M = {}
 
+local settings = {
+  updateImportsOnFileMove = {enabled = 'always'},
+  format = {
+    enable = false,
+    insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false,
+    insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
+  },
+  preferences = {
+    importModuleSpecifier = os.getenv('LSP_TS_IMPORT_MODULE_SPECIFIER_PROJECT_RELATIVE') and 'project-relative' or 'auto',
+  },
+  inlayHints = {
+    parameterNames = {enabled = 'literals'},
+    parameterTypes = {enabled = true},
+    variableTypes = {enabled = true},
+    propertyDeclarationTypes = {enabled = true},
+    functionLikeReturnTypes = {enabled = true},
+    enumMemberValues = {enabled = true},
+  },
+}
+
 M.setup = function(capabilities)
   return {
     capabilities = capabilities,
@@ -9,55 +29,8 @@ M.setup = function(capabilities)
       allow_incremental_sync = false,
     },
     settings = {
-      javascript = {
-        format = {
-          enable = false,
-          insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false,
-          insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
-        },
-        updateImportsOnFileMove = {
-          enabled = 'always',
-        },
-        preferences = {
-          importModuleSpecifier = 'project-relative',
-        },
-        inlayHints = {
-          includeInlayParameterNameHints = 'all',
-          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayVariableTypeHints = true,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayEnumMemberValueHints = true,
-        },
-      },
-      typescript = {
-        format = {
-          enable = false,
-          insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false,
-          insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
-        },
-        updateImportsOnFileMove = {
-          enabled = 'always',
-        },
-        workspace = {
-          didChangeWatchedFiles = {
-            dynamicRegistration = true,
-          },
-        },
-        preferences = {
-          importModuleSpecifier = 'project-relative',
-        },
-        inlayHints = {
-          includeInlayParameterNameHints = 'literal',
-          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayVariableTypeHints = false,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayEnumMemberValueHints = true,
-        },
-      },
+      javascript = settings,
+      typescript = settings,
     },
     keys = {
       {

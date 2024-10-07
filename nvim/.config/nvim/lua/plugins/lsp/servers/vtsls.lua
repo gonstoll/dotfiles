@@ -2,6 +2,26 @@ local desc = require('utils').plugin_keymap_desc('typescript')
 local lsp_utils = require('utils.lsp')
 local M = {}
 
+local settings = {
+  updateImportsOnFileMove = {enabled = 'always'},
+  format = {
+    enable = false,
+    insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false,
+    insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
+  },
+  preferences = {
+    importModuleSpecifier = os.getenv('LSP_TS_IMPORT_MODULE_SPECIFIER_PROJECT_RELATIVE') and 'project-relative' or 'auto',
+  },
+  inlayHints = {
+    parameterNames = {enabled = 'literals'},
+    parameterTypes = {enabled = true},
+    variableTypes = {enabled = true},
+    propertyDeclarationTypes = {enabled = true},
+    functionLikeReturnTypes = {enabled = true},
+    enumMemberValues = {enabled = true},
+  },
+}
+
 M.setup = function(capabilities)
   return {
     capabilities = capabilities,
@@ -16,44 +36,8 @@ M.setup = function(capabilities)
           },
         },
       },
-      javascript = {
-        format = {
-          enable = false,
-          insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false,
-          insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
-        },
-        updateImportsOnFileMove = {enabled = 'always'},
-        preferences = {
-          importModuleSpecifier = 'project-relative',
-        },
-        inlayHints = {
-          enumMemberValues = {enabled = true},
-          functionLikeReturnTypes = {enabled = true},
-          parameterNames = {enabled = 'literals'},
-          parameterTypes = {enabled = true},
-          propertyDeclarationTypes = {enabled = true},
-          variableTypes = {enabled = false},
-        },
-      },
-      typescript = {
-        format = {
-          enable = false,
-          insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false,
-          insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
-        },
-        updateImportsOnFileMove = {enabled = 'always'},
-        preferences = {
-          importModuleSpecifier = os.getenv('LSP_TS_IMPORT_MODULE_SPECIFIER_PROJECT_RELATIVE') and 'project-relative' or 'auto',
-        },
-        inlayHints = {
-          enumMemberValues = {enabled = true},
-          functionLikeReturnTypes = {enabled = true},
-          parameterNames = {enabled = 'literals'},
-          parameterTypes = {enabled = true},
-          propertyDeclarationTypes = {enabled = true},
-          variableTypes = {enabled = false},
-        },
-      },
+      javascript = settings,
+      typescript = settings,
     },
     keys = {
       {

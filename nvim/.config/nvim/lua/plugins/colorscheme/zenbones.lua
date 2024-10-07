@@ -54,7 +54,7 @@ return {
         ---@diagnostic disable: undefined-global
         local specs = lush.parse(function()
           return {
-            -- Normal({theme.Normal, bg = bg == 'dark' and palette[bg].bg.da(20) or palette[bg].bg}),
+            Normal({theme.Normal, bg = bg == 'dark' and '#181616' or palette[bg].bg}),
             TermCursor({cterm = 'reverse', gui = 'reverse'}),
             FloatBorder({theme.FloatBorder, bg = theme.NormalFloat.bg}),
             FloatTitle({theme.FloatTitle, bg = theme.NormalFloat.bg}),
