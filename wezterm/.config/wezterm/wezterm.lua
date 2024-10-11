@@ -1,4 +1,4 @@
-local wezterm = require('wezterm')
+local wezterm = require('wezterm') --[[@as Wezterm]]
 local act = wezterm.action
 local keys = require('utils.keys')
 local fonts = require('fonts')
@@ -20,10 +20,7 @@ wezterm.on('update-right-status', function(window, pane)
     local cwd = ''
     local hostname = ''
 
-    if type(cwd_uri) == 'userdata' then
-      cwd = cwd_uri.file_path
-      hostname = cwd_uri.host or wezterm.hostname()
-    else
+    if type(cwd_uri) == 'string' then
       cwd_uri = cwd_uri:sub(8)
       local slash = cwd_uri:find('/')
 
@@ -36,6 +33,9 @@ wezterm.on('update-right-status', function(window, pane)
               return string.char(tonumber(hex, 16))
             end)
       end
+    else
+      cwd = cwd_uri.file_path
+      hostname = cwd_uri.host or wezterm.hostname()
     end
 
     local dot = hostname:find('[.]')
