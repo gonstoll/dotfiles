@@ -61,6 +61,7 @@ return {
             Special({theme.Special, gui = 'normal'}),
             Statement({theme.Statement, gui = 'normal'}),
             Directory({theme.Directory, gui = 'normal'}),
+            Boolean({theme.Boolean, gui = 'bold'}),
             Function({theme.Function, fg = bg == 'dark' and palette.dark.bg.li(58) or palette.light.bg.sa(20).da(60)}),
             TodoBgTODO({theme.TodoBgTODO, bg = palette[bg].water, fg = palette[bg].fg}),
             TodoFgTODO({theme.TodoFgTODO, fg = palette[bg].water}),

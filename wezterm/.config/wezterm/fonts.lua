@@ -11,7 +11,7 @@ M.getFonts = function(fontFamily)
     },
     jetbrains = {
       family = 'JetBrainsMono Nerd Font',
-      weight = 'Light',
+      weight = 'Regular',
       italic = false,
       stretch = 'Normal',
     },

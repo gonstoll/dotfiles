@@ -10,6 +10,7 @@ else
       --border-label="[tmux sessionizer]" \
       --prompt="  " \
       --no-bold \
+      --height=100% \
     )
 fi
 

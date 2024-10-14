@@ -26,6 +26,14 @@ require('lazy').setup({
   },
   performance = {
     cache = {enabled = true},
+    performance = {
+      rtp = {
+        'netrw',
+        'netrwPlugin',
+        'netrwSettings',
+        'netrwFileHandlers',
+      },
+    },
   },
   ui = {
     border = 'single',
