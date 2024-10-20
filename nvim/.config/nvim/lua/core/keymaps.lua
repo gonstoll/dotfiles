@@ -56,3 +56,12 @@ keyset('n', ',st', function()
   vim.wo.winfixheight = true
   vim.cmd.term()
 end, {desc = 'Open terminal below'})
+
+keyset('n', '<leader>bg', function()
+  local active_bg = vim.o.background
+  if active_bg == 'dark' then
+    vim.cmd('set background=light')
+  else
+    vim.cmd('set background=dark')
+  end
+end, {desc = 'Toggle background'})
