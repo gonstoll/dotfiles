@@ -13,7 +13,7 @@ end
 ---@param tmux_mods? string
 M.send_tmux_key = function(tmux_key, tmux_mods)
   return act.Multiple({
-    act.SendKey({mods = 'CTRL', key = 'f'}),
+    act.SendKey({mods = 'CTRL', key = 'b'}),
     act.SendKey({mods = tmux_mods, key = tmux_key}),
   })
 end

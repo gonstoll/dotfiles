@@ -18,7 +18,7 @@ SAVEHIST=100000
 HISTFILE=$ZDOTDIR/.histfile
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
-bindkey -s "^FS" "s\n" # Start tmux-sessionizer. Make sure "s" is an alias that executes "tmux-sessionizer"
+bindkey -s "^BS" "s\n" # Start tmux-sessionizer. Make sure "s" is an alias that executes "tmux-sessionizer"
 
 # zstyle :compinstall $ZDOTDIR/.zshrc
 # autoload -Uz compinit
