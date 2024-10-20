@@ -1,44 +1,24 @@
 return {
   'hrsh7th/nvim-cmp',
+  event = 'VeryLazy',
   dependencies = {
-    'L3MON4D3/LuaSnip',
-    'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
     'hrsh7th/cmp-calc',
     'hrsh7th/cmp-emoji',
+    'garymjr/nvim-snippets',
   },
-  event = 'VeryLazy',
   config = function()
     local cmp = require('cmp')
     local lspkind = require('lspkind')
-    local luasnip = require('luasnip')
     local cmp_select_opts = {behavior = cmp.SelectBehavior.Select}
-
-    local function formatForTailwindCSS(entry, vim_item)
-      if vim_item.kind == 'Color' and entry.completion_item.documentation then
-        local _, _, r, g, b = string.find(entry.completion_item.documentation, '^rgb%((%d+), (%d+), (%d+)')
-        if r then
-          local color = string.format('%02x', r) .. string.format('%02x', g) .. string.format('%02x', b)
-          local group = 'Tw_' .. color
-          if vim.fn.hlID(group) < 1 then
-            vim.api.nvim_set_hl(0, group, {fg = '#' .. color})
-          end
-          vim_item.kind = '●'
-          vim_item.kind_hl_group = group
-          return vim_item
-        end
-      end
-      vim_item.kind = lspkind.symbolic(vim_item.kind) and lspkind.symbolic(vim_item.kind) or vim_item.kind
-      return vim_item
-    end
 
     cmp.setup({
       snippet = {
         expand = function(args)
-          luasnip.lsp_expand(args.body)
+          vim.snippet.expand(args.body)
         end,
       },
       preselect = cmp.PreselectMode.None,
@@ -55,98 +35,71 @@ return {
         ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select_opts),
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select_opts),
         ['<C-y>'] = cmp.mapping.complete(),
-        ['<Tab>'] = cmp.mapping(function(fallback)
-          if luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          else
-            fallback()
-          end
-        end, {'i', 's'}),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-          if luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, {'i', 's'}),
+        -- ['<Tab>'] = cmp.mapping(function(fallback)
+        --   if luasnip.expand_or_jumpable() then
+        --     luasnip.expand_or_jump()
+        --   else
+        --     fallback()
+        --   end
+        -- end, {'i', 's'}),
+        -- ['<S-Tab>'] = cmp.mapping(function(fallback)
+        --   if luasnip.jumpable(-1) then
+        --     luasnip.jump(-1)
+        --   else
+        --     fallback()
+        --   end
+        -- end, {'i', 's'}),
       },
       sources = cmp.config.sources({
         {name = 'lazydev', group_index = 0},
-        {name = 'nvim_lsp'},
-        {name = 'luasnip'},
+        {name = 'nvim_lsp', keyword_length = 1},
+        {
+          name = 'snippets',
+          entry_filter = function()
+            local ctx = require('cmp.config.context')
+            local in_string = ctx.in_syntax_group('String') or ctx.in_treesitter_capture('string')
+            local in_comment = ctx.in_syntax_group('Comment') or ctx.in_treesitter_capture('comment')
+            return not in_string and not in_comment
+          end,
+        },
       }, {
-        {name = 'buffer'},
+        {name = 'buffer', keyword_length = 3},
         {name = 'emoji'},
         {name = 'calc'},
         {name = 'path'},
       }),
       formatting = {
-        fields = {'abbr', 'menu', 'kind'},
         format = lspkind.cmp_format({
           mode = 'symbol',
-          maxwidth = 200,
-          ellipsis_char = '...',
-          before = function(entry, item)
-            local fallback_name = '[' .. entry.source.name .. ']'
-            local menu_icon = {
-              nvim_lsp = '[LSP]',
-              luasnip = '[snip]',
-              path = '[path]',
-              emoji = '[🤌]',
-              nvim_lua = '[api]',
-              calc = '[calc]',
-              buffer = '[buf]',
-              cmdline = '[cmd]',
-            }
-
-            item = formatForTailwindCSS(entry, item)
-            item.menu = menu_icon[entry.source.name] or fallback_name
-
-            return item
-          end
-        })
+          menu = ({
+            nvim_lsp = '[lsp]',
+            luasnip = '[snip]',
+            snippets = '[snip]',
+            path = '[path]',
+            emoji = '[🤌]',
+            nvim_lua = '[api]',
+            calc = '[calc]',
+            buffer = '[buf]',
+            cmdline = '[cmd]',
+          })
+        }),
       },
-      -- -- disable completion in comments
-      -- enabled = function()
-      --   local context = require('cmp.config.context')
-      --
-      --   -- keep command mode completion enabled when cursor is in a comment
-      --   if vim.api.nvim_get_mode().mode == 'c' then
-      --     return true
-      --   else
-      --     return not context.in_treesitter_capture('comment') and not context.in_syntax_group('Comment')
-      --   end
-      -- end,
     })
 
-    -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
     cmp.setup.cmdline({'/', '?'}, {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
         {name = 'buffer'},
-      }
+      },
     })
 
-    -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
     cmp.setup.cmdline(':', {
       mapping = cmp.mapping.preset.cmdline(),
       sources = cmp.config.sources({
-        {name = 'path'}
+        {name = 'path'},
       }, {
         {name = 'cmdline'}
-      })
+      }),
     })
-
-    -- vim.api.nvim_create_autocmd('ModeChanged', {
-    --   pattern = '*',
-    --   callback = function()
-    --     if ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
-    --         and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
-    --         and not require('luasnip').session.jump_active
-    --     then
-    --       require('luasnip').unlink_current()
-    --     end
-    --   end
-    -- })
   end
 }

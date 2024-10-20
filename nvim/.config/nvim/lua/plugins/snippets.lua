@@ -1,27 +1,47 @@
 return {
-  'L3MON4D3/LuaSnip',
-  lazy = true,
-  config = function()
-    local ls = require('luasnip')
-    local types = require('luasnip.util.types')
-
-    ls.config.setup({
-      history = true,
-      updateevents = 'TextChanged,TextChangedI',
-      enable_autosnippets = true,
-      ext_opts = {
-        [types.choiceNode] = {
-          active = {
-            virt_text = {{' Current choice', 'NonText'}},
-          }
-        },
-      },
-    })
-
-    ls.filetype_extend('javascript', {'jsdoc'})
-    ls.filetype_extend('javascript', {'tsdoc'})
-    ls.filetype_extend('javascript', {'luadoc'})
-
-    require('utils.snippets')
-  end,
+  'garymjr/nvim-snippets',
+  opts = {},
+  keys = {
+    {
+      '<Tab>',
+      function()
+        if vim.snippet.active({direction = 1}) then
+          vim.schedule(function()
+            vim.snippet.jump(1)
+          end)
+          return
+        end
+        return '<Tab>'
+      end,
+      expr = true,
+      silent = true,
+      mode = 'i',
+    },
+    {
+      '<Tab>',
+      function()
+        vim.schedule(function()
+          vim.snippet.jump(1)
+        end)
+      end,
+      expr = true,
+      silent = true,
+      mode = 's',
+    },
+    {
+      '<S-Tab>',
+      function()
+        if vim.snippet.active({direction = -1}) then
+          vim.schedule(function()
+            vim.snippet.jump(-1)
+          end)
+          return
+        end
+        return '<S-Tab>'
+      end,
+      expr = true,
+      silent = true,
+      mode = {'i', 's'},
+    },
+  },
 }

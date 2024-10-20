@@ -1,0 +1,17 @@
+{
+  "React component": {
+    "description": "Create a React component",
+    "prefix": "rc",
+    "body": [
+      "import * as React from 'react';",
+      "",
+      "export function $1($2) {",
+      "  return (",
+      "    <div>",
+      "      $3",
+      "    </div>",
+      "  );",
+      "}"
+    ]
+  }
+}

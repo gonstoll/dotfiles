@@ -1,0 +1,84 @@
+{
+  "Console log": {
+    "description": "Log output to console",
+    "prefix": "log",
+    "body": ["console.log($1)"]
+  },
+  "Console log with prefix": {
+    "description": "Log output to console with a prefix",
+    "prefix": "logging",
+    "body": ["console.log('logging $1:', $1)"]
+  },
+  "Function": {
+    "description": "Create a function",
+    "prefix": "fn",
+    "body": [
+      "function $1($2) {",
+      "  $3",
+      "}"
+    ]
+  },
+  "Arrow function": {
+    "description": "Create an arrow function",
+    "prefix": "afn",
+    "body": [
+      "const $1 = $2($3) => {",
+      "  $4",
+      "}"
+    ]
+  },
+  "Async function": {
+    "description": "Create an async function",
+    "prefix": "asyncfn",
+    "body": [
+      "async function $1($2) {",
+      "  $3",
+      "}"
+    ]
+  },
+  "Async arrow function": {
+    "description": "Create an async arrow function",
+    "prefix": "asyncafn",
+    "body": [
+      "const $1 = async $2($3) => {",
+      "  $4",
+      "}"
+    ]
+  },
+  "RSC client component": {
+    "description": "Create a RSC client component",
+    "prefix": "ucl",
+    "body": "'use client'"
+  },
+  "RSC server component": {
+    "description": "Create a RSC server component",
+    "prefix": "usl",
+    "body": "'use server'"
+  },
+  "useState": {
+    "description": "Create a useState hook",
+    "prefix": "ust",
+    "body": [
+      "const [$1, set$2] = React.useState$3($4)"
+    ]
+  },
+  "useEffect": {
+    "description": "Create a useEffect hook",
+    "prefix": "uef",
+    "body": [
+      "React.useEffect(() => {",
+      "  $1",
+      "}, [$2])"
+    ]
+  },
+  "Import React": {
+    "description": "Import React",
+    "prefix": "iar",
+    "body": "import * as React from 'react'"
+  },
+  "Import zod": {
+    "description": "Import zod",
+    "prefix": "iz",
+    "body": "import { z } from 'zod'"
+  }
+}

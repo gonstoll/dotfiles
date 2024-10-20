@@ -1,0 +1,7 @@
+{
+  "Add a TODO": {
+    "description": "Add a TODO",
+    "prefix": "todo",
+    "body": ["TODO: (gonza) - ${1:Implement this}"]
+  }
+}

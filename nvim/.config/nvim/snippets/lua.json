@@ -1,0 +1,7 @@
+{
+  "require a module": {
+    "description": "Require a lua module",
+    "prefix": "req",
+    "body": ["local ${2:name} = require('${1:module}')"]
+  }
+}
