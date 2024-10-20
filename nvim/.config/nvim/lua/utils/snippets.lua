@@ -52,6 +52,7 @@ ls.add_snippets('lua', {
 })
 
 local typescript_snippets = {
+  snippet('izod', t("import {z} from 'zod'")),
   snippet('iar', t("import * as React from 'react'")),
   snippet('log', fmt('console.log({})', {i(1)})),
   snippet('logging', fmt("console.log('logging {}: ', {})", {
@@ -97,7 +98,6 @@ export function {}({{{}}}: Props) {{
 }}]], {i(1), i(2), i(3), i(4)}),
     })
   }),
-  snippet('izod', t("import {z} from 'zod'")),
 }
 
 local merged_snippets = {}
