@@ -44,6 +44,7 @@ return {
     capabilities.textDocument.foldingRange = {dynamicRegistration = false, lineFoldingOnly = true}
 
     local lsp_servers = {
+      jsonls = {capabilities = capabilities},
       tailwindcss = {capabilities = capabilities},
       emmet_language_server = {capabilities = capabilities},
       bashls = {capabilities = capabilities, filetypes = {'sh', 'zsh'}},

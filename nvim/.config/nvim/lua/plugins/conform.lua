@@ -8,7 +8,6 @@ return {
       typescriptreact = {'prettier'},
       javascript = {'prettier'},
       javascriptreact = {'prettier'},
-      json = {'prettier'},
       html = {'prettier'},
       css = {'prettier'},
       scss = {'prettier'},

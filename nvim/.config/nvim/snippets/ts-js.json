@@ -2,12 +2,16 @@
   "Console log": {
     "description": "Log output to console",
     "prefix": "log",
-    "body": ["console.log($1)"]
+    "body": [
+      "console.log($1)"
+    ]
   },
   "Console log with prefix": {
     "description": "Log output to console with a prefix",
     "prefix": "logging",
-    "body": ["console.log('logging $1:', $1)"]
+    "body": [
+      "console.log('logging $1:', $1)"
+    ]
   },
   "Function": {
     "description": "Create a function",
