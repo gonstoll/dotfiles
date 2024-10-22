@@ -1,7 +1,7 @@
 local keyset = vim.keymap.set
 
 -- Select all
-keyset('n', '<C-f>', 'gg<S-v>G', {desc = 'Select all'})
+keyset('n', '<C-b>', 'gg<S-v>G', {desc = 'Select all'})
 
 -- New tab
 keyset('n', 'tn', ':tabnew %<CR>', {desc = 'New tab'})
