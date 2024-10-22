@@ -4,7 +4,7 @@
 set -e
 
 dark_status_style='fg=#c5c9c5,bg=#282727'
-light_status_style='fg=black,bg=#e7dba0'
+light_status_style='fg=black,bg=#cfc1ba'
 
 current_status_style=$(tmux show -Av status-style)
 

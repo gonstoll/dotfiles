@@ -49,7 +49,7 @@ return {
 
     [theme_names.light] = {
       foreground = '#545464',
-      background = '#f2ecbc',
+      background = '#f0edec',
 
       cursor_fg = '#f2ecbc',
       cursor_bg = '#43436c',
