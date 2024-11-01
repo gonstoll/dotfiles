@@ -18,6 +18,7 @@
 [core]
   editor = "nvim"
   ignorecase = false
+  excludesfile = ~/.gitignore
 [user]
   name = Gonzalo Stoll
   email = stollgonzalo@gmail.com

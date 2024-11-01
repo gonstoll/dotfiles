@@ -1,11 +1,31 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
-directories=(~/Dev/backups ~/Dev/challenges ~/Dev/misc ~/Dev/oss ~/Dev/projects ~/courses/** ~)
+DIRECTORIES=(~/Dev/backups ~/Dev/challenges ~/Dev/misc ~/Dev/oss ~/Dev/projects ~/courses/** ~)
+
+function switch_to() {
+  if [[ -z $TMUX ]]; then
+    tmux attach-session -t $1
+  else
+    tmux switch-client -t $1
+  fi
+}
+
+function has_session() {
+  tmux list-sessions | grep -q "^$1:"
+}
+
+function hydrate() {
+  if [ -f $2/.tmux-sessionizer ]; then
+    tmux send-keys -t $1 "source $2/.tmux-sessionizer" c-M
+  elif [ -f $HOME/.tmux-sessionizer ]; then
+    tmux send-keys -t $1 "source $HOME/.tmux-sessionizer" c-M
+  fi
+}
 
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
-  selected=$(find $directories -mindepth 1 -maxdepth 1 -type d | fzf \
+  selected=$(find "${DIRECTORIES[@]}" -mindepth 1 -maxdepth 1 -type d | fzf \
       --border=rounded \
       --border-label="[tmux sessionizer]" \
       --prompt="  " \
@@ -23,15 +43,13 @@ tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
   tmux new-session -s $selected_name -c $selected
+  hydrate $selected_name $selected
   exit 0
 fi
 
-if ! tmux has-session -t=$selected_name 2> /dev/null; then
+if ! has_session $selected_name; then
   tmux new-session -ds $selected_name -c $selected
+  hydrate $selected_name $selected
 fi
 
-if [[ -z $TMUX ]]; then
-  tmux attach-session -t $selected_name
-else
-  tmux switch-client -t $selected_name
-fi
+switch_to $selected_name
