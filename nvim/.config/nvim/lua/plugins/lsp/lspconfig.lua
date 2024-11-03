@@ -45,9 +45,9 @@ return {
 
     local lsp_servers = {
       jsonls = {capabilities = capabilities},
-      tailwindcss = {capabilities = capabilities},
       emmet_language_server = {capabilities = capabilities},
-      bashls = {capabilities = capabilities, filetypes = {'sh', 'zsh'}},
+      bashls = {capabilities = capabilities},
+      tailwindcss = {capabilities = capabilities, root_dir = lspconfig.util.root_pattern('tailwind.config.js', 'tailwind.config.ts')},
       cssls = require('plugins.lsp.servers.cssls').setup(capabilities),
       eslint = require('plugins.lsp.servers.eslint').setup(capabilities),
       lua_ls = require('plugins.lsp.servers.lua_ls').setup(capabilities),

@@ -111,11 +111,11 @@ return {
   },
   config = function()
     local harpoon = require('harpoon')
-    local extensions = require('harpoon.extensions')
+    -- local extensions = require('harpoon.extensions')
     local menu_opts = {border = 'single', title_pos = 'center'}
 
     harpoon:setup({settings = {save_on_toggle = true, sync_on_ui_close = true}})
-    harpoon:extend(extensions.builtins.command_on_nav('UfoEnableFold'))
+    -- harpoon:extend(extensions.builtins.command_on_nav('UfoEnableFold'))
     harpoon:extend({
       SELECT = function(args)
         sync_index(args.list, args.idx)

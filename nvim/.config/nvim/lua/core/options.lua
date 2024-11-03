@@ -50,8 +50,8 @@ vim.opt.grepprg = 'rg --vimgrep' -- Use ripgrep for grepping
 vim.opt.grepformat = '%f:%l:%c:%m' -- Set the grep format
 vim.opt.inccommand = 'split' -- Show live preview of substitute commands
 
-vim.wo.foldmethod = 'expr' -- Set foldmethod to expr
-vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()' --
+vim.o.foldmethod = 'expr' -- Set foldmethod to expr
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 
 vim.g.markdown_recommended_style = 0 -- Disable default markdown styles (see https://www.reddit.com/r/neovim/comments/z2lhyz/comment/ixjb7je)
 vim.opt.fillchars = {
