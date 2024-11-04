@@ -162,3 +162,14 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 --     end
 --   end
 -- })
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = '*',
+  group = augroup('FileDetect', {}),
+  desc = 'Detect filetype on files with on extension after saving the file',
+  callback = function()
+    if vim.bo.filetype == '' then
+      vim.cmd('filetype detect')
+    end
+  end,
+})
