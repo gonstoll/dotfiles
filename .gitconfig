@@ -1,0 +1,28 @@
+[alias]
+	aco = add -A && commit -m
+	a = "!git add ."
+	d = diff
+	co = checkout
+	ci = commit
+	ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
+	pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
+	st = status
+	br = branch
+  undo = reset --soft HEAD~1
+[pull]
+  rebase = false
+[push]
+  autoSetupRemote = true
+[core]
+  editor = "nvim"
+  ignorecase = false
+  excludesfile = ~/.gitignore_global
+[user]
+  name = Gonzalo Stoll
+  email = stollgonzalo@gmail.com
+[github]
+  user = gonstoll
+[rerere]
+	enable = true
+[init]
+	defaultBranch = trunk
