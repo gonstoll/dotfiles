@@ -15,15 +15,15 @@ custom.zsh
 !/system/wallpapers/images/*/output.heic
 
 # tmux
-tmux/.config/tmux/plugins/*
-!/tmux/.config/tmux/plugins/tpm
+.config/tmux/plugins/*
+!config/tmux/plugins/tpm
 
 # Binary files
-/bin/.local/bin/*
-!/bin/.local/bin/arc
-!/bin/.local/bin/code_extensions
-!/bin/.local/bin/dotfiles
-!/bin/.local/bin/osxdefaults
-!/bin/.local/bin/stow-dotfiles
-!/bin/.local/bin/tmux-sessionizer
-!/bin/.local/bin/u
+.local/bin/*
+!.local/bin/arc
+!.local/bin/code_extensions
+!.local/bin/dotfiles
+!.local/bin/osxdefaults
+!.local/bin/stow-dotfiles
+!.local/bin/tmux-sessionizer
+!.local/bin/u
