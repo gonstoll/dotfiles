@@ -7,9 +7,9 @@
 [submodule ".config/zsh/plugins/zsh-autosuggestions"]
 	path = .config/zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule "system/wallpapers/wallpapper"]
-	path = system/wallpapers/wallpapper
-	url = https://github.com/mczachurski/wallpapper
 [submodule ".config/tmux/plugins/tpm"]
 	path = .config/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "system/wallpapers/wallpapper"]
+	path = system/wallpapers/wallpapper
+	url = https://github.com/mczachurski/wallpapper
