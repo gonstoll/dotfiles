@@ -5,10 +5,13 @@ M.setup = function(capabilities)
     capabilities = capabilities,
     settings = {
       json = {
-        format = {
-          enable = true,
-          keepLines = true,
-        },
+        maxItemsComputed = 5000,
+        colorDecorators = {enable = true},
+        format = {enable = true},
+        keepLines = {enable = true},
+        schemaDownload = {enable = true},
+        trace = {server = 'off'},
+        validate = {enable = true},
       },
     },
   }
