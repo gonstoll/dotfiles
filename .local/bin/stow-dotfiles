@@ -1,5 +1,0 @@
-#!/bin/sh
-
-STOW_PACKAGES=(bin git iterm2 neofetch nvim tmux vscode wezterm zsh lazygit aerospace yazi borders)
-
-stow -v "${STOW_PACKAGES[@]}"

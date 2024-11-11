@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 DOTFILES_DIRECTORY="${HOME}/.dotfiles"
 DOTFILES_TARBALL_PATH="https://github.com/gonstoll/dotfiles/tarball/master"
@@ -23,12 +23,12 @@ source ./lib/list
 source ./lib/misc
 source ./lib/utils
 
-chmod +x ./bin/.local/bin/arc
-chmod +x ./bin/.local/bin/code_extensions
-chmod +x ./bin/.local/bin/osxdefaults
-chmod +x ./bin/.local/bin/stow-dotfiles
-chmod +x ./bin/.local/bin/tmux-sessionizer
-chmod +x ./bin/.local/bin/u
+chmod +x ./.local/bin/arc
+chmod +x ./.local/bin/code_extensions
+chmod +x ./.local/bin/osxdefaults
+chmod +x ./.local/bin/stow-dotfiles
+chmod +x ./.local/bin/tmux-sessionizer
+chmod +x ./.local/bin/u
 chmod +x ./tmux/.config/tmux/bin/toggle-theme.sh
 
 # Test for known flags
@@ -94,7 +94,7 @@ else
 fi
 
 function stow_dotfiles() {
-  bash ./bin/.local/bin/stow-dotfiles
+  stow -v .
   e_success "Dotfiles update complete!"
 }
 
@@ -103,7 +103,7 @@ seek_confirmation "Warning: This step may overwrite your existing stowed dotfile
 
 if is_confirmed; then
   stow_dotfiles
-  source ./zsh/.config/zsh/.zshrc
+  source ./.config/zsh/.zshrc
 else
   printf "Aborting...\n"
   exit 1
@@ -113,7 +113,7 @@ fi
 seek_confirmation "Warning: This step may modify your OS X system defaults."
 
 if is_confirmed; then
-  bash ./bin/.local/bin/osxdefaults
+  bash ./.local/bin/osxdefaults
   e_success "OS X settings updated! You may need to restart."
 else
   printf "Skipped OS X settings update.\n"
