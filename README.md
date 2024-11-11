@@ -23,7 +23,7 @@ You can install these dotfiles in two ways:
 Execute the following command:
 
 ```sh
-bash -c "$(curl -fsSL raw.github.com/gonstoll/dotfiles/master/bin/.local/bin/dotfiles)"
+bash -c "$(curl -fsSL raw.github.com/gonstoll/dotfiles/master/.local/bin/dotfiles)"
 ```
 
 #### Cloning the repository
@@ -32,7 +32,7 @@ Clone the repository and execute the `dotfiles` script:
 
 ```sh
 git clone https://github.com/gonstoll/dotfiles.git ~/.dotfiles
-chmod +x ~/.dotfiles/bin/.local/bin/dotfiles && ~/.dotfiles/bin/.local/bin/dotfiles
+chmod +x ~/.dotfiles/.local/bin/dotfiles && ~/.dotfiles/.local/bin/dotfiles
 ```
 
 ## What does the installation script do?
@@ -51,7 +51,7 @@ packages. You can opt-out of this by setting the `--no-packages` flag:
 
 ```sh
 # First time installing:
-bash -c "$(curl -fsSL raw.github.com/gonstoll/dotfiles/master/bin/.local/bin/dotfiles) -- --no-packages"
+bash -c "$(curl -fsSL raw.github.com/gonstoll/dotfiles/master/.local/bin/dotfiles) -- --no-packages"
 
 # ...or after installation:
 dotfiles --no-packages
@@ -64,7 +64,7 @@ its submodules. You can opt-out of this by setting the `--no-sync` flag:
 
 ```sh
 # First time installing:
-bash -c "$(curl -fsSL raw.github.com/gonstoll/dotfiles/master/bin/.local/bin/dotfiles) -- --no-sync"
+bash -c "$(curl -fsSL raw.github.com/gonstoll/dotfiles/master/.local/bin/dotfiles) -- --no-sync"
 
 # ...or after installation:
 dotfiles --no-sync
