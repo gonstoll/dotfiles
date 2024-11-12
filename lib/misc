@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-run_misc_packages() {
+function run_misc_packages() {
   # Luarocks
   if command -v luarocks >/dev/null 2>&1; then
     luarocks install --server=https://luarocks.org/dev luaformatter

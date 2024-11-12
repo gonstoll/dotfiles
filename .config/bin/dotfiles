@@ -50,12 +50,22 @@ fi
 EOF
 }
 
+# Conditionally create a custom .zshrc path
+if [[ $no_custom_zshrc_path ]]; then
+  printf "Skipped creating a custom .zshrc path.\n"
+else
+  e_header "Creating custom .zshrc path..."
+  custom_zshrc_path
+  e_success "Custom .zshrc path added!"
+fi
+
 # Check for Homebrew and install if missing
 if ! type_exists 'brew'; then
   e_header "Installing Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $ZDOTDIR/.zprofile
   eval "$(/opt/homebrew/bin/brew shellenv)"
+  e_success "Homebrew installed successfully!"
 fi
 
 # Check for git and install if missing
@@ -64,6 +74,7 @@ if ! type_exists 'git'; then
   brew update
   e_header "Installing Git..."
   brew install git
+  e_success "Git installed!"
 fi
 
 # Initialize the git repository if it's missing
@@ -77,15 +88,7 @@ if ! is_git_repo; then
   git reset --hard FETCH_HEAD
   # Remove any untracked files
   git clean -fd
-fi
-
-# Conditionally create a custom .zshrc path
-if [[ $no_custom_zshrc_path ]]; then
-  printf "Skipped creating a custom .zshrc path.\n"
-else
-  e_header "Creating custom .zshrc path..."
-  custom_zshrc_path
-  e_success "Custom .zshrc path added!"
+  e_success "Git repository initialized successfully!"
 fi
 
 # Conditionally sync with the remote repository
@@ -97,6 +100,7 @@ else
   git pull --rebase origin master
   # Update submodules
   git submodule update --recursive --init --quiet
+  e_success "Git submodules syncing complete!"
 fi
 
 # Conditionally install brew and runtime packages
@@ -113,19 +117,15 @@ else
   run_misc_packages
 fi
 
-function stow_dotfiles() {
-  stow -v .
-  e_success "Dotfiles update complete!"
-}
-
 # Ask before potentially overwriting stowed dotfiles
 seek_confirmation "Warning: This step may overwrite your existing stowed dotfiles."
 
 if is_confirmed; then
-  stow_dotfiles
+  stow -v .
   source $ZDOTDIR/.zshrc
+  e_success "Dotfiles linked successfully!"
 else
-  printf "Aborting...\n"
+  e_warning "Aborted linking dotfiles."
   exit 1
 fi
 
@@ -137,5 +137,7 @@ if is_confirmed; then
   bash ./.config/bin/osxdefaults
   e_success "OS X settings updated! You may need to restart."
 else
-  printf "Skipped OS X settings update.\n"
+  e_warning "Skipped OS X settings update.\n"
 fi
+
+e_header "All done! You should probably restart your computer, and enjoy your new dotfiles!"
