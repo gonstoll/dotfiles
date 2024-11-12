@@ -37,6 +37,7 @@ brew "jesseduffield/lazygit/lazygit"
 brew "planetscale/tap/pscale"
 brew "tursodatabase/tap/turso"
 
+cask "arc"
 cask "nikitabobko/tap/aerospace"
 cask "font-fira-code-nerd-font"
 cask "font-geist-mono-nerd-font"
