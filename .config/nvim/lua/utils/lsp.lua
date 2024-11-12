@@ -81,8 +81,8 @@ function M.inspect_lsp_client()
       ['default'] = function(selected, opts)
         local selected_client = selected[1]
         open_lsp_float(selected_client)
-      end
-    }
+      end,
+    },
   })
 end
 

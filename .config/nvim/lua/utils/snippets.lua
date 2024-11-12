@@ -14,7 +14,7 @@ local snippet_from_nodes = ls.sn
 
 -- Keymaps
 vim.keymap.set('n', '<leader><leader>s', '<cmd>source ~/.config/nvim/after/plugin/snippets.lua<CR>', {
-  desc = desc('Source snippets')
+  desc = desc('Source snippets'),
 })
 vim.keymap.set({'i', 's'}, '<C-l>', function()
   if ls.choice_active() then
@@ -37,8 +37,8 @@ ls.add_snippets('all', {
       t('WARNING: (gonza) - '),
       t('HACK: (gonza) - '),
       t('PERF: (gonza) - '),
-    })
-  })
+    }),
+  }),
 })
 
 ls.add_snippets('lua', {
@@ -47,8 +47,8 @@ ls.add_snippets('lua', {
       local parts = vim.split(import_name[1][1], '.', {plain = true})
       return parts[#parts] or ''
     end, {1}),
-    i(1, 'module')
-  }))
+    i(1, 'module'),
+  })),
 })
 
 local typescript_snippets = {
@@ -60,7 +60,7 @@ local typescript_snippets = {
       local parts = vim.split(import_name[1][1], '.', {plain = true})
       return parts[#parts] or ''
     end, {1}),
-    i(1)
+    i(1),
   })),
   snippet('rsc', {c(1, {t("'use server'"), t("'use client'")})}),
   snippet('func', {
@@ -71,7 +71,7 @@ local typescript_snippets = {
       fmt([[async function {}({}) {{
   {}
 }}]], {i(1), i(2), i(3)}),
-    })
+    }),
   }),
   snippet('ust', fmt('const [{}] = React.useState{}({})', {i(1), i(2), i(3)})),
   snippet('uef', fmt([[React.useEffect(() => {{
@@ -96,7 +96,7 @@ type Props = {{
 export function {}({{{}}}: Props) {{
   return <div />{}
 }}]], {i(1), i(2), i(3), i(4)}),
-    })
+    }),
   }),
 }
 

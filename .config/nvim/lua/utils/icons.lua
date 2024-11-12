@@ -3,7 +3,7 @@ local M = {
     Error = ' ',
     Warn = ' ',
     Hint = ' ',
-    Info = ' '
+    Info = ' ',
   },
   git = {
     added = '',
