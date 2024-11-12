@@ -101,7 +101,7 @@ export CARGO_HOME="$HOME/.config/rust/.cargo"
 alias ls="eza --icons=always"
 
 # Bat
-export BAT_THEME="base16"
+export BAT_CONFIG_PATH="$HOME/.config/bat/bat.conf"
 
 # Yazi (file manager system)
 # Use y to change the current directory when exiting yazi
