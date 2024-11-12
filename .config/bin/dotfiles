@@ -23,14 +23,6 @@ source ./lib/list
 source ./lib/misc
 source ./lib/utils
 
-chmod +x ./.local/bin/arc
-chmod +x ./.local/bin/code_extensions
-chmod +x ./.local/bin/osxdefaults
-chmod +x ./.local/bin/stow-dotfiles
-chmod +x ./.local/bin/tmux-sessionizer
-chmod +x ./.local/bin/u
-chmod +x ./tmux/.config/tmux/bin/toggle-theme.sh
-
 # Test for known flags
 for opt in $@
 do
@@ -98,12 +90,30 @@ function stow_dotfiles() {
   e_success "Dotfiles update complete!"
 }
 
+# Add custom .zshrc path
+function custom_zshrc_path() {
+  sudo tee -a /etc/zshenv >/dev/null <<'EOF'
+
+if [[ -z "$XDG_CONFIG_HOME" ]]
+then
+	export XDG_CONFIG_HOME="$HOME/.config"
+fi
+
+if [[ -d "$XDG_CONFIG_HOME/zsh" ]]
+then
+	export ZDOTDIR="$XDG_CONFIG_HOME/zsh/"
+fi
+EOF
+  e_success "Custom .zshrc path added!"
+}
+
 # Ask before potentially overwriting stowed dotfiles
 seek_confirmation "Warning: This step may overwrite your existing stowed dotfiles."
 
 if is_confirmed; then
   stow_dotfiles
-  source ./.config/zsh/.zshrc
+  custom_zshrc_path
+  source $ZDOTDIR/.zshrc
 else
   printf "Aborting...\n"
   exit 1
@@ -113,7 +123,8 @@ fi
 seek_confirmation "Warning: This step may modify your OS X system defaults."
 
 if is_confirmed; then
-  bash ./.local/bin/osxdefaults
+  source $ZDOTDIR/.zshrc
+  bash ./.config/scripts/osxdefaults
   e_success "OS X settings updated! You may need to restart."
 else
   printf "Skipped OS X settings update.\n"

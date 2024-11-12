@@ -12,20 +12,6 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-# Add custom .zshrc path
-sudo tee -a /etc/zshenv >/dev/null <<'EOF'
-
-if [[ -z "$XDG_CONFIG_HOME" ]]
-then
-	export XDG_CONFIG_HOME="$HOME/.config"
-fi
-
-if [[ -d "$XDG_CONFIG_HOME/zsh" ]]
-then
-	export ZDOTDIR="$XDG_CONFIG_HOME/zsh/"
-fi
-EOF
-
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
 
