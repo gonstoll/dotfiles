@@ -42,9 +42,8 @@ selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-  tmux new-session -s $selected_name -c $selected
+  tmux new-session -ds $selected_name -c $selected
   hydrate $selected_name $selected
-  exit 0
 fi
 
 if ! has_session $selected_name; then
