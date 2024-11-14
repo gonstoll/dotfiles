@@ -25,4 +25,4 @@
 [rerere]
 	enable = true
 [init]
-	defaultBranch = trunk
+	defaultBranch = master
