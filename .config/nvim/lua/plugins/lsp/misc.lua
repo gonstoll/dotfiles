@@ -22,6 +22,8 @@ return {
         'ts_ls',
         'bashls',
         'vtsls',
+        'jsonls',
+        'bashls',
       },
       automatic_installation = true,
     },
