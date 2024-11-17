@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # ~/.macos — https://mths.be/macos
+# Also see: https://macos-defaults.com/
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
@@ -14,10 +15,6 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
-
-# Set a blazingly fast keyboard repeat rate
-defaults write -g KeyRepeat -int 1
-defaults write -g InitialKeyRepeat -int 13
 
 # Sync iTerm2 configs
 defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$HOME/dotfiles/iterm2"
@@ -36,7 +33,17 @@ defaults write com.apple.systemuiserver menuExtras -array \
   "/System/Library/CoreServices/Menu Extras/Battery.menu" \
   "/System/Library/CoreServices/Menu Extras/Volume.menu"
 
-killall SystemUIServer
+# VSCode: disable the Apple press and hold for VSCode only
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+
+# Ctrl + Cmd and click to drag window from anywhere
+defaults write -g NSWindowShouldDragOnGesture -bool true
+
+# -------------------------- KEYBOARD --------------------------
+
+# Set a blazingly fast keyboard repeat rate
+defaults write -g KeyRepeat -int 1
+defaults write -g InitialKeyRepeat -int 13
 
 # Disable automatic capitalization as it’s annoying when typing code
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
@@ -53,11 +60,51 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
-# VSCode: disable the Apple press and hold for VSCode only
-defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
-
-# Ctrl + Cmd and click to drag window from anywhere
-defaults write -g NSWindowShouldDragOnGesture -bool true
+# -------------------------- DOCK --------------------------
 
 # Group apps on macOS dock
 defaults write com.apple.dock expose-group-apps -bool true
+
+# Dock size
+defaults write com.apple.dock "tilesize" -int "44"
+
+# Autohide dock
+defaults write com.apple.dock "autohide" -bool "true"
+
+# Remove recent apps from dock
+defaults write com.apple.dock "show-recents" -bool "false"
+
+# -------------------------- SCREENSHOTS --------------------------
+
+# Disable shadow in screenshots
+defaults write com.apple.screencapture "disable-shadow" -bool "true"
+
+# Don't display date in screenshots names
+defaults write com.apple.screencapture "include-date" -bool "false"
+
+# -------------------------- FINDER --------------------------
+
+# Column view as default
+defaults write com.apple.finder "FXPreferredViewStyle" -string "clmv"
+
+# Set $HOME as the default location for new Finder windows
+defaults write com.apple.finder "NewWindowTarget" -string "PfHm"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}"
+
+# -------------------------- TRACKPAD --------------------------
+
+# Enable three finger drag
+defaults write com.apple.AppleMultitouchTrackpad "TrackpadThreeFingerDrag" -bool "true"
+
+# Enable tap to click
+defaults write com.apple.AppleMultitouchTrackpad "Clicking" -bool "true"
+
+# -------------------------- KILL ALL --------------------------
+
+for app in "Activity Monitor" \
+  "cfprefsd" \
+  "Dock" \
+  "SystemUIServer" \
+  "Finder"; do
+  killall "${app}" &> /dev/null
+done
