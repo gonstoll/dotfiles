@@ -66,7 +66,7 @@
   "vim-test": { "branch": "master", "commit": "b0661402277de193a374ae241f0742898cbcb319" },
   "vim-tmux-navigator": { "branch": "master", "commit": "424b5caa154bff34dc258ee53cec5a8e36cf7ea8" },
   "vscode-js-debug": { "branch": "main", "commit": "5b0f41dbe845d693a541c1fae30cec04c878216f" },
-  "wezterm-types": { "branch": "main", "commit": "5365ae225c5d7e5d4e116a16ec5f40bcce387f59" },
+  "wezterm-types": { "branch": "main", "commit": "45ef8d4d98d27be3ec2e472adde4b31df1d6edcb" },
   "which-key.nvim": { "branch": "main", "commit": "68e37e12913a66b60073906f5d3f14dee0de19f2" },
   "yazi.nvim": { "branch": "main", "commit": "caaebf12464d80d479be497c97d92c1c71b16e94" },
   "zenbones.nvim": { "branch": "main", "commit": "88960c8aa3ad8aff0bcccdce7cd23629c7a3c510" }

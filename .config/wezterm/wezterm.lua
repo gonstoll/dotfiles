@@ -186,7 +186,9 @@ return {
   cursor_blink_ease_out = 'Constant',
   force_reverse_video_cursor = true,
 
+  -- Other
   underline_thickness = 3.0,
+  max_fps = 240,
 
   -- Keymaps
   keys = {
