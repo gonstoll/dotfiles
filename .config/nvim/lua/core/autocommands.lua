@@ -94,7 +94,7 @@ autocmd('LspAttach', {
     end
 
     keyset('n', '<leader>rn', vim.lsp.buf.rename, 'Rename')
-    keyset('n', '<leader>ca', vim.lsp.buf.code_action, 'Code Action')
+    keyset({'n', 'v'}, '<leader>ca', vim.lsp.buf.code_action, 'Code Action')
     keyset('n', '<leader>td', vim.lsp.buf.type_definition, 'Type Definition')
     keyset('n', '<leader>sd', vim.lsp.buf.signature_help, 'Signature Documentation')
     keyset('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, 'Workspace Add Folder')
