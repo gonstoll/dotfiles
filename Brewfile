@@ -38,6 +38,7 @@ brew "dotenvx/brew/dotenvx"
 brew "jesseduffield/lazygit/lazygit"
 brew "planetscale/tap/pscale"
 brew "tursodatabase/tap/turso"
+brew "tokei"
 
 cask "arc"
 cask "nikitabobko/tap/aerospace"
