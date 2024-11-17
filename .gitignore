@@ -14,16 +14,16 @@ custom.zsh
 /system/wallpapers/images/*/*.jpeg
 !/system/wallpapers/images/*/output.heic
 
+# .config dirs
+.config/bun
+.config/configstore
+.config/fontforge
+.config/github-copilot
+.config/iterm2
+.config/planetscale
+.config/raycast
+.config/rust
+
 # tmux
 .config/tmux/plugins/*
 !config/tmux/plugins/tpm
-
-# Binary files
-.local/bin/*
-!.local/bin/arc
-!.local/bin/code_extensions
-!.local/bin/dotfiles
-!.local/bin/osxdefaults
-!.local/bin/stow-dotfiles
-!.local/bin/tmux-sessionizer
-!.local/bin/u

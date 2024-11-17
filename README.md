@@ -5,15 +5,6 @@
 These are my dotfiles. They are not meant to be used as is, but feel free to
 take whatever you want from them.
 
-## Features
-
-Some of the programs and systems used in these dotfiles are:
-
-- Editor - [Neovim](https://neovim.io/)
-- Shell - [Zsh](https://www.zsh.org/)
-- Terminal - [WezTerm](https://wezfurlong.org/wezterm/index.html)
-- Multiplexer - [tmux](https://github.com/tmux/tmux/wiki)
-
 ## Installation
 
 You can install these dotfiles in two ways:
@@ -42,7 +33,26 @@ install [homebrew](https://brew.sh/), [git](https://git-scm.com/), sync its git
 submodules and link its packages by using [GNU
 Stow](https://www.gnu.org/software/stow/).
 
+It also supports having your own intial script that you wish to run after the
+dotfiles are installed. You can do this by having a `init_script` file in you
+$HOME directory. This file will be executed after the dotfiles are installed.
+This is useful for setting up some environment variables or installing some
+packages that are not included in the dotfiles.
+
 You can customize its installation by setting some flags:
+
+#### No custom `.zshrc` path
+
+This script changes the default path of the `.zshrc` file to
+`$HOME/.config/zsh/.zshrc`. You can opt-out of this by setting the `no-custom-zshrc-path`
+
+```sh
+# First time installing:
+bash -c "$(curl -fsSL raw.github.com/gonstoll/dotfiles/master/.config/bin/dotfiles) -- --no-custom-zshrc-path"
+
+# ...or after installation:
+dotfiles --no-custom-zshrc-path
+```
 
 #### No homebrew and runtime packages
 

@@ -117,6 +117,12 @@ else
   run_misc_packages
 fi
 
+# Checks if you have a `init_script` file on your home directory
+# and moves it to the correct location
+if [ -f $HOME/init_script ]; then
+  mv $HOME/init_script ./.config/bin/init_script
+fi
+
 # Ask before potentially overwriting stowed dotfiles
 seek_confirmation "Warning: This step may overwrite your existing stowed dotfiles."
 
@@ -138,6 +144,12 @@ if is_confirmed; then
   e_success "OS X settings updated! You may need to restart."
 else
   e_warning "Skipped OS X settings update.\n"
+fi
+
+if [ -f ./.config/bin/init_script ]; then
+  e_header "Running init_script..."
+  bash ./.config/bin/init_script
+  e_success "init_script complete!"
 fi
 
 e_header "All done! You should probably restart your computer, and enjoy your new dotfiles!"
