@@ -57,7 +57,7 @@ return {
       eslint = require('plugins.lsp.servers.eslint').setup(capabilities),
       lua_ls = require('plugins.lsp.servers.lua_ls').setup(capabilities),
       vtsls = require('plugins.lsp.servers.vtsls').setup(capabilities),
-      -- ts_ls = require('plugins.lsp.servers.ts_ls').setup(capabilities),
+      stylelint_lsp = require('plugins.lsp.servers.stylelint_lsp').setup(capabilities),
     }
 
     for server_name, server_config in pairs(lsp_servers) do
@@ -72,6 +72,8 @@ return {
       end
     end
 
-    vim.keymap.set('n', '<leader>lc', require('utils.lsp').inspect_lsp_client, {desc = 'Inspect LSP Client configuration'})
+    vim.keymap.set('n', '<leader>lc', function()
+      require('utils.lsp').inspect_lsp_client()
+    end, {desc = 'Inspect LSP Client configuration'})
   end,
 }
