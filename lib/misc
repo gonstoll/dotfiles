@@ -8,7 +8,7 @@ function run_misc_packages() {
 
   # NPM global packages
   if command -v npm >/dev/null 2>&1; then
-    npm install -g depcheck eslint prettier prettier-plugin-tailwindss typescript typescript-language-server vscode-langservers-extracted stylelint-lsp
+    npm install -g depcheck eslint prettier prettier-plugin-tailwindcss typescript typescript-language-server vscode-langservers-extracted stylelint-lsp
   fi
 
   # Bun
