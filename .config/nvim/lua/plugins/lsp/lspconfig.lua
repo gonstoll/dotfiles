@@ -54,7 +54,7 @@ return {
       bashls = require('plugins.lsp.servers.bashls').setup(capabilities),
       tailwindcss = require('plugins.lsp.servers.tailwindcss').setup(capabilities),
       cssls = require('plugins.lsp.servers.cssls').setup(capabilities),
-      eslint = require('plugins.lsp.servers.eslint').setup(capabilities),
+      -- eslint = require('plugins.lsp.servers.eslint').setup(capabilities),
       lua_ls = require('plugins.lsp.servers.lua_ls').setup(capabilities),
       vtsls = require('plugins.lsp.servers.vtsls').setup(capabilities),
       stylelint_lsp = require('plugins.lsp.servers.stylelint_lsp').setup(capabilities),
