@@ -1,6 +1,5 @@
 -- Display command output in neovim split window
 -- Taken from: https://gist.github.com/Leenuus/7a2ea47b88bfe16430b42e4e48122718
-
 local function redir_open_win(buf, vertical, stderr_p)
   local wn = stderr_p and 'redir_sterr_win' or 'redir_win'
   if vim.g[wn] == nil then

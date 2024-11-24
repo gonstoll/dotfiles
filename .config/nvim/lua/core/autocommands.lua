@@ -141,29 +141,13 @@ autocmd('ColorScheme', {
   end,
 })
 
-vim.api.nvim_create_autocmd('BufWritePost', {
+autocmd('BufWritePost', {
   pattern = 'aerospace.toml',
   group = augroup('Aerospace', {}),
   command = '!aerospace reload-config',
 })
 
--- Analyze shebang and set filetype based on it (`:w` and `:e` to trigger it)
--- vim.api.nvim_create_autocmd('FileType', {
---   pattern = '*',
---   group = augroup('Shebang', {}),
---   desc = 'Set the filetype based on the shebang header',
---   callback = function()
---     local first_line = vim.fn.getline(1)
---     local pattern1 = '^#!.*/bin/env%s+(%w+)'
---     local pattern2 = '^#!.*/bin/(%w+)'
---     local interpreter = first_line:match(pattern1) or first_line:match(pattern2)
---     if interpreter then
---       vim.api.nvim_set_option_value('filetype', interpreter == 'zsh' and 'sh' or interpreter, {buf = 0})
---     end
---   end
--- })
-
-vim.api.nvim_create_autocmd('BufWritePost', {
+autocmd('BufWritePost', {
   pattern = '*',
   group = augroup('FileDetect', {}),
   desc = 'Detect filetype on files with on extension after saving the file',

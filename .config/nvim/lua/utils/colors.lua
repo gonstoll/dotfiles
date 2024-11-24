@@ -1,4 +1,5 @@
 -- Taken from https://github.com/rachartier/tiny-inline-diagnostic.nvim
+---@param hex string
 local function hex_to_rgb(hex)
   if hex == nil or hex == 'None' then
     return {0, 0, 0}
