@@ -3,6 +3,10 @@
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
 after-login-command = []
 
+exec-on-workspace-change = ['/bin/bash', '-c',
+  'exec-and-forget borders'
+]
+
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
@@ -48,6 +52,11 @@ key-mapping.preset = 'qwerty'
 # Fallback value (if you omit the key): on-focused-monitor-changed = []
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 on-focus-changed = ['move-mouse window-lazy-center']
+
+# Effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
+# Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
+# Also see: https://nikitabobko.github.io/AeroSpace/goodness#disable-hide-app
+automatically-unhide-macos-hidden-apps = true
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
@@ -115,6 +124,7 @@ alt-d = 'workspace D' # Design (Figma, Sketch, etc.)
 alt-m = 'workspace M' # Messaging
 alt-n = 'workspace N' # Notes
 alt-t = 'workspace T' # Terminal
+# alt-t = ['exec-and-forget open -a /Applications/WezTerm.app']
 alt-w = 'workspace W' # Work
 alt-z = 'workspace Z' # Zoom
 
@@ -166,6 +176,10 @@ minus = 'resize smart -50'
 equal = 'resize smart +50'
 esc = ['reload-config', 'mode main']
 
+[workspace-to-monitor-force-assignment]
+1 = 1
+2 = 'secondary'
+
 # Hooks
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
@@ -198,10 +212,6 @@ run = 'move-node-to-workspace A'
 [[on-window-detected]]
 if.app-id = 'com.figma.Desktop'
 run = 'move-node-to-workspace D'
-
-[workspace-to-monitor-force-assignment]
-1 = 1
-2 = 'secondary'
 
 [[on-window-detected]]
 if.app-id = 'us.zoom.xos'

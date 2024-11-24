@@ -71,8 +71,6 @@ export FZF_TMUX_OPTS="-p 100%,100%"
 source <(fzf --zsh)
 show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
-export FZF_CTRL_R_OPTS="--height 40%"
-export FZF_DEFAULT_OPTS="--height 40%"
 
 # Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
@@ -127,3 +125,8 @@ if [[ -f $ZSH_PATH/config/custom.zsh ]]; then
 fi
 
 export MANPAGER='nvim +Man!'
+
+# Use fzf to view and focus on aerospace windows
+function ff() {
+  aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
+}
