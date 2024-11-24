@@ -13,3 +13,6 @@
 [submodule "system/wallpapers/wallpapper"]
 	path = system/wallpapers/wallpapper
 	url = https://github.com/mczachurski/wallpapper
+[submodule ".config/zsh/plugins/zsh-completions"]
+	path = .config/zsh/plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git

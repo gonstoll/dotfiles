@@ -11,21 +11,40 @@ fi
 
 ZSHRC_PATH="$(readlink -f - $HOME/.config/zsh)/.zshrc" # get the path of the .zshrc symlink
 ZSH_PATH=$(dirname $ZSHRC_PATH) # get the path of the zsh folder
-
-zstyle ':completion:*' menu select
 LANG=en_US.UTF-8
 
+# Configs
+source $ZSH_PATH/config/options.zsh
+source $ZSH_PATH/config/aliases.zsh
+if [[ -f $ZSH_PATH/config/custom.zsh ]]; then
+  source $ZSH_PATH/config/custom.zsh
+fi
+
+# how completion suggestions in a menu
+zstyle ':completion:*' menu select
+zstyle ':completion:*' auto-description '— %d'
+zstyle ':completion:*' completer _expand _complete _ignored _match _correct _approximate _prefix
+zstyle ':completion:*' format '» %B%d%b (%B%F{green}%n%f%b)'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' insert-unambiguous true
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
+zstyle ':completion:*' max-errors 2 numeric
+zstyle ':completion:*' original true
+
 # History
-HISTSIZE=110000
-SAVEHIST=100000
 HISTFILE=$ZDOTDIR/.histfile
+HISTSIZE=1100000000
+SAVEHIST=1000000000
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
 bindkey -s "^FS" "s\n" # Start tmux-sessionizer. Make sure "s" is an alias that executes "tmux-sessionizer"
 
-# zstyle :compinstall $ZDOTDIR/.zshrc
-# autoload -Uz compinit
-# compinit
+# Disable the highlighting of text pasted into the terminal.
+zle_highlight=('paste:none')
+
+autoload -Uz compinit && compinit
+autoload -U colors && colors
 
 source $ZSH_PATH/plugins/powerlevel10k/powerlevel10k.zsh-theme
 
@@ -58,10 +77,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 source $ZSH_PATH/plugins/fzf/fzf.zsh
 source $ZSH_PATH/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source $ZSH_PATH/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-
-# Configs
-source $ZSH_PATH/config/options.zsh
-source $ZSH_PATH/config/aliases.zsh
+fpath=($ZSH_PATH/plugins/zsh-completions/src $fpath)
 
 # Zoxide
 eval "$(zoxide init zsh)"
@@ -121,11 +137,6 @@ bindkey "^X^E" edit-command-line
 
 # Use fzf for history search
 # bindkey '^R' fzf-history-widget
-
-# custom zsh configurations
-if [[ -f $ZSH_PATH/config/custom.zsh ]]; then
-  source $ZSH_PATH/config/custom.zsh
-fi
 
 export MANPAGER='nvim +Man!'
 
