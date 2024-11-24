@@ -12,78 +12,6 @@ local function merge_table(t1, t2)
   return t1
 end
 
-wezterm.on('update-right-status', function(window, pane)
-  local cells = {}
-  local cwd_uri = pane:get_current_working_dir()
-
-  if cwd_uri then
-    local cwd = ''
-    local hostname = ''
-
-    if type(cwd_uri) == 'string' then
-      cwd_uri = cwd_uri:sub(8)
-      local slash = cwd_uri:find('/')
-
-      if slash then
-        hostname = cwd_uri:sub(1, slash - 1)
-        cwd = cwd_uri
-            :sub(slash)
-            :gsub(wezterm.home_dir, '~')
-            :gsub('%%(%x%x)', function(hex)
-              return string.char(tonumber(hex, 16))
-            end)
-      end
-    else
-      cwd = cwd_uri.file_path
-      hostname = cwd_uri.host or wezterm.hostname()
-    end
-
-    local dot = hostname:find('[.]')
-    if dot then
-      hostname = hostname:sub(1, dot - 1)
-    end
-    if hostname == '' then
-      hostname = wezterm.hostname()
-    end
-
-    table.insert(cells, cwd)
-    table.insert(cells, hostname)
-  end
-
-  local date = wezterm.strftime('%a %d %b - %H:%M:%S')
-  table.insert(cells, date)
-
-  for _, b in ipairs(wezterm.battery_info()) do
-    table.insert(cells, string.format('%.0f%%', b.state_of_charge * 100))
-  end
-
-  local overrides = window:get_config_overrides() or {}
-  local is_dark_theme = not overrides.color_scheme and true or overrides.color_scheme == gruvbox.dark
-  local statusline_fg = is_dark_theme and gruvbox.colors.dark_palette.fg0 or gruvbox.colors.light_palette.fg0
-  local statusline_bg = is_dark_theme and gruvbox.colors.dark_palette.bg3 or gruvbox.colors.light_palette.bg3
-
-  local elements = {}
-  local num_cells = 0
-
-  local function push(text, is_last)
-    table.insert(elements, {Foreground = {Color = statusline_fg}})
-    table.insert(elements, {Background = {Color = statusline_bg}})
-    table.insert(elements, {Text = ' ' .. text .. ' '})
-    if not is_last then
-      table.insert(elements, {Foreground = {Color = statusline_fg}})
-      table.insert(elements, {Text = '|'})
-    end
-    num_cells = num_cells + 1
-  end
-
-  while #cells > 0 do
-    local cell = table.remove(cells, 1)
-    push(cell, #cells == 0)
-  end
-
-  window:set_right_status(wezterm.format(elements))
-end)
-
 wezterm.on('toggle-gruvbox-theme', function(window)
   local overrides = window:get_config_overrides() or {}
 
@@ -157,23 +85,6 @@ return {
   initial_rows = 120,
   initial_cols = 350,
   enable_scroll_bar = false,
-  -- background = {
-  --   {
-  --     source = {Color = '#000000'},
-  --     height = '100%',
-  --     width = '100%',
-  --     opacity = 1,
-  --   },
-  --   {
-  --     source = {File = {path = os.getenv('HOME') .. '/.config/wezterm/wallpapers/vader.jpg'}},
-  --     repeat_x = 'NoRepeat',
-  --     repeat_y = 'NoRepeat',
-  --     height = 'Cover',
-  --     width = 'Cover',
-  --     horizontal_align = 'Center',
-  --     opacity = 0.3,
-  --   },
-  -- },
 
   -- Opacity and blur
   -- window_background_opacity = 0.9,
