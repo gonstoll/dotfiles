@@ -12,6 +12,9 @@ fi
 ZSHRC_PATH="$(readlink -f - $HOME/.config/zsh)/.zshrc" # get the path of the .zshrc symlink
 ZSH_PATH=$(dirname $ZSHRC_PATH) # get the path of the zsh folder
 
+zstyle ':completion:*' menu select
+LANG=en_US.UTF-8
+
 # History
 HISTSIZE=110000
 SAVEHIST=100000
