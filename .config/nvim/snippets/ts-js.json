@@ -83,6 +83,6 @@
   "Import zod": {
     "description": "Import zod",
     "prefix": "iz",
-    "body": "import { z } from 'zod'"
+    "body": "import {z} from 'zod'"
   }
 }
