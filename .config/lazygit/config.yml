@@ -7,7 +7,11 @@ os:
 gui:
   branchColors:
     'master': red
+
   nerdFontsVersion: '3'
+
+  filterMode: fuzzy
+
   theme:
     selectedLineBgColor:
       - reverse
