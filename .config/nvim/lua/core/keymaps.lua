@@ -65,3 +65,8 @@ keyset('n', '<leader>bg', function()
     vim.cmd('set background=dark')
   end
 end, {desc = 'Toggle background'})
+
+keyset({'i', 's'}, '<Esc>', function()
+  vim.snippet.stop()
+  return '<Esc>'
+end, {expr = true, desc = 'Close snippet session'})
