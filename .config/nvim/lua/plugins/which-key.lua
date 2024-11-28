@@ -3,5 +3,5 @@ return {
   event = 'VeryLazy',
   opts = {
     icons = {rules = false},
-  }
+  },
 }
