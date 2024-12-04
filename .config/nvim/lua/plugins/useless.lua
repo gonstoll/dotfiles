@@ -16,4 +16,10 @@ return {
       {',fml', '<cmd>CellularAutomaton make_it_rain<CR>', desc = cel_desc('Make it rain')},
     },
   },
+
+  {
+    'marcussimonsen/let-it-snow.nvim',
+    cmd = 'LetItSnow',
+    opts = {},
+  },
 }
