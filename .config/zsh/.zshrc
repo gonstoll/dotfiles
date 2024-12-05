@@ -1,10 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Powerlevel10k
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh//.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -20,7 +13,10 @@ if [[ -f $ZSH_PATH/config/custom.zsh ]]; then
   source $ZSH_PATH/config/custom.zsh
 fi
 
-# how completion suggestions in a menu
+# Completions
+FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+# Show completion suggestions in a menu
 zstyle ':completion:*' menu select
 zstyle ':completion:*' auto-description '— %d'
 zstyle ':completion:*' completer _expand _complete _ignored _match _correct _approximate _prefix
@@ -43,8 +39,8 @@ bindkey -s "^FS" "s\n" # Start tmux-sessionizer. Make sure "s" is an alias that 
 # Disable the highlighting of text pasted into the terminal.
 zle_highlight=('paste:none')
 
-autoload -Uz compinit && compinit
-autoload -U colors && colors
+autoload -U compinit; compinit
+autoload -U colors; colors
 
 source $ZSH_PATH/plugins/powerlevel10k/powerlevel10k.zsh-theme
 
@@ -75,9 +71,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Plugins
 source $ZSH_PATH/plugins/fzf/fzf.zsh
+source $ZSH_PATH/plugins/fzf-tab/fzf-tab.plugin.zsh
 source $ZSH_PATH/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source $ZSH_PATH/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-fpath=($ZSH_PATH/plugins/zsh-completions/src $fpath)
 
 # Zoxide
 eval "$(zoxide init zsh)"
