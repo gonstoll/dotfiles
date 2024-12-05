@@ -1,3 +1,5 @@
+autoload -U colors && colors
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -13,20 +15,11 @@ if [[ -f $ZSH_PATH/config/custom.zsh ]]; then
   source $ZSH_PATH/config/custom.zsh
 fi
 
+# tmux messes up LS colors, reset to default
+[[ ! -z $TMUX ]] && unset LS_COLORS
+
 # Completions
 FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-
-# Show completion suggestions in a menu
-zstyle ':completion:*' menu select
-zstyle ':completion:*' auto-description '— %d'
-zstyle ':completion:*' completer _expand _complete _ignored _match _correct _approximate _prefix
-zstyle ':completion:*' format '» %B%d%b (%B%F{green}%n%f%b)'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' insert-unambiguous true
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
-zstyle ':completion:*' max-errors 2 numeric
-zstyle ':completion:*' original true
 
 # History
 HISTFILE=$ZDOTDIR/.histfile
@@ -34,13 +27,42 @@ HISTSIZE=1100000000
 SAVEHIST=1000000000
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
-bindkey -s "^FS" "s\n" # Start tmux-sessionizer. Make sure "s" is an alias that executes "tmux-sessionizer"
 
 # Disable the highlighting of text pasted into the terminal.
 zle_highlight=('paste:none')
 
-autoload -U compinit; compinit
-autoload -U colors; colors
+autoload -U +X compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)
+
+# Vi mode
+bindkey -v
+
+# set 1ms timeout for Esc press so we can switch
+# between vi "normal" and "command" modes faster
+export KEYTIMEOUT=1
+
+# Use vim keys in tab complete menu (2nd tab press):
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+
+# By default backspace (^?) is bound to `vi-backward-delete-char`
+# we want it to have the same bahvior as vim/nvim (i.e. backspace=del)
+# without the below we will get stuck unable to backspace after Esc-k-A
+bindkey -v '^?' backward-delete-char
+
+# Better searching in vi command mode
+bindkey -M vicmd '/' history-incremental-search-forward
+bindkey -M vicmd '?' history-incremental-search-backward
+bindkey -M vicmd '^r' history-incremental-search-backward
+bindkey -M viins '^r' history-incremental-search-backward
+
+# Start tmux-sessionizer (cmd+s)
+bindkey -s "^FS" "s\n"
 
 source $ZSH_PATH/plugins/powerlevel10k/powerlevel10k.zsh-theme
 
@@ -73,7 +95,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 source $ZSH_PATH/plugins/fzf/fzf.zsh
 source $ZSH_PATH/plugins/fzf-tab/fzf-tab.plugin.zsh
 source $ZSH_PATH/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-source $ZSH_PATH/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 # Zoxide
 eval "$(zoxide init zsh)"
@@ -140,3 +161,6 @@ export MANPAGER='nvim +Man!'
 function ff() {
   aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
 }
+
+# Loading syntax highlighting last on purpose
+source $ZSH_PATH/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
