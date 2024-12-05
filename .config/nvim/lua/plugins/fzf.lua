@@ -71,6 +71,7 @@ return {
       },
       keymap = {
         builtin = {
+          true,
           ['<C-d>'] = 'preview-page-down',
           ['<C-u>'] = 'preview-page-up',
         },
