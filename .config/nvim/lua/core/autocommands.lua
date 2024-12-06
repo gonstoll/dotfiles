@@ -4,7 +4,7 @@ local autocmd = vim.api.nvim_create_autocmd
 
 -- Highlight yanked text
 autocmd('TextYankPost', {
-  pattern = '*',
+  desc = 'Highlight yanked text',
   group = augroup('YankHighlight', {}),
   callback = function()
     vim.highlight.on_yank()
@@ -22,7 +22,7 @@ autocmd({'BufNewFile', 'BufRead'}, {
 
 -- Fugitive keymaps
 autocmd('BufWinEnter', {
-  pattern = '*',
+  pattern = 'fugitive',
   group = augroup('Fugitive', {}),
   callback = function()
     if (vim.bo.filetype ~= 'fugitive') then
@@ -40,12 +40,8 @@ autocmd('BufWinEnter', {
   end,
 })
 
--- Disable commenting new lines
-vim.cmd('autocmd BufEnter * set formatoptions-=cro')
-vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')
-
 -- Make sure any opened buffer which is contained in a git repo will be tracked
-vim.cmd('autocmd BufEnter * :lua require("lazygit.utils").project_root_dir()')
+-- vim.cmd('autocmd BufEnter * :lua require("lazygit.utils").project_root_dir()')
 
 -- Statusline
 local statusline_group = augroup('StatusLine', {})

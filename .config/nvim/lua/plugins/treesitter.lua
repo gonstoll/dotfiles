@@ -3,7 +3,7 @@ return {
   dependencies = {
     {'windwp/nvim-ts-autotag', opts = {}},
   },
-  cmd = {'TSInstall', 'TSBufEnable', 'TSBufDisable', 'TSModuleInfo'},
+  -- cmd = {'TSInstall', 'TSBufEnable', 'TSBufDisable', 'TSModuleInfo'},
   build = ':TSUpdate',
   lazy = vim.fn.argc(-1) == 0,
   config = function()
@@ -11,14 +11,6 @@ return {
     local parsers = require('nvim-treesitter.parsers')
 
     configs.setup({
-      highlight = {
-        enable = true,
-        disable = {},
-      },
-      indent = {
-        enable = true,
-        disable = {},
-      },
       ensure_installed = {
         'markdown',
         'markdown_inline',
@@ -42,6 +34,20 @@ return {
         'sql',
         'regex',
       },
+      highlight = {
+        enable = true,
+        disable = function(lang, buf)
+          local max_filesize = 100 * 1024 -- 100 KB
+          local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+          if ok and stats and stats.size > max_filesize then
+            return true
+          end
+        end,
+      },
+      indent = {
+        enable = true,
+        disable = {},
+      },
       context_commentstring = {
         enable = true,
         enable_autocmd = false,
@@ -59,5 +65,5 @@ return {
 
     local parser_configs = parsers.get_parser_configs();
     parser_configs.tsx.filetype_to_parsername = {'javascript', 'typescript.tsx'}
-  end
+  end,
 }

@@ -1,5 +1,12 @@
 local keyset = vim.keymap.set
 
+-- keyset('n', '-', function()
+--   local cur_file = vim.fn.expand('%:t')
+--   vim.cmd.Ex()
+--   vim.fn.search('^' .. cur_file .. '$')
+-- end, {desc = 'Open Netrw'})
+-- keyset('n', '<C-c>', vim.cmd.Rex, {desc = 'Open last visited file'})
+
 keyset('c', '<C-g>', '<C-f>', {desc = 'Edit command in cmdline mode'})
 keyset('n', '<C-s>', 'gg<S-v>G', {desc = 'Select all'})
 
@@ -37,7 +44,9 @@ keyset('n', 'N', 'Nzzzv', {desc = 'Jump to previous search term'})
 keyset('x', '<leader>p', '\"_dP')
 
 -- Sources current buffer
-keyset('n', '<leader><leader>', function() vim.cmd('so') end)
+keyset('n', '<leader><leader>x', function() vim.cmd('so') end, {desc = 'Source current buffer'})
+keyset('n', '<leader>X', ':.lua<CR>', {desc = 'Source current line'})
+keyset('v', '<leader>X', ':.lua<CR>', {desc = 'Source current selection'})
 
 -- Opens fugitive
 keyset('n', '<leader>gf', ':top Git<CR>', {desc = 'Fugitive: Open git console'})

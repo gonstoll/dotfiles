@@ -1,5 +1,3 @@
-local gitlinker_desc = require('utils').plugin_keymap_desc('gitlinker')
-
 return {
   {'tpope/vim-fugitive', cmd = 'Git'},
 
@@ -8,7 +6,7 @@ return {
     cmd = 'BlameToggle',
     opts = {
       mappings = {
-        commit_info = 'K'
+        commit_info = 'K',
       },
     },
   },
@@ -43,7 +41,7 @@ return {
         preview_config = {
           border = 'single',
           title = 'Preview changes',
-          title_pos = 'center'
+          title_pos = 'center',
         },
         on_attach = function(bufnr)
           local gs = package.loaded.gitsigns
@@ -76,8 +74,12 @@ return {
           -- Actions
           map('n', '<leader>gs', gs.stage_hunk, {desc = desc('Stage hunk')})
           map('n', '<leader>gr', gs.reset_hunk, {desc = desc('Reset hunk')})
-          map('v', '<leader>gs', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end, {desc = desc('Stage hunk')})
-          map('v', '<leader>gr', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end, {desc = desc('Reset hunk')})
+          map('v', '<leader>gs', function()
+            gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')}
+          end, {desc = desc('Stage hunk')})
+          map('v', '<leader>gr', function()
+            gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')}
+          end, {desc = desc('Reset hunk')})
           -- map('n', '<leader>hS', gs.stage_buffer, {desc = desc('Stage buffer')})
           -- map('n', '<leader>hu', gs.undo_stage_hunk, {desc = desc('Undo stage hunk')})
           -- map('n', '<leader>hR', gs.reset_buffer, {desc = desc('Reset buffer')})
@@ -93,49 +95,5 @@ return {
         end,
       }
     end,
-  },
-
-  {
-    'ruifm/gitlinker.nvim',
-    dependencies = {'nvim-lua/plenary.nvim'},
-    keys = {
-      {
-        mode = 'n',
-        desc = gitlinker_desc('Copy line link'),
-        silent = true,
-        '<leader>gy',
-        function() require('gitlinker').get_buf_range_url('n') end,
-      },
-      {
-        mode = 'v',
-        desc = gitlinker_desc('Copy line(s) link'),
-        silent = true,
-        '<leader>gy',
-        function() require('gitlinker').get_buf_range_url('v') end,
-      },
-      {
-        mode = 'n',
-        desc = gitlinker_desc('Open line link in browser'),
-        silent = true,
-        '<leader>gY',
-        function()
-          local gitlinker = require('gitlinker')
-          local actions = require('gitlinker.actions')
-          gitlinker.get_buf_range_url('n', {action_callback = actions.open_in_browser})
-        end,
-      },
-      {
-        mode = 'v',
-        desc = gitlinker_desc('Open line(s) link in browser'),
-        silent = true,
-        '<leader>gY',
-        function()
-          local gitlinker = require('gitlinker')
-          local actions = require('gitlinker.actions')
-          gitlinker.get_buf_range_url('v', {action_callback = actions.open_in_browser})
-        end,
-      },
-    },
-    opts = {},
   },
 }
