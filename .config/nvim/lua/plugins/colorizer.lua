@@ -1,4 +1,4 @@
-local desc = require('utils').plugin_keymap_desc('colorizer')
+local desc = Utils.plugin_keymap_desc('colorizer')
 
 return {
   'NvChad/nvim-colorizer.lua',

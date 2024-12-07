@@ -1,4 +1,4 @@
-local desc = require('utils').plugin_keymap_desc('package info')
+local desc = Utils.plugin_keymap_desc('package info')
 
 return {
   'vuki656/package-info.nvim',

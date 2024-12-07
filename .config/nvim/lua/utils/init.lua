@@ -1,4 +1,13 @@
-local M = {}
+local M = {
+  colors = require('utils.colors'),
+  icons = require('utils.icons'),
+  fzf = require('utils.fzf'),
+  lsp = require('utils.lsp'),
+  -- Display command output in neovim split window
+  redir = require('utils.redir'),
+  -- Custom statusline
+  statusline = require('utils.statusline'),
+}
 
 -- Merge two tables
 ---@param t1 table

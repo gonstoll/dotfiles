@@ -1,4 +1,4 @@
-local desc = require('utils').plugin_keymap_desc('dap')
+local desc = Utils.plugin_keymap_desc('dap')
 local js_filetypes = {'typescript', 'javascript', 'typescriptreact', 'javascriptreact'}
 
 ---@param config {args?:string[]|fun():string[]?}
@@ -31,18 +31,18 @@ return {
               {id = 'scopes', size = 0.25},
               {id = 'breakpoints', size = 0.25},
               {id = 'stacks', size = 0.25},
-              {id = 'watches', size = 0.25}
+              {id = 'watches', size = 0.25},
             },
             position = 'left',
-            size = 45
+            size = 45,
           },
           {
             elements = {
-              {id = 'console', size = 1}
+              {id = 'console', size = 1},
             },
             position = 'bottom',
             size = 15,
-          }
+          },
         },
       },
     },
@@ -57,7 +57,7 @@ return {
       opts = {
         debugger_path = vim.fn.resolve(vim.fn.stdpath('data') .. '/lazy/vscode-js-debug'),
         adapters = {'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost'},
-      }
+      },
     },
     {'theHamsta/nvim-dap-virtual-text', opts = {}},
     -- Lua adapter
@@ -92,7 +92,6 @@ return {
   config = function()
     local dap = require('dap')
     local dapui = require('dapui')
-    local icons = require('utils.icons')
 
     dap.listeners.after.event_initialized['dapui_config'] = function() dapui.open({}) end
 
@@ -112,7 +111,7 @@ return {
 
     vim.api.nvim_set_hl(0, 'DapStoppedLine', {default = true, link = 'Visual'})
 
-    for name, sign in pairs(icons.dap) do
+    for name, sign in pairs(Utils.icons.dap) do
       sign = type(sign) == 'table' and sign or {sign}
       vim.fn.sign_define(
         'Dap' .. name,

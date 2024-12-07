@@ -1,5 +1,4 @@
-local desc = require('utils').plugin_keymap_desc('typescript')
-local lsp_utils = require('utils.lsp')
+local desc = Utils.plugin_keymap_desc('typescript')
 local M = {}
 
 local settings = {
@@ -23,7 +22,7 @@ local settings = {
 }
 
 M.setup = function(capabilities)
-  lsp_utils.on_attach(function(client, buffer)
+  Utils.lsp.on_attach(function(client, buffer)
     client.commands['_typescript.moveToFileRefactoring'] = function(command, ctx)
       ---@type string, string, lsp.Range
       local action, uri, range = unpack(command.arguments)
@@ -95,7 +94,7 @@ M.setup = function(capabilities)
         '<leader>tD',
         function()
           local params = vim.lsp.util.make_position_params()
-          lsp_utils.execute({
+          Utils.lsp.execute({
             command = 'typescript.goToSourceDefinition',
             arguments = {params.textDocument.uri, params.position},
             open = true,
@@ -106,7 +105,7 @@ M.setup = function(capabilities)
       {
         '<leader>tr',
         function()
-          lsp_utils.execute({
+          Utils.lsp.execute({
             command = 'typescript.findAllFileReferences',
             arguments = {vim.uri_from_bufnr(0)},
             open = true,
@@ -169,7 +168,7 @@ M.setup = function(capabilities)
       {
         '<leader>tt',
         function()
-          lsp_utils.execute({command = 'typescript.selectTypeScriptVersion'})
+          Utils.lsp.execute({command = 'typescript.selectTypeScriptVersion'})
         end,
         desc = desc('Select typescript version'),
       },

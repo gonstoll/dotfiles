@@ -1,4 +1,4 @@
-local desc = require('utils').plugin_keymap_desc('eslint')
+local desc = Utils.plugin_keymap_desc('eslint')
 local M = {}
 
 M.setup = function(capabilities)

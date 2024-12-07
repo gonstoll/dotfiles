@@ -1,4 +1,3 @@
-local utils = require('utils')
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
@@ -50,10 +49,10 @@ autocmd({'WinEnter', 'BufEnter'}, {
   group = statusline_group,
   callback = function()
     if (vim.bo.filetype == 'oil') then
-      vim.cmd('setlocal statusline=%!v:lua.Statusline.oil()')
+      vim.cmd('setlocal statusline=%!v:lua.Utils.statusline.oil()')
       return
     end
-    vim.cmd('setlocal statusline=%!v:lua.Statusline.active()')
+    vim.cmd('setlocal statusline=%!v:lua.Utils.statusline.active()')
   end,
 })
 
@@ -61,7 +60,7 @@ autocmd({'WinLeave', 'BufLeave'}, {
   pattern = '*',
   group = statusline_group,
   callback = function()
-    vim.cmd('setlocal statusline=%!v:lua.Statusline.inactive()')
+    vim.cmd('setlocal statusline=%!v:lua.Utils.statusline.inactive()')
   end,
 })
 
@@ -96,11 +95,11 @@ autocmd('LspAttach', {
     keyset('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, 'Workspace Add Folder')
     keyset('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, 'Workspace Remove Folder')
     keyset('n', 'K', vim.lsp.buf.hover, 'Hover Documentation')
-    keyset('n', 'gd', utils.cmd_center(vim.lsp.buf.definition), 'Goto Definition')
-    keyset('n', 'gD', utils.cmd_center(vim.lsp.buf.declaration), 'Goto Declaration')
-    keyset('n', 'gi', utils.cmd_center(vim.lsp.buf.implementation), 'Goto Implementation')
-    keyset('n', '[d', utils.cmd_center(vim.diagnostic.goto_prev), 'Previous diagnostic')
-    keyset('n', ']d', utils.cmd_center(vim.diagnostic.goto_next), 'Next diagnostic')
+    keyset('n', 'gd', Utils.cmd_center(vim.lsp.buf.definition), 'Goto Definition')
+    keyset('n', 'gD', Utils.cmd_center(vim.lsp.buf.declaration), 'Goto Declaration')
+    keyset('n', 'gi', Utils.cmd_center(vim.lsp.buf.implementation), 'Goto Implementation')
+    keyset('n', '[d', Utils.cmd_center(vim.diagnostic.goto_prev), 'Previous diagnostic')
+    keyset('n', ']d', Utils.cmd_center(vim.diagnostic.goto_next), 'Next diagnostic')
     keyset('n', 'gl', vim.diagnostic.open_float, 'Open diagnostics')
 
     keyset('n', '<leader>it', function()
@@ -153,3 +152,26 @@ autocmd('BufWritePost', {
     end
   end,
 })
+
+-- Redir
+vim.api.nvim_create_user_command('Redir', Utils.redir.redir, {
+  nargs = '+',
+  complete = 'command',
+  range = true,
+  bang = true,
+})
+
+vim.api.nvim_create_user_command('EvalFile', function(args)
+  local bang = args.bang
+  Utils.redir.evaler('%')(bang)
+end, {bar = true, bang = true})
+
+vim.api.nvim_create_user_command('EvalLine', function(args)
+  local bang = args.bang
+  Utils.redir.evaler('.')(bang)
+end, {bar = true, bang = true})
+
+vim.api.nvim_create_user_command('EvalRange', function(args)
+  local bang = args.bang
+  Utils.redir.evaler("'<,'>")(bang)
+end, {bar = true, bang = true, range = true})

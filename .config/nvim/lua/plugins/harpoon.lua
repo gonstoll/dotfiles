@@ -1,5 +1,5 @@
 -- A lot here was taken from https://github.com/mike-jl/harpoonEx
-local desc = require('utils').plugin_keymap_desc('harpoon')
+local desc = Utils.plugin_keymap_desc('harpoon')
 
 local globalIndex = {}
 
@@ -148,7 +148,8 @@ return {
       end,
     })
 
-    vim.keymap.set('n', keys.open_menu, function() harpoon.ui:toggle_quick_menu(harpoon:list(), menu_opts) end, {desc = desc('Open menu')})
+    vim.keymap.set('n', keys.open_menu, function() harpoon.ui:toggle_quick_menu(harpoon:list(), menu_opts) end,
+      {desc = desc('Open menu')})
     vim.keymap.set('n', keys.add_to_list, function() harpoon:list():add() end, {desc = desc('Add to list')})
     vim.keymap.set('n', keys.prev_file, function() next_harpoon(harpoon:list(), true) end, {desc = desc('Previous file')})
     vim.keymap.set('n', keys.next_file, function() next_harpoon(harpoon:list(), false) end, {desc = desc('Next file')})
@@ -163,5 +164,5 @@ return {
     vim.keymap.set('n', keys.sel_f7, function() harpoon:list():select(7) end, {desc = desc('Select file 7')})
     vim.keymap.set('n', keys.sel_f8, function() harpoon:list():select(8) end, {desc = desc('Select file 8')})
     vim.keymap.set('n', keys.sel_f9, function() harpoon:list():select(9) end, {desc = desc('Select file 9')}) -- If I ever have more than 9 tabs open, time to rethink my life choices
-  end
+  end,
 }

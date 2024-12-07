@@ -1,4 +1,4 @@
-local desc = require('utils').plugin_keymap_desc('markdown preview')
+local desc = Utils.plugin_keymap_desc('markdown preview')
 
 return {
   'iamcco/markdown-preview.nvim',

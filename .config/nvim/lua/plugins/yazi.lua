@@ -1,4 +1,4 @@
-local desc = require('utils').plugin_keymap_desc('yazi')
+local desc = Utils.plugin_keymap_desc('yazi')
 
 return {
   'mikavilpas/yazi.nvim',

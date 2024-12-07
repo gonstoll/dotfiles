@@ -1,5 +1,5 @@
-local duck_desc = require('utils').plugin_keymap_desc('duck')
-local cel_desc = require('utils').plugin_keymap_desc('CellularAutomaton')
+local duck_desc = Utils.plugin_keymap_desc('duck')
+local cel_desc = Utils.plugin_keymap_desc('CellularAutomaton')
 
 return {
   {

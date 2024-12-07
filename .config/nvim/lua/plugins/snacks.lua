@@ -1,7 +1,8 @@
-local desc = require('utils').plugin_keymap_desc('snacks')
+local desc = Utils.plugin_keymap_desc('snacks')
 
 return {
   'folke/snacks.nvim',
+  lazy = false,
   opts = {
     bigfile = {enabled = true},
     quickfile = {enabled = true},
@@ -38,7 +39,7 @@ return {
       {
         '<leader>S',
         -- function() snacks.scratch.select() end,
-        function() require('utils.snacks').select() end,
+        function() Utils.fzf.scratch_select() end,
         desc = desc('Select a scratch buffer'),
       },
       {

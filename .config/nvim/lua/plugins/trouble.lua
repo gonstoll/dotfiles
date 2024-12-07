@@ -1,4 +1,4 @@
-local desc = require('utils').plugin_keymap_desc('trouble')
+local desc = Utils.plugin_keymap_desc('trouble')
 
 return {
   'folke/trouble.nvim',

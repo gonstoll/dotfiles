@@ -1,7 +1,5 @@
 -- Credit goes where credit is due. This is a modified version of:
 -- https://nuxsh.is-a.dev/blog/custom-nvim-statusline.html
-local icons = require('utils.icons')
-
 local modes = {
   ['n'] = '[Normal]',
   ['no'] = '[Normal]',
@@ -96,16 +94,16 @@ local function lsp()
   local info = ''
 
   if count['errors'] ~= 0 then
-    errors = ' %#StatusLineDiagnosticSignError#' .. icons.diagnostics.Error .. count['errors']
+    errors = ' %#StatusLineDiagnosticSignError#' .. Utils.icons.diagnostics.Error .. count['errors']
   end
   if count['warnings'] ~= 0 then
-    warnings = ' %#StatusLineDiagnosticSignWarn#' .. icons.diagnostics.Warn .. count['warnings']
+    warnings = ' %#StatusLineDiagnosticSignWarn#' .. Utils.icons.diagnostics.Warn .. count['warnings']
   end
   if count['hints'] ~= 0 then
-    hints = ' %#StatusLineDiagnosticSignHint#' .. icons.diagnostics.Hint .. count['hints']
+    hints = ' %#StatusLineDiagnosticSignHint#' .. Utils.icons.diagnostics.Hint .. count['hints']
   end
   if count['info'] ~= 0 then
-    info = ' %#StatusLineDiagnosticSignInfo#' .. icons.diagnostics.Info .. count['info']
+    info = ' %#StatusLineDiagnosticSignInfo#' .. Utils.icons.diagnostics.Info .. count['info']
   end
 
   return errors .. warnings .. hints .. info .. '%#Statusline# '
@@ -116,11 +114,12 @@ local vcs = function()
   if not git_info or git_info.head == '' then
     return ''
   end
-  local added = git_info.added and ('%#StatusLineGitSignsAdd#' .. icons.git.added .. ' ' .. git_info.added .. ' ') or ''
+  local added = git_info.added and ('%#StatusLineGitSignsAdd#' .. Utils.icons.git.added .. ' ' .. git_info.added .. ' ') or
+      ''
   local changed = git_info.changed and
-      ('%#StatusLineGitSignsChange#' .. icons.git.changed .. ' ' .. git_info.changed .. ' ') or ''
+      ('%#StatusLineGitSignsChange#' .. Utils.icons.git.changed .. ' ' .. git_info.changed .. ' ') or ''
   local removed = git_info.removed and
-      ('%#StatusLineGitSignsDelete#' .. icons.git.deleted .. ' ' .. git_info.removed .. ' ') or ''
+      ('%#StatusLineGitSignsDelete#' .. Utils.icons.git.deleted .. ' ' .. git_info.removed .. ' ') or ''
   if git_info.added == 0 then
     added = ''
   end
@@ -132,7 +131,7 @@ local vcs = function()
   end
   return table.concat({
     ' ',
-    icons.git.branch2,
+    Utils.icons.git.branch2,
     ' ',
     git_info.head,
     '  ',
@@ -157,9 +156,10 @@ local function lineinfo()
   return ' %P %l:%c '
 end
 
-Statusline = {}
+local M = {}
 
-function Statusline.active()
+-- Active statusline
+function M.active()
   return table.concat({
     -- update_mode_colors(),
     -- mode(),
@@ -176,13 +176,17 @@ function Statusline.active()
   })
 end
 
-function Statusline.inactive()
+-- Inactive statusline, usually when a window is not focused
+function M.inactive()
   return ' %F'
 end
 
-function Statusline.oil()
+-- Oil statusline
+function M.oil()
   return table.concat({
     '%#Statusline#  ',
     filepath(),
   })
 end
+
+return M

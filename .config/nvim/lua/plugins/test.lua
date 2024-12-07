@@ -2,7 +2,7 @@ return {
   {
     'vim-test/vim-test',
     keys = function()
-      local desc = require('utils').plugin_keymap_desc('vim test')
+      local desc = Utils.plugin_keymap_desc('vim test')
 
       return {
         {'<leader>TN', '<cmd>TestNearest -strategy=tmuxify<cr>', desc = desc('Run nearest test')},
@@ -27,12 +27,22 @@ return {
       'thenbe/neotest-playwright',
     },
     keys = function()
-      local desc = require('utils').plugin_keymap_desc('neotest')
+      local desc = Utils.plugin_keymap_desc('neotest')
       return {
         {'<leader>Tt', function() require('neotest').run.run(vim.fn.expand('%')) end, desc = desc('Run File')},
         {'<leader>TT', function() require('neotest').run.run(vim.uv.cwd()) end, desc = desc('Run All Test Files')},
         {'<leader>Tr', function() require('neotest').run.run() end, desc = desc('Run Nearest')},
-        {'<leader>Tw', function() require('neotest').run.run({vim.fn.expand('%'), jestCommand = 'node_modules/.bin/jest --watch'}) end, desc = desc('Run test on watch mode')},
+        {
+          '<leader>Tw',
+          function()
+            require('neotest').run.run({
+              vim.fn.expand('%'),
+              jestCommand =
+              'node_modules/.bin/jest --watch'
+            })
+          end,
+          desc = desc('Run test on watch mode')
+        },
         {'<leader>TW', function() require('neotest').watch.toggle(vim.fn.expand('%')) end, desc = desc('Toggle watch mode (not working with jest)')},
         {'<leader>Tl', function() require('neotest').run.run_last() end, desc = desc('Run Last')},
         {'<leader>Ts', function() require('neotest').summary.toggle() end, desc = desc('Toggle Summary')},
@@ -45,7 +55,7 @@ return {
       status = {virtual_text = true},
       output = {open_on_run = true},
       output_panel = {
-        open = 'botright vsplit | vertical resize 80'
+        open = 'botright vsplit | vertical resize 80',
       },
       adapters = {
         ['neotest-jest'] = {
@@ -64,7 +74,7 @@ return {
               return string.match(file, '(.-/[^/]+/)src')
             end
             return vim.fn.getcwd()
-          end
+          end,
         },
         ['neotest-vitest'] = {
           filter_dir = function(name, rel_path, root)
@@ -112,6 +122,6 @@ return {
       end
 
       require('neotest').setup(opts)
-    end
+    end,
   },
 }

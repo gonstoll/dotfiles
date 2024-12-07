@@ -1,4 +1,4 @@
-local desc = require('utils').plugin_keymap_desc('luasnip')
+local desc = Utils.plugin_keymap_desc('luasnip')
 
 local ls = require('luasnip')
 local fmt = require('luasnip.extras.fmt').fmt

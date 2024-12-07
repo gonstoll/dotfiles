@@ -1,3 +1,2 @@
+_G.Utils = require('utils')
 require('core')
-require('utils.statusline')
-require('utils.redir')

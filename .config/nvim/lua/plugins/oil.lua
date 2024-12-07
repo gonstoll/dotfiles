@@ -1,4 +1,4 @@
-local desc = require('utils').plugin_keymap_desc('oil')
+local desc = Utils.plugin_keymap_desc('oil')
 
 return {
   'stevearc/oil.nvim',

@@ -1,5 +1,3 @@
-local utils = require('utils.colors')
-
 return {
   'rebelot/kanagawa.nvim',
   lazy = true,
@@ -19,8 +17,8 @@ return {
             change = 'none',
             delete = 'none',
             text = 'none',
-          }
-        }
+          },
+        },
       },
     },
     overrides = function(colors)
@@ -59,11 +57,11 @@ return {
         DiagnosticSignError = {fg = palette.peachRed},
         DiagnosticFloatingError = {fg = palette.peachRed},
         DiagnosticUnderlineError = {sp = palette.peachRed},
-        DiagnosticVirtualTextError = {fg = palette.peachRed, bg = utils.blend(palette.peachRed, theme.ui.bg, 0.10)},
-        DiagnosticVirtualTextHint = {fg = theme.diag.hint, bg = utils.blend(theme.diag.hint, theme.ui.bg, 0.10)},
-        DiagnosticVirtualTextInfo = {fg = theme.diag.info, bg = utils.blend(theme.diag.info, theme.ui.bg, 0.10)},
-        DiagnosticVirtualTextOk = {fg = theme.diag.ok, bg = utils.blend(theme.diag.ok, theme.ui.bg, 0.10)},
-        DiagnosticVirtualTextWarn = {fg = theme.diag.warning, bg = utils.blend(theme.diag.warning, theme.ui.bg, 0.10)},
+        DiagnosticVirtualTextError = {fg = palette.peachRed, bg = Utils.colors.blend(palette.peachRed, theme.ui.bg, 0.10)},
+        DiagnosticVirtualTextHint = {fg = theme.diag.hint, bg = Utils.colors.blend(theme.diag.hint, theme.ui.bg, 0.10)},
+        DiagnosticVirtualTextInfo = {fg = theme.diag.info, bg = Utils.colors.blend(theme.diag.info, theme.ui.bg, 0.10)},
+        DiagnosticVirtualTextOk = {fg = theme.diag.ok, bg = Utils.colors.blend(theme.diag.ok, theme.ui.bg, 0.10)},
+        DiagnosticVirtualTextWarn = {fg = theme.diag.warning, bg = Utils.colors.blend(theme.diag.warning, theme.ui.bg, 0.10)},
 
         --- popups
         Pmenu = {fg = theme.ui.shade0, bg = theme.ui.bg_p1}, -- add `blend = vim.o.pumblend` to enable transparency

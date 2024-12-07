@@ -13,7 +13,7 @@ return {
     })
 
     -- vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
-    --   config = require('utils').merge_table(config or {}, {border = 'single', max_width = 100})
+    --   config = Utils.merge_table(config or {}, {border = 'single', max_width = 100})
     --   config.focus_id = ctx.method
     --   if not (result and result.contents) then
     --     return
@@ -36,8 +36,7 @@ return {
       {title = 'Signature', border = 'single', max_width = 100}
     )
 
-    local icons = require('utils.icons')
-    for type, icon in pairs(icons.diagnostics) do
+    for type, icon in pairs(Utils.icons.diagnostics) do
       local hl = 'DiagnosticSign' .. type
       vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
     end
@@ -73,7 +72,7 @@ return {
     end
 
     vim.keymap.set('n', '<leader>lc', function()
-      require('utils.lsp').inspect_lsp_client()
+      Utils.fzf.inspect_lsp_client()
     end, {desc = 'Inspect LSP Client configuration'})
   end,
 }

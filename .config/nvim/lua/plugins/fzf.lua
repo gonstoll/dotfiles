@@ -1,5 +1,4 @@
-local icons = require('utils.icons')
-local desc = require('utils').plugin_keymap_desc('fzf')
+local desc = Utils.plugin_keymap_desc('fzf')
 
 local grep_opts = {
   'rg',
@@ -83,11 +82,11 @@ return {
       },
       files = {
         cwd_prompt = false,
-        prompt = icons.misc.file .. ' ',
+        prompt = Utils.icons.misc.file .. ' ',
       },
       grep = {
         cwd_prompt = false,
-        prompt = icons.misc.search .. ' ',
+        prompt = Utils.icons.misc.search .. ' ',
         input_prompt = 'Grep For ❯ ',
         cmd = table.concat(grep_opts, ' '),
         -- actions = {

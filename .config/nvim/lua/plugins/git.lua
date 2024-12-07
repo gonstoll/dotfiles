@@ -24,17 +24,16 @@ return {
     'lewis6991/gitsigns.nvim',
     event = 'BufReadPre',
     opts = function()
-      local icons = require('utils.icons')
-      local desc = require('utils').plugin_keymap_desc('gitsigns')
+      local desc = Utils.plugin_keymap_desc('gitsigns')
 
       return {
         signs = {
-          add = {text = icons.git.added},
-          change = {text = icons.git.changed},
-          delete = {text = icons.git.deleted},
-          topdelete = {text = icons.git.deleted},
-          changedelete = {text = icons.git.changed},
-          untracked = {text = icons.git.added},
+          add = {text = Utils.icons.git.added},
+          change = {text = Utils.icons.git.changed},
+          delete = {text = Utils.icons.git.deleted},
+          topdelete = {text = Utils.icons.git.deleted},
+          changedelete = {text = Utils.icons.git.changed},
+          untracked = {text = Utils.icons.git.added},
         },
         current_line_blame = true,
         current_line_blame_opts = {delay = 500},

@@ -1,5 +1,7 @@
 -- Display command output in neovim split window
 -- Taken from: https://gist.github.com/Leenuus/7a2ea47b88bfe16430b42e4e48122718
+local M = {}
+
 local function redir_open_win(buf, vertical, stderr_p)
   local wn = stderr_p and 'redir_sterr_win' or 'redir_win'
   if vim.g[wn] == nil then
@@ -78,7 +80,7 @@ local function redir_shell_command(cmd, lines, vertical, stderr_p)
   end)
 end
 
-local function redir(args)
+function M.redir(args)
   local cmd = args.args
   local vertical = args.smods.vertical
   local stderr_p = args.bang
@@ -102,14 +104,7 @@ local function redir(args)
   end
 end
 
-vim.api.nvim_create_user_command('Redir', redir, {
-  nargs = '+',
-  complete = 'command',
-  range = true,
-  bang = true,
-})
-
-local function evaler(range)
+function M.evaler(range)
   return function(bang)
     local line = vim.fn.getline(1)
     local it = string.match(line, '^#!(.*)')
@@ -124,17 +119,4 @@ local function evaler(range)
   end
 end
 
-vim.api.nvim_create_user_command('EvalFile', function(args)
-  local bang = args.bang
-  evaler('%')(bang)
-end, {bar = true, bang = true})
-
-vim.api.nvim_create_user_command('EvalLine', function(args)
-  local bang = args.bang
-  evaler('.')(bang)
-end, {bar = true, bang = true})
-
-vim.api.nvim_create_user_command('EvalRange', function(args)
-  local bang = args.bang
-  evaler("'<,'>")(bang)
-end, {bar = true, bang = true, range = true})
+return M

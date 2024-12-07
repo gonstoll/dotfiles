@@ -1,4 +1,4 @@
-local desc = require('utils').plugin_keymap_desc('neogen')
+local desc = Utils.plugin_keymap_desc('neogen')
 
 return {
   'danymat/neogen',
