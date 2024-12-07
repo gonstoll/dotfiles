@@ -1,6 +1,6 @@
 return {
   'garymjr/nvim-snippets',
-  opts = {},
+  opts = {search_paths = {vim.fn.stdpath('config') .. '/snippets/nvim'}},
   keys = {
     {
       '<Tab>',
