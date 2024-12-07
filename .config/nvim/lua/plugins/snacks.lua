@@ -37,7 +37,8 @@ return {
       },
       {
         '<leader>S',
-        function() snacks.scratch.select() end,
+        -- function() snacks.scratch.select() end,
+        function() require('utils.snacks').select() end,
         desc = desc('Select a scratch buffer'),
       },
       {
