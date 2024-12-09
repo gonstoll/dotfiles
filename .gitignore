@@ -23,6 +23,8 @@ custom.zsh
 .config/planetscale
 .config/raycast
 .config/rust
+.config/gh
+.config/gh-copilot
 
 # tmux
 .config/tmux/plugins/*

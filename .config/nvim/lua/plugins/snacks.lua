@@ -21,6 +21,7 @@ return {
           vim.ui.input({
             prompt = 'Enter filetype for the scratch buffer: ',
             default = 'markdown',
+            completion = 'filetype',
           }, function(ft)
             snacks.scratch.open({
               ft = ft,
