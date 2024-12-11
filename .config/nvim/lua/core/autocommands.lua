@@ -132,7 +132,6 @@ autocmd('ColorScheme', {
   group = augroup('CursorLine', {}),
   callback = function()
     vim.api.nvim_set_hl(0, 'Cursor', {bg = 'NONE'})
-    vim.api.nvim_set_hl(0, 'CursorLine', {bg = 'NONE'})
   end,
 })
 

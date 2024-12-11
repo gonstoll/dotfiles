@@ -74,7 +74,6 @@ return {
         WinSeparator = {fg = theme.ui.bg_p2},
         TelescopeSelection = {bg = theme.ui.bg_p2},
         Cursor = {bg = 'none'},
-        CursorLine = {bg = 'none'},
         CursorLineNr = {bold = false},
         Title = {bold = false},
         Boolean = {bold = false},
