@@ -1,0 +1,3 @@
+tmux neww -n process
+tmux prev
+tmux renamew vim
