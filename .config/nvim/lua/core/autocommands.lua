@@ -73,12 +73,15 @@ autocmd('TermOpen', {
   end,
 })
 
--- au('FileType', {
---   pattern = {'fugitive', 'netrw', 'qf', 'help'},
---   callback = function()
---     vim.keymap.set('n', 'q', vim.cmd.close, {desc = 'Close the current buffer', buffer = true})
---   end,
--- })
+autocmd('FileType', {
+  pattern = '*',
+  group = augroup('diable-new-line-comments', {}),
+  callback = function()
+    vim.opt_local.formatoptions:remove('o')
+    vim.opt_local.formatoptions:remove('r')
+    vim.opt_local.formatoptions:remove('c')
+  end,
+})
 
 autocmd('LspAttach', {
   group = augroup('lsp-attach', {}),
