@@ -6,9 +6,12 @@ M.setup = function(capabilities)
     capabilities = capabilities,
     settings = {
       format = false,
-      run = 'onSave',
       -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
       workingDirectories = {mode = 'auto'},
+    },
+    flags = {
+      allow_incremental_sync = false,
+      debounce_text_changes = 1000,
     },
     keys = {
       {
