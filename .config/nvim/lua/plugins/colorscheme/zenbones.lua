@@ -64,7 +64,11 @@ return {
             Special({theme.Special, gui = 'normal'}),
             Statement({theme.Statement, gui = 'normal'}),
             Directory({theme.Directory, gui = 'normal'}),
-            Boolean({theme.Boolean, gui = 'bold'}),
+            Boolean({
+              theme.Boolean,
+              gui = 'bold',
+              fg = active_colorscheme == 'rosebones' and palette[bg].rose or theme.Boolean.fg,
+            }),
             SnippetTabStop({theme.SnippetTabStop, bg = theme.Normal.bg}),
             Function({theme.Function, fg = bg == 'dark' and palette.dark.bg.li(58) or palette.light.bg.sa(20).da(60)}),
             TodoBgTODO({theme.TodoBgTODO, bg = palette[bg].water, fg = palette[bg].fg}),
@@ -85,6 +89,11 @@ return {
         end)
 
         lush.apply(lush.compile(specs))
+
+        if (active_colorscheme == 'rosebones') then
+          vim.api.nvim_set_hl(0, '@tag.tsx', {link = 'Function'})
+          vim.api.nvim_set_hl(0, '@tag.builtin.tsx', {link = 'Function'})
+        end
       end,
     })
   end,
