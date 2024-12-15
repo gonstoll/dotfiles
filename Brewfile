@@ -39,6 +39,8 @@ brew "jesseduffield/lazygit/lazygit"
 brew "planetscale/tap/pscale"
 brew "tursodatabase/tap/turso"
 brew "tokei"
+brew "viu"
+brew "zig"
 brew "zsh-completions"
 
 cask "arc"
