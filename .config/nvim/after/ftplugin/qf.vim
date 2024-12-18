@@ -1,2 +1,2 @@
-setlocal relativenumber=false
-setlocal cursorline=true
+setlocal relativenumber!
+setlocal cursorline

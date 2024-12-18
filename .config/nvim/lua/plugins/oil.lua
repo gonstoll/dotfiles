@@ -6,6 +6,8 @@ return {
     {'nvim-treesitter/nvim-treesitter'},
     {'nvim-tree/nvim-web-devicons', lazy = true},
   },
+  ---@module 'oil'
+  ---@type oil.SetupOpts
   opts = {
     delete_to_trash = true,
     skip_confirm_for_simple_edits = true,
