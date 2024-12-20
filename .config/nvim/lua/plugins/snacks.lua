@@ -1,5 +1,13 @@
 local desc = Utils.plugin_keymap_desc('snacks')
 
+local function get_root()
+  local path = os.getenv('HOME') .. '/notes/scratch'
+  if not vim.fn.isdirectory(path) then
+    vim.fn.mkdir(path, 'p')
+  end
+  return path
+end
+
 return {
   'folke/snacks.nvim',
   lazy = false,
@@ -11,6 +19,10 @@ return {
     notifier = {enabled = false},
     statuscolumn = {enabled = false},
     words = {enabled = false},
+    scratch = {
+      root = get_root(),
+      win = {width = 150, height = 40, border = 'single'},
+    },
   },
   keys = function()
     local snacks = require('snacks')
@@ -19,18 +31,15 @@ return {
         '<leader>.',
         function()
           vim.ui.input({
-            prompt = 'Enter filetype for the scratch buffer: ',
-            default = 'markdown',
-            completion = 'filetype',
-          }, function(ft)
+            prompt = 'Enter scratch buffer title: ',
+            default = '',
+          }, function(t)
+            local title = t ~= '' and t:gsub('%s+', '_') or 'Untitled'
             snacks.scratch.open({
-              ft = ft,
-              name = os.date('%Y-%m-%d-%H-%M-%S'),
+              ft = 'markdown',
+              name = title .. '_' .. os.date('%Y-%m-%d-%H-%M-%S'),
               win = {
-                width = 150,
-                height = 40,
-                border = 'single',
-                title = 'Scratch Buffer',
+                title = title,
               },
             })
           end)
