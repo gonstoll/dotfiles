@@ -50,6 +50,9 @@ return {
     },
     signature = {enabled = true},
     completion = {
+      trigger = {
+        show_on_accept_on_trigger_character = false,
+      },
       list = {
         selection = 'manual',
       },
