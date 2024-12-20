@@ -30,6 +30,7 @@ return {
       {'<leader>fl', fzf.live_grep, desc = desc('Search by live grep')},
       {'<leader>fk', fzf.keymaps, desc = desc('Keymaps')},
       {'<leader>fh', fzf.search_history, desc = desc('Get list of searches')},
+      {'<leader>fb', fzf.resume, desc = desc('Resume search')},
       {'<leader>fd', fzf.lsp_document_diagnostics, desc = desc('Get file diagnostics')},
       {'<leader>fr', fzf.lsp_references, desc = desc('Goto References')},
       {'<leader>fy', fzf.lsp_document_symbols, desc = desc('Document Symbols')},
