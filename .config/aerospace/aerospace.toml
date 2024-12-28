@@ -207,7 +207,7 @@ run = 'move-node-to-workspace M'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
-run = 'move-node-to-workspace A'
+run = ['layout floating', 'move-node-to-workspace A']
 
 [[on-window-detected]]
 if.app-id = 'com.figma.Desktop'
