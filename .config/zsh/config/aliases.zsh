@@ -18,6 +18,3 @@ alias mysqladmin=/usr/local/mysql/bin/mysqladmin
 # Tmux
 alias s="tmux-sessionizer"
 alias tn="tmux new -s $(pwd | sed 's/.*\///g')"
-
-# Bat
-alias cat="bat"
