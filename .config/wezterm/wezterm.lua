@@ -60,10 +60,6 @@ return {
   initial_cols = 350,
   enable_scroll_bar = false,
 
-  -- Opacity and blur
-  -- window_background_opacity = 0.9,
-  -- macos_window_background_blur = 25,
-
   -- Cursor
   cursor_blink_rate = 500,
   default_cursor_style = 'BlinkingBlock',
@@ -74,6 +70,10 @@ return {
   -- Other
   underline_thickness = 3.0,
   max_fps = 240,
+  term = 'wezterm',
+  set_environment_variables = {
+    TERMINFO_DIRS = '~/.terminfo/',
+  },
 
   -- Keymaps
   keys = {
@@ -98,19 +98,5 @@ return {
     keys.key_to_tmux({mods = 'CMD', key = 's', tmux_key = 'S'}),                                                         -- Open tmux-sessionizer
     keys.key_to_tmux({mods = 'CMD', key = 'j', tmux_key = 'T'}),                                                         -- Open t - tmux smart session manager
     keys.key_to_tmux({mods = 'CMD', key = 'b', tmux_key = 'B'}),                                                         -- Open dotfiles session
-    keys.key_to_tmux({mods = 'CMD', key = '0', tmux_key = '0'}),
-    keys.key_to_tmux({mods = 'CMD', key = '1', tmux_key = '1'}),
-    keys.key_to_tmux({mods = 'CMD', key = '2', tmux_key = '2'}),
-    keys.key_to_tmux({mods = 'CMD', key = '3', tmux_key = '3'}),
-    keys.key_to_tmux({mods = 'CMD', key = '4', tmux_key = '4'}),
-    keys.key_to_tmux({mods = 'CMD', key = '5', tmux_key = '5'}),
-    keys.key_to_tmux({mods = 'CMD', key = '6', tmux_key = '6'}),
-    keys.key_to_tmux({mods = 'CMD', key = '7', tmux_key = '7'}),
-    keys.key_to_tmux({mods = 'CMD', key = '8', tmux_key = '8'}),
-    keys.key_to_tmux({mods = 'CMD', key = '9', tmux_key = '9'}),
-    -- keys.key_to_tmux({mods = 'CMD', key = 'c', tmux_key = 'c'}), -- Create new window
-    -- keys.key_to_tmux({mods = 'CMD', key = ']', tmux_key = 'n'}), -- Next window
-    -- keys.key_to_tmux({mods = 'CMD', key = '[', tmux_key = 'p'}), -- Previous window
-    -- keys.key_to_tmux({mods = 'CMD', key = 'x', tmux_key = 'x'}), -- Kill pane
   },
 }
