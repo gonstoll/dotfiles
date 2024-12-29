@@ -17,6 +17,11 @@ return {
       -- ['<C-n>'] = {'select_next', 'fallback'},
       ['<C-u>'] = {'scroll_documentation_up', 'fallback'},
       ['<C-d>'] = {'scroll_documentation_down', 'fallback'},
+      cmdline = {
+        preset = 'enter',
+        ['<Tab>'] = {'select_next', 'fallback'},
+        ['<S-Tab>'] = {'select_prev', 'fallback'},
+      },
     },
     appearance = {
       use_nvim_cmp_as_default = true,
@@ -39,14 +44,12 @@ return {
             global_snippets = {'all'},
             extended_filetypes = {},
             ignored_filetypes = {},
-            get_filetype = function(context)
+            get_filetype = function()
               return vim.bo.filetype
             end,
           },
         },
       },
-      -- optionally disable cmdline completions
-      -- cmdline = {},
     },
     signature = {enabled = true},
     completion = {
@@ -54,14 +57,15 @@ return {
         show_on_accept_on_trigger_character = false,
       },
       list = {
-        selection = 'manual',
+        selection = function(ctx)
+          return ctx.mode == 'cmdline' and 'auto_insert' or 'manual'
+        end,
       },
       menu = {
         draw = {
           treesitter = {'lsp'},
           columns = {
-            -- {'kind_icon'}, {'label', 'label_description', gap = 1}
-            {'label', gap = 1}, {'kind_icon', gap = 1, 'kind'},
+            {'label', gap = 2}, {'kind_icon', gap = 1, 'kind'},
           },
         },
       },
@@ -72,19 +76,4 @@ return {
     },
   },
   opts_extend = {'sources.default'},
-  config = function(_, opts)
-    local enabled = opts.sources.default
-    for _, source in ipairs(opts.sources.compat or {}) do
-      opts.sources.providers[source] = vim.tbl_deep_extend(
-        'force',
-        {name = source, module = 'blink.compat.source'},
-        opts.sources.providers[source] or {}
-      )
-      if type(enabled) == 'table' and not vim.tbl_contains(enabled, source) then
-        table.insert(enabled, source)
-      end
-    end
-
-    require('blink.cmp').setup(opts)
-  end,
 }
