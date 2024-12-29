@@ -17,7 +17,7 @@ exec-on-workspace-change = ['/bin/bash', '-c',
 #   width=5.0 \
 #   hidpi=on \
 #   active_color=0xfff6f8fa \
-#   blacklist="wezterm-gui" \
+#   blacklist="ghostty,wezterm-gui" \
 # """]
 after-startup-command = ['exec-and-forget brew services restart borders']
 
@@ -123,8 +123,8 @@ alt-b = 'workspace B' # Browser
 alt-d = 'workspace D' # Design (Figma, Sketch, etc.)
 alt-m = 'workspace M' # Messaging
 alt-n = 'workspace N' # Notes
-alt-t = 'workspace T' # Terminal
-# alt-t = ['exec-and-forget open -a /Applications/WezTerm.app']
+# alt-t = 'workspace T' # Terminal
+alt-t = ['exec-and-forget open -a /Applications/Ghostty.app'] # Terminal
 alt-w = 'workspace W' # Work
 alt-z = 'workspace Z' # Zoom
 
@@ -182,7 +182,7 @@ esc = ['reload-config', 'mode main']
 
 # Hooks
 [[on-window-detected]]
-if.app-id = 'com.github.wez.wezterm'
+if.app-id = "com.mitchellh.ghostty"
 run = 'move-node-to-workspace T'
 
 [[on-window-detected]]

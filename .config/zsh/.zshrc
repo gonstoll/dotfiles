@@ -61,7 +61,9 @@ bindkey -M vicmd '?' history-incremental-search-backward
 bindkey -M vicmd '^r' history-incremental-search-backward
 bindkey -M viins '^r' history-incremental-search-backward
 
-# Start tmux-sessionizer (cmd+s)
+# Start tmux-sessionizer:
+# Terminal binds cmd+s to Ctrl-f+s. This binds Ctrl-f+s to `s<CR>` which is an
+# alias for tmux-sessionizer)
 bindkey -s "^FS" "s\n"
 
 source $ZSH_PATH/plugins/powerlevel10k/powerlevel10k.zsh-theme
@@ -80,8 +82,9 @@ else
   export GIT_EDITOR="$EDITOR"
 fi
 
-export TERM="wezterm"
-export TERMINFO="$HOME/.terminfo/"
+# Necessary wezterm vars for undercurl and fancy styles
+# export TERM="wezterm"
+# export TERMINFO="$HOME/.terminfo/"
 
 if [[ -s "$HOME/.config/bun/_bun" ]]; then
   source "$HOME/.config/bun/_bun"

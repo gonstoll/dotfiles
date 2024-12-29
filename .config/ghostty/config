@@ -1,0 +1,21 @@
+# Fonts, underlines
+font-family = SFMono Nerd Font
+font-style-italic = Regular Italic
+font-size = 18
+font-feature = -calt
+adjust-underline-position = 2
+
+# Windows, colors and styles
+theme = zenbones_dark
+background = 181616
+cursor-invert-fg-bg = true
+macos-titlebar-style = hidden
+window-padding-y = 2,0
+window-padding-x = 2
+window-padding-balance = true
+# window-padding-color = extend
+
+# Keys
+# Tmux-sessionizer: Ctrl-f+S (.zshrc binds this to `s\n`, since `s` is an alias
+# for tmux-sessionizer)
+keybind = cmd+s=text:\x06\x53

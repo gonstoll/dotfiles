@@ -1,4 +1,3 @@
--- vim.opt.guicursor = 'n-v-c:block,i-ci-ve:ver100/,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
 vim.opt.guicursor = 'a:block/,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
 vim.opt.cursorline = false -- highlight the current line
 vim.cmd('colorscheme zenbones') -- Set the colorscheme

@@ -2,29 +2,7 @@ local wezterm = require('wezterm') --[[@as Wezterm]]
 local act = wezterm.action
 local keys = require('utils.keys')
 local fonts = require('fonts')
-local gruvbox = require('colors.gruvbox')
 local kanagawa = require('colors.kanagawa')
-
-local function merge_table(t1, t2)
-  for k, v in pairs(t2) do
-    t1[k] = v
-  end
-  return t1
-end
-
-wezterm.on('toggle-gruvbox-theme', function(window)
-  local overrides = window:get_config_overrides() or {}
-
-  if not overrides.color_scheme then
-    overrides.color_scheme = gruvbox.dark
-  end
-
-  if string.find(overrides.color_scheme, 'Gruvbox') then
-    overrides.color_scheme = overrides.color_scheme == gruvbox.dark and gruvbox.light or gruvbox.dark
-  end
-
-  window:set_config_overrides(overrides)
-end)
 
 wezterm.on('toggle-kanagawa-theme', function(window)
   local overrides = window:get_config_overrides() or {}
@@ -58,7 +36,7 @@ return {
   use_cap_height_to_scale_fallback_fonts = true,
 
   -- Colors
-  color_schemes = merge_table(gruvbox.color_schemes, kanagawa.color_schemes),
+  color_schemes = kanagawa.color_schemes,
   color_scheme = kanagawa.dark,
 
   -- Window
@@ -71,10 +49,6 @@ return {
   window_frame = {
     font = wezterm.font_with_fallback(fonts.getFonts('sf')),
     font_size = 14.0,
-    active_titlebar_bg = gruvbox.colors.dark_palette.bg0,
-    active_titlebar_fg = gruvbox.colors.dark_palette.fg0,
-    inactive_titlebar_bg = gruvbox.colors.dark_palette.bg1,
-    inactive_titlebar_fg = gruvbox.colors.dark_palette.fg1,
   },
   window_padding = {
     left = '10px',
