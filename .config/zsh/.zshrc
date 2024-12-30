@@ -19,7 +19,9 @@ fi
 [[ ! -z $TMUX ]] && unset LS_COLORS
 
 # Completions
-FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+fi
 
 # History
 HISTFILE=$ZDOTDIR/.histfile
@@ -66,7 +68,7 @@ bindkey -M viins '^r' history-incremental-search-backward
 # alias for tmux-sessionizer)
 bindkey -s "^FS" "s\n"
 
-source $ZSH_PATH/plugins/powerlevel10k/powerlevel10k.zsh-theme
+source $HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh//.p10k.zsh.
 [[ ! -f $ZSH_PATH/.p10k.zsh ]] || source $ZSH_PATH/.p10k.zsh
@@ -92,8 +94,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Plugins
 source $ZSH_PATH/plugins/fzf/fzf.zsh
-source $ZSH_PATH/plugins/fzf-tab/fzf-tab.plugin.zsh
-source $ZSH_PATH/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Zoxide
 eval "$(zoxide init zsh)"
@@ -162,4 +163,4 @@ function ff() {
 }
 
 # Loading syntax highlighting last on purpose
-source $ZSH_PATH/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source $HOMEBREW_PREFIX/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
