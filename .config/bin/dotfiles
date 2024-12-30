@@ -152,4 +152,6 @@ if [ -f ./.config/bin/init_script ]; then
   e_success "init_script complete!"
 fi
 
+chmod +x $XDG_CONFIG_HOME/bin/*
+
 e_header "All done! You should probably restart your computer, and enjoy your new dotfiles!"
