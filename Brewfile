@@ -45,7 +45,7 @@ brew "zig"
 brew "zoxide"
 brew "zsh-autosuggestions"
 brew "zsh-completions"
-brew "zsh-fast-syntax-highlighting"
+brew "zsh-syntax-highlighting"
 
 cask "arc"
 cask "font-fira-code-nerd-font"
