@@ -1,11 +1,12 @@
 # Fonts, underlines
-font-family = SFMono Nerd Font
-font-style-italic = Regular Italic
+# font-family = SFMono Nerd Font
+# font-style-italic = Regular Italic
 font-size = 18
 font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
 adjust-underline-position = 2
+adjust-cell-height = -1
 
 # Windows, colors and styles
 theme = zenbones_dark

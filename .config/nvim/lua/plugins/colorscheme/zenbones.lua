@@ -73,12 +73,6 @@ return {
             Function({theme.Function, fg = bg == 'dark' and palette.dark.bg.li(58) or palette.light.bg.sa(20).da(60)}),
             TodoBgTODO({theme.TodoBgTODO, bg = palette[bg].water, fg = palette[bg].fg}),
             TodoFgTODO({theme.TodoFgTODO, fg = palette[bg].water}),
-            -- Disable undercurl
-            DiagnosticUnderlineError({theme.DiagnosticUnderlineError, gui = 'underline'}),
-            DiagnosticUnderlineWarn({theme.DiagnosticUnderlineWarn, gui = 'underline'}),
-            DiagnosticUnderlineInfo({theme.DiagnosticUnderlineInfo, gui = 'underline'}),
-            DiagnosticUnderlineHint({theme.DiagnosticUnderlineHint, gui = 'underline'}),
-            DiagnosticUnderlineOk({theme.DiagnosticUnderlineOk, gui = 'underline'}),
             -- Statusline
             StatusLine({theme.StatusLine, bg = statusline_bg}),
             --- gitsigns
