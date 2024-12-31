@@ -1,5 +1,4 @@
 local desc = Utils.plugin_keymap_desc('snacks')
-
 local root_path = os.getenv('HOME') .. '/notes/scratch'
 
 return {
@@ -24,14 +23,14 @@ return {
       {
         '<leader>.',
         function()
-          if not vim.fn.isdirectory(root_path) then
-            vim.fn.mkdir(root_path, 'p')
-          end
-
           vim.ui.input({
             prompt = 'Enter scratch buffer title: ',
             default = '',
           }, function(t)
+            if not vim.fn.isdirectory(root_path) then
+              vim.fn.mkdir(root_path, 'p')
+            end
+
             local title = t ~= '' and t:gsub('%s+', '_') or 'Untitled'
             snacks.scratch.open({
               ft = 'markdown',

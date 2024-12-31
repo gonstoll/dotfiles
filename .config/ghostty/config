@@ -5,6 +5,7 @@ font-size = 18
 font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
+font-thicken = true
 adjust-underline-position = 2
 adjust-cell-height = -1
 
@@ -16,7 +17,6 @@ macos-titlebar-style = hidden
 window-padding-y = 2,0
 window-padding-x = 2
 window-padding-balance = true
-# window-padding-color = extend
 
 # Keys
 # Ascii device control codes: https://www3.rocketsoftware.com/bluezone/help/v42/en/bzadmin/APPENDIX_C/ASCII_Character_Set.htm
