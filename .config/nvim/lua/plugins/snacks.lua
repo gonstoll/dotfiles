@@ -1,12 +1,6 @@
 local desc = Utils.plugin_keymap_desc('snacks')
 
-local function get_root()
-  local path = os.getenv('HOME') .. '/notes/scratch'
-  if not vim.fn.isdirectory(path) then
-    vim.fn.mkdir(path, 'p')
-  end
-  return path
-end
+local root_path = os.getenv('HOME') .. '/notes/scratch'
 
 return {
   'folke/snacks.nvim',
@@ -20,7 +14,7 @@ return {
     statuscolumn = {enabled = false},
     words = {enabled = false},
     scratch = {
-      root = get_root(),
+      root = root_path,
       win = {width = 150, height = 40, border = 'single'},
     },
   },
@@ -30,6 +24,10 @@ return {
       {
         '<leader>.',
         function()
+          if not vim.fn.isdirectory(root_path) then
+            vim.fn.mkdir(root_path, 'p')
+          end
+
           vim.ui.input({
             prompt = 'Enter scratch buffer title: ',
             default = '',
