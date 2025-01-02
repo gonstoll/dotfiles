@@ -37,6 +37,7 @@ return {
         snippets = {
           name = 'Snippets',
           module = 'blink.cmp.sources.snippets',
+          min_keyword_length = 3,
           opts = {
             friendly_snippets = false,
             search_paths = {vim.fn.stdpath('config') .. '/snippets/nvim'},
