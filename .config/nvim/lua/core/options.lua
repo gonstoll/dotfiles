@@ -1,4 +1,5 @@
-vim.opt.guicursor = 'a:block/,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
+-- vim.opt.guicursor = 'a:block/,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
+vim.opt.guicursor = ''
 vim.opt.cursorline = false -- highlight the current line
 vim.cmd('colorscheme zenbones') -- Set the colorscheme
 
@@ -48,6 +49,8 @@ vim.opt.laststatus = 3 -- Global statusline when on split
 vim.opt.grepprg = 'rg --vimgrep' -- Use ripgrep for grepping
 vim.opt.grepformat = '%f:%l:%c:%m' -- Set the grep format
 vim.opt.inccommand = 'split' -- Show live preview of substitute commands
+vim.opt.swapfile = false
+vim.opt.backup = false
 
 vim.wo.foldmethod = 'expr' -- Set foldmethod to expr
 vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'

@@ -5,7 +5,6 @@ font-size = 18
 font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
-font-thicken = true
 adjust-underline-position = 2
 adjust-cell-height = -1
 
