@@ -1,6 +1,4 @@
 return {
-  {'onsails/lspkind-nvim', config = false},
-
   {
     'b0o/SchemaStore.nvim',
     -- Loaded by jsonls when needed.
