@@ -1,6 +1,4 @@
 return {
-  {'onsails/lspkind-nvim', config = false},
-
   {
     'williamboman/mason.nvim',
     build = ':MasonUpdate',
