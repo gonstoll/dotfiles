@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Update Homebrew
+echo 'Updating Homebrew...'
+brew update
+
+# Upgrade all installed formulae
+echo 'Upgrading all installed formulae...'
+brew upgrade
+
+# Upgrade cask packages
+echo 'Upgrading all installed cask packages...'
+brew upgrade --cask --greedy
