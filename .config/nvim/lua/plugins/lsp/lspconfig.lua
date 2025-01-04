@@ -42,10 +42,7 @@ return {
     end
 
     local lspconfig = require('lspconfig')
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-    capabilities.textDocument.foldingRange = {dynamicRegistration = false, lineFoldingOnly = true}
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
 
     local lsp_servers = {
       jsonls = require('plugins.lsp.servers.jsonls').setup(capabilities),

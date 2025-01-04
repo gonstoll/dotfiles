@@ -27,15 +27,7 @@ Always a WIP 😅
 - [`nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig) - Quickstart configs for Nvim LSP
   - [`mason.nvim`](https://github.com/williamboman/mason.nvim) - Easily install and manage LSP servers, DAP servers, linters, and formatters
   - [`mason-lspconfig.nvim`](https://github.com/williamboman/mason-lspconfig.nvim) - Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim
-- [`nvim-cmp`](https://github.com/hrsh7th/nvim-cmp) - A completion plugin for neovim coded in Lua
-  - [`cmp-nvim-lsp`](https://github.com/hrsh7th/cmp-nvim-lsp) - nvim-cmp source for neovim builtin LSP client
-  - [`cmp-buffer`](https://github.com/hrsh7th/cmp-buffer) - nvim-cmp source for buffer words
-  - [`cmp-calc`](https://github.com/hrsh7th/cmp-calc) - nvim-cmp source for math calculation
-  - [`cmp-cmdline`](https://github.com/hrsh7th/cmp-cmdline) - nvim-cmp source for vim's cmdline
-  - [`cmp-emoji`](https://github.com/hrsh7th/cmp-emoji) - nvim-cmp source for emoji
-  - [`cmp-path`](https://github.com/hrsh7th/cmp-path) - nvim-cmp source for path
-  - [`lspkind-nvim`](https://github.com/onsails/lspkind.nvim) - vscode-like pictograms for neovim lsp completion items
-  - [`garymjr/nvim-snippets`](https://github.com/garymjr/nvim-snippets) - Snippet support using native neovim snippets
+- [`blink.cmp`](https://github.com/Saghen/blink.cmp) - Performant, batteries-included completion plugin for Neovim
 - [`neotest`](https://github.com/nvim-neotest/neotest) - An extensible framework for interacting with tests within NeoVim.
   - [`nvim-nio`](https://github.com/nvim-neotest/nvim-nio) - A library for asynchronous IO in Neovim
   - [`neotest-jest`](https://github.com/nvim-neotest/neotest-jest) - Jest adapter for Neovim Neotest plugin
