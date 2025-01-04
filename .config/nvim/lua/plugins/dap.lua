@@ -17,6 +17,8 @@ return {
   'mfussenegger/nvim-dap',
   dependencies = {
     {'stevearc/overseer.nvim', opts = {dap = false}},
+    {'theHamsta/nvim-dap-virtual-text', opts = {}},
+
     {
       'rcarriga/nvim-dap-ui',
       keys = {
@@ -46,12 +48,8 @@ return {
         },
       },
     },
-    -- vscode-js-debug adapter
-    {
-      'microsoft/vscode-js-debug',
-      build = 'npm i && npm run compile vsDebugServerBundle && rm -rf out && mv -f dist out',
-      version = '1.91.0',
-    },
+
+    -- Sets up adapters for javascript debugging
     {
       'mxsdev/nvim-dap-vscode-js',
       opts = {
@@ -59,7 +57,14 @@ return {
         adapters = {'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost'},
       },
     },
-    {'theHamsta/nvim-dap-virtual-text', opts = {}},
+
+    -- vscode-js-debug (so, javascript) adapter
+    {
+      'microsoft/vscode-js-debug',
+      build = 'npm i && npm run compile vsDebugServerBundle && rm -rf out && mv -f dist out',
+      version = '1.91.0', -- Check if 1.94.0 solves the attaching issue
+    },
+
     -- Lua adapter
     {
       'jbyuki/one-small-step-for-vimkind',
@@ -125,11 +130,6 @@ return {
     ---@diagnostic disable-next-line: duplicate-set-field
     dap_vscode.json_decode = function(str)
       return vim.json.decode(json.json_strip_comments(str, {}))
-    end
-
-    -- Extends dap.configurations with entries read from .vscode/launch.json
-    if vim.fn.filereadable('.vscode/launch.json') then
-      dap_vscode.load_launchjs()
     end
 
     dap_vscode.type_to_filetypes['node'] = js_filetypes
