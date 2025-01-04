@@ -1,4 +1,4 @@
-## Gonzalo Stoll's dotfiles
+# Gonzalo Stoll's dotfiles
 
 <img src="__images/screenshot.png" alt="Dotfiles screenshot" />
 
@@ -40,19 +40,6 @@ This is useful for setting up some environment variables or installing some
 packages that are not included in the dotfiles.
 
 You can customize its installation by setting some flags:
-
-#### No custom `.zshrc` path
-
-This script changes the default path of the `.zshrc` file to
-`$HOME/.config/zsh/.zshrc`. You can opt-out of this by setting the `no-custom-zshrc-path`
-
-```sh
-# First time installing:
-bash -c "$(curl -fsSL raw.github.com/gonstoll/dotfiles/master/.config/bin/dotfiles) -- --no-custom-zshrc-path"
-
-# ...or after installation:
-dotfiles --no-custom-zshrc-path
-```
 
 #### No homebrew and runtime packages
 

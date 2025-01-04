@@ -29,35 +29,35 @@ do
   case $opt in
     --no-packages) no_packages=true ;;
     --no-sync) no_sync=true ;;
-    --no-custom-zshrc-path) no_custom_zshrc_path=true ;;
+      # --no-custom-zshrc-path) no_custom_zshrc_path=true ;;
     -*|--*) e_warning "Warning: invalid option $opt" ;;
   esac
 done
 
 # Add custom .zshrc path
-function custom_zshrc_path() {
-  sudo tee -a /etc/zshenv >/dev/null <<'EOF'
-
-if [[ -z "$XDG_CONFIG_HOME" ]]
-then
-	export XDG_CONFIG_HOME="$HOME/.config"
-fi
-
-if [[ -d "$XDG_CONFIG_HOME/zsh" ]]
-then
-	export ZDOTDIR="$XDG_CONFIG_HOME/zsh/"
-fi
-EOF
-}
-
-# Conditionally create a custom .zshrc path
-if [[ $no_custom_zshrc_path ]]; then
-  printf "Skipped creating a custom .zshrc path.\n"
-else
-  e_header "Creating custom .zshrc path..."
-  custom_zshrc_path
-  e_success "Custom .zshrc path added!"
-fi
+# function custom_zshrc_path() {
+#   sudo tee -a /etc/zshenv >/dev/null <<'EOF'
+#
+# if [[ -z "$XDG_CONFIG_HOME" ]]
+# then
+# 	export XDG_CONFIG_HOME="$HOME/.config"
+# fi
+#
+# if [[ -d "$XDG_CONFIG_HOME/zsh" ]]
+# then
+# 	export ZDOTDIR="$XDG_CONFIG_HOME/zsh/"
+# fi
+# EOF
+# }
+#
+# # Conditionally create a custom .zshrc path
+# if [[ $no_custom_zshrc_path ]]; then
+#   printf "Skipped creating a custom .zshrc path.\n"
+# else
+#   e_header "Creating custom .zshrc path..."
+#   custom_zshrc_path
+#   e_success "Custom .zshrc path added!"
+# fi
 
 # Check for Homebrew and install if missing
 if ! type_exists 'brew'; then
