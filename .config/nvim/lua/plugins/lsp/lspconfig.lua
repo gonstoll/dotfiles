@@ -49,6 +49,7 @@ return {
 
     local lsp_servers = {
       jsonls = require('plugins.lsp.servers.jsonls').setup(capabilities),
+      yamlls = require('plugins.lsp.servers.yamlls').setup(capabilities),
       emmet_language_server = require('plugins.lsp.servers.emmet_language_server').setup(capabilities),
       bashls = require('plugins.lsp.servers.bashls').setup(capabilities),
       tailwindcss = require('plugins.lsp.servers.tailwindcss').setup(capabilities),

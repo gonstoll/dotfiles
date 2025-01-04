@@ -2,6 +2,13 @@ return {
   {'onsails/lspkind-nvim', config = false},
 
   {
+    'b0o/SchemaStore.nvim',
+    -- Loaded by jsonls when needed.
+    version = false,
+    lazy = true,
+  },
+
+  {
     'williamboman/mason.nvim',
     build = ':MasonUpdate',
     opts = {
@@ -23,6 +30,7 @@ return {
         'bashls',
         'vtsls',
         'jsonls',
+        'yamlls',
         'bashls',
       },
       automatic_installation = true,

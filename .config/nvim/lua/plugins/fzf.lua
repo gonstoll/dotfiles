@@ -17,7 +17,7 @@ local grep_opts = {
 
 return {
   'ibhagwan/fzf-lua',
-  dependencies = {{'nvim-tree/nvim-web-devicons', lazy = true}},
+  dependencies = {'nvim-tree/nvim-web-devicons'},
   cmd = 'FzfLua',
   event = 'VeryLazy',
   keys = function()
