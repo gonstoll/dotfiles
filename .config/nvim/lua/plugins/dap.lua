@@ -127,11 +127,6 @@ return {
       return vim.json.decode(json.json_strip_comments(str, {}))
     end
 
-    -- Extends dap.configurations with entries read from .vscode/launch.json
-    if vim.fn.filereadable('.vscode/launch.json') then
-      dap_vscode.load_launchjs()
-    end
-
     dap_vscode.type_to_filetypes['node'] = js_filetypes
 
     for _, language in ipairs(js_filetypes) do
