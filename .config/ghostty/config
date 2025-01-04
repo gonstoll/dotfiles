@@ -17,6 +17,9 @@ window-padding-y = 2,0
 window-padding-x = 2
 window-padding-balance = true
 
+# macOS stuff
+macos-window-shadow = false
+
 # Keys
 # Ascii device control codes: https://www3.rocketsoftware.com/bluezone/help/v42/en/bzadmin/APPENDIX_C/ASCII_Character_Set.htm
 # Tmux-sessionizer: Ctrl-f+S (.zshrc binds this to `s\n`, since `s` is an alias
