@@ -124,3 +124,8 @@ function ff() {
 
 # Loading syntax highlighting last on purpose
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Load nvm if present
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  source "$NVM_DIR/nvm.sh"
+fi

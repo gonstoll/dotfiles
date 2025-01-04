@@ -39,3 +39,6 @@ export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 # Set 1ms timeout for Esc press so we can switch
 # between vi "normal" and "command" modes faster
 export KEYTIMEOUT=1
+
+# nvm
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"

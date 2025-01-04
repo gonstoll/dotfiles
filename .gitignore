@@ -24,6 +24,7 @@ custom.zsh
 .config/rust
 .config/gh
 .config/gh-copilot
+.config/nvm
 
 # tmux
 .config/tmux/plugins/*
