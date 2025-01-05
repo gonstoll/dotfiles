@@ -1,20 +1,12 @@
 return {
   'saghen/blink.cmp',
-  version = 'v0.*',
+  version = '*',
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
     keymap = {
       preset = 'enter',
       ['<C-y>'] = {'show', 'show_documentation', 'hide_documentation'},
-      -- ['<C-e>'] = {'hide', 'fallback'},
-      -- ['<CR>'] = {'accept', 'fallback'},
-      -- ['<Tab>'] = {'snippet_forward', 'fallback'},
-      -- ['<S-Tab>'] = {'snippet_backward', 'fallback'},
-      -- ['<Up>'] = {'select_prev', 'fallback'},
-      -- ['<Down>'] = {'select_next', 'fallback'},
-      -- ['<C-p>'] = {'select_prev', 'fallback'},
-      -- ['<C-n>'] = {'select_next', 'fallback'},
       ['<C-u>'] = {'scroll_documentation_up', 'fallback'},
       ['<C-d>'] = {'scroll_documentation_down', 'fallback'},
       cmdline = {
@@ -29,6 +21,18 @@ return {
     sources = {
       default = {'lsp', 'path', 'snippets', 'buffer', 'lazydev'},
       providers = {
+        path = {
+          -- Disable path provider for vtsls to use the lsp provider instead
+          -- See https://github.com/Saghen/blink.cmp/discussions/884#discussioncomment-11736446
+          enabled = function()
+            return not vim.tbl_contains({
+              'typescript',
+              'typescriptreact',
+              'javascript',
+              'javascriptreact',
+            }, vim.bo.filetype)
+          end,
+        },
         lazydev = {
           name = 'LazyDev',
           module = 'lazydev.integrations.blink',
