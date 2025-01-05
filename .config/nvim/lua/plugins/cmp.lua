@@ -35,20 +35,6 @@ return {
         ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select_opts),
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select_opts),
         ['<C-y>'] = cmp.mapping.complete(),
-        -- ['<Tab>'] = cmp.mapping(function(fallback)
-        --   if luasnip.expand_or_jumpable() then
-        --     luasnip.expand_or_jump()
-        --   else
-        --     fallback()
-        --   end
-        -- end, {'i', 's'}),
-        -- ['<S-Tab>'] = cmp.mapping(function(fallback)
-        --   if luasnip.jumpable(-1) then
-        --     luasnip.jump(-1)
-        --   else
-        --     fallback()
-        --   end
-        -- end, {'i', 's'}),
       },
       sources = cmp.config.sources({
         {name = 'lazydev', group_index = 0},
@@ -70,18 +56,7 @@ return {
       }),
       formatting = {
         format = lspkind.cmp_format({
-          mode = 'symbol',
-          menu = ({
-            nvim_lsp = '[lsp]',
-            luasnip = '[snip]',
-            snippets = '[snip]',
-            path = '[path]',
-            emoji = '[🤌]',
-            nvim_lua = '[api]',
-            calc = '[calc]',
-            buffer = '[buf]',
-            cmdline = '[cmd]',
-          }),
+          mode = 'symbol_text',
         }),
       },
     })
