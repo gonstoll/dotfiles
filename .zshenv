@@ -3,9 +3,10 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # PATH
-export PATH=$HOME/.local/bin:$PATH # Local scripts
-export PATH=$HOME/.config/bin:$PATH # Custom scripts
-export PATH=$HOME/.config/tmux/bin:$PATH # Tmux scripts
+export PATH="$HOME/.local/bin:$PATH" # Local scripts
+export PATH="$XDG_CONFIG_HOME/bin:$PATH" # Custom scripts
+export PATH="$XDG_CONFIG_HOME/tmux/bin:$PATH" # Tmux scripts
+export PATH="$XDG_CONFIG_HOME/rust/.cargo/bin:$PATH" # Cargo
 
 # zsh configuration.
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
@@ -22,8 +23,8 @@ export GIT_EDITOR="$EDITOR"
 export GHOSTTY_SHELL_INTEGRATION_NO_CURSOR=1
 
 # Rust
-export RUSTUP_HOME="$HOME/.config/rust/.rustup"
-export CARGO_HOME="$HOME/.config/rust/.cargo"
+export RUSTUP_HOME="$XDG_CONFIG_HOME/rust/.rustup"
+export CARGO_HOME="$XDG_CONFIG_HOME/rust/.cargo"
 
 # Bun
 export BUN_INSTALL="$HOME/.config/bun"

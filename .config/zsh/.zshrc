@@ -69,8 +69,14 @@ if [[ -f $ZDOTDIR/.p10k.zsh ]]; then
   source $ZDOTDIR/.p10k.zsh
 fi
 
+# Load bun
 if [[ -s "$HOME/.config/bun/_bun" ]]; then
   source "$HOME/.config/bun/_bun"
+fi
+
+# Load rust
+if [[ -s "$XDG_CONFIG_HOME/rust/.cargo/env" ]]; then
+  source "$XDG_CONFIG_HOME/rust/.cargo/env"
 fi
 
 # Plugins
