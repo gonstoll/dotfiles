@@ -49,10 +49,10 @@ autocmd({'WinEnter', 'BufEnter'}, {
   group = statusline_group,
   callback = function()
     if (vim.bo.filetype == 'oil') then
-      vim.cmd('setlocal statusline=%!v:lua.Utils.statusline.oil()')
+      vim.o.statusline = "%!v:lua.require('statusline').oil()"
       return
     end
-    vim.cmd('setlocal statusline=%!v:lua.Utils.statusline.active()')
+    vim.o.statusline = "%!v:lua.require('statusline').active()"
   end,
 })
 
@@ -60,7 +60,7 @@ autocmd({'WinLeave', 'BufLeave'}, {
   pattern = '*',
   group = statusline_group,
   callback = function()
-    vim.cmd('setlocal statusline=%!v:lua.Utils.statusline.inactive()')
+    vim.o.statusline = "%!v:lua.require('statusline').inactive()"
   end,
 })
 
