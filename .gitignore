@@ -18,7 +18,6 @@ custom.zsh
 .config/configstore
 .config/fontforge
 .config/github-copilot
-.config/iterm2
 .config/planetscale
 .config/raycast
 .config/rust
@@ -26,6 +25,12 @@ custom.zsh
 .config/gh-copilot
 .config/nvm
 
+# iTerm2
+.config/iTerm2/*
+!.config/iTerm2/com.googlecode.iterm2.plist
+Library/Application Support/iTerm2/*
+!Library/Application Support/iTerm2/DynamicProfiles
+
 # tmux
 .config/tmux/plugins/*
-!config/tmux/plugins/tpm
+!.config/tmux/plugins/tpm
