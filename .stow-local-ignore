@@ -23,7 +23,5 @@ _darcs
 ^/COPYING
 
 Brewfile
-__images
 lib
-raycast
 system

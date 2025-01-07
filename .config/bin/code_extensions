@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 gum style \
-    --foreground 14 --border-foreground 14 --border double \
-    --margin "1 0" --padding "0 2" \
-    '
+  --foreground 14 --border-foreground 14 --border double \
+  --margin "1 0" --padding "0 2" \
+  '
 ██╗   ██╗███████╗ ██████╗ ██████╗ ██████╗ ███████╗
 ██║   ██║██╔════╝██╔════╝██╔═══██╗██╔══██╗██╔════╝
 ██║   ██║███████╗██║     ██║   ██║██║  ██║█████╗

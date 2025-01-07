@@ -1,6 +1,6 @@
 # Neovim configuration
 
-<img src="/__images/screenshot.png" alt="Dotfiles screenshot" />
+<img src="/system/__images/screenshot.png" alt="Dotfiles screenshot" />
 
 This is my Neovim configuration. As you might've guessed by the screenshots, this configuration is heavily inclined for
 Frontend development, with support for Typescript, tsx, tailwind, and more. That being said, it's completely extendable
