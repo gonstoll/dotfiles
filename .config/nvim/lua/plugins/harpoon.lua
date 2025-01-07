@@ -112,7 +112,8 @@ return {
   config = function()
     local harpoon = require('harpoon')
     -- local extensions = require('harpoon.extensions')
-    local menu_opts = {border = 'single', title_pos = 'center'}
+    ---@type HarpoonToggleOptions
+    local menu_opts = {border = 'single'}
 
     harpoon:setup({settings = {save_on_toggle = true, sync_on_ui_close = true}})
     -- harpoon:extend(extensions.builtins.command_on_nav('UfoEnableFold'))
@@ -153,8 +154,6 @@ return {
     vim.keymap.set('n', keys.add_to_list, function() harpoon:list():add() end, {desc = desc('Add to list')})
     vim.keymap.set('n', keys.prev_file, function() next_harpoon(harpoon:list(), true) end, {desc = desc('Previous file')})
     vim.keymap.set('n', keys.next_file, function() next_harpoon(harpoon:list(), false) end, {desc = desc('Next file')})
-    -- vim.keymap.set('n',keys.prev_file, function() harpoon:list():prev() end, {desc = desc('Previous file')})
-    -- vim.keymap.set('n',keys.next_file, function() harpoon:list():next() end, {desc = desc('Next file')})
     vim.keymap.set('n', keys.sel_f1, function() harpoon:list():select(1) end, {desc = desc('Select file 1')})
     vim.keymap.set('n', keys.sel_f2, function() harpoon:list():select(2) end, {desc = desc('Select file 2')})
     vim.keymap.set('n', keys.sel_f3, function() harpoon:list():select(3) end, {desc = desc('Select file 3')})
