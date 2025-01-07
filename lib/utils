@@ -7,17 +7,17 @@ function e_header() {
 
 # Success logging
 function e_success() {
-  printf "$(tput setaf 64)✓ %s$(tput sgr0)\n" "$@"
+  printf "$(tput setaf 65) $(tput sgr0) %s\n" "$@"
 }
 
 # Error logging
 function e_error() {
-  printf "$(tput setaf 1)x %s$(tput sgr0)\n" "$@"
+  printf "$(tput setaf 1) $(tput sgr0) %s\n" "$@"
 }
 
 # Warning logging
 function e_warning() {
-  printf "$(tput setaf 136)! %s$(tput sgr0)\n" "$@"
+  printf "$(tput setaf 137) $(tput sgr0) %s\n" "$@"
 }
 
 # Ask for confirmation before proceeding

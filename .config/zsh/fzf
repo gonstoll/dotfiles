@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Setup fzf
 # ---------
 if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
@@ -6,7 +8,9 @@ fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
+if [[ $- == *i* ]]; then
+  source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
+fi
 
 # Key bindings
 # ------------

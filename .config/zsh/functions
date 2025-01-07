@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+# Header logging
+function print_header() {
+  printf "\n$(tput setaf 7)%s$(tput sgr0)\n" "$@"
+}
+
+# Success logging
+function print_success() {
+  printf "$(tput setaf 65) $(tput sgr0) %s\n" "$@"
+}
+
+# Error logging
+function print_error() {
+  printf "$(tput setaf 1) $(tput sgr0) %s\n" "$@"
+}
+
+# Warning logging
+function print_warning() {
+  printf "$(tput setaf 137) $(tput sgr0) %s\n" "$@"
+}
+
+# Use fzf to view and focus on aerospace windows
+function ff() {
+  aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
+}
+
+# Yazi (file manager system)
+# Use y to change the current directory when exiting yazi
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
+
+# Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments to fzf.
+function _fzf_comprun() {
+  local command=$1
+  shift # Remove the first argument of the function
+  case "$command" in
+    cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+    export|unset) fzf --preview "eval 'echo \${}'"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
+  esac
+}

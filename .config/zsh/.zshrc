@@ -79,41 +79,14 @@ if [[ -s "$XDG_CONFIG_HOME/rust/.cargo/env" ]]; then
   source "$XDG_CONFIG_HOME/rust/.cargo/env"
 fi
 
-# Plugins
-source $ZDOTDIR/plugins/fzf/fzf.zsh
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Zoxide
 eval "$(zoxide init zsh)"
 
 # Fzf
+source $ZDOTDIR/fzf
 source <(fzf --zsh)
-
-# Advanced customization of fzf options via _fzf_comprun function
-# - The first argument to the function is the name of the command.
-# - You should make sure to pass the rest of the arguments to fzf.
-function _fzf_comprun() {
-  local command=$1
-  shift
-
-  case "$command" in
-    cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
-    export|unset) fzf --preview "eval 'echo \${}'"         "$@" ;;
-    ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
-  esac
-}
-
-# Yazi (file manager system)
-# Use y to change the current directory when exiting yazi
-function y() {
-  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-  yazi "$@" --cwd-file="$tmp"
-  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-    cd -- "$cwd"
-  fi
-  rm -f -- "$tmp"
-}
 
 # Edit command line in vim
 autoload -U edit-command-line
@@ -123,11 +96,6 @@ bindkey "^X^E" edit-command-line
 # Use fzf for history search
 # bindkey '^R' fzf-history-widget
 
-# Use fzf to view and focus on aerospace windows
-function ff() {
-  aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
-}
-
 # Loading syntax highlighting last on purpose
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -135,3 +103,6 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 if [ -s "$NVM_DIR/nvm.sh" ]; then
   source "$NVM_DIR/nvm.sh"
 fi
+
+# Functions
+source $ZDOTDIR/functions
