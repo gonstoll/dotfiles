@@ -23,5 +23,4 @@ _darcs
 ^/COPYING
 
 Brewfile
-lib
-system
+other

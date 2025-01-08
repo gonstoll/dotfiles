@@ -1,3 +1,3 @@
-[submodule "system/wallpapers/wallpapper"]
-	path = system/wallpapers/wallpapper
-	url = https://github.com/mczachurski/wallpapper
+[submodule "other/images/wallpapers/wallpapper"]
+	path = other/images/wallpapers/wallpapper
+	url = https://github.com/mczachurski/wallpapper.git

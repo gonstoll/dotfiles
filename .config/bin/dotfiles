@@ -18,10 +18,10 @@ fi
 
 cd ${DOTFILES_DIRECTORY}
 
-source ./lib/help
-source ./lib/list
-source ./lib/misc
-source ./lib/utils
+source ./other/lib/help
+source ./other/lib/list
+source ./other/lib/misc
+source ./other/lib/utils
 
 # Test for known flags
 for opt in $@

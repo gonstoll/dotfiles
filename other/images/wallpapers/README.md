@@ -5,7 +5,7 @@ Using [wallpapper](https://github.com/mczachurski/wallpapper) by mczachurski, th
 ## Installation
 
 ```bash
-cd $HOME/dotfiles/system/wallpapers/wallpapper/
+cd $HOME/.dotfiles/other/images/wallpapers/wallpapper/
 ./build.sh
 sudo cp .output/wallpapper /usr/local/bin
 sudo cp .output/wallpapper-exif /usr/local/bin

@@ -1,6 +1,6 @@
 # Gonzalo Stoll's dotfiles
 
-<img src="system/__images/screenshot.png" alt="Dotfiles screenshot" />
+<img src="other/images/screenshot.png" alt="Dotfiles screenshot" />
 
 These are my dotfiles. They are not meant to be used as is, but feel free to
 take whatever you want from them.
