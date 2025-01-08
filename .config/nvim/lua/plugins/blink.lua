@@ -21,18 +21,19 @@ return {
     sources = {
       default = {'lsp', 'path', 'snippets', 'buffer', 'lazydev'},
       providers = {
-        path = {
-          -- Disable path provider for vtsls to use the lsp provider instead
-          -- See https://github.com/Saghen/blink.cmp/discussions/884#discussioncomment-11736446
-          enabled = function()
-            return not vim.tbl_contains({
-              'typescript',
-              'typescriptreact',
-              'javascript',
-              'javascriptreact',
-            }, vim.bo.filetype)
-          end,
+        lsp = {
+          fallbacks = {'buffer', 'path'},
         },
+        -- path = {
+        --   enabled = function()
+        --     return not vim.tbl_contains({
+        --       'typescript',
+        --       'typescriptreact',
+        --       'javascript',
+        --       'javascriptreact',
+        --     }, vim.bo.filetype)
+        --   end,
+        -- },
         lazydev = {
           name = 'LazyDev',
           module = 'lazydev.integrations.blink',
@@ -45,12 +46,6 @@ return {
           opts = {
             friendly_snippets = false,
             search_paths = {vim.fn.stdpath('config') .. '/snippets/nvim'},
-            global_snippets = {'all'},
-            extended_filetypes = {},
-            ignored_filetypes = {},
-            get_filetype = function()
-              return vim.bo.filetype
-            end,
           },
         },
       },
@@ -61,9 +56,11 @@ return {
         show_on_accept_on_trigger_character = false,
       },
       list = {
-        selection = function(ctx)
-          return ctx.mode == 'cmdline' and 'auto_insert' or 'manual'
-        end,
+        -- Manual selection, if not in cmdline
+        selection = {
+          preselect = false,
+          auto_insert = function(ctx) return ctx.mode == 'cmdline' end,
+        },
       },
       menu = {
         draw = {
