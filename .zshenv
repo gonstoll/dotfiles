@@ -8,6 +8,9 @@ export PATH="$XDG_CONFIG_HOME/bin:$PATH" # Custom scripts
 export PATH="$XDG_CONFIG_HOME/tmux/bin:$PATH" # Tmux scripts
 export PATH="$XDG_CONFIG_HOME/rust/.cargo/bin:$PATH" # Cargo
 
+# Brew bundle file
+export HOMEBREW_BUNDLE_FILE="$HOME/.dotfiles/Brewfile"
+
 # zsh configuration.
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 

@@ -108,10 +108,17 @@ if [[ $no_packages ]]; then
   printf "Skipped package installations.\n"
 else
   printf "Installing/updating packages...\n"
-  # Install Homebrew formulae
-  BREWFILE_PATH="${DOTFILES_DIRECTORY}/Brewfile"
-  echo "export HOMEBREW_BUNDLE_FILE=${BREWFILE_PATH}" >> $ZDOTDIR/.zshrc
-  brew bundle --file=$BREWFILE_PATH
+  BREWFILE_PATH=""
+
+  if [[ -z "$HOMEBREW_BUNDLE_FILE" ]]; then
+    BREWFILE_PATH="${DOTFILES_DIRECTORY}/Brewfile"
+    echo "export HOMEBREW_BUNDLE_FILE=${BREWFILE_PATH}" >> "$ZDOTDIR/.zshenv"
+  else
+    BREWFILE_PATH="$HOMEBREW_BUNDLE_FILE"
+  fi
+
+  # Install Homebrew packages
+  brew bundle --file="$BREWFILE_PATH"
 
   # Install Node packages
   run_misc_packages
@@ -127,9 +134,22 @@ fi
 seek_confirmation "Warning: This step may overwrite your existing stowed dotfiles."
 
 if is_confirmed; then
+  is_backup=false
+  if [ -f "$HOME/.zshrc" ] || [ -f "$HOME/.zshenv" ]; then
+    is_backup=true
+    e_header "Backing up your existing zsh files"
+    [ -f "$HOME/.zshrc" ] && mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
+    [ -f "$HOME/.zshenv" ] && mv "$HOME/.zshenv" "$HOME/.zshenv.bak"
+  fi
+
+  e_header "Linking dotfiles..."
+
   stow -v .
-  source $ZDOTDIR/.zshrc
+
   e_success "Dotfiles linked successfully!"
+  if [ "$is_backup" = true ]; then
+    e_warning "Your previous zsh files have been backed up with a .bak extension."
+  fi
 else
   e_warning "Aborted linking dotfiles."
   exit 1
@@ -139,7 +159,6 @@ fi
 seek_confirmation "Warning: This step may modify your OS X system defaults."
 
 if is_confirmed; then
-  source $ZDOTDIR/.zshrc
   bash ./.config/bin/osxdefaults
   e_success "OS X settings updated! You may need to restart."
 else
@@ -152,6 +171,7 @@ if [ -f ./.config/bin/init_script ]; then
   e_success "init_script complete!"
 fi
 
+source $ZDOTDIR/.zshrc
 chmod +x $XDG_CONFIG_HOME/bin/*
 
 e_header "All done! You should probably restart your computer, and enjoy your new dotfiles!"
