@@ -24,7 +24,7 @@ source ./other/lib/misc
 source ./other/lib/utils
 
 # Test for known flags
-for opt in $@
+for opt in "$@"
 do
   case $opt in
     --no-packages) no_packages=true ;;
@@ -112,7 +112,7 @@ else
 
   if [[ -z "$HOMEBREW_BUNDLE_FILE" ]]; then
     BREWFILE_PATH="${DOTFILES_DIRECTORY}/Brewfile"
-    echo "export HOMEBREW_BUNDLE_FILE=${BREWFILE_PATH}" >> "$ZDOTDIR/.zshenv"
+    echo "export HOMEBREW_BUNDLE_FILE=${BREWFILE_PATH}" >> "$HOME/.zshenv"
   else
     BREWFILE_PATH="$HOMEBREW_BUNDLE_FILE"
   fi
