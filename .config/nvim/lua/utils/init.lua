@@ -38,4 +38,17 @@ M.cmd_center = function(callback)
   end
 end
 
+--- Gets a path to a package in the Mason registry.
+--- Prefer this to `get_package`, since the package might not always be
+--- available yet and trigger errors.
+---@param pkg string
+---@param path? string
+function M.get_pkg_path(pkg, path)
+  pcall(require, 'mason') -- make sure Mason is loaded. Will fail when generating docs
+  local root = vim.env.MASON or (vim.fn.stdpath('data') .. '/mason')
+  path = path or ''
+  local ret = root .. '/packages/' .. pkg .. '/' .. path
+  return ret
+end
+
 return M

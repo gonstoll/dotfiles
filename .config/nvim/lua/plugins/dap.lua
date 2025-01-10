@@ -50,19 +50,18 @@ return {
     },
 
     -- Sets up adapters for javascript debugging
-    {
-      'mxsdev/nvim-dap-vscode-js',
-      opts = {
-        debugger_path = vim.fn.resolve(vim.fn.stdpath('data') .. '/lazy/vscode-js-debug'),
-        adapters = {'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost'},
-      },
-    },
+    -- {
+    --   'mxsdev/nvim-dap-vscode-js',
+    --   opts = {
+    --     debugger_path = vim.fn.resolve(vim.fn.stdpath('data') .. '/lazy/vscode-js-debug'),
+    --     adapters = {'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost'},
+    --   },
+    -- },
 
     -- vscode-js-debug (so, javascript) adapter
     {
       'microsoft/vscode-js-debug',
       build = 'npm i && npm run compile vsDebugServerBundle && rm -rf out && mv -f dist out',
-      version = '1.91.0', -- Check if 1.94.0 solves the attaching issue
     },
 
     -- Lua adapter
@@ -133,6 +132,35 @@ return {
     end
 
     dap_vscode.type_to_filetypes['node'] = js_filetypes
+
+    if not dap.adapters['pwa-node'] then
+      dap.adapters['pwa-node'] = {
+        type = 'server',
+        host = 'localhost',
+        port = '${port}',
+        executable = {
+          command = 'node',
+          args = {
+            Utils.get_pkg_path('js-debug-adapter', '/js-debug/src/dapDebugServer.js'),
+            '${port}',
+          },
+        },
+      }
+    end
+
+    if not dap.adapters['node'] then
+      dap.adapters['node'] = function(cb, config)
+        if config.type == 'node' then
+          config.type = 'pwa-node'
+        end
+        local nativeAdapter = dap.adapters['pwa-node']
+        if type(nativeAdapter) == 'function' then
+          nativeAdapter(cb, config)
+        else
+          cb(nativeAdapter)
+        end
+      end
+    end
 
     for _, language in ipairs(js_filetypes) do
       dap.configurations[language] = {
@@ -241,6 +269,8 @@ return {
     --    :luafile myscript.lua
     -- 8. The breakpoint should hit and freeze the instance (B)
 
+    ---@param callback fun(adapter:table)
+    ---@param config table
     dap.adapters.nlua = function(callback, config)
       local adapter = {
         type = 'server',
