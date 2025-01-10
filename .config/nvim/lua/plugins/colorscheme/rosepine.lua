@@ -6,7 +6,19 @@ return {
     disable_background = true,
     dark_variant = 'moon',
     styles = {italic = false},
+    palette = {
+      moon = {
+        gold = '#f5d2a0',
+        -- foam = '#9ccfd8'
+        foam = '#a1d1da',
+        -- foam = '#b1d3d9',
+        -- iris = '#c4a7e7',
+        iris = '#ceb7e9',
+        -- iris = '#d4c0ec',
+      },
+    },
     highlight_groups = {
+      Directory = {fg = 'foam', bold = false},
       StatusLine = {bg = 'surface', fg = 'subtle'},
       StatusLineTerm = {link = 'StatusLine'},
       StatusLineNC = {link = 'StatusLine'},
