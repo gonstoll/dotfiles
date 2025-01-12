@@ -24,16 +24,6 @@ return {
         lsp = {
           fallbacks = {'buffer', 'path'},
         },
-        -- path = {
-        --   enabled = function()
-        --     return not vim.tbl_contains({
-        --       'typescript',
-        --       'typescriptreact',
-        --       'javascript',
-        --       'javascriptreact',
-        --     }, vim.bo.filetype)
-        --   end,
-        -- },
         lazydev = {
           name = 'LazyDev',
           module = 'lazydev.integrations.blink',
@@ -74,6 +64,9 @@ return {
         auto_show = true,
         auto_show_delay_ms = 200,
       },
+    },
+    fuzzy = {
+      use_typo_resistance = false,
     },
   },
   opts_extend = {'sources.default'},
