@@ -29,8 +29,8 @@
 
 return {
   'mcchrish/zenbones.nvim',
-  priority = 1000,
   dependencies = {'rktjmp/lush.nvim'},
+  lazy = true,
   config = function()
     -- vim.g.zenbones_transparent_background = true
     -- vim.g.rosebones_transparent_background = true

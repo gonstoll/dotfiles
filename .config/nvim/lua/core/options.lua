@@ -1,6 +1,6 @@
 vim.opt.guicursor = 'a:block/,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
 vim.opt.cursorline = false -- highlight the current line
-vim.cmd('colorscheme zenbones') -- Set the colorscheme
+vim.cmd('colorscheme rose-pine') -- Set the colorscheme
 
 vim.opt.number = true -- Set numbered lines
 vim.opt.relativenumber = true -- Set relative numbered lines
