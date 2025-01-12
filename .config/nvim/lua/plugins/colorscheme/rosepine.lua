@@ -8,13 +8,10 @@ return {
     styles = {italic = false},
     palette = {
       moon = {
-        gold = '#f5d2a0',
-        -- foam = '#9ccfd8'
+        gold = '#f6d5a7',
         foam = '#a1d1da',
-        -- foam = '#b1d3d9',
-        -- iris = '#c4a7e7',
-        iris = '#ceb7e9',
-        -- iris = '#d4c0ec',
+        iris = '#d9c7ef',
+        rose = '#ebbcba',
       },
     },
     highlight_groups = {
