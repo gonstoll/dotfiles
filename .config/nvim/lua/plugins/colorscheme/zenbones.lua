@@ -54,7 +54,8 @@ return {
         ---@diagnostic disable: undefined-global
         local specs = lush.parse(function()
           return {
-            Normal({theme.Normal, bg = bg == 'dark' and '#181616' or palette[bg].bg}),
+            -- Normal({theme.Normal, bg = bg == 'dark' and '#181616' or palette[bg].bg}),
+            Normal({theme.Normal, bg = bg == 'dark' and '#000000' or palette[bg].bg}),
             -- NormalNC({theme.NormalNC, bg = bg == 'dark' and '#2d2929' or palette[bg].bg}),
             -- NormalNC({theme.NormalNC, bg = bg == 'dark' and '#1f1d1d' or palette[bg].bg.da(10)}),
             NormalNC({theme.NormalNC, bg = bg == 'dark' and '#262323' or palette[bg].bg.da(10)}),
