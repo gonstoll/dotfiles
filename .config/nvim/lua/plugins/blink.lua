@@ -1,6 +1,7 @@
 return {
   'saghen/blink.cmp',
   version = '*',
+  event = 'InsertEnter',
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
@@ -14,9 +15,6 @@ return {
         ['<Tab>'] = {'select_next', 'fallback'},
         ['<S-Tab>'] = {'select_prev', 'fallback'},
       },
-    },
-    appearance = {
-      nerd_font_variant = 'mono',
     },
     sources = {
       default = {'lsp', 'path', 'snippets', 'buffer', 'lazydev'},
