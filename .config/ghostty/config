@@ -9,9 +9,7 @@ adjust-underline-position = 2
 adjust-cell-height = -1
 
 # Windows, colors and styles
-theme = rose-pine-moon
-# background = 181616
-background = 000000
+theme = rose-pine-muted
 cursor-invert-fg-bg = true
 macos-titlebar-style = hidden
 window-padding-y = 2,0
