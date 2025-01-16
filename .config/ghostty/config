@@ -23,6 +23,9 @@ macos-window-shadow = false
 
 # Keys
 # Ascii device control codes: https://www3.rocketsoftware.com/bluezone/help/v42/en/bzadmin/APPENDIX_C/ASCII_Character_Set.htm
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+
 # Tmux-sessionizer: Ctrl-f+S (.zshrc binds this to `s\n`, since `s` is an alias
 # for tmux-sessionizer)
 keybind = cmd+s=text:\x06\x53
