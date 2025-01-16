@@ -33,4 +33,3 @@ Library/Application Support/iTerm2/*
 
 # tmux
 .config/tmux/plugins/*
-!.config/tmux/plugins/tpm

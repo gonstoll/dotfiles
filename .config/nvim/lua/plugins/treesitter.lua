@@ -33,6 +33,8 @@ return {
         'svelte',
         'sql',
         'regex',
+        'go',
+        'rust',
       },
       highlight = {
         enable = true,
