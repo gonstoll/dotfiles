@@ -30,6 +30,7 @@ return {
         'jsonls',
         'yamlls',
         'bashls',
+        'gopls',
       },
       automatic_installation = true,
     },

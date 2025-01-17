@@ -1,7 +1,3 @@
-~/dev/backups
-~/dev/challenges
-~/dev/misc
-~/dev/oss
-~/dev/projects
+~/dev/**
 ~/courses/**
 ~

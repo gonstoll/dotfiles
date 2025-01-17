@@ -47,11 +47,11 @@ return {
       local localPrettierConfig = vim.fs.find(prettier_roots, {
         upward = true,
         path = ctx.dirname,
-        type = 'file'
+        type = 'file',
       })[1]
       local globalPrettierConfig = vim.fs.find(prettier_roots, {
         path = type(config_path) == 'string' and config_path or config_path[1],
-        type = 'file'
+        type = 'file',
       })[1]
       local disableGlobalPrettierConfig = os.getenv('DISABLE_GLOBAL_PRETTIER_CONFIG')
 
@@ -65,7 +65,7 @@ return {
       local hasTailwindPrettierPlugin = vim.fs.find('node_modules/prettier-plugin-tailwindcss', {
         upward = true,
         path = ctx.dirname,
-        type = 'directory'
+        type = 'directory',
       })[1]
 
       if hasTailwindPrettierPlugin then
@@ -77,8 +77,8 @@ return {
 
     conform.formatters.beautysh = {
       prepend_args = function()
-        return {'--indent-size', '2', '--force-function-style', 'fnpar'}
-      end
+        return {'--indent-size', '4', '--force-function-style', 'fnpar'}
+      end,
     }
   end,
 }

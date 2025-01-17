@@ -3,9 +3,7 @@
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
 after-login-command = []
 
-exec-on-workspace-change = ['/bin/bash', '-c',
-  'exec-and-forget borders'
-]
+exec-on-workspace-change = ['/bin/bash', '-c', 'exec-and-forget borders']
 
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'

@@ -6,14 +6,14 @@ DOTFILES_GIT_REMOTE="https://github.com/gonstoll/dotfiles.git"
 
 # If missing, download and extract the dotfiles repository
 if [[ ! -d ${DOTFILES_DIRECTORY} ]]; then
-  printf "$(tput setaf 7)Downloading dotfiles...\033[m\n"
-  mkdir ${DOTFILES_DIRECTORY}
-  # Get the tarball
-  curl -fsSLo ${HOME}/dotfiles.tar.gz ${DOTFILES_TARBALL_PATH}
-  # Extract to the dotfiles directory
-  tar -zxf ${HOME}/dotfiles.tar.gz --strip-components 1 -C ${DOTFILES_DIRECTORY}
-  # Remove the tarball
-  rm -rf ${HOME}/dotfiles.tar.gz
+    printf "$(tput setaf 7)Downloading dotfiles...\033[m\n"
+    mkdir ${DOTFILES_DIRECTORY}
+    # Get the tarball
+    curl -fsSLo ${HOME}/dotfiles.tar.gz ${DOTFILES_TARBALL_PATH}
+    # Extract to the dotfiles directory
+    tar -zxf ${HOME}/dotfiles.tar.gz --strip-components 1 -C ${DOTFILES_DIRECTORY}
+    # Remove the tarball
+    rm -rf ${HOME}/dotfiles.tar.gz
 fi
 
 cd ${DOTFILES_DIRECTORY}
@@ -26,12 +26,12 @@ source ./other/lib/utils
 # Test for known flags
 for opt in "$@"
 do
-  case $opt in
-    --no-packages) no_packages=true ;;
-    --no-sync) no_sync=true ;;
-      # --no-custom-zshrc-path) no_custom_zshrc_path=true ;;
-    -*|--*) e_warning "Warning: invalid option $opt" ;;
-  esac
+    case $opt in
+        --no-packages) no_packages=true ;;
+        --no-sync) no_sync=true ;;
+            # --no-custom-zshrc-path) no_custom_zshrc_path=true ;;
+        -*|--*) e_warning "Warning: invalid option $opt" ;;
+    esac
 done
 
 # Add custom .zshrc path
@@ -61,114 +61,114 @@ done
 
 # Check for Homebrew and install if missing
 if ! type_exists 'brew'; then
-  e_header "Installing Homebrew..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $ZDOTDIR/.zprofile
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-  e_success "Homebrew installed successfully!"
+    e_header "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $ZDOTDIR/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    e_success "Homebrew installed successfully!"
 fi
 
 # Check for git and install if missing
 if ! type_exists 'git'; then
-  e_header "Updating Homebrew before installing git..."
-  brew update
-  e_header "Installing Git..."
-  brew install git
-  e_success "Git installed!"
+    e_header "Updating Homebrew before installing git..."
+    brew update
+    e_header "Installing Git..."
+    brew install git
+    e_success "Git installed!"
 fi
 
 # Initialize the git repository if it's missing
 if ! is_git_repo; then
-  e_header "Initializing git repository..."
-  git init
-  git remote add origin ${DOTFILES_GIT_REMOTE}
-  git fetch origin master
-  # Reset the index and working tree to the fetched HEAD
-  # (submodules are cloned in the subsequent sync step)
-  git reset --hard FETCH_HEAD
-  # Remove any untracked files
-  git clean -fd
-  e_success "Git repository initialized successfully!"
+    e_header "Initializing git repository..."
+    git init
+    git remote add origin ${DOTFILES_GIT_REMOTE}
+    git fetch origin master
+    # Reset the index and working tree to the fetched HEAD
+    # (submodules are cloned in the subsequent sync step)
+    git reset --hard FETCH_HEAD
+    # Remove any untracked files
+    git clean -fd
+    e_success "Git repository initialized successfully!"
 fi
 
 # Conditionally sync with the remote repository
 if [[ $no_sync ]]; then
-  printf "Skipped dotfiles sync.\n"
+    printf "Skipped dotfiles sync.\n"
 else
-  e_header "Syncing dotfiles git repository..."
-  # Pull down the latest changes
-  git pull --rebase origin master
-  # Update submodules
-  git submodule update --recursive --init --quiet
-  e_success "Git submodules syncing complete!"
+    e_header "Syncing dotfiles git repository..."
+    # Pull down the latest changes
+    git pull --rebase origin master
+    # Update submodules
+    git submodule update --recursive --init --quiet
+    e_success "Git submodules syncing complete!"
 fi
 
 # Conditionally install brew and runtime packages
 if [[ $no_packages ]]; then
-  printf "Skipped package installations.\n"
+    printf "Skipped package installations.\n"
 else
-  printf "Installing/updating packages...\n"
-  BREWFILE_PATH=""
+    printf "Installing/updating packages...\n"
+    BREWFILE_PATH=""
 
-  if [[ -z "$HOMEBREW_BUNDLE_FILE" ]]; then
-    BREWFILE_PATH="${DOTFILES_DIRECTORY}/Brewfile"
-    echo "export HOMEBREW_BUNDLE_FILE=${BREWFILE_PATH}" >> "$HOME/.zshenv"
-  else
-    BREWFILE_PATH="$HOMEBREW_BUNDLE_FILE"
-  fi
+    if [[ -z "$HOMEBREW_BUNDLE_FILE" ]]; then
+        BREWFILE_PATH="${DOTFILES_DIRECTORY}/Brewfile"
+        echo "export HOMEBREW_BUNDLE_FILE=${BREWFILE_PATH}" >> "$HOME/.zshenv"
+    else
+        BREWFILE_PATH="$HOMEBREW_BUNDLE_FILE"
+    fi
 
-  # Install Homebrew packages
-  brew bundle --file="$BREWFILE_PATH"
+    # Install Homebrew packages
+    brew bundle --file="$BREWFILE_PATH"
 
-  # Install Node packages
-  run_misc_packages
+    # Install Node packages
+    run_misc_packages
 fi
 
 # Checks if you have a `init_script` file on your home directory
 # and moves it to the correct location
 if [ -f $HOME/init_script ]; then
-  mv $HOME/init_script ./.config/bin/init_script
+    mv $HOME/init_script ./.config/bin/init_script
 fi
 
 # Ask before potentially overwriting stowed dotfiles
 seek_confirmation "Warning: This step may overwrite your existing stowed dotfiles."
 
 if is_confirmed; then
-  is_backup=false
-  if [ -f "$HOME/.zshrc" ] || [ -f "$HOME/.zshenv" ]; then
-    is_backup=true
-    e_header "Backing up your existing zsh files"
-    [ -f "$HOME/.zshrc" ] && mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
-    [ -f "$HOME/.zshenv" ] && mv "$HOME/.zshenv" "$HOME/.zshenv.bak"
-  fi
+    is_backup=false
+    if [ -f "$HOME/.zshrc" ] || [ -f "$HOME/.zshenv" ]; then
+        is_backup=true
+        e_header "Backing up your existing zsh files"
+        [ -f "$HOME/.zshrc" ] && mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
+        [ -f "$HOME/.zshenv" ] && mv "$HOME/.zshenv" "$HOME/.zshenv.bak"
+    fi
 
-  e_header "Linking dotfiles..."
+    e_header "Linking dotfiles..."
 
-  stow -v .
+    stow -v .
 
-  e_success "Dotfiles linked successfully!"
-  if [ "$is_backup" = true ]; then
-    e_warning "Your previous zsh files have been backed up with a .bak extension."
-  fi
+    e_success "Dotfiles linked successfully!"
+    if [ "$is_backup" = true ]; then
+        e_warning "Your previous zsh files have been backed up with a .bak extension."
+    fi
 else
-  e_warning "Aborted linking dotfiles."
-  exit 1
+    e_warning "Aborted linking dotfiles."
+    exit 1
 fi
 
 # Ask before potentially overwriting OS X defaults
 seek_confirmation "Warning: This step may modify your OS X system defaults."
 
 if is_confirmed; then
-  bash ./.config/bin/osxdefaults
-  e_success "OS X settings updated! You may need to restart."
+    bash ./.config/bin/osxdefaults
+    e_success "OS X settings updated! You may need to restart."
 else
-  e_warning "Skipped OS X settings update.\n"
+    e_warning "Skipped OS X settings update.\n"
 fi
 
 if [ -f ./.config/bin/init_script ]; then
-  e_header "Running init_script..."
-  bash ./.config/bin/init_script
-  e_success "init_script complete!"
+    e_header "Running init_script..."
+    bash ./.config/bin/init_script
+    e_success "init_script complete!"
 fi
 
 source $ZDOTDIR/.zshrc
