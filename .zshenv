@@ -29,6 +29,9 @@ export GHOSTTY_SHELL_INTEGRATION_NO_CURSOR=1
 export RUSTUP_HOME="$XDG_CONFIG_HOME/rust/.rustup"
 export CARGO_HOME="$XDG_CONFIG_HOME/rust/.cargo"
 
+# Go
+export GOPATH="$XDG_CONFIG_HOME/go"
+
 # Bun
 export BUN_INSTALL="$HOME/.config/bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
