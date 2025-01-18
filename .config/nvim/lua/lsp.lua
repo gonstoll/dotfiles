@@ -65,22 +65,43 @@ local function on_attach(client, bufnr)
     end, 'Signature help')
   end
 
-  -- -- Highlight references under the cursor
-  -- if client.supports_method(methods.textDocument_documentHighlight) then
-  --   local under_cursor_highlights_group = augroup('gonstoll/cursor_highlights', {clear = false})
-  --   autocmd({'CursorMoved', 'InsertEnter', 'BufLeave'}, {
-  --     group = under_cursor_highlights_group,
-  --     desc = 'Clear highlight references',
-  --     buffer = bufnr,
-  --     callback = vim.lsp.buf.clear_references,
-  --   })
-  --   autocmd({'CursorHold', 'InsertLeave'}, {
-  --     group = under_cursor_highlights_group,
-  --     desc = 'Highlight references under the cursor',
-  --     buffer = bufnr,
-  --     callback = vim.lsp.buf.document_highlight,
-  --   })
-  -- end
+  local highlight_enabled = false
+  local group_name = 'gonstoll/document_highlight'
+
+  local function enable_document_highlight()
+    local under_cursor_highlights_group = augroup(group_name, {clear = true})
+    autocmd({'CursorHold', 'InsertLeave'}, {
+      group = under_cursor_highlights_group,
+      desc = 'Highlight references under the cursor',
+      buffer = bufnr,
+      callback = vim.lsp.buf.document_highlight,
+    })
+    autocmd({'CursorMoved', 'InsertEnter', 'BufLeave'}, {
+      group = under_cursor_highlights_group,
+      desc = 'Clear highlight references',
+      buffer = bufnr,
+      callback = vim.lsp.buf.clear_references,
+    })
+    highlight_enabled = true
+  end
+
+  local function disable_document_highlight()
+    vim.api.nvim_clear_autocmds({group = group_name})
+    vim.lsp.buf.clear_references()
+    highlight_enabled = false
+  end
+
+  local function toggle_document_highlight()
+    if highlight_enabled then
+      disable_document_highlight()
+    else
+      enable_document_highlight()
+    end
+  end
+
+  if client.supports_method(methods.textDocument_documentHighlight) then
+    keyset('n', '<leader>ma', toggle_document_highlight, 'Toggle document highlights')
+  end
 end
 
 autocmd('LspAttach', {
