@@ -8,7 +8,7 @@ return {
         noremap = true,
         silent = true,
         expr = true,
-        replace_keycodes = false
+        replace_keycodes = false,
       })
 
       vim.g.copilot_no_tab_map = true
@@ -18,7 +18,6 @@ return {
 
   {
     'CopilotC-Nvim/CopilotChat.nvim',
-    branch = 'canary',
     cmd = {
       'CopilotChat',
       'CopilotChatFix',
