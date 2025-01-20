@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+go_installer="$(curl -s 'https://go.dev/VERSION?m=text' | head -n 1).darwin-arm64.pkg"
+go_link="https://go.dev/dl/$go_installer"
+go_tmp="/tmp/go"
+
+curl --create-dirs --output-dir $go_tmp -JOL "$go_link"
+rm -rf /usr/local/go
+sudo installer -pkg "$go_tmp/$go_installer" -target /usr/local
+rm -rf $go_tmp

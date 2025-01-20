@@ -9,6 +9,7 @@ return {
   opts = {
     library = {
       {path = 'luvit-meta/library', words = {'vim%.uv'}},
+      {path = 'snacks.nvim', words = {'Snacks'}},
       -- {path = 'wezterm-types', mods = {'wezterm'}},
     },
   },
