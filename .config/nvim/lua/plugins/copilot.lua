@@ -2,7 +2,8 @@ return {
   {
     'github/copilot.vim',
     config = false,
-    event = 'VeryLazy',
+    cmd = 'Copilot',
+    build = ':Copilot auth',
     init = function()
       vim.keymap.set('i', '<C-j>', 'copilot#Accept("<CR>")', {
         noremap = true,

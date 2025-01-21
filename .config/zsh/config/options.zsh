@@ -1,4 +1,3 @@
-setopt correct
 setopt extendedglob
 setopt nocaseglob
 setopt rcexpandparam

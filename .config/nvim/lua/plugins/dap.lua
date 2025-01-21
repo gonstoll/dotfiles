@@ -1,4 +1,9 @@
+-- TODO: Clean up this and modularize it
 local desc = Utils.plugin_keymap_desc('dap')
+local desc_dapui = Utils.plugin_keymap_desc('dapui')
+local desc_go = Utils.plugin_keymap_desc('dap go')
+local desc_lua = Utils.plugin_keymap_desc('dap lua')
+
 local js_filetypes = {'typescript', 'javascript', 'typescriptreact', 'javascriptreact'}
 
 ---@param config {args?:string[]|fun():string[]?}
@@ -13,6 +18,12 @@ local function get_args(config)
   return config
 end
 
+local types_enabled = true
+local toggle_types = function()
+  types_enabled = not types_enabled
+  require('dapui').update_render({max_type_length = types_enabled and -1 or 0})
+end
+
 return {
   'mfussenegger/nvim-dap',
   dependencies = {
@@ -22,8 +33,10 @@ return {
     {
       'rcarriga/nvim-dap-ui',
       keys = {
-        {'<leader>du', function() require('dapui').toggle({}) end, desc = desc('Dap UI')},
-        {'<leader>de', function() require('dapui').eval() end, desc = desc('Eval'), mode = {'n', 'v'}},
+        {'<leader>duo', function() require('dapui').toggle({}) end, desc = desc_dapui('Toggle')},
+        {'<leader>due', function() require('dapui').eval() end, desc = desc_dapui('Eval'), mode = {'n', 'v'}},
+        -- See https://github.com/rcarriga/nvim-dap-ui/issues/161#issuecomment-1304500935
+        {'<leader>dut', function() toggle_types() end, desc = desc_dapui('Toggle types')},
       },
       opts = {
         floating = {border = 'single'},
@@ -68,8 +81,19 @@ return {
     {
       'jbyuki/one-small-step-for-vimkind',
       keys = {
-        {'<leader>dL', function() require('osv').launch({port = 8086}) end, desc = desc('Launch Lua adapter')},
-        {'<leader>dT', function() require('osv').run_this() end, desc = desc('Lua adapter: Run this')},
+        {'<leader>dL', function() require('osv').launch({port = 8086}) end, desc = desc_lua('Launch Lua adapter')},
+        {'<leader>dT', function() require('osv').run_this() end, desc = desc_lua('Lua adapter: Run this')},
+      },
+    },
+
+    -- Go
+    {
+      'leoluz/nvim-dap-go',
+      opts = {},
+      ft = 'go',
+      keys = {
+        {'<leader>dGt', function() require('dap-go').debug_test() end, desc = desc_go('Debug closest test')},
+        {'<leader>dGl', function() require('dap-go').debug_last_test() end, desc = desc_go('Debug last test')},
       },
     },
   },

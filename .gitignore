@@ -25,6 +25,7 @@ other/images/wallpapers/images/*/*.jpeg
 .config/gh-copilot
 .config/nvm
 .config/go
+.config/dlv
 
 # iTerm2
 .config/iTerm2/*
