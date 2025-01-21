@@ -176,6 +176,10 @@ end
 function M.server_setup(server, config)
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+  -- FIXME: workaround for https://github.com/neovim/neovim/issues/28058
+  if server == 'gopls' then
+    capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
+  end
 
   require('lspconfig')[server].setup(
     vim.tbl_deep_extend('error', {capabilities = capabilities, silent = true}, config or {})
