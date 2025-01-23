@@ -1,4 +1,3 @@
--- TODO: Clean up this and modularize it
 local desc = Utils.plugin_keymap_desc('dap')
 local desc_dapui = Utils.plugin_keymap_desc('dapui')
 local desc_go = Utils.plugin_keymap_desc('dap go')
@@ -27,7 +26,6 @@ end
 return {
   'mfussenegger/nvim-dap',
   dependencies = {
-    {'stevearc/overseer.nvim', opts = {dap = false}},
     {'theHamsta/nvim-dap-virtual-text', opts = {}},
 
     {
@@ -38,6 +36,7 @@ return {
         -- See https://github.com/rcarriga/nvim-dap-ui/issues/161#issuecomment-1304500935
         {'<leader>dut', function() toggle_types() end, desc = desc_dapui('Toggle types')},
       },
+      ---@type dapui.Config
       opts = {
         floating = {border = 'single'},
         layouts = {
