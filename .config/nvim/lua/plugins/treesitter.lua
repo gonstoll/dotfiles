@@ -12,44 +12,35 @@ return {
 
     configs.setup({
       ensure_installed = {
-        'markdown',
-        'markdown_inline',
-        'tsx',
-        'typescript',
-        'php',
-        'json',
-        'yaml',
+        'bash',
         'css',
-        'scss',
+        'diff',
+        'dockerfile',
+        'go',
+        'graphql',
         'html',
         'javascript',
+        'jsdoc',
+        'json',
+        'json5',
         'lua',
+        'markdown',
+        'markdown_inline',
+        'php',
+        'prisma',
+        'python',
+        'regex',
+        'rust',
+        'scss',
+        'sql',
+        'tsx',
+        'typescript',
         'vim',
         'vimdoc',
-        'jsdoc',
-        'graphql',
-        'bash',
-        'prisma',
-        'svelte',
-        'sql',
-        'regex',
-        'go',
-        'rust',
+        'yaml',
       },
-      highlight = {
-        enable = true,
-        disable = function(lang, buf)
-          local max_filesize = 100 * 1024 -- 100 KB
-          local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-          if ok and stats and stats.size > max_filesize then
-            return true
-          end
-        end,
-      },
-      indent = {
-        enable = true,
-        disable = {},
-      },
+      highlight = {enable = true},
+      indent = {enable = true},
       context_commentstring = {
         enable = true,
         enable_autocmd = false,
