@@ -111,6 +111,7 @@ return {
       files = {
         cwd_prompt = false,
         prompt = Utils.icons.misc.file .. ' ',
+        git_icons = true,
       },
       grep = {
         cwd_prompt = false,
