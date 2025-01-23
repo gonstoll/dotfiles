@@ -82,14 +82,12 @@ return {
             gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')}
           end, {desc = desc('Reset hunk')})
           -- map('n', '<leader>hS', gs.stage_buffer, {desc = desc('Stage buffer')})
-          -- map('n', '<leader>hu', gs.undo_stage_hunk, {desc = desc('Undo stage hunk')})
           -- map('n', '<leader>hR', gs.reset_buffer, {desc = desc('Reset buffer')})
           map('n', '<leader>gp', gs.preview_hunk, {desc = desc('Preview hunk')})
           map('n', '<leader>gb', function() gs.blame_line {full = true} end, {desc = desc('Blame line')})
           -- map('n', '<leader>tb', gs.toggle_current_line_blame, {desc = desc('Toggle current line blame')})
           -- map('n', '<leader>hd', gs.diffthis, {desc = desc('Diff this')})
           -- map('n', '<leader>hD', function() gs.diffthis('~') end, {desc = desc('Diff this')})
-          -- map('n', '<leader>td', gs.toggle_deleted, {desc = desc('Toggle deleted')})
 
           -- Text object
           map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
