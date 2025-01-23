@@ -46,7 +46,6 @@
   "octo.nvim": { "branch": "master", "commit": "9f7467de546283cea2b63de849da7cdf5fc8d7cd" },
   "oil.nvim": { "branch": "master", "commit": "09fa1d22f5edf0730824d2b222d726c8c81bbdc9" },
   "one-small-step-for-vimkind": { "branch": "main", "commit": "5d2edc8937978585881d97a8fec4c2903fa4d72c" },
-  "overseer.nvim": { "branch": "master", "commit": "2a2b6fe1e04dec2c2e5b6b4deec2894153002778" },
   "package-info.nvim": { "branch": "master", "commit": "3de4f3569ce60e248707df042b72769b3ec343b8" },
   "plenary.nvim": { "branch": "master", "commit": "3707cdb1e43f5cea73afb6037e6494e7ce847a66" },
   "rose-pine": { "branch": "main", "commit": "42f0724e0bca9f57f0bcfa688787c37b8d4befe8" },
