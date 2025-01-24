@@ -4,6 +4,7 @@ local grep_opts = {
   'rg',
   '--vimgrep',
   '--hidden',
+  '--follow',
   '--glob',
   '"!**/.git/*"',
   '--column',
@@ -112,6 +113,8 @@ return {
         cwd_prompt = false,
         prompt = Utils.icons.misc.file .. ' ',
         git_icons = true,
+        rg_opts = [[--color=never --files --hidden --follow -g "!.git"]],
+        fd_opts = [[--color=never --type f --hidden --follow --exclude .git]],
       },
       grep = {
         cwd_prompt = false,
