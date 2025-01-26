@@ -7,8 +7,8 @@
   "format": {
     "enable": true,
     "defaultConfig": {
-      "indent_size": "2",
-      "tab_width": "2",
+      "indent_size": "4",
+      "tab_width": "4",
       "quote_style": "single",
       "call_arg_parentheses": "keep",
       "trailing_table_separator": "smart",
