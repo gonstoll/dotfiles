@@ -3,52 +3,52 @@
 DIRECTORIES=($(eval echo $(xargs < "$XDG_CONFIG_HOME/tmux-sessionizer/directories")))
 
 function switch_to() {
-  if [[ -z $TMUX ]]; then
-    tmux attach-session -t "$1"
-  else
-    tmux switch-client -t "$1"
-  fi
+    if [[ -z $TMUX ]]; then
+        tmux attach-session -t "$1"
+    else
+        tmux switch-client -t "$1"
+    fi
 }
 
 function has_session() {
-  tmux list-sessions | grep -q "^$1:"
+    tmux list-sessions | grep -q "^$1:"
 }
 
 function hydrate() {
-  if [ -f "$2/.tmux-sessionizer" ]; then
-    tmux send-keys -t "$1" "source $2/.tmux-sessionizer" c-M
-  elif [ -f "$XDG_CONFIG_HOME/tmux-sessionizer/default" ]; then
-    tmux send-keys -t "$1" "source $XDG_CONFIG_HOME/tmux-sessionizer/default" c-M
-  fi
+    if [ -f "$2/.tmux-sessionizer" ]; then
+        tmux send-keys -t "$1" "source $2/.tmux-sessionizer" c-M
+    elif [ -f "$XDG_CONFIG_HOME/tmux-sessionizer/default" ]; then
+        tmux send-keys -t "$1" "source $XDG_CONFIG_HOME/tmux-sessionizer/default" c-M
+    fi
 }
 
 if [[ $# -eq 1 ]]; then
-  selected="$1"
+    selected="$1"
 else
-  selected=$(find "${DIRECTORIES[@]}" -mindepth 1 -maxdepth 1 -type d | fzf \
-      --border=rounded \
-      --border-label="[tmux sessionizer]" \
-      --prompt="  " \
-      --no-bold \
-      --height=100% \
-    )
+    selected=$(find "${DIRECTORIES[@]}" -mindepth 1 -maxdepth 1 -type d | fzf \
+            --border=rounded \
+            --border-label="[tmux sessionizer]" \
+            --prompt="  " \
+            --no-bold \
+            --height=100% \
+        )
 fi
 
 if [[ -z "$selected" ]]; then
-  exit 0
+    exit 0
 fi
 
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-  tmux new-session -ds "$selected_name" -c "$selected"
-  hydrate "$selected_name" "$selected"
+    tmux new-session -ds "$selected_name" -c "$selected"
+    hydrate "$selected_name" "$selected"
 fi
 
 if ! has_session "$selected_name"; then
-  tmux new-session -ds "$selected_name" -c "$selected"
-  hydrate "$selected_name" "$selected"
+    tmux new-session -ds "$selected_name" -c "$selected"
+    hydrate "$selected_name" "$selected"
 fi
 
 switch_to "$selected_name"

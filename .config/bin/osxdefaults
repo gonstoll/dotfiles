@@ -28,10 +28,10 @@ osascript -e 'tell application "System Events" to set picture of every desktop t
 
 # Enable menu-bar icons
 defaults write com.apple.systemuiserver menuExtras -array \
-  "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
-  "/System/Library/CoreServices/Menu Extras/Clock.menu" \
-  "/System/Library/CoreServices/Menu Extras/Battery.menu" \
-  "/System/Library/CoreServices/Menu Extras/Volume.menu"
+    "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
+    "/System/Library/CoreServices/Menu Extras/Clock.menu" \
+    "/System/Library/CoreServices/Menu Extras/Battery.menu" \
+    "/System/Library/CoreServices/Menu Extras/Volume.menu"
 
 # VSCode: disable the Apple press and hold for VSCode only
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
@@ -102,9 +102,9 @@ defaults write com.apple.AppleMultitouchTrackpad "Clicking" -bool "true"
 # -------------------------- KILL ALL --------------------------
 
 for app in "Activity Monitor" \
-  "cfprefsd" \
-  "Dock" \
-  "SystemUIServer" \
-  "Finder"; do
-  killall "${app}" &> /dev/null
+    "cfprefsd" \
+    "Dock" \
+    "SystemUIServer" \
+    "Finder"; do
+    killall "${app}" &> /dev/null
 done

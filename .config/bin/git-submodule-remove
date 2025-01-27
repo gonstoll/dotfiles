@@ -13,13 +13,13 @@
 submodule_path=$1
 
 if [ -z "$submodule_path" ]; then
-  echo 'No submodule path specified. Exiting...'
-  exit 1
+    echo 'No submodule path specified. Exiting...'
+    exit 1
 fi
 
 if [ ! -d "$submodule_path" ]; then
-  echo 'Specify valid submodule path as first parameter'
-  exit 1
+    echo 'Specify valid submodule path as first parameter'
+    exit 1
 fi
 
 # Remove the submodule entry from .git/config

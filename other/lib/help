@@ -2,7 +2,7 @@
 
 function run_help() {
 
-  cat <<EOT
+    cat <<EOT
 Gonzalo Stoll dotfiles - https://gonzalostoll.com
 
 Usage: $(basename "$0") [options]

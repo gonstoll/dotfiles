@@ -1,25 +1,25 @@
 #!/usr/bin/env bash
 
 function run_misc_packages() {
-  # Luarocks
-  if command -v luarocks >/dev/null 2>&1; then
-    luarocks install --server=https://luarocks.org/dev luaformatter
-  fi
+    # Luarocks
+    if command -v luarocks >/dev/null 2>&1; then
+        luarocks install --server=https://luarocks.org/dev luaformatter
+    fi
 
-  # NPM global packages
-  if command -v npm >/dev/null 2>&1; then
-    npm install -g depcheck eslint prettier prettier-plugin-tailwindcss typescript typescript-language-server vscode-langservers-extracted stylelint-lsp
-  fi
+    # NPM global packages
+    if command -v npm >/dev/null 2>&1; then
+        npm install -g depcheck eslint prettier prettier-plugin-tailwindcss typescript typescript-language-server vscode-langservers-extracted stylelint-lsp
+    fi
 
-  # Bun
-  curl -fsSL https://bun.sh/install | bash
+    # Bun
+    curl -fsSL https://bun.sh/install | bash
 
-  # Rust
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    # Rust
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-  # Wezterm terminfo file
-  tempfile=$(mktemp) \
-    && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo \
-    && tic -x -o ~/.terminfo $tempfile \
-    && rm $tempfile
+    # Wezterm terminfo file
+    tempfile=$(mktemp) \
+        && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo \
+        && tic -x -o ~/.terminfo $tempfile \
+        && rm $tempfile
 }
