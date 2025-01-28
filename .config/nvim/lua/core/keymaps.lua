@@ -41,7 +41,7 @@ keyset('n', 'n', 'nzzzv', {desc = 'Jump to next search term'})
 keyset('n', 'N', 'Nzzzv', {desc = 'Jump to previous search term'})
 
 -- Pastes copied buffer and keeps it in the register
-keyset('x', '<leader>p', '\"_dP')
+keyset('x', '<leader>pp', '\"_dP')
 
 -- Sources current buffer
 keyset('n', '<leader><leader>x', function() vim.cmd('so') end, {desc = 'Source current buffer'})
@@ -58,26 +58,28 @@ keyset('n', '<leader>;h', ':set hlsearch!<CR>', {desc = 'Toggle highlighting sea
 keyset('n', '<leader>wf', ':noautocmd w<CR>', {desc = 'Save without formatting'})
 
 -- Open terminal below
-keyset('n', ',st', function()
-  vim.cmd.new()
-  vim.cmd.wincmd('J')
-  vim.api.nvim_win_set_height(0, 12)
-  vim.wo.winfixheight = true
-  vim.cmd.term()
+keyset('n', '<leader>st', function()
+    vim.cmd.new()
+    vim.cmd.wincmd('J') -- Move to the window below
+    vim.api.nvim_win_set_height(0, 12)
+    vim.wo.winfixheight = true
+    vim.cmd.term()
 end, {desc = 'Open terminal below'})
 
+keyset('t', '<C-q>', '<C-\\><C-n>', {desc = 'Exit terminal mode'})
+
 keyset('n', '<leader>bg', function()
-  local active_bg = vim.o.background
-  if active_bg == 'dark' then
-    vim.cmd('set background=light')
-  else
-    vim.cmd('set background=dark')
-  end
+    local active_bg = vim.o.background
+    if active_bg == 'dark' then
+        vim.cmd('set background=light')
+    else
+        vim.cmd('set background=dark')
+    end
 end, {desc = 'Toggle background'})
 
 keyset({'i', 's'}, '<Esc>', function()
-  vim.snippet.stop()
-  return '<Esc>'
+    vim.snippet.stop()
+    return '<Esc>'
 end, {expr = true, desc = 'Close snippet session'})
 
 keyset('n', '<leader>cm', ':!chmod +x %<CR>', {desc = 'Make file executable'})
