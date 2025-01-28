@@ -1,7 +1,7 @@
 # Fzf
 alias fd="cd ~ && cd \$(find * -type d | fzf)" # cd into a directory
 
-# Lazygit
+# Git
 alias lg="lazygit"
 alias g="git"
 
@@ -21,3 +21,6 @@ alias tn="tmux new -s $(pwd | sed 's/.*\///g')"
 
 # Eza (better ls)
 alias ls="eza --icons=always"
+
+# Docker
+alias ld="lazydocker"

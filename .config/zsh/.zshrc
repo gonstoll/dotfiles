@@ -1,7 +1,7 @@
 autoload -U colors && colors
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 LANG=en_US.UTF-8
@@ -10,7 +10,7 @@ LANG=en_US.UTF-8
 source $ZDOTDIR/config/options.zsh
 source $ZDOTDIR/config/aliases.zsh
 if [[ -f $ZDOTDIR/config/custom.zsh ]]; then
-  source $ZDOTDIR/config/custom.zsh
+    source $ZDOTDIR/config/custom.zsh
 fi
 
 # tmux messes up LS colors, reset to default
@@ -18,7 +18,7 @@ fi
 
 # Completions
 if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 fi
 
 # History
@@ -66,17 +66,17 @@ source $HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh//.p10k.zsh.
 if [[ -f $ZDOTDIR/.p10k.zsh ]]; then
-  source $ZDOTDIR/.p10k.zsh
+    source $ZDOTDIR/.p10k.zsh
 fi
 
 # Load bun
 if [[ -s "$HOME/.config/bun/_bun" ]]; then
-  source "$HOME/.config/bun/_bun"
+    source "$HOME/.config/bun/_bun"
 fi
 
 # Load rust
 if [[ -s "$XDG_CONFIG_HOME/rust/.cargo/env" ]]; then
-  source "$XDG_CONFIG_HOME/rust/.cargo/env"
+    source "$XDG_CONFIG_HOME/rust/.cargo/env"
 fi
 
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -101,7 +101,7 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # Load nvm if present
 if [ -s "$NVM_DIR/nvm.sh" ]; then
-  source "$NVM_DIR/nvm.sh"
+    source "$NVM_DIR/nvm.sh"
 fi
 
 # Functions
