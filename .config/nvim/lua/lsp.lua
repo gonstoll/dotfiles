@@ -173,7 +173,7 @@ end
 -- Configures the LSP server with completion capabilities and (optionally) its configurations and keybinds
 ---@param server string
 ---@param config? table
-function M.server_setup(server, config)
+function M.setup_server(server, config)
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
     -- FIXME: workaround for https://github.com/neovim/neovim/issues/28058
