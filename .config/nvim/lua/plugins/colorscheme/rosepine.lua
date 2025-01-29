@@ -14,7 +14,6 @@ return {
                 foam = '#a1d1da',
                 iris = '#d9c7ef',
                 rose = '#ebbcba',
-                -- pine = '#4f8da7',
                 pine = '#437e91',
                 no_bg = '#000000',
             },
