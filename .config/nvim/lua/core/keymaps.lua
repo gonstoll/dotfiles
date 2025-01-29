@@ -66,7 +66,7 @@ keyset('n', '<leader>st', function()
     vim.cmd.term()
 end, {desc = 'Open terminal below'})
 
-keyset('t', '<C-q>', '<C-\\><C-n>', {desc = 'Exit terminal mode'})
+keyset('t', '<C-z>', '<C-\\><C-n>', {desc = 'Exit terminal mode'})
 
 keyset('n', '<leader>bg', function()
     local active_bg = vim.o.background
