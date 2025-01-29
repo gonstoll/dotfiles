@@ -80,12 +80,6 @@ return {
                 },
             },
         },
-        fuzzy = {
-            -- use_typo_resistance = false,
-            -- max_typos = function(keyword) return math.floor(#keyword / 4) end,
-
-            max_typos = function(keyword) return 0 end,
-        },
     },
     opts_extend = {'sources.default'},
 }
