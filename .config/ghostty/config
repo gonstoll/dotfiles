@@ -10,7 +10,6 @@ adjust-cell-height = -1
 
 # Windows, colors and styles
 theme = rose-pine-muted
-cursor-invert-fg-bg = true
 macos-titlebar-style = hidden
 window-padding-y = 2,0
 window-padding-x = 2

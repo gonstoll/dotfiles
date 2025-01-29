@@ -5,6 +5,7 @@ os:
   editPreset: nvim
 
 gui:
+  border: 'single'
   branchColors:
     'master': red
 

@@ -54,14 +54,18 @@ local function on_attach(client, bufnr)
 
     -- Toggle signature help
     if client.supports_method(methods.textDocument_signatureHelp) then
-        local signature = require('blink.cmp.signature.window')
         keyset('i', '<C-s>', function()
-            if signature.win:is_open() then
-                signature.win:close()
-                return
+            if not vim.g.cmp_enable then
+                local signature = require('blink.cmp.signature.window')
+                if signature.win:is_open() then
+                    signature.win:close()
+                    return
+                end
+                signature.win:open()
+                signature.update_position()
+            else
+                vim.lsp.buf.signature_help()
             end
-            signature.win:open()
-            signature.update_position()
         end, 'Signature help')
     end
 
@@ -175,9 +179,15 @@ end
 ---@param config? table
 function M.setup_server(server, config)
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+
+    if vim.g.cmp_enable then
+        capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+    else
+        capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+    end
+
     -- FIXME: workaround for https://github.com/neovim/neovim/issues/28058
-    if server == 'gopls' then
+    if server == 'gopls' and not vim.g.cmp_enable then
         capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
     end
 

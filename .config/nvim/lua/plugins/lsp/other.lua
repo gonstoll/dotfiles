@@ -1,4 +1,6 @@
 return {
+    {'onsails/lspkind-nvim', config = false, enabled = vim.g.cmp_enable},
+
     {
         'b0o/SchemaStore.nvim',
         -- Loaded by jsonls when needed.
