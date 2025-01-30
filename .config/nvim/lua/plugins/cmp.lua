@@ -7,7 +7,6 @@ return {
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-path',
         'hrsh7th/cmp-cmdline',
-        'hrsh7th/cmp-calc',
         'hrsh7th/cmp-emoji',
         'garymjr/nvim-snippets',
     },
@@ -52,7 +51,6 @@ return {
             }, {
                 {name = 'buffer', keyword_length = 3},
                 {name = 'emoji'},
-                {name = 'calc'},
                 {name = 'path'},
             }),
             formatting = {
