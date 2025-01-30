@@ -13,6 +13,11 @@ return {
         notifier = {enabled = false},
         statuscolumn = {enabled = false},
         words = {enabled = false},
+        picker = {
+            finder = 'explorer',
+            hidden = true,
+            supports_live = false,
+        },
         scratch = {
             root = scratch_path,
             win = {width = 150, height = 40, border = 'single'},
