@@ -1,0 +1,21 @@
+[general]
+import = ["~/.config/alacritty/themes/rose-pine-muted.toml"]
+
+[font]
+size = 17.0
+normal = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Light" }
+bold = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Medium" }
+bold_italic = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Heavy Italic" }
+italic = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Medium Italic" }
+
+[window]
+decorations = "Buttonless"
+padding = { x = 5, y = 5 }
+
+[cursor.style]
+blinking = "Always"
+
+[[keyboard.bindings]]
+chars = "s\r"
+key = "s"
+mods = "Command"

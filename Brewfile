@@ -50,6 +50,7 @@ brew "zsh-autosuggestions"
 brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 
+cask "alacritty"
 cask "arc"
 cask "font-fira-code-nerd-font"
 cask "font-geist-mono-nerd-font"

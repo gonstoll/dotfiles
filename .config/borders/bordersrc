@@ -5,7 +5,7 @@ options=(
     width=5.0
     hidpi=on
     active_color=0xfff6f8fa
-    blacklist="ghostty,wezterm-gui"
+    blacklist="ghostty,wezterm-gui,alacritty"
 )
 
 borders "${options[@]}"

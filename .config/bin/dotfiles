@@ -120,6 +120,9 @@ else
     # Install Homebrew packages
     brew bundle --file="$BREWFILE_PATH"
 
+    # Give permissions to Alacritty
+    xattr -dr com.apple.quarantine "/Applications/Alacritty.app"
+
     # Install Node packages
     run_misc_packages
 fi
