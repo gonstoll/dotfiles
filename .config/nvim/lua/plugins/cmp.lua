@@ -54,11 +54,9 @@ return {
                 {name = 'path'},
             }),
             formatting = {
-                ---@type fun(entry: cmp.Entry, vim_item: vim.CompletedItem): vim.CompletedItem
                 format = lspkind.cmp_format({
                     mode = 'symbol_text',
                 }),
-                ---@type cmp.ItemField[]
                 fields = {'abbr', 'kind'}, -- Remove 'menu' to avoid truncation
             },
         })
