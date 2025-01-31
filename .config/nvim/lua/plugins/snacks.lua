@@ -79,6 +79,11 @@ return {
                 desc = desc('Copy line(s) link'),
                 mode = {'n', 'v'},
             },
+            {
+                '<leader>oe',
+                snacks.picker.explorer,
+                desc = desc('Open file explorer'),
+            },
         }
     end,
 }
