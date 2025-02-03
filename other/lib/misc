@@ -17,6 +17,11 @@ function run_misc_packages() {
     # Rust
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+    # Give permissions to Alacritty
+    if [ -z "$(brew search alacritty)" ]; then
+        xattr -dr com.apple.quarantine "/Applications/Alacritty.app"
+    fi
+
     # Wezterm terminfo file
     tempfile=$(mktemp) \
         && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/master/termwiz/data/wezterm.terminfo \
