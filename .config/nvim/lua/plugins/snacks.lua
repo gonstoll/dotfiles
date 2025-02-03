@@ -14,6 +14,7 @@ return {
         statuscolumn = {enabled = false},
         words = {enabled = false},
         picker = {
+            enabled = false,
             finder = 'explorer',
             hidden = true,
             supports_live = false,
