@@ -7,6 +7,7 @@ export PATH="$HOME/.local/bin:$PATH" # Local scripts
 export PATH="$XDG_CONFIG_HOME/bin:$PATH" # Custom scripts
 export PATH="$XDG_CONFIG_HOME/tmux/bin:$PATH" # Tmux scripts
 export PATH="$XDG_CONFIG_HOME/rust/.cargo/bin:$PATH" # Cargo
+export PATH="$XDG_CONFIG_HOME/go/bin:$PATH" # Go binaries
 
 # Brew bundle file
 export HOMEBREW_BUNDLE_FILE="$HOME/.dotfiles/Brewfile"
@@ -31,6 +32,7 @@ export CARGO_HOME="$XDG_CONFIG_HOME/rust/.cargo"
 
 # Go
 export GOPATH="$XDG_CONFIG_HOME/go"
+export GOBIN="$XDG_CONFIG_HOME/go/bin"
 
 # Bun
 export BUN_INSTALL="$HOME/.config/bun"
