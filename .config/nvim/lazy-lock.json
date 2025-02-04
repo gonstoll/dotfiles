@@ -60,7 +60,6 @@
   "snacks.nvim": { "branch": "main", "commit": "b773368f8aa6e84a68e979f0e335d23de71f405a" },
   "statuscol.nvim": { "branch": "main", "commit": "a2a0e3ed55ba0f636ce0b2ccf61bca4050edd288" },
   "todo-comments.nvim": { "branch": "main", "commit": "304a8d204ee787d2544d8bc23cd38d2f929e7cc5" },
-  "tokyonight.nvim": { "branch": "main", "commit": "dca4adba7dc5f09302a00b0e76078d54d82d2658" },
   "vim-fugitive": { "branch": "master", "commit": "b068eaf1e6cbe35d1ac100d435cd7f7b74a5c87d" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
   "vim-tmux-navigator": { "branch": "master", "commit": "d847ea942a5bb4d4fab6efebc9f30d787fd96e65" },
