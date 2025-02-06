@@ -60,6 +60,7 @@ return {
                         -- NormalNC({theme.NormalNC, bg = bg == 'dark' and '#1f1d1d' or palette[bg].bg.da(10)}),
                         NormalNC({theme.NormalNC, bg = bg == 'dark' and '#262323' or palette[bg].bg.da(10)}),
                         TermCursor({cterm = 'reverse', gui = 'reverse'}),
+                        Cursor({theme.Cursor, bg = bg == 'dark' and '#ffffff' or '#000000'}),
                         FloatBorder({theme.FloatBorder, bg = theme.NormalFloat.bg}),
                         FloatTitle({theme.FloatTitle, bg = theme.NormalFloat.bg}),
                         Special({theme.Special, gui = 'normal'}),

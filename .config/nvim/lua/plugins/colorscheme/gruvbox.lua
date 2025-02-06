@@ -15,6 +15,7 @@ return {
         local function set_highlights()
             local highlights_groups = {
                 Normal = {bg = '#000000'},
+                Cursor = {bg = '#ffffff'},
             }
 
             for group, styles in pairs(highlights_groups) do

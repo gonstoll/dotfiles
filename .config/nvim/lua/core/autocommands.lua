@@ -83,15 +83,6 @@ autocmd('FileType', {
     end,
 })
 
--- Set Cursor and CursorLine highlights on colorscheme change
-autocmd('ColorScheme', {
-    pattern = '*',
-    group = augroup('CursorLine', {}),
-    callback = function()
-        vim.api.nvim_set_hl(0, 'Cursor', {bg = 'NONE'})
-    end,
-})
-
 autocmd('BufWritePost', {
     pattern = 'aerospace.toml',
     group = augroup('Aerospace', {}),

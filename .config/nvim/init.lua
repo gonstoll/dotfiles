@@ -9,3 +9,10 @@ _G.Utils = require('utils')
 vim.hl = vim.highlight
 
 require('core')
+
+vim.filetype.add({
+    extension = {
+        http = 'http',
+    },
+})
+-- vim.api.nvim_set_hl(0, 'Cursor', {bg = 'NONE'})

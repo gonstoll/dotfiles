@@ -8,6 +8,7 @@ return {
         palette = {
             dawn = {
                 no_bg = '#faf4ed',
+                cursor = '#000000',
             },
             moon = {
                 gold = '#f6d5a7',
@@ -16,10 +17,12 @@ return {
                 rose = '#ebbcba',
                 pine = '#437e91',
                 no_bg = '#000000',
+                cursor = '#ffffff',
             },
         },
         highlight_groups = {
             Normal = {bg = 'no_bg'},
+            Cursor = {bg = 'cursor'},
             Directory = {fg = 'foam', bold = false},
             StatusLine = {bg = 'surface', fg = 'subtle'},
             StatusLineTerm = {link = 'StatusLine'},
