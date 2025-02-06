@@ -15,5 +15,3 @@ vim.filetype.add({
         http = 'http',
     },
 })
-
--- vim.api.nvim_set_hl(0, 'Cursor', {bg = 'NONE'})

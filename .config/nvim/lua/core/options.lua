@@ -22,12 +22,7 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 vim.wo.foldmethod = 'expr' -- Set foldmethod to expr
 vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-vim.opt.fillchars = {
-    fold = ' ', -- space character used for folding
-    foldopen = '', -- Unfolded text
-    foldsep = ' ', -- Open fold middle marker
-    foldclose = '', -- Folded text
-}
+vim.opt.fillchars = {fold = ' ', foldopen = '', foldsep = ' ', foldclose = ''}
 
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -52,8 +47,8 @@ vim.opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpo
 vim.opt.showtabline = 0
 
 -- Grep format
--- vim.opt.grepprg = 'rg --vimgrep'
--- vim.opt.grepformat = '%f:%l:%c:%m'
+vim.opt.grepprg = 'rg --vimgrep'
+vim.opt.grepformat = '%f:%l:%c:%m'
 
 -- Wrap long lines at a character in 'breakat'
 -- vim.opt.linebreak = true
