@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-#
+
 # Toggle the current window (all panes) between light and dark themes.
 set -e
 
