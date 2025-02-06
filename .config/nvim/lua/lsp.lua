@@ -169,10 +169,10 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
     }
 )
 
-for type, icon in pairs(Utils.icons.diagnostics) do
-    local hl = 'DiagnosticSign' .. type
-    vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
-end
+-- for type, icon in pairs(Utils.icons.diagnostics) do
+--     local hl = 'DiagnosticSign' .. type
+--     vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
+-- end
 
 -- Configures the LSP server with completion capabilities and (optionally) its configurations and keybinds
 ---@param server string
