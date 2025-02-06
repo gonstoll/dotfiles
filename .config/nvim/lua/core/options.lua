@@ -48,6 +48,8 @@ vim.g.markdown_recommended_style = 0 -- see https://www.reddit.com/r/neovim/comm
 vim.opt.updatetime = 300
 vim.opt.mouse = 'a'
 vim.opt.wildignore:append {'*/node_modules/*'}
+vim.opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+vim.opt.showtabline = 0
 
 -- Grep format
 -- vim.opt.grepprg = 'rg --vimgrep'
