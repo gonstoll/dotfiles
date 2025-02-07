@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 options=(
     style=round
     width=5.0
     hidpi=on
     active_color=0xfff6f8fa
-    blacklist="ghostty,wezterm-gui,alacritty"
+    blacklist="ghostty,wezterm-gui,alacritty,kitty"
 )
 
 borders "${options[@]}"
