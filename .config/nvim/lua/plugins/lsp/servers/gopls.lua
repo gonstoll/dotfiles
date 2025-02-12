@@ -22,21 +22,17 @@
 --   desc = 'Run goimports on save in Golang files',
 -- })
 
+-- https://github.com/golang/tools/blob/master/gopls/doc/settings.md
 return {
     settings = {
         gopls = {
-            -- analyses = {
-            --   unusedparams = true,
-            -- },
-            -- staticcheck = true, -- https://github.com/golang/tools/blob/master/gopls/doc/settings.md#staticcheck-bool
-            -- semanticTokens = true,
-            usePlaceholders = true,
-            completeFunctionCalls = false,
             analyses = {
                 fillstruct = false,
-                unusedparams = true,
             },
+            -- staticcheck = true, -- https://github.com/golang/tools/blob/master/gopls/doc/settings.md#staticcheck-bool
+            completeFunctionCalls = false,
             gofumpt = true,
+            completeUnimported = true,
         },
     },
 }

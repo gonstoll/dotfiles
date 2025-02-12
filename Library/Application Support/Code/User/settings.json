@@ -3,9 +3,13 @@
   "window.zoomLevel": 1,
   "window.titleBarStyle": "custom",
   "workbench.panel.defaultLocation": "right",
-  "workbench.colorTheme": "Zenbones Dark",
+  "workbench.colorTheme": "Rosé Pine Moon (no italics)",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.editor.enablePreview": true,
+  "workbench.colorCustomizations": {
+    "editorCursor.background": "#ffffff",
+    "terminalCursor.background": "#ffffff"
+  },
   "editor.fontSize": 14,
   "editor.fontWeight": "300",
   "editor.fontFamily": "SFMono Nerd Font",
@@ -76,6 +80,7 @@
   "vim.cursorStylePerMode.visualline": "block",
   "vim.cursorStylePerMode.visualblock": "block",
   "vim.cursorStylePerMode.replace": "block",
+  "vim.cursorStylePerMode.insert": "block",
   "vim.highlightedyank.enable": true,
   "vim.highlightedyank.color": "#f2594b",
   "vim.highlightedyank.textColor": "#000000",
