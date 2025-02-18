@@ -1,0 +1,6 @@
+vim.keymap.set("n", "<leader>P", function()
+    vim.cmd.Git("push")
+end, {buffer = true, remap = false, desc = "Fugitive: Push"})
+vim.keymap.set("n", "<leader>p", function()
+    vim.cmd.Git("pull")
+end, {buffer = true, remap = false, desc = "Fugitive: Pull"})

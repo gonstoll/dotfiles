@@ -19,29 +19,6 @@ autocmd({"BufNewFile", "BufRead"}, {
     end,
 })
 
--- Fugitive keymaps
-autocmd("BufWinEnter", {
-    pattern = "fugitive",
-    group = augroup("Fugitive", {}),
-    callback = function()
-        if (vim.bo.filetype ~= "fugitive") then
-            return
-        end
-
-        -- Only run this on fugitive buffers
-        local bufnr = vim.api.nvim_get_current_buf()
-        vim.keymap.set("n", "<leader>P", function()
-            vim.cmd.Git("push")
-        end, {buffer = bufnr, remap = false, desc = "Fugitive: Push"})
-        vim.keymap.set("n", "<leader>p", function()
-            vim.cmd.Git("pull")
-        end, {buffer = bufnr, remap = false, desc = "Fugitive: Pull"})
-    end,
-})
-
--- Make sure any opened buffer which is contained in a git repo will be tracked
--- vim.cmd('autocmd BufEnter * :lua require("lazygit.utils").project_root_dir()')
-
 -- Statusline
 local statusline_group = augroup("StatusLine", {})
 autocmd({"WinEnter", "BufEnter"}, {
