@@ -7,6 +7,7 @@ alias g="git"
 
 # Neovim
 alias vim="nvim"
+alias vi="nvim"
 
 # Navigation
 alias ..="cd .. && cd .."
