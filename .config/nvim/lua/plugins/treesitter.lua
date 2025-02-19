@@ -52,8 +52,8 @@ return {
                 keymaps = {
                     init_selection = "<leader>ti",
                     scope_incremental = "<leader>ts",
-                    node_incremental = "<leader>ti",
-                    node_decremental = "<leader>td",
+                    node_incremental = "v",
+                    node_decremental = "V",
                 },
             },
         })
