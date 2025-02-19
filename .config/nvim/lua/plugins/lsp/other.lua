@@ -25,7 +25,6 @@ return {
                 "cssls",
                 "lua_ls",
                 "eslint",
-                "emmet_language_server",
                 "ts_ls",
                 "bashls",
                 "vtsls",

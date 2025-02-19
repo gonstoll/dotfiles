@@ -1,6 +1,6 @@
-local lspconfig = require('lspconfig')
-local roots = {'tailwind.config.js', 'tailwind.config.ts'}
-
 return {
-  root_dir = lspconfig.util.root_pattern(table.concat(roots, ', ')),
+    root_dir = function(fname)
+        local install_path = "node_modules/tailwindcss"
+        return vim.fs.find(install_path, {upward = true, path = fname, type = "directory"})[1]
+    end,
 }
