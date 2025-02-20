@@ -11,52 +11,56 @@ local function on_attach(client, bufnr)
     ---@param func fun() -- Function to execute
     ---@param desc? string -- Keymap description
     local function keyset(mode, keys, func, desc)
-        vim.keymap.set(mode, keys, func, {buffer = bufnr, desc = 'LSP: ' .. desc})
+        vim.keymap.set(mode, keys, func, {buffer = bufnr, desc = "LSP: " .. desc})
     end
 
-    keyset('n', '<leader>rn', vim.lsp.buf.rename, 'Rename')
-    keyset({'n', 'v'}, '<leader>ca', vim.lsp.buf.code_action, 'Code Action')
-    keyset('n', '<leader>td', vim.lsp.buf.type_definition, 'Type Definition')
-    keyset('n', '<leader>sd', vim.lsp.buf.signature_help, 'Signature Documentation')
-    keyset('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, 'Workspace Add Folder')
-    keyset('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, 'Workspace Remove Folder')
-    keyset('n', 'K', vim.lsp.buf.hover, 'Hover Documentation')
-    keyset('n', 'gd', Utils.cmd_center(vim.lsp.buf.definition), 'Goto Definition')
-    keyset('n', 'gD', Utils.cmd_center(vim.lsp.buf.declaration), 'Goto Declaration')
-    keyset('n', 'gi', Utils.cmd_center(vim.lsp.buf.implementation), 'Goto Implementation')
-    keyset('n', '[d', Utils.cmd_center(vim.diagnostic.goto_prev), 'Previous diagnostic')
-    keyset('n', ']d', Utils.cmd_center(vim.diagnostic.goto_next), 'Next diagnostic')
-    keyset('n', 'gl', vim.diagnostic.open_float, 'Open diagnostics')
+    keyset("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
+    keyset({"n", "v"}, "<leader>ca", vim.lsp.buf.code_action, "Code Action")
+    keyset("n", "<leader>td", vim.lsp.buf.type_definition, "Type Definition")
+    keyset("n", "<leader>sd", vim.lsp.buf.signature_help, "Signature Documentation")
+    keyset("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, "Workspace Add Folder")
+    keyset("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, "Workspace Remove Folder")
+    keyset("n", "K", vim.lsp.buf.hover, "Hover Documentation")
+    keyset("n", "gd", Utils.cmd_center(vim.lsp.buf.definition), "Goto Definition")
+    keyset("n", "gD", Utils.cmd_center(vim.lsp.buf.declaration), "Goto Declaration")
+    keyset("n", "gi", Utils.cmd_center(vim.lsp.buf.implementation), "Goto Implementation")
+    keyset("n", "[d", Utils.cmd_center(vim.diagnostic.goto_prev), "Previous diagnostic")
+    keyset("n", "]d", Utils.cmd_center(vim.diagnostic.goto_next), "Next diagnostic")
+    keyset("n", "[e", Utils.cmd_center(function() vim.diagnostic.goto_prev({severity = "ERROR"}) end),
+        "Previous diagnostic (error)")
+    keyset("n", "]e", Utils.cmd_center(function() vim.diagnostic.goto_next({severity = "ERROR"}) end),
+        "Next diagnostic (error)")
+    keyset("n", "gl", vim.diagnostic.open_float, "Open diagnostics")
 
-    keyset('n', '<leader>it', function()
+    keyset("n", "<leader>it", function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({bufnr = bufnr}))
-    end, 'Toggle inlay hints')
-    keyset('n', '<leader>fa', function()
-        require('conform').format({async = true, lsp_fallback = true})
-    end, 'Format current buffer with LSP')
+    end, "Toggle inlay hints")
+    keyset("n", "<leader>fa", function()
+        require("conform").format({async = true, lsp_fallback = true})
+    end, "Format current buffer with LSP")
 
-    keyset('n', '<leader>lc', function()
+    keyset("n", "<leader>lc", function()
         Utils.fzf.inspect_lsp_client()
-    end, 'Inspect LSP Client configuration')
+    end, "Inspect LSP Client configuration")
 
     -- Create a command `:Format` local to the LSP buffer
-    vim.api.nvim_create_user_command('Format', function(args)
+    vim.api.nvim_create_user_command("Format", function(args)
         local range = nil
         if args.count ~= -1 then
             local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
             range = {
                 start = {args.line1, 0},
-                ['end'] = {args.line2, end_line:len()},
+                ["end"] = {args.line2, end_line:len()},
             }
         end
-        require('conform').format({async = true, lsp_fallback = true, range = range})
+        require("conform").format({async = true, lsp_fallback = true, range = range})
     end, {range = true})
 
     -- Toggle signature help
     if client.supports_method(methods.textDocument_signatureHelp) then
-        keyset('i', '<C-s>', function()
+        keyset("i", "<C-s>", function()
             if not vim.g.cmp_enable then
-                local signature = require('blink.cmp.signature.window')
+                local signature = require("blink.cmp.signature.window")
                 if signature.win:is_open() then
                     signature.win:close()
                     return
@@ -66,23 +70,23 @@ local function on_attach(client, bufnr)
             else
                 vim.lsp.buf.signature_help()
             end
-        end, 'Signature help')
+        end, "Signature help")
     end
 
     local highlight_enabled = false
-    local group_name = 'gonstoll/document_highlight'
+    local group_name = "gonstoll/document_highlight"
 
     local function enable_document_highlight()
         local under_cursor_highlights_group = augroup(group_name, {clear = true})
-        autocmd({'CursorHold', 'InsertLeave'}, {
+        autocmd({"CursorHold", "InsertLeave"}, {
             group = under_cursor_highlights_group,
-            desc = 'Highlight references under the cursor',
+            desc = "Highlight references under the cursor",
             buffer = bufnr,
             callback = vim.lsp.buf.document_highlight,
         })
-        autocmd({'CursorMoved', 'InsertEnter', 'BufLeave'}, {
+        autocmd({"CursorMoved", "InsertEnter", "BufLeave"}, {
             group = under_cursor_highlights_group,
-            desc = 'Clear highlight references',
+            desc = "Clear highlight references",
             buffer = bufnr,
             callback = vim.lsp.buf.clear_references,
         })
@@ -104,12 +108,12 @@ local function on_attach(client, bufnr)
     end
 
     if client.supports_method(methods.textDocument_documentHighlight) then
-        keyset('n', '<leader>ma', toggle_document_highlight, 'Toggle document highlights')
+        keyset("n", "<leader>ma", toggle_document_highlight, "Toggle document highlights")
     end
 end
 
-autocmd('LspAttach', {
-    group = augroup('lsp-attach', {}),
+autocmd("LspAttach", {
+    group = augroup("lsp-attach", {}),
     callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
 
@@ -127,7 +131,7 @@ vim.diagnostic.config({
     severity_sort = true,
     underline = true,
     float = {
-        border = 'single',
+        border = "single",
         source = true,
         max_width = 100,
     },
@@ -147,22 +151,22 @@ vim.diagnostic.config({
 --   return vim.lsp.util.open_floating_preview(markdown_lines, 'markdown', config)
 -- end
 
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
     vim.lsp.handlers.hover,
     {
-        border = 'single',
+        border = "single",
         -- max_width = 100,
         max_width = math.floor(vim.o.columns * 0.4),
         max_height = math.floor(vim.o.lines * 0.5),
     }
 )
 
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
     vim.lsp.handlers.signature_help,
     {
-        title = 'Signature help',
-        border = 'single',
-        title_pos = 'left',
+        title = "Signature help",
+        border = "single",
+        title_pos = "left",
         -- max_width = 100,
         max_width = math.floor(vim.o.columns * 0.4),
         max_height = math.floor(vim.o.lines * 0.5),
@@ -181,23 +185,23 @@ function M.setup_server(server, config)
     local capabilities = vim.lsp.protocol.make_client_capabilities()
 
     if vim.g.cmp_enable then
-        capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+        capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
     else
-        capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+        capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
     end
 
     -- FIXME: workaround for https://github.com/neovim/neovim/issues/28058
-    if server == 'gopls' and not vim.g.cmp_enable then
+    if server == "gopls" and not vim.g.cmp_enable then
         capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
     end
 
-    require('lspconfig')[server].setup(
-        vim.tbl_deep_extend('error', {capabilities = capabilities, silent = true}, config or {})
+    require("lspconfig")[server].setup(
+        vim.tbl_deep_extend("error", {capabilities = capabilities, silent = true}, config or {})
     )
 
     if config and config.keys then
         for _, key in ipairs(config.keys) do
-            vim.keymap.set('n', key[1], key[2], {desc = key.desc})
+            vim.keymap.set("n", key[1], key[2], {desc = key.desc})
         end
     end
 end
