@@ -25,6 +25,7 @@ end
 
 return {
     "mfussenegger/nvim-dap",
+    lazy = true,
     dependencies = {
         {"theHamsta/nvim-dap-virtual-text", opts = {}},
 
@@ -97,42 +98,38 @@ return {
             },
         },
     },
-    keys = function()
-        local dap = require("dap")
-        local widgets = require("dap.ui.widgets")
-
-        return {
-            {"<leader>dB", function() dap.set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, desc = desc("Breakpoint Condition")},
-            {"<leader>db", function() dap.toggle_breakpoint() end, desc = desc("Toggle Breakpoint")},
-            {"<leader>dc", function() dap.continue() end, desc = desc("Continue")},
-            {"<leader>da", function() dap.continue({before = get_args}) end, desc = desc("Run with Args")},
-            {"<leader>dC", function() dap.run_to_cursor() end, desc = desc("Run to Cursor")},
-            {"<leader>dg", function() dap.goto_() end, desc = desc("Go to line (no execute)")},
-            {"<leader>dj", function() dap.down() end, desc = desc("Down")},
-            {"<leader>dk", function() dap.up() end, desc = desc("Up")},
-            {"<leader>dl", function() dap.run_last() end, desc = desc("Run Last")},
-            {"<leader>di", function() dap.step_into() end, desc = desc("Step Into")},
-            {"<leader>dO", function() dap.step_out() end, desc = desc("Step Out")},
-            {"<leader>do", function() dap.step_over() end, desc = desc("Step Over")},
-            {"<leader>dp", function() dap.pause() end, desc = desc("Pause")},
-            {"<leader>dr", function() dap.repl.toggle() end, desc = desc("Toggle REPL")},
-            {"<leader>ds", function() dap.session() end, desc = desc("Session")},
-            {"<leader>dt", function() dap.terminate() end, desc = desc("Terminate")},
-            {"<leader>Td", function() require("neotest").run.run({strategy = "dap"}) end, desc = desc("Debug Nearest")},
-            {"<leader>dwh", function() widgets.hover() end, desc = desc("Widget - Hover")},
-            {
-                "<leader>dws",
-                function()
-                    -- widgets.sidebar(widgets.scopes,
-                    --     {width = math.floor(vim.o.columns * 0.20)},
-                    --     'aboveleft vsplit'
-                    -- ).toggle()
-                    widgets.centered_float(widgets.scopes, {border = "single"})
-                end,
-                desc = desc("Widget - Scopes"),
-            },
-        }
-    end,
+    keys = {
+        {"<leader>dB", function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, desc = desc("Breakpoint Condition")},
+        {"<leader>db", function() require("dap").toggle_breakpoint() end, desc = desc("Toggle Breakpoint")},
+        {"<leader>dc", function() require("dap").continue() end, desc = desc("Continue")},
+        {"<leader>da", function() require("dap").continue({before = get_args}) end, desc = desc("Run with Args")},
+        {"<leader>dC", function() require("dap").run_to_cursor() end, desc = desc("Run to Cursor")},
+        {"<leader>dg", function() require("dap").goto_() end, desc = desc("Go to line (no execute)")},
+        {"<leader>dj", function() require("dap").down() end, desc = desc("Down")},
+        {"<leader>dk", function() require("dap").up() end, desc = desc("Up")},
+        {"<leader>dl", function() require("dap").run_last() end, desc = desc("Run Last")},
+        {"<leader>di", function() require("dap").step_into() end, desc = desc("Step Into")},
+        {"<leader>dO", function() require("dap").step_out() end, desc = desc("Step Out")},
+        {"<leader>do", function() require("dap").step_over() end, desc = desc("Step Over")},
+        {"<leader>dp", function() require("dap").pause() end, desc = desc("Pause")},
+        {"<leader>dr", function() require("dap").repl.toggle() end, desc = desc("Toggle REPL")},
+        {"<leader>ds", function() require("dap").session() end, desc = desc("Session")},
+        {"<leader>dt", function() require("dap").terminate() end, desc = desc("Terminate")},
+        {"<leader>Td", function() require("neotest").run.run({strategy = "dap"}) end, desc = desc("Debug Nearest")},
+        {"<leader>dwh", function() require("dap.ui.widgets").hover() end, desc = desc("Widget - Hover")},
+        {
+            "<leader>dws",
+            function()
+                local widgets = require("dap.ui.widgets")
+                -- widgets.sidebar(widgets.scopes,
+                --     {width = math.floor(vim.o.columns * 0.20)},
+                --     'aboveleft vsplit'
+                -- ).toggle()
+                widgets.centered_float(widgets.scopes, {border = "single"})
+            end,
+            desc = desc("Widget - Scopes"),
+        },
+    },
     config = function()
         local dap = require("dap")
         local dapui = require("dapui")
