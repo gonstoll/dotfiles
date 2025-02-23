@@ -1,7 +1,7 @@
 return {
     "hrsh7th/nvim-cmp",
     event = "VeryLazy",
-    enabled = vim.g.cmp_enable,
+    enabled = not vim.g.blink_enabled,
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",

@@ -1,10 +1,10 @@
 return {
-    'garymjr/nvim-snippets',
-    enabled = vim.g.cmp_enable,
-    opts = {search_paths = {vim.fn.stdpath('config') .. '/snippets/nvim'}},
+    "garymjr/nvim-snippets",
+    enabled = not vim.g.blink_enabled,
+    opts = {search_paths = {vim.fn.stdpath("config") .. "/snippets/nvim"}},
     keys = {
         {
-            '<Tab>',
+            "<Tab>",
             function()
                 if vim.snippet.active({direction = 1}) then
                     vim.schedule(function()
@@ -12,14 +12,14 @@ return {
                     end)
                     return
                 end
-                return '<Tab>'
+                return "<Tab>"
             end,
             expr = true,
             silent = true,
-            mode = 'i',
+            mode = "i",
         },
         {
-            '<Tab>',
+            "<Tab>",
             function()
                 vim.schedule(function()
                     vim.snippet.jump(1)
@@ -27,10 +27,10 @@ return {
             end,
             expr = true,
             silent = true,
-            mode = 's',
+            mode = "s",
         },
         {
-            '<S-Tab>',
+            "<S-Tab>",
             function()
                 if vim.snippet.active({direction = -1}) then
                     vim.schedule(function()
@@ -38,11 +38,11 @@ return {
                     end)
                     return
                 end
-                return '<S-Tab>'
+                return "<S-Tab>"
             end,
             expr = true,
             silent = true,
-            mode = {'i', 's'},
+            mode = {"i", "s"},
         },
     },
 }

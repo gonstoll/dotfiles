@@ -1,5 +1,5 @@
 return {
-    {"onsails/lspkind-nvim", config = false, enabled = vim.g.cmp_enable, lazy = true},
+    {"onsails/lspkind-nvim", config = false, enabled = not vim.g.blink_enabled, lazy = true},
 
     {
         "b0o/SchemaStore.nvim",
