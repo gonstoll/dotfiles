@@ -13,8 +13,16 @@ return {
             ["<C-d>"] = {"scroll_documentation_down", "fallback"},
         },
         cmdline = {
+            enabled = true,
+            completion = {
+                menu = {auto_show = true},
+                list = {
+                    selection = {preselect = false},
+                },
+            },
             keymap = {
                 preset = "enter",
+                ["<CR>"] = {"accept_and_enter", "fallback"},
                 ["<Tab>"] = {"select_next", "fallback"},
                 ["<S-Tab>"] = {"select_prev", "fallback"},
             },
@@ -56,10 +64,9 @@ return {
                 show_on_accept_on_trigger_character = false,
             },
             list = {
-                -- Manual selection, if not in cmdline
                 selection = {
                     preselect = false,
-                    auto_insert = function(ctx) return ctx.mode == "cmdline" end,
+                    auto_insert = false,
                 },
             },
             menu = {
