@@ -1,1 +1,0 @@
-nnoremap q :q<CR>
