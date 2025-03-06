@@ -26,18 +26,23 @@ autocmd({"WinEnter", "BufEnter"}, {
     group = statusline_group,
     callback = function()
         if (vim.bo.filetype == "oil") then
-            vim.o.statusline = "%!v:lua.require('statusline').oil()"
+            vim.wo.statusline = "%!v:lua.require('statusline').oil()"
             return
         end
-        vim.o.statusline = "%!v:lua.require('statusline').active()"
+        vim.wo.statusline = "%!v:lua.require('statusline').active()"
     end,
 })
 
 autocmd({"WinLeave", "BufLeave"}, {
     pattern = "*",
     group = statusline_group,
-    callback = function()
-        vim.o.statusline = "%!v:lua.require('statusline').inactive()"
+    callback = function(args)
+        local leaving_buf_filetype = vim.api.nvim_get_option_value("filetype", {buf = args.buf})
+        if (leaving_buf_filetype == "oil") then
+            vim.wo.statusline = "%!v:lua.require('statusline').oil()"
+            return
+        end
+        vim.wo.statusline = "%!v:lua.require('statusline').inactive()"
     end,
 })
 
