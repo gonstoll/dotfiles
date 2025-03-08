@@ -31,7 +31,7 @@ local function on_attach(client, bufnr)
         "Previous diagnostic (error)")
     keyset("n", "]e", Utils.cmd_center(function() vim.diagnostic.goto_next({severity = "ERROR"}) end),
         "Next diagnostic (error)")
-    keyset("n", "gl", vim.diagnostic.open_float, "Open diagnostics")
+    keyset("n", "gk", vim.diagnostic.open_float, "Open diagnostics")
 
     keyset("n", "<leader>it", function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({bufnr = bufnr}))
