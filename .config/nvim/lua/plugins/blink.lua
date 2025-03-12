@@ -22,6 +22,7 @@ return {
             },
             keymap = {
                 preset = "enter",
+                ["<C-y>"] = {"show_and_insert"},
                 ["<CR>"] = {"accept_and_enter", "fallback"},
                 ["<Tab>"] = {"select_next", "fallback"},
                 ["<S-Tab>"] = {"select_prev", "fallback"},
