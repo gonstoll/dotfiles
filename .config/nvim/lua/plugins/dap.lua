@@ -75,6 +75,7 @@ return {
         -- vscode-js-debug (so, javascript) adapter
         {
             "microsoft/vscode-js-debug",
+            -- Run cd ~/.local/share/nvim/lazy/vscode-js-debug && rm -rf package-lock.json if this fails
             build = "npm i && npm run compile vsDebugServerBundle && rm -rf out && mv -f dist out",
         },
 

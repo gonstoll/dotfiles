@@ -14,7 +14,10 @@ return {
         statuscolumn = {enabled = false},
         words = {enabled = false},
         lazygit = {enabled = false},
-        image = {force = true},
+        image = {
+            doc = {inline = false},
+            convert = {notify = false},
+        },
         picker = {
             finder = "explorer",
             hidden = true,
