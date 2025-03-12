@@ -16,6 +16,7 @@ window-padding-x = 2
 window-padding-balance = true
 
 # macOS stuff
+macos-option-as-alt = left
 macos-window-shadow = false
 
 # Keys
