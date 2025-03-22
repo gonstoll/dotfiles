@@ -35,3 +35,10 @@ Library/Application Support/iTerm2/*
 
 # tmux
 .config/tmux/plugins/*
+
+# Obsidian
+.config/obsidian/plugins/*
+.config/obsidian/workspace
+.config/obsidian/workspace.json
+.config/obsidian/types.json
+.config/obsidian/graph.json

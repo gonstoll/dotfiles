@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+OBSIDIAN_CONFIG="${XDG_CONFIG_HOME}/obsidian/"
+OBSIDIAN_NOTES="${HOME}/notes/obsidian"
+
+for opt in "$@"
+do
+    case $opt in
+        --create-vault=*)
+            vault_name="${opt#*=}"
+            mkdir -p "${OBSIDIAN_NOTES}/${vault_name}/.obsidian"
+            cp -r "${OBSIDIAN_CONFIG}" "${OBSIDIAN_NOTES}/${vault_name}/.obsidian"
+            ;;
+        -*|--*) e_warning "Warning: invalid option $opt" ;;
+    esac
+done
