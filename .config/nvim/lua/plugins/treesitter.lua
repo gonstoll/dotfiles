@@ -2,6 +2,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
         {"windwp/nvim-ts-autotag", opts = {}},
+        {"nvim-treesitter/nvim-treesitter-context", opts = {enable = false}},
     },
     cmd = {"TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo"},
     build = ":TSUpdate",

@@ -6,7 +6,7 @@ return {
         "nvim-lua/plenary.nvim",
         "antoinemadec/FixCursorHold.nvim",
         -- Adapters
-        "nvim-neotest/neotest-jest",
+        "gonstoll/neotest-jest",
         "marilari88/neotest-vitest",
         "thenbe/neotest-playwright",
         "fredrikaverpil/neotest-golang",
@@ -14,6 +14,7 @@ return {
     keys = function()
         local desc = Utils.plugin_keymap_desc("neotest")
         return {
+            {"<leader>T", "", desc = "+test"},
             {"<leader>Tt", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = desc("Run File")},
             {"<leader>TT", function() require("neotest").run.run(vim.uv.cwd()) end, desc = desc("Run All Test Files")},
             {"<leader>Tr", function() require("neotest").run.run() end, desc = desc("Run Nearest")},
@@ -39,21 +40,20 @@ return {
     opts = {
         status = {virtual_text = true},
         output = {open_on_run = true},
+        summary = {mappings = {jumpto = "<CR>"}},
         output_panel = {
             open = "botright vsplit | vertical resize 80",
         },
         adapters = {
             ["neotest-jest"] = {
-                env = {CI = true},
                 jestCommand = "npm test --",
-                jestConfigFile = "jest.config.js",
-                -- jestConfigFile = function(file)
-                --   if string.find(file, '/apps/') then
-                --     return string.match(file, '(.-/[^/]+/)src') .. 'jest.config.ts'
-                --   end
-                --
-                --   return vim.fn.getcwd() .. '/jest.config.js'
-                -- end,
+                jestConfigFile = function(file)
+                    if string.find(file, "/apps/") or string.find(file, "/packages/") then
+                        return string.match(file, "(.-/[^/]+/)src") .. "jest.config.js"
+                    end
+
+                    return vim.fn.getcwd() .. "/jest.config.js"
+                end,
                 cwd = function(file)
                     if string.find(file, "/apps/") or string.find(file, "/packages/") then
                         return string.match(file, "(.-/[^/]+/)src")
@@ -68,6 +68,31 @@ return {
             },
             ["neotest-golang"] = {
                 dap_go_enabled = true,
+            },
+            ["neotest-playwright"] = {
+                adapter = {
+                    options = {
+                        enable_dynamic_test_discovery = true,
+                        get_playwright_binary = function()
+                            local install_path = "node_modules/.bin/playwright"
+                            return vim.fs.find(install_path, {upward = true, path = vim.fn.getcwd(), type = "file"})[1]
+                        end,
+                        get_playwright_config = function()
+                            local root_paths = {"/apps/e2e", "/apps/e2e-tests"}
+                            local path = ""
+                            for _, root_path in ipairs(root_paths) do
+                                local app_path = vim.fn.getcwd() .. root_path
+                                if vim.fn.isdirectory(app_path) then
+                                    path = app_path .. "/playwright.config.ts"
+                                end
+                            end
+                            return path or "/playwright.config.ts"
+                        end,
+                        filter_dir = function(name, rel_path, root)
+                            return name ~= "node_modules"
+                        end,
+                    },
+                },
             },
         },
     },
@@ -97,8 +122,11 @@ return {
                         local meta = getmetatable(adapter)
                         if adapter.setup then
                             adapter.setup(config)
+                        elseif adapter.adapter then
+                            adapter.adapter(config.adapter)
+                            adapter = adapter.adapter
                         elseif meta and meta.__call then
-                            adapter(config)
+                            adapter = adapter(config)
                         else
                             error("Adapter " .. name .. " does not support setup")
                         end
