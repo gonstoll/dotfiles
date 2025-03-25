@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+download_dir="$HOME/Downloads"
+report_dir="$HOME/reports/e2e"
+report_file="$report_dir/report_$(date +%Y%m%d_%H%M%S).zip"
+
+source "$XDG_CONFIG_HOME/zsh/functions"
+
+for opt in "$@"
+do
+    case $opt in
+        --clean) rm -rf "$report_dir" ;;
+        -*|--*) print_warning "Warning: invalid option $opt"
+    esac
+done
+
+if [ ! -d "$report_dir" ]; then
+    mkdir -p "$report_dir"
+fi
+
+if [ ! -f "$download_dir/report.zip" ]; then
+    print_error "Error: No report file found in the download directory"
+    exit 1
+fi
+
+print_header "Copying report to destination directory..."
+cp "$download_dir/report.zip" "$report_file"
+
+print_header "Merging reports..."
+npx playwright merge-reports --reporter html "$report_dir"

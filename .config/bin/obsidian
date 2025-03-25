@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source "$XDG_CONFIG_HOME/zsh/functions"
+
 OBSIDIAN_CONFIG="${XDG_CONFIG_HOME}/obsidian/"
 OBSIDIAN_NOTES="${HOME}/notes/obsidian"
 
@@ -11,6 +13,6 @@ do
             mkdir -p "${OBSIDIAN_NOTES}/${vault_name}/.obsidian"
             cp -r "${OBSIDIAN_CONFIG}" "${OBSIDIAN_NOTES}/${vault_name}/.obsidian"
             ;;
-        -*|--*) e_warning "Warning: invalid option $opt" ;;
+        -*|--*) print_warning "Warning: invalid option $opt" ;;
     esac
 done

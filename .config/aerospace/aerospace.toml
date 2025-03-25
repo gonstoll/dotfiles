@@ -121,8 +121,7 @@ alt-b = 'workspace B' # Browser
 alt-d = 'workspace D' # Design (Figma, Sketch, etc.)
 alt-m = 'workspace M' # Messaging
 alt-n = 'workspace N' # Notes
-# alt-t = 'workspace T' # Terminal
-alt-t = ['exec-and-forget open -a /Applications/Ghostty.app'] # Terminal
+alt-t = 'workspace T' # Terminal
 alt-w = 'workspace W' # Work
 alt-z = 'workspace Z' # Zoom
 
