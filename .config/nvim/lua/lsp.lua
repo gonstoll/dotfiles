@@ -152,15 +152,16 @@ vim.diagnostic.config({
 --   return vim.lsp.util.open_floating_preview(markdown_lines, 'markdown', config)
 -- end
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-    vim.lsp.handlers.hover,
-    {
+local hover = vim.lsp.buf.hover
+---@diagnostic disable-next-line: duplicate-set-field
+vim.lsp.buf.hover = function()
+    return hover({
         border = "single",
         -- max_width = 100,
-        max_width = math.floor(vim.o.columns * 0.4),
-        max_height = math.floor(vim.o.lines * 0.5),
-    }
-)
+        max_width = math.floor(vim.o.columns * 0.7),
+        max_height = math.floor(vim.o.lines * 0.7),
+    })
+end
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
     vim.lsp.handlers.signature_help,
