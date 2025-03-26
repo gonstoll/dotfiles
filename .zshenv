@@ -18,11 +18,6 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 # Man pages
 export MANPAGER='nvim +Man!'
 
-# Set up neovim as the default editor.
-export EDITOR="$(which nvim)"
-export VISUAL="$EDITOR"
-export GIT_EDITOR="$EDITOR"
-
 # Don't let Ghostty mess up with the cursor.
 export GHOSTTY_SHELL_INTEGRATION_NO_CURSOR=1
 

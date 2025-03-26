@@ -106,3 +106,8 @@ fi
 
 # Functions
 source $ZDOTDIR/functions
+
+# Set up neovim as the default editor.
+export EDITOR="$(which nvim)"
+export VISUAL="$EDITOR"
+export GIT_EDITOR="$EDITOR"
