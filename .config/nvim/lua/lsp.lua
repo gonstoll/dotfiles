@@ -2,6 +2,7 @@ local M = {}
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local methods = vim.lsp.protocol.Methods
+local virtual_lines_enabled = false
 
 ---@param client vim.lsp.Client
 ---@param bufnr integer
@@ -32,6 +33,14 @@ local function on_attach(client, bufnr)
     keyset("n", "]e", Utils.cmd_center(function() vim.diagnostic.goto_next({severity = "ERROR"}) end),
         "Next diagnostic (error)")
     keyset("n", "gk", vim.diagnostic.open_float, "Open diagnostics")
+    keyset("n", "gK", function()
+        virtual_lines_enabled = not virtual_lines_enabled
+        if virtual_lines_enabled then
+            vim.diagnostic.config({virtual_lines = true, virtual_text = false})
+        else
+            vim.diagnostic.config({virtual_lines = false, virtual_text = true})
+        end
+    end, "Toggle virtual lines")
 
     keyset("n", "<leader>it", function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({bufnr = bufnr}))
