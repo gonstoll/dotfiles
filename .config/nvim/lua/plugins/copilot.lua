@@ -7,7 +7,7 @@ return {
                 enabled = true,
                 auto_trigger = true,
                 keymap = {
-                    accept = "<C-a>",
+                    accept = "<C-j>",
                     next = "<M-]>",
                     prev = "<M-[>",
                     dismiss = "<C-R>",

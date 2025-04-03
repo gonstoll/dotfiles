@@ -25,6 +25,13 @@ return {
             completion = {
                 completeopt = "menu,menuone,noinsert,noselect",
             },
+            window = {
+                documentation = {
+                    max_width = math.floor(vim.o.columns * 0.4),
+                    max_height = math.floor(vim.o.lines * 0.5),
+                    border = "none",
+                },
+            },
             mapping = {
                 ["<CR>"] = cmp.mapping.confirm({select = false, behavior = cmp.ConfirmBehavior.Insert}),
                 ["<C-e>"] = cmp.mapping.abort(),
@@ -34,11 +41,10 @@ return {
                 ["<Down>"] = cmp.mapping.select_next_item(cmp_select_opts),
                 ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select_opts),
                 ["<C-n>"] = cmp.mapping.select_next_item(cmp_select_opts),
-                ["<C-y>"] = cmp.mapping.complete(),
+                ["<C-y>"] = cmp.mapping.complete({reason = "auto"}),
             },
             sources = cmp.config.sources({
                 {name = "lazydev", group_index = 0},
-                {name = "nvim_lsp", keyword_length = 2},
                 {
                     name = "snippets",
                     keyword_length = 3,
@@ -49,10 +55,18 @@ return {
                         return not in_string and not in_comment
                     end,
                 },
+                {
+                    name = "nvim_lsp",
+                    keyword_length = 2,
+                    max_item_count = 50,
+                    entry_filter = function(entry, ctx)
+                        return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
+                    end,
+                },
             }, {
-                {name = "buffer", keyword_length = 3},
-                {name = "emoji"},
+                {name = "buffer", keyword_length = 3, max_item_count = 20},
                 {name = "path"},
+                {name = "emoji"},
             }),
             formatting = {
                 format = lspkind.cmp_format({
