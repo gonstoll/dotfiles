@@ -1,6 +1,7 @@
 return {
     "stevearc/conform.nvim",
-    event = "LspAttach",
+    event = {"BufWritePre"},
+    cmd = {"ConformInfo"},
     opts = {
         quiet = true,
         formatters_by_ft = {
@@ -35,30 +36,26 @@ return {
         end,
         format_after_save = {lsp_fallback = true},
         log_level = vim.log.levels.DEBUG,
+        formatters = {
+            prettier = {
+                prepend_args = function()
+                    return {
+                        "--no-semi",
+                        "--single-quote",
+                        "--no-bracket-spacing",
+                        "--print-width",
+                        "80",
+                        "--with-node-modules",
+                        "--config-precedence",
+                        "prefer-file",
+                    }
+                end,
+            },
+            beautysh = {
+                prepend_args = function()
+                    return {"--indent-size", "4", "--force-function-style", "fnpar"}
+                end,
+            },
+        },
     },
-    config = function(_, opts)
-        local conform = require("conform")
-        conform.setup(opts)
-
-        conform.formatters.prettier = {
-            prepend_args = function()
-                return {
-                    "--no-semi",
-                    "--single-quote",
-                    "--no-bracket-spacing",
-                    "--print-width",
-                    "80",
-                    "--config-precedence",
-                    "prefer-file",
-                    "--with-node-modules",
-                }
-            end,
-        }
-
-        conform.formatters.beautysh = {
-            prepend_args = function()
-                return {"--indent-size", "4", "--force-function-style", "fnpar"}
-            end,
-        }
-    end,
 }
