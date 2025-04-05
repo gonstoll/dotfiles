@@ -86,3 +86,7 @@ keyset("n", "<leader>cm", ":!chmod +x %<CR>", {desc = "Make file executable"})
 
 keyset("n", "gh", "_", {desc = "Go to start of line"})
 keyset("n", "gl", "$", {desc = "Go to end of line"})
+
+keyset({"n", "v", "i"}, "<C-x><C-x>", function()
+    require("fzf-lua").complete_path()
+end, {silent = true, desc = "Fuzzy complete path"})
