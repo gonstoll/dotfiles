@@ -67,7 +67,7 @@ local function on_attach(client, bufnr)
     end, {range = true})
 
     -- Toggle signature help
-    if client.supports_method(methods.textDocument_signatureHelp) then
+    if client:supports_method(methods.textDocument_signatureHelp) then
         keyset("i", "<C-s>", function()
             if vim.g.blink_enabled then
                 local signature = require("blink.cmp.signature.window")
@@ -117,7 +117,7 @@ local function on_attach(client, bufnr)
         end
     end
 
-    if client.supports_method(methods.textDocument_documentHighlight) then
+    if client:supports_method(methods.textDocument_documentHighlight) then
         keyset("n", "<leader>ma", toggle_document_highlight, "Toggle document highlights")
     end
 end

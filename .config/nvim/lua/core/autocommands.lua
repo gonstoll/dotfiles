@@ -15,7 +15,7 @@ autocmd({"BufNewFile", "BufRead"}, {
     pattern = {"**/node_modules/**", "node_modules", "/node_modules/*"},
     group = augroup("DisableEslintOnNodeModules", {}),
     callback = function()
-        vim.diagnostic.disable(0)
+        vim.diagnostic.enable(false)
     end,
 })
 
