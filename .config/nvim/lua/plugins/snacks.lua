@@ -43,6 +43,10 @@ return {
                             vim.fn.mkdir(scratch_path, "p")
                         end
 
+                        if not t then
+                            return
+                        end
+
                         local title = t ~= "" and t:gsub("%s+", "_") or "Untitled"
                         snacks.scratch.open({
                             ft = "markdown",
