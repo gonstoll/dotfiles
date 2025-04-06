@@ -84,6 +84,9 @@ source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Zoxide
 eval "$(zoxide init zsh)"
 
+# Load fnm
+eval "$(fnm env --use-on-cd --shell zsh)"
+
 # Fzf
 source $ZDOTDIR/fzf
 source <(fzf --zsh)
