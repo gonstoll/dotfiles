@@ -38,6 +38,9 @@ return {
                         module = "lazydev.integrations.blink",
                         score_offset = 100, -- show at a higher priority than lsp
                     },
+                    lsp = {
+                        fallbacks = {"buffer", "path"},
+                    },
                     snippets = {
                         name = "Snippets",
                         module = "blink.cmp.sources.snippets",
