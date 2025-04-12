@@ -18,31 +18,9 @@ return {
 
     {
         "CopilotC-Nvim/CopilotChat.nvim",
-        cmd = {
-            "CopilotChat",
-            "CopilotChatFix",
-            "CopilotChatDocs",
-            "CopilotChatLoad",
-            "CopilotChatOpen",
-            "CopilotChatSave",
-            "CopilotChatClose",
-            "CopilotChatToggle",
-            "CopilotChatStop",
-            "CopilotChatModel",
-            "CopilotChatModels",
-            "CopilotChatReset",
-            "CopilotChatCommit",
-            "CopilotChatTests",
-            "CopilotChatReview",
-            "CopilotChatExplain",
-            "CopilotChatDebugInfo",
-            "CopilotChatCommitStaged",
-            "CopilotChatFixDiagnostic",
-        },
+        cmd = {"CopilotChat"},
         dependencies = {"zbirenbaum/copilot.lua", "nvim-lua/plenary.nvim"},
-        opts = {
-            debug = false,
-        },
+        opts = {debug = false},
     },
 
     {
