@@ -39,7 +39,7 @@ return {
             "CopilotChatCommitStaged",
             "CopilotChatFixDiagnostic",
         },
-        dependencies = {"github/copilot.vim", "nvim-lua/plenary.nvim"},
+        dependencies = {"zbirenbaum/copilot.lua", "nvim-lua/plenary.nvim"},
         opts = {
             debug = false,
         },
@@ -48,6 +48,7 @@ return {
     {
         "yetone/avante.nvim",
         version = false,
+        build = "make",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "stevearc/dressing.nvim",
@@ -75,6 +76,5 @@ return {
                 provider = "fzf",
             },
         },
-        build = "make",
     },
 }
