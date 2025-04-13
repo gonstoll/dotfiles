@@ -15,6 +15,7 @@ return {
                 "js-debug-adapter",
                 "black",
                 "gofumpt",
+                "stylua",
             },
         },
         config = function(_, opts)

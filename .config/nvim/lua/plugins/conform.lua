@@ -12,6 +12,7 @@ return {
             html = {"prettier"},
             css = {"prettier"},
             scss = {"prettier"},
+            lua = {'stylua'},
             markdown = {"prettier"},
             yaml = {"prettier"},
             graphql = {"prettier"},
@@ -24,6 +25,7 @@ return {
             zsh = {"beautysh"},
             http = {"kulala-fmt"},
             python = {"black"},
+            ["_"] = {"trim_whitespace"},
         },
         format_on_save = function(bufnr)
             -- Disable autoformat for files in a certain path
