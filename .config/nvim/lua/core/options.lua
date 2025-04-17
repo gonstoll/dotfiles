@@ -23,13 +23,14 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 vim.wo.foldmethod = "expr" -- Set foldmethod to expr
 vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.fillchars = {fold = " ", foldopen = "", foldsep = " ", foldclose = ""}
+vim.opt.fillchars = { fold = " ", foldopen = "", foldsep = " ", foldclose = "" }
 
 vim.opt.swapfile = false
 vim.opt.backup = false
 
 vim.opt.wrap = false
--- vim.opt.textwidth = 80
+vim.opt.textwidth = 80
+vim.opt.formatexpr = "v:lua.require'conform'.formatexpr()"
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
@@ -43,7 +44,7 @@ vim.opt.conceallevel = 0
 vim.g.markdown_recommended_style = 0 -- see https://www.reddit.com/r/neovim/comments/z2lhyz/comment/ixjb7je
 vim.opt.updatetime = 300
 vim.opt.mouse = "a"
-vim.opt.wildignore:append {"*/node_modules/*"}
+vim.opt.wildignore:append({ "*/node_modules/*" })
 vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 -- vim.opt.showtabline = 0
 
