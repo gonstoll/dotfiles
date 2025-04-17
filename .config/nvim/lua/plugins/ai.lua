@@ -3,6 +3,16 @@ return {
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
         opts = {
+            filetypes = {
+                markdown = true,
+                sh = function()
+                    if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), "^%.env.*") then
+                        -- disable for .env files
+                        return false
+                    end
+                    return true
+                end,
+            },
             suggestion = {
                 enabled = true,
                 auto_trigger = true,
@@ -18,9 +28,9 @@ return {
 
     {
         "CopilotC-Nvim/CopilotChat.nvim",
-        cmd = {"CopilotChat"},
-        dependencies = {"zbirenbaum/copilot.lua", "nvim-lua/plenary.nvim"},
-        opts = {debug = false},
+        cmd = { "CopilotChat" },
+        dependencies = { "zbirenbaum/copilot.lua", "nvim-lua/plenary.nvim" },
+        opts = { debug = false },
     },
 
     {
@@ -37,7 +47,7 @@ return {
             "zbirenbaum/copilot.lua",
         },
         keys = {
-            {"<leader>ak", ":AvanteChat<CR>", desc = "Avante: Chat"},
+            { "<leader>ak", ":AvanteChat<CR>", desc = "Avante: Chat" },
         },
         opts = {
             provider = "gemini",

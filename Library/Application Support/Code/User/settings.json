@@ -10,9 +10,8 @@
     "editorCursor.background": "#ffffff",
     "terminalCursor.background": "#ffffff"
   },
-  "editor.fontSize": 14,
-  "editor.fontWeight": "300",
-  "editor.fontFamily": "SFMono Nerd Font",
+  "editor.fontSize": 15,
+  "editor.fontFamily": "JetBrainsMonoNL Nerd Font Mono",
   "editor.lineHeight": 1.35,
   "editor.tabSize": 2,
   "editor.formatOnPaste": true,
