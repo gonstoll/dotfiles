@@ -9,8 +9,9 @@ return {
     {
         "williamboman/mason.nvim",
         build = ":MasonUpdate",
+        event = "VeryLazy",
         opts = {
-            ui = {border = "single"},
+            ui = { border = "single" },
             ensure_installed = {
                 "js-debug-adapter",
                 "black",

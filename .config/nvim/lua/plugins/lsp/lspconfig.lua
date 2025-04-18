@@ -1,5 +1,6 @@
 return {
     "neovim/nvim-lspconfig",
+    event = "VeryLazy",
     config = function()
         local setup_server = require("lsp").setup_server
         setup_server("stylelint_lsp")
