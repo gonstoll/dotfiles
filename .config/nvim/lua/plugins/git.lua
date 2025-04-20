@@ -141,5 +141,28 @@ return {
     {
         "sindrets/diffview.nvim",
         cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+        opts = function()
+            local diffview_config = require("diffview.config")
+            return {
+                keymaps = {
+                    file_panel = {
+                        ["<c-f>"] = false,
+                        ["<c-b>"] = false,
+                        {
+                            "n",
+                            "<c-b>",
+                            diffview_config.actions.scroll_view(0.25),
+                            { desc = "Diffview: Scroll the view down" },
+                        },
+                        {
+                            "n",
+                            "<c-g>",
+                            diffview_config.actions.scroll_view(-0.25),
+                            { desc = "Diffview: Scroll the view up" },
+                        },
+                    },
+                },
+            }
+        end,
     },
 }

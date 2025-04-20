@@ -179,7 +179,33 @@ return {
                 executable = {
                     command = "node",
                     args = {
-                        Utils.get_pkg_path("js-debug-adapter", "/js-debug/src/dapDebugServer.js"),
+                        require("mason-registry")
+                            .get_package("js-debug-adapter")
+                            :get_install_path()
+                            .. "/js-debug/src/dapDebugServer.js",
+                        "${port}",
+                    },
+                    -- args = {
+                    --     Utils.get_pkg_path("js-debug-adapter", "/js-debug/src/dapDebugServer.js"),
+                    --     "${port}",
+                    -- },
+                },
+            }
+
+        end
+
+        if not dap.adapters["pwa-chrome"] then
+            dap.adapters["pwa-chrome"] = {
+                type = "server",
+                host = "localhost",
+                port = "${port}",
+                executable = {
+                    command = "node",
+                    args = {
+                        require("mason-registry")
+                            .get_package("js-debug-adapter")
+                            :get_install_path()
+                            .. "/js-debug/src/dapDebugServer.js",
                         "${port}",
                     },
                 },
@@ -192,6 +218,20 @@ return {
                     config.type = "pwa-node"
                 end
                 local nativeAdapter = dap.adapters["pwa-node"]
+                if type(nativeAdapter) == "function" then
+                    nativeAdapter(cb, config)
+                else
+                    cb(nativeAdapter)
+                end
+            end
+        end
+
+        if not dap.adapters["chrome"] then
+            dap.adapters["chrome"] = function(cb, config)
+                if config.type == "chrome" then
+                    config.type = "pwa-chrome"
+                end
+                local nativeAdapter = dap.adapters["pwa-chrome"]
                 if type(nativeAdapter) == "function" then
                     nativeAdapter(cb, config)
                 else
