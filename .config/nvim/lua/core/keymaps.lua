@@ -92,3 +92,11 @@ keyset("n", "gl", "$", { desc = "Go to end of line" })
 keyset({ "n", "v", "i" }, "<C-q><C-x>", function()
     require("fzf-lua").complete_path()
 end, { silent = true, desc = "Fuzzy complete path" })
+
+keyset("n", "<leader>bb", function()
+    vim.ui.input({ prompt = "Search: " }, function(input)
+        if input then
+            Utils.browse.query_browser(input)
+        end
+    end)
+end, { desc = "Browse on the web" })

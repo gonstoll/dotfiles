@@ -12,6 +12,12 @@ require("core")
 
 vim.filetype.add({
     extension = {
-        http = "http",
+        env = "sh",
+    },
+    filename = {
+        [".env"] = "sh",
+    },
+    pattern = {
+        ["%.env%.[%w_.-]+"] = "sh",
     },
 })

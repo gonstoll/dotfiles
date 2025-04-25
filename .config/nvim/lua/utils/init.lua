@@ -4,6 +4,7 @@ local M = {
     fzf = require("utils.fzf"),
     lsp = require("utils.lsp"),
     redir = require("utils.redir"),
+    browse = require("utils.browse"),
 }
 
 -- Merge two tables
