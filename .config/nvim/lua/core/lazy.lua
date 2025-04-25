@@ -13,22 +13,29 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup({
     spec = {
-        {import = "plugins"},
-        {import = "plugins.lsp"},
-        {import = "plugins.cmp"},
-        {import = "plugins.colorscheme"},
+        { import = "plugins" },
+        { import = "plugins.lsp" },
+        { import = "plugins.cmp" },
+        { import = "plugins.colorscheme" },
     },
     change_detection = {
         notify = false,
         enabled = true,
     },
     install = {
-        colorscheme = {"rose-pine"},
+        colorscheme = { "rose-pine" },
     },
     performance = {
-        cache = {enabled = true},
-        performance = {
-            rtp = {
+        cache = { enabled = true },
+        rtp = {
+            disabled_plugins = {
+                "gzip",
+                "netrwPlugin",
+                "rplugin",
+                "tarPlugin",
+                "tohtml",
+                "tutor",
+                "zipPlugin",
                 "netrw",
                 "netrwPlugin",
                 "netrwSettings",

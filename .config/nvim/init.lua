@@ -5,9 +5,6 @@
 vim.g.blink_enabled = true
 _G.Utils = require("utils")
 
--- https://github.com/neovim/neovim/issues/31675
-vim.hl = vim.highlight
-
 require("core")
 
 vim.filetype.add({
