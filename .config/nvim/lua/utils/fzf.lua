@@ -2,7 +2,7 @@ local M = {}
 
 ---@param client_name string LSP client name
 local function open_lsp_float(client_name)
-    local client = vim.lsp.get_clients({name = client_name})
+    local client = vim.lsp.get_clients({ name = client_name })
 
     if #client == 0 then
         vim.notify("No active LSP clients found with this name: " .. client_name, vim.log.levels.WARN)
@@ -44,7 +44,7 @@ local function open_lsp_float(client_name)
     vim.bo[buf].filetype = "lua"
     vim.bo[buf].bh = "delete"
 
-    vim.api.nvim_buf_set_keymap(buf, "n", "q", ":q<CR>", {noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(buf, "n", "q", ":q<CR>", { noremap = true, silent = true })
 end
 
 -- Inspects active LSPs configuration
@@ -60,7 +60,7 @@ function M.inspect_lsp_client()
 
     fzf.fzf_exec(client_names, {
         prompt = "LSP Client name: ",
-        winopts = {height = 0.33},
+        winopts = { height = 0.33 },
         actions = {
             ["default"] = function(selected, opts)
                 local selected_client = selected[1]
@@ -106,7 +106,7 @@ function M.scratch_select()
                 ansi_from_hl("FzfLuaHeaderText", "Delete Scratch")
             ),
         },
-        winopts = {height = 0.5},
+        winopts = { height = 0.5 },
         actions = {
             ["default"] = function(selected)
                 local item = item_map[selected[1]]
@@ -129,6 +129,23 @@ function M.scratch_select()
                     M.scratch_select()
                 end,
             },
+        },
+    })
+end
+
+-- Folder grep function
+-- Allows selecting a folder and running grep in it
+function M.folder_grep()
+    local fzf = require("fzf-lua")
+
+    fzf.fzf_exec("find . -type d", {
+        prompt = "Folder: ",
+        actions = {
+            ["default"] = function(selected)
+                if selected and #selected > 0 then
+                    fzf.live_grep({ cwd = selected[1] })
+                end
+            end,
         },
     })
 end

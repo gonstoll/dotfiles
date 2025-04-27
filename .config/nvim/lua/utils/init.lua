@@ -52,4 +52,16 @@ function M.get_pkg_path(pkg, path)
     return ret
 end
 
+-- Check if a command-line tool exists
+-- @param cmd string: The command to check
+-- @return boolean: True if the command exists, false otherwise
+function M.check_cmd_exists(cmd)
+    if not cmd or cmd == "" then
+        return false
+    end
+
+    -- Use vim.fn.executable to check if the command exists
+    return vim.fn.executable(cmd) == 1
+end
+
 return M

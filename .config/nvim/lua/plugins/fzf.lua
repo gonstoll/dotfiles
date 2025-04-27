@@ -18,36 +18,37 @@ local grep_opts = {
 
 return {
     "ibhagwan/fzf-lua",
-    dependencies = {"nvim-tree/nvim-web-devicons"},
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     cmd = "FzfLua",
     event = "VeryLazy",
     keys = function()
         local fzf = require("fzf-lua")
         return {
-            {"<leader>fo", fzf.buffers, desc = desc("Find opened buffers in current neovim instance")},
-            {"<leader>fs", fzf.lgrep_curbuf, desc = desc("Fuzzily search in current buffer")},
-            {"<leader>ff", fzf.files, desc = desc("Search files")},
-            {"<leader>fg", fzf.grep, desc = desc("Search by grep")},
-            {"<leader>fl", fzf.live_grep, desc = desc("Search by live grep")},
-            {"<leader>fk", fzf.keymaps, desc = desc("Keymaps")},
-            {"<leader>fh", fzf.search_history, desc = desc("Get list of searches")},
-            {"<leader>fb", fzf.resume, desc = desc("Resume search")},
-            {"<leader>fd", fzf.lsp_document_diagnostics, desc = desc("Get file diagnostics")},
-            {"<leader>fr", fzf.lsp_references, desc = desc("Goto References")},
-            {"<leader>fy", fzf.lsp_document_symbols, desc = desc("Document Symbols")},
-            {"<leader>fw", fzf.lsp_live_workspace_symbols, desc = desc("Workspace Symbols")},
+            { "<leader>fo", fzf.buffers, desc = desc("Find opened buffers in current neovim instance") },
+            { "<leader>fs", fzf.lgrep_curbuf, desc = desc("Fuzzily search in current buffer") },
+            { "<leader>ff", fzf.files, desc = desc("Search files") },
+            { "<leader>fg", fzf.grep, desc = desc("Search by grep") },
+            { "<leader>fl", fzf.live_grep, desc = desc("Search by live grep") },
+            { "<leader>fk", fzf.keymaps, desc = desc("Keymaps") },
+            { "<leader>fh", fzf.search_history, desc = desc("Get list of searches") },
+            { "<leader>fb", fzf.resume, desc = desc("Resume search") },
+            { "<leader>fd", fzf.lsp_document_diagnostics, desc = desc("Get file diagnostics") },
+            { "<leader>fr", fzf.lsp_references, desc = desc("Goto References") },
+            { "<leader>fy", fzf.lsp_document_symbols, desc = desc("Document Symbols") },
+            { "<leader>fw", fzf.lsp_live_workspace_symbols, desc = desc("Workspace Symbols") },
+            { "<leader>fG", Utils.fzf.folder_grep, desc = desc("Grep on selected folder") },
         }
     end,
     opts = function()
         local actions = require("fzf-lua.actions")
         local img_previewer ---@type string[]?
         for _, v in ipairs({
-            {cmd = "ueberzug", args = {}},
-            {cmd = "chafa", args = {"{file}", "--format=symbols"}},
-            {cmd = "viu", args = {"-b"}},
+            { cmd = "ueberzug", args = {} },
+            { cmd = "chafa", args = { "{file}", "--format=symbols" } },
+            { cmd = "viu", args = { "-b" } },
         }) do
             if vim.fn.executable(v.cmd) == 1 then
-                img_previewer = vim.list_extend({v.cmd}, v.args)
+                img_previewer = vim.list_extend({ v.cmd }, v.args)
                 break
             end
         end
@@ -61,7 +62,7 @@ return {
                 h = max_h
             end
             return {
-                winopts = {height = h, width = 0.60, row = 0.40},
+                winopts = { height = h, width = 0.60, row = 0.40 },
             }
         end)
 
@@ -133,7 +134,7 @@ return {
             },
             buffers = {
                 actions = {
-                    ["ctrl-x"] = {actions.buf_del, actions.resume},
+                    ["ctrl-x"] = { actions.buf_del, actions.resume },
                 },
             },
         }
