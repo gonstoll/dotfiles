@@ -58,7 +58,7 @@ local function on_attach(client, bufnr)
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }))
     end, "Toggle inlay hints")
     keyset("n", "<leader>fa", function()
-        require("conform").format({ async = true, lsp_fallback = true })
+        require("conform").format({ lsp_format = "fallback", async = true })
     end, "Format current buffer with LSP")
 
     keyset("n", "<leader>lc", function()
@@ -75,7 +75,7 @@ local function on_attach(client, bufnr)
                 ["end"] = { args.line2, end_line:len() },
             }
         end
-        require("conform").format({ async = true, lsp_fallback = true, range = range })
+        require("conform").format({ lsp_format = "fallback", async = true, range = range })
     end, { range = true })
 
     -- Toggle signature help

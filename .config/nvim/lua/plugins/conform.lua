@@ -2,6 +2,8 @@ return {
     "stevearc/conform.nvim",
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
+    ---@module "conform"
+    ---@type conform.setupOpts
     opts = {
         quiet = true,
         formatters_by_ft = {
@@ -12,7 +14,7 @@ return {
             html = { "prettier" },
             css = { "prettier" },
             scss = { "prettier" },
-            lua = { "stylua" },
+            lua = { "stylua", lsp_format = "first" },
             markdown = { "prettier" },
             yaml = { "prettier" },
             graphql = { "prettier" },
@@ -35,9 +37,9 @@ return {
                 return
             end
 
-            return { timeout_ms = 1000, lsp_fallback = true }
+            ---@type conform.FormatOpts
+            return { timeout_ms = 500, lsp_format = "fallback" }
         end,
-        format_after_save = { lsp_fallback = true },
         log_level = vim.log.levels.DEBUG,
         formatters = {
             prettier = {
