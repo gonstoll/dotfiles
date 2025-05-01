@@ -82,63 +82,60 @@ local function on_attach(client, bufnr)
     if client:supports_method(methods.textDocument_signatureHelp) then
         keyset("i", "<C-s>", function()
             if vim.g.blink_enabled then
-                local signature = require("blink.cmp.signature.window")
-                if signature.win:is_open() then
-                    signature.win:close()
-                    return
+                local blink_window = require("blink.cmp.completion.windows.menu")
+                local blink = require("blink.cmp")
+                if blink_window.win:is_open() then
+                    blink.hide()
                 end
-                signature.win:open()
-                signature.update_position()
-            else
-                vim.lsp.buf.signature_help()
             end
+
+            vim.lsp.buf.signature_help()
         end, "Signature help")
     end
 
     -- TODO: Uncomment this when v0.12 drops!
     -- https://github.com/neovim/neovim/pull/33440
-    -- local document_color_enabled = false
     -- if client:supports_method("textDocument/documentColor") then
+    --     local document_color_enabled = false
     --     keyset("n", "<leader>Ct", function()
     --         vim.lsp.document_color.enable(not document_color_enabled, bufnr)
-    --     end,  "Toogle colors highlighting")
+    --     end, "Toogle colors highlighting")
     -- end
 
-    local highlight_enabled = false
-    local group_name = "gonstoll/document_highlight"
-
-    local function enable_document_highlight()
-        local under_cursor_highlights_group = augroup(group_name, { clear = true })
-        autocmd({ "CursorHold", "InsertLeave" }, {
-            group = under_cursor_highlights_group,
-            desc = "Highlight references under the cursor",
-            buffer = bufnr,
-            callback = vim.lsp.buf.document_highlight,
-        })
-        autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
-            group = under_cursor_highlights_group,
-            desc = "Clear highlight references",
-            buffer = bufnr,
-            callback = vim.lsp.buf.clear_references,
-        })
-        highlight_enabled = true
-    end
-
-    local function disable_document_highlight()
-        vim.api.nvim_clear_autocmds({ group = group_name })
-        vim.lsp.buf.clear_references()
-        highlight_enabled = false
-    end
-
-    local function toggle_document_highlight()
-        if highlight_enabled then
-            disable_document_highlight()
-        else
-            enable_document_highlight()
-        end
-    end
-
     if client:supports_method(methods.textDocument_documentHighlight) then
+        local highlight_enabled = false
+        local group_name = "gonstoll/document_highlight"
+
+        local function enable_document_highlight()
+            local under_cursor_highlights_group = augroup(group_name, { clear = true })
+            autocmd({ "CursorHold", "InsertLeave" }, {
+                group = under_cursor_highlights_group,
+                desc = "Highlight references under the cursor",
+                buffer = bufnr,
+                callback = vim.lsp.buf.document_highlight,
+            })
+            autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
+                group = under_cursor_highlights_group,
+                desc = "Clear highlight references",
+                buffer = bufnr,
+                callback = vim.lsp.buf.clear_references,
+            })
+            highlight_enabled = true
+        end
+
+        local function disable_document_highlight()
+            vim.api.nvim_clear_autocmds({ group = group_name })
+            vim.lsp.buf.clear_references()
+            highlight_enabled = false
+        end
+
+        local function toggle_document_highlight()
+            if highlight_enabled then
+                disable_document_highlight()
+            else
+                enable_document_highlight()
+            end
+        end
         keyset("n", "<leader>ma", toggle_document_highlight, "Toggle document highlights")
     end
 end
@@ -168,20 +165,6 @@ vim.diagnostic.config({
     },
 })
 
--- vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
---   config = Utils.merge_table(config or {}, {border = 'single', max_width = 100})
---   config.focus_id = ctx.method
---   if not (result and result.contents) then
---     return
---   end
---   local markdown_lines = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
---   markdown_lines = vim.lsp.util.trim_empty_lines(markdown_lines)
---   if vim.tbl_isempty(markdown_lines) then
---     return
---   end
---   return vim.lsp.util.open_floating_preview(markdown_lines, 'markdown', config)
--- end
-
 local hover = vim.lsp.buf.hover
 ---@diagnostic disable-next-line: duplicate-set-field
 vim.lsp.buf.hover = function()
@@ -193,14 +176,18 @@ vim.lsp.buf.hover = function()
     })
 end
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    title = "Signature help",
-    border = "single",
-    title_pos = "left",
-    -- max_width = 100,
-    max_width = math.floor(vim.o.columns * 0.4),
-    max_height = math.floor(vim.o.lines * 0.5),
-})
+local signature_help = vim.lsp.buf.signature_help
+---@diagnostic disable-next-line: duplicate-set-field
+vim.lsp.buf.signature_help = function()
+    return signature_help({
+        title = "Signature help",
+        border = "single",
+        title_pos = "left",
+        -- max_width = 100,
+        max_width = math.floor(vim.o.columns * 0.4),
+        max_height = math.floor(vim.o.lines * 0.5),
+    })
+end
 
 -- for type, icon in pairs(Utils.icons.diagnostics) do
 --     local hl = 'DiagnosticSign' .. type
