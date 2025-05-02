@@ -14,33 +14,86 @@ return {
     keys = function()
         local desc = Utils.plugin_keymap_desc("neotest")
         return {
-            {"<leader>T", "", desc = "+test"},
-            {"<leader>Tt", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = desc("Run File")},
-            {"<leader>TT", function() require("neotest").run.run(vim.uv.cwd()) end, desc = desc("Run All Test Files")},
-            {"<leader>Tr", function() require("neotest").run.run() end, desc = desc("Run Nearest")},
+            { "<leader>T", "", desc = "+test" },
+            {
+                "<leader>Tt",
+                function()
+                    require("neotest").run.run(vim.fn.expand("%"))
+                end,
+                desc = desc("Run File"),
+            },
+            {
+                "<leader>TT",
+                function()
+                    require("neotest").run.run(vim.uv.cwd())
+                end,
+                desc = desc("Run All Test Files"),
+            },
+            {
+                "<leader>Tr",
+                function()
+                    require("neotest").run.run()
+                end,
+                desc = desc("Run Nearest"),
+            },
             {
                 "<leader>Tw",
                 function()
                     require("neotest").run.run({
                         vim.fn.expand("%"),
-                        jestCommand =
-                        "node_modules/.bin/jest --watch",
+                        jestCommand = "node_modules/.bin/jest --watch",
                     })
                 end,
                 desc = desc("Run test on watch mode"),
             },
-            {"<leader>TW", function() require("neotest").watch.toggle(vim.fn.expand("%")) end, desc = desc("Toggle watch mode (not working with jest)")},
-            {"<leader>Tl", function() require("neotest").run.run_last() end, desc = desc("Run Last")},
-            {"<leader>Ts", function() require("neotest").summary.toggle() end, desc = desc("Toggle Summary")},
-            {"<leader>To", function() require("neotest").output.open({enter = true, auto_close = true}) end, desc = desc("Show Output")},
-            {"<leader>TO", function() require("neotest").output_panel.toggle() end, desc = desc("Toggle Output Panel")},
-            {"<leader>TS", function() require("neotest").run.stop() end, desc = desc("Stop")},
+            {
+                "<leader>TW",
+                function()
+                    require("neotest").watch.toggle(vim.fn.expand("%"))
+                end,
+                desc = desc("Toggle watch mode (not working with jest)"),
+            },
+            {
+                "<leader>Tl",
+                function()
+                    require("neotest").run.run_last()
+                end,
+                desc = desc("Run Last"),
+            },
+            {
+                "<leader>Ts",
+                function()
+                    require("neotest").summary.toggle()
+                end,
+                desc = desc("Toggle Summary"),
+            },
+            {
+                "<leader>To",
+                function()
+                    require("neotest").output.open({ enter = true, auto_close = true })
+                end,
+                desc = desc("Show Output"),
+            },
+            {
+                "<leader>TO",
+                function()
+                    require("neotest").output_panel.toggle()
+                end,
+                desc = desc("Toggle Output Panel"),
+            },
+            {
+                "<leader>TS",
+                function()
+                    require("neotest").run.stop()
+                end,
+                desc = desc("Stop"),
+            },
         }
     end,
     opts = {
-        status = {virtual_text = true},
-        output = {open_on_run = true},
-        summary = {mappings = {jumpto = "<CR>"}},
+        status = { virtual_text = true },
+        output = { open_on_run = true },
+        summary = { mappings = { jumpto = "<CR>" } },
         output_panel = {
             open = "botright vsplit | vertical resize 80",
         },
@@ -75,10 +128,10 @@ return {
                         enable_dynamic_test_discovery = true,
                         get_playwright_binary = function()
                             local install_path = "node_modules/.bin/playwright"
-                            return vim.fs.find(install_path, {upward = true, path = vim.fn.getcwd(), type = "file"})[1]
+                            return vim.fs.find(install_path, { upward = true, path = vim.fn.getcwd(), type = "file" })[1]
                         end,
                         get_playwright_config = function()
-                            local root_paths = {"/apps/e2e", "/apps/e2e-tests"}
+                            local root_paths = { "/apps/e2e", "/apps/e2e-tests" }
                             local path = ""
                             for _, root_path in ipairs(root_paths) do
                                 local app_path = vim.fn.getcwd() .. root_path
@@ -123,7 +176,7 @@ return {
                         if adapter.setup then
                             adapter.setup(config)
                         elseif adapter.adapter then
-                            adapter.adapter(config.adapter)
+                            adapter.adapter(config)
                             adapter = adapter.adapter
                         elseif meta and meta.__call then
                             adapter = adapter(config)
