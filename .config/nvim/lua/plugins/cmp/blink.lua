@@ -58,6 +58,7 @@ return {
             },
             trigger = {
                 show_on_accept_on_trigger_character = false,
+                show_in_snippet = false,
             },
             list = {
                 selection = {

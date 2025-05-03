@@ -102,10 +102,10 @@ return {
                 jestCommand = "npm test --",
                 jestConfigFile = function(file)
                     if string.find(file, "/apps/") or string.find(file, "/packages/") then
-                        return string.match(file, "(.-/[^/]+/)src") .. "jest.config.js"
+                        return string.match(file, "(.-/[^/]+/)src") .. "jest.config.{j,t}s"
                     end
 
-                    return vim.fn.getcwd() .. "/jest.config.js"
+                    return vim.fn.getcwd() .. "/jest.config.{j,t}s"
                 end,
                 cwd = function(file)
                     if string.find(file, "/apps/") or string.find(file, "/packages/") then
@@ -132,17 +132,23 @@ return {
                         end,
                         get_playwright_config = function()
                             local root_paths = { "/apps/e2e", "/apps/e2e-tests" }
-                            local path = ""
+                            local path = nil
                             for _, root_path in ipairs(root_paths) do
                                 local app_path = vim.fn.getcwd() .. root_path
                                 if vim.fn.isdirectory(app_path) then
                                     path = app_path .. "/playwright.config.ts"
                                 end
                             end
-                            return path or "/playwright.config.ts"
+                            return path or vim.loop.cwd() .. "/playwright.config.ts"
                         end,
+                        ---@param name string
+                        ---@param rel_path string
                         filter_dir = function(name, rel_path, root)
-                            return name ~= "node_modules"
+                            return rel_path:match("node_modules")
+                        end,
+                        ---@param file_path string
+                        is_test_file = function(file_path)
+                            return file_path:find("{e2e,e2e-tests}/.*%.{test,spec}%.[tj]sx?$") ~= nil
                         end,
                     },
                 },
