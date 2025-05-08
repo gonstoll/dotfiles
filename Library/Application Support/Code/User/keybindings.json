@@ -214,11 +214,6 @@
     "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
   },
   {
-    "key": "escape",
-    "command": "workbench.view.explorer",
-    "when": "vim.mode == 'Normal' && workbench.scm.active"
-  },
-  {
     "key": "-",
     "command": "workbench.view.explorer",
     "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
@@ -323,5 +318,10 @@
     "key": "enter",
     "command": "explorer.openAndPassFocus",
     "when": "filesExplorerFocus && foldersViewVisibile && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "enter",
+    "command": "-renameFile",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
   }
 ]
