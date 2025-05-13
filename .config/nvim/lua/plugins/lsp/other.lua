@@ -7,7 +7,7 @@ return {
     },
 
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         build = ":MasonUpdate",
         event = "VeryLazy",
         opts = {
@@ -44,7 +44,7 @@ return {
     },
 
     {
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason-lspconfig.nvim",
         event = "VeryLazy",
         opts = {
             ensure_installed = {
@@ -62,6 +62,7 @@ return {
                 "basedpyright",
             },
             automatic_installation = true,
+            automatic_enable = false,
         },
     },
 
