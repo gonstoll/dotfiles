@@ -1,4 +1,6 @@
 return {
+    { "neovim/nvim-lspconfig" },
+
     {
         "b0o/SchemaStore.nvim",
         -- Loaded by jsonls when needed.

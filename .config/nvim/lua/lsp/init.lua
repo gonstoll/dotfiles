@@ -1,4 +1,3 @@
-local M = {}
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local methods = vim.lsp.protocol.Methods
@@ -140,20 +139,6 @@ local function on_attach(client, bufnr)
     end
 end
 
-autocmd("LspAttach", {
-    group = augroup("lsp-attach", {}),
-    callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-        -- Just in case y'know
-        if not client then
-            return
-        end
-
-        on_attach(client, args.buf)
-    end,
-})
-
 vim.diagnostic.config({
     virtual_text = true,
     severity_sort = true,
@@ -194,25 +179,53 @@ end
 --     vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
 -- end
 
+autocmd("LspAttach", {
+    group = augroup("lsp-attach", {}),
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+        -- Just in case y'know
+        if not client then
+            return
+        end
+
+        on_attach(client, args.buf)
+    end,
+})
+
 -- Configures the LSP servers with (optionally) their configuration and keybinds
----@param servers table<string, table>
-function M.setup_servers(servers)
-    for server, config in pairs(servers) do
-        if config then
-            vim.lsp.config(server, config)
-            if config.keys then
-                for _, key in ipairs(config.keys) do
-                    vim.keymap.set("n", key[1], key[2], { desc = key.desc })
+autocmd({ "BufReadPre", "BufNewFile" }, {
+    once = true,
+    callback = function()
+        local servers = {
+            stylelint_lsp = {},
+            basedpyright = {},
+            tailwindcss = {},
+            jsonls = require("lsp.servers.jsonls"),
+            yamlls = require("lsp.servers.yamlls"),
+            bashls = require("lsp.servers.bashls"),
+            cssls = require("lsp.servers.cssls"),
+            eslint = require("lsp.servers.eslint"),
+            lua_ls = require("lsp.servers.lua_ls"),
+            vtsls = require("lsp.servers.vtsls"),
+            gopls = require("lsp.servers.gopls"),
+        }
+
+        for server, config in pairs(servers) do
+            if config then
+                vim.lsp.config(server, config)
+                if config.keys then
+                    for _, key in ipairs(config.keys) do
+                        vim.keymap.set("n", key[1], key[2], { desc = key.desc })
+                    end
                 end
             end
         end
-    end
 
-    local server_names = {}
-    for server, _ in pairs(servers) do
-        table.insert(server_names, server)
-    end
-    vim.lsp.enable(server_names)
-end
-
-return M
+        local server_names = {}
+        for server, _ in pairs(servers) do
+            table.insert(server_names, server)
+        end
+        vim.lsp.enable(server_names)
+    end,
+})

@@ -6,6 +6,7 @@ vim.g.blink_enabled = true
 _G.Utils = require("utils")
 
 require("core")
+require("lsp")
 
 vim.filetype.add({
     extension = {
