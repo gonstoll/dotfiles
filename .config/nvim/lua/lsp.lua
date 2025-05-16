@@ -194,32 +194,25 @@ end
 --     vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
 -- end
 
--- Configures the LSP server with completion capabilities and (optionally) its configurations and keybinds
----@param server string
----@param config? table
-function M.setup_server(server, config)
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-    if not vim.g.blink_enabled then
-        capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-    else
-        capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
-    end
-
-    -- FIXME: workaround for https://github.com/neovim/neovim/issues/28058
-    if server == "gopls" and vim.g.blink_enabled then
-        capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
-    end
-
-    require("lspconfig")[server].setup(
-        vim.tbl_deep_extend("error", { capabilities = capabilities, silent = true }, config or {})
-    )
-
-    if config and config.keys then
-        for _, key in ipairs(config.keys) do
-            vim.keymap.set("n", key[1], key[2], { desc = key.desc })
+-- Configures the LSP servers with (optionally) their configuration and keybinds
+---@param servers table<string, table>
+function M.setup_servers(servers)
+    for server, config in pairs(servers) do
+        if config then
+            vim.lsp.config(server, config)
+            if config.keys then
+                for _, key in ipairs(config.keys) do
+                    vim.keymap.set("n", key[1], key[2], { desc = key.desc })
+                end
+            end
         end
     end
+
+    local server_names = {}
+    for server, _ in pairs(servers) do
+        table.insert(server_names, server)
+    end
+    vim.lsp.enable(server_names)
 end
 
 return M

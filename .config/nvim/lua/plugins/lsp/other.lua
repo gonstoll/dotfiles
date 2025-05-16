@@ -52,7 +52,6 @@ return {
                 "cssls",
                 "lua_ls",
                 "eslint",
-                "ts_ls",
                 "bashls",
                 "vtsls",
                 "jsonls",
