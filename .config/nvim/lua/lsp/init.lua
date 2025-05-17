@@ -1,4 +1,3 @@
-local M = {}
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local methods = vim.lsp.protocol.Methods
@@ -140,20 +139,6 @@ local function on_attach(client, bufnr)
     end
 end
 
-autocmd("LspAttach", {
-    group = augroup("lsp-attach", {}),
-    callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-        -- Just in case y'know
-        if not client then
-            return
-        end
-
-        on_attach(client, args.buf)
-    end,
-})
-
 vim.diagnostic.config({
     virtual_text = true,
     severity_sort = true,
@@ -194,32 +179,53 @@ end
 --     vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
 -- end
 
--- Configures the LSP server with completion capabilities and (optionally) its configurations and keybinds
----@param server string
----@param config? table
-function M.setup_server(server, config)
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
+autocmd("LspAttach", {
+    group = augroup("lsp-attach", {}),
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-    if not vim.g.blink_enabled then
-        capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-    else
-        capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
-    end
-
-    -- FIXME: workaround for https://github.com/neovim/neovim/issues/28058
-    if server == "gopls" and vim.g.blink_enabled then
-        capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
-    end
-
-    require("lspconfig")[server].setup(
-        vim.tbl_deep_extend("error", { capabilities = capabilities, silent = true }, config or {})
-    )
-
-    if config and config.keys then
-        for _, key in ipairs(config.keys) do
-            vim.keymap.set("n", key[1], key[2], { desc = key.desc })
+        -- Just in case y'know
+        if not client then
+            return
         end
-    end
-end
 
-return M
+        on_attach(client, args.buf)
+    end,
+})
+
+-- Configures the LSP servers with (optionally) their configuration and keybinds
+autocmd({ "BufReadPre", "BufNewFile" }, {
+    once = true,
+    callback = function()
+        local servers = {
+            stylelint_lsp = {},
+            basedpyright = {},
+            tailwindcss = {},
+            jsonls = require("lsp.servers.jsonls"),
+            yamlls = require("lsp.servers.yamlls"),
+            bashls = require("lsp.servers.bashls"),
+            cssls = require("lsp.servers.cssls"),
+            eslint = require("lsp.servers.eslint"),
+            lua_ls = require("lsp.servers.lua_ls"),
+            vtsls = require("lsp.servers.vtsls"),
+            gopls = require("lsp.servers.gopls"),
+        }
+
+        for server, config in pairs(servers) do
+            if config then
+                vim.lsp.config(server, config)
+                if config.keys then
+                    for _, key in ipairs(config.keys) do
+                        vim.keymap.set("n", key[1], key[2], { desc = key.desc })
+                    end
+                end
+            end
+        end
+
+        local server_names = {}
+        for server, _ in pairs(servers) do
+            table.insert(server_names, server)
+        end
+        vim.lsp.enable(server_names)
+    end,
+})

@@ -12,7 +12,7 @@ return {
     keys = {
         {
             "<leader>ef",
-            ":EslintFixAll<CR>",
+            ":LspEslintFixAll<CR>",
             desc = desc("Fix all"),
         },
     },
