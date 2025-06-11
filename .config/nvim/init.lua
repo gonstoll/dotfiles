@@ -7,15 +7,3 @@ _G.Utils = require("utils")
 
 require("core")
 require("lsp")
-
-vim.filetype.add({
-    extension = {
-        env = "sh",
-    },
-    filename = {
-        [".env"] = "sh",
-    },
-    pattern = {
-        ["%.env%.[%w_.-]+"] = "sh",
-    },
-})

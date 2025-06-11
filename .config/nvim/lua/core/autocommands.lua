@@ -10,22 +10,13 @@ autocmd("TextYankPost", {
     end,
 })
 
--- Disable eslint on node_modules
-autocmd({"BufNewFile", "BufRead"}, {
-    pattern = {"**/node_modules/**", "node_modules", "/node_modules/*"},
-    group = augroup("DisableEslintOnNodeModules", {}),
-    callback = function()
-        vim.diagnostic.enable(false)
-    end,
-})
-
 -- Statusline
 local statusline_group = augroup("StatusLine", {})
-autocmd({"WinEnter", "BufEnter"}, {
+autocmd({ "WinEnter", "BufEnter" }, {
     pattern = "*",
     group = statusline_group,
     callback = function()
-        if (vim.bo.filetype == "oil") then
+        if vim.bo.filetype == "oil" then
             vim.wo.statusline = "%!v:lua.require('statusline').oil()"
             return
         end
@@ -33,12 +24,12 @@ autocmd({"WinEnter", "BufEnter"}, {
     end,
 })
 
-autocmd({"WinLeave", "BufLeave"}, {
+autocmd({ "WinLeave", "BufLeave" }, {
     pattern = "*",
     group = statusline_group,
     callback = function(args)
-        local leaving_buf_filetype = vim.api.nvim_get_option_value("filetype", {buf = args.buf})
-        if (leaving_buf_filetype == "oil") then
+        local leaving_buf_filetype = vim.api.nvim_get_option_value("filetype", { buf = args.buf })
+        if leaving_buf_filetype == "oil" then
             vim.wo.statusline = "%!v:lua.require('statusline').oil()"
             return
         end
@@ -102,14 +93,14 @@ vim.api.nvim_create_user_command("Redir", Utils.redir.redir, {
 vim.api.nvim_create_user_command("EvalFile", function(args)
     local bang = args.bang
     Utils.redir.evaler("%")(bang)
-end, {bar = true, bang = true})
+end, { bar = true, bang = true })
 
 vim.api.nvim_create_user_command("EvalLine", function(args)
     local bang = args.bang
     Utils.redir.evaler(".")(bang)
-end, {bar = true, bang = true})
+end, { bar = true, bang = true })
 
 vim.api.nvim_create_user_command("EvalRange", function(args)
     local bang = args.bang
     Utils.redir.evaler("'<,'>")(bang)
-end, {bar = true, bang = true, range = true})
+end, { bar = true, bang = true, range = true })
