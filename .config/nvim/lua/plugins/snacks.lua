@@ -15,7 +15,7 @@ return {
         words = {enabled = false},
         lazygit = {enabled = false},
         image = {
-            doc = {inline = false},
+            doc = {inline = false, float = false},
             convert = {notify = false},
         },
         picker = {
