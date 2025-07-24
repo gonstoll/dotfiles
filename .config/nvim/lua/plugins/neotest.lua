@@ -91,6 +91,7 @@ return {
         }
     end,
     opts = {
+        floating = { border = "single" },
         status = { virtual_text = true },
         output = { open_on_run = true },
         summary = { mappings = { jumpto = "<CR>" } },
