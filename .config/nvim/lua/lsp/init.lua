@@ -11,11 +11,11 @@ local function on_attach(client, bufnr)
     ---@param func fun() -- Function to execute
     ---@param desc? string -- Keymap description
     local function keyset(mode, keys, func, desc)
-        vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
+        vim.keymap.set(mode, keys, func, {buffer = bufnr, desc = "LSP: " .. desc})
     end
 
     keyset("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
-    keyset({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code Action")
+    keyset({"n", "v"}, "<leader>ca", vim.lsp.buf.code_action, "Code Action")
     keyset("n", "<leader>td", vim.lsp.buf.type_definition, "Type Definition")
     keyset("n", "<leader>sd", vim.lsp.buf.signature_help, "Signature Documentation")
     keyset("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, "Workspace Add Folder")
@@ -31,7 +31,7 @@ local function on_attach(client, bufnr)
         "n",
         "[e",
         Utils.cmd_center(function()
-            vim.diagnostic.goto_prev({ severity = "ERROR" })
+            vim.diagnostic.goto_prev({severity = "ERROR"})
         end),
         "Previous diagnostic (error)"
     )
@@ -39,7 +39,7 @@ local function on_attach(client, bufnr)
         "n",
         "]e",
         Utils.cmd_center(function()
-            vim.diagnostic.goto_next({ severity = "ERROR" })
+            vim.diagnostic.goto_next({severity = "ERROR"})
         end),
         "Next diagnostic (error)"
     )
@@ -47,20 +47,21 @@ local function on_attach(client, bufnr)
     keyset("n", "gK", function()
         virtual_lines_enabled = not virtual_lines_enabled
         if virtual_lines_enabled then
-            vim.diagnostic.config({ virtual_lines = true, virtual_text = false })
+            vim.diagnostic.config({virtual_lines = true, virtual_text = false})
         else
-            vim.diagnostic.config({ virtual_lines = false, virtual_text = true })
+            vim.diagnostic.config({virtual_lines = false, virtual_text = true})
         end
     end, "Toggle virtual lines")
 
     keyset("n", "<leader>it", function()
-        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }))
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({bufnr = bufnr}))
     end, "Toggle inlay hints")
+
     keyset("n", "<leader>fa", function()
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
             return
         end
-        require("conform").format({ lsp_format = "fallback", async = true })
+        require("conform").format({lsp_format = Utils.lsp.get_lsp_format(bufnr), async = true})
     end, "Format current buffer with LSP")
 
     keyset("n", "<leader>lc", function()
@@ -73,12 +74,12 @@ local function on_attach(client, bufnr)
         if args.count ~= -1 then
             local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
             range = {
-                start = { args.line1, 0 },
-                ["end"] = { args.line2, end_line:len() },
+                start = {args.line1, 0},
+                ["end"] = {args.line2, end_line:len()},
             }
         end
-        require("conform").format({ lsp_format = "fallback", async = true, range = range })
-    end, { range = true })
+        require("conform").format({lsp_format = "fallback", async = true, range = range})
+    end, {range = true})
 
     -- Toggle signature help
     if client:supports_method(methods.textDocument_signatureHelp) then
@@ -109,14 +110,14 @@ local function on_attach(client, bufnr)
         local group_name = "gonstoll/document_highlight"
 
         local function enable_document_highlight()
-            local under_cursor_highlights_group = augroup(group_name, { clear = true })
-            autocmd({ "CursorHold", "InsertLeave" }, {
+            local under_cursor_highlights_group = augroup(group_name, {clear = true})
+            autocmd({"CursorHold", "InsertLeave"}, {
                 group = under_cursor_highlights_group,
                 desc = "Highlight references under the cursor",
                 buffer = bufnr,
                 callback = vim.lsp.buf.document_highlight,
             })
-            autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
+            autocmd({"CursorMoved", "InsertEnter", "BufLeave"}, {
                 group = under_cursor_highlights_group,
                 desc = "Clear highlight references",
                 buffer = bufnr,
@@ -126,7 +127,7 @@ local function on_attach(client, bufnr)
         end
 
         local function disable_document_highlight()
-            vim.api.nvim_clear_autocmds({ group = group_name })
+            vim.api.nvim_clear_autocmds({group = group_name})
             vim.lsp.buf.clear_references()
             highlight_enabled = false
         end
@@ -197,7 +198,7 @@ autocmd("LspAttach", {
 })
 
 -- Configures the LSP servers with (optionally) their configuration and keybinds
-autocmd({ "BufReadPre", "BufNewFile" }, {
+autocmd({"BufReadPre", "BufNewFile"}, {
     once = true,
     callback = function()
         local servers = {
@@ -219,7 +220,7 @@ autocmd({ "BufReadPre", "BufNewFile" }, {
                 vim.lsp.config(server, config)
                 if config.keys then
                     for _, key in ipairs(config.keys) do
-                        vim.keymap.set("n", key[1], key[2], { desc = key.desc })
+                        vim.keymap.set("n", key[1], key[2], {desc = key.desc})
                     end
                 end
             end

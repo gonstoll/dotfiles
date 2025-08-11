@@ -30,4 +30,10 @@ function M.on_attach(on_attach, name)
     })
 end
 
+---@param bufnr integer
+function M.get_lsp_format(bufnr)
+    local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
+    return filetype == "lua" and "prefer" or "fallback"
+end
+
 return M

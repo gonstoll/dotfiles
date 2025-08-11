@@ -56,7 +56,7 @@ return {
             end
 
             ---@type conform.FormatOpts
-            return {timeout_ms = 500, lsp_format = filetype == "lua" and "prefer" or "fallback"}
+            return {timeout_ms = 500, lsp_format = Utils.lsp.get_lsp_format(bufnr)}
         end,
         log_level = vim.log.levels.DEBUG,
         formatters = {

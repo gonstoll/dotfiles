@@ -10,7 +10,7 @@ local M = {
 -- Merge two tables
 ---@param t1 table
 ---@param t2 table
-M.merge_table = function(t1, t2)
+function M.merge_table(t1, t2)
     for k, v in pairs(t2) do
         t1[k] = v
     end
@@ -19,7 +19,7 @@ end
 
 -- Create a function that returns a tagged keymap description
 ---@param plugin_name string
-M.plugin_keymap_desc = function(plugin_name)
+function M.plugin_keymap_desc(plugin_name)
     ---@param desc string
     return function(desc)
         -- Capitalize plugin name and concat with desc
@@ -32,7 +32,7 @@ end
 
 -- Create a command that centers the screen after running the callback
 ---@param callback function
-M.cmd_center = function(callback)
+function M.cmd_center(callback)
     return function()
         callback()
         vim.cmd("normal! zz")
