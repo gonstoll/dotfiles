@@ -57,6 +57,9 @@ local function on_attach(client, bufnr)
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }))
     end, "Toggle inlay hints")
     keyset("n", "<leader>fa", function()
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+            return
+        end
         require("conform").format({ lsp_format = "fallback", async = true })
     end, "Format current buffer with LSP")
 
