@@ -1,5 +1,5 @@
 return {
-    { "neovim/nvim-lspconfig" },
+    {"neovim/nvim-lspconfig"},
 
     {
         "b0o/SchemaStore.nvim",
@@ -13,7 +13,7 @@ return {
         build = ":MasonUpdate",
         event = "VeryLazy",
         opts = {
-            ui = { border = "single" },
+            ui = {border = "single"},
             ensure_installed = {
                 "js-debug-adapter",
                 "black",
@@ -73,8 +73,7 @@ return {
         opts = {
             notification = {
                 window = {
-                    winblend = 1,
-                    normal_hl = "NormalFloat",
+                    border = "single",
                 },
             },
         },
