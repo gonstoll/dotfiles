@@ -184,7 +184,7 @@ end
 
 function M.help()
     return table.concat({
-        "%#Statusline# ",
+        "%#Statusline#",
         filepath(),
         filename(),
         "%#Statusline#",

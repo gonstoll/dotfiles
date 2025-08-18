@@ -26,7 +26,7 @@ return {
             Normal = {bg = "no_bg"},
             Cursor = {bg = "cursor_bg", fg = "cursor_fg"},
             Directory = {fg = "foam", bold = false},
-            StatusLine = {bg = "surface", fg = "subtle"},
+            StatusLine = {bg = "none", fg = "subtle"},
             StatusLineTerm = {link = "StatusLine"},
             StatusLineNC = {link = "StatusLine"},
             --- gitsigns

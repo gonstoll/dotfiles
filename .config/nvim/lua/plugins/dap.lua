@@ -3,7 +3,7 @@ local desc_dapui = Utils.plugin_keymap_desc("dapui")
 local desc_go = Utils.plugin_keymap_desc("dap go")
 local desc_lua = Utils.plugin_keymap_desc("dap lua")
 
-local js_filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" }
+local js_filetypes = {"typescript", "javascript", "typescriptreact", "javascriptreact"}
 
 ---@param config {args?:string[]|fun():string[]?}
 local function get_args(config)
@@ -20,14 +20,14 @@ end
 local types_enabled = true
 local toggle_types = function()
     types_enabled = not types_enabled
-    require("dapui").update_render({ max_type_length = types_enabled and -1 or 0 })
+    require("dapui").update_render({max_type_length = types_enabled and -1 or 0})
 end
 
 return {
     "mfussenegger/nvim-dap",
     lazy = true,
     dependencies = {
-        { "theHamsta/nvim-dap-virtual-text", opts = {} },
+        {"theHamsta/nvim-dap-virtual-text", opts = {}},
 
         {
             "rcarriga/nvim-dap-ui",
@@ -39,22 +39,22 @@ return {
             },
             ---@type dapui.Config
             opts = {
-                floating = { border = "single" },
+                floating = {border = "single"},
                 layouts = {
                     {
                         elements = {
-                            { id = "scopes", size = 0.25 },
-                            { id = "breakpoints", size = 0.25 },
-                            { id = "stacks", size = 0.25 },
-                            { id = "watches", size = 0.25 },
+                            {id = "scopes", size = 0.25},
+                            {id = "breakpoints", size = 0.25},
+                            {id = "stacks", size = 0.25},
+                            {id = "watches", size = 0.25},
                         },
                         position = "left",
                         size = 40,
                     },
                     {
                         elements = {
-                            { id = "console", size = 0.6 },
-                            { id = "repl", size = 0.4 },
+                            {id = "console", size = 0.6},
+                            {id = "repl", size = 0.4},
                         },
                         position = "bottom",
                         size = 10,
@@ -126,7 +126,7 @@ return {
                 --     {width = math.floor(vim.o.columns * 0.20)},
                 --     'aboveleft vsplit'
                 -- ).toggle()
-                widgets.centered_float(widgets.scopes, { border = "single" })
+                widgets.centered_float(widgets.scopes, {border = "single"})
             end,
             desc = desc("Widget - Scopes"),
         },
@@ -151,13 +151,13 @@ return {
             end
         end
 
-        vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
+        vim.api.nvim_set_hl(0, "DapStoppedLine", {default = true, link = "Visual"})
 
         for name, sign in pairs(Utils.icons.dap) do
-            sign = type(sign) == "table" and sign or { sign }
+            sign = type(sign) == "table" and sign or {sign}
             vim.fn.sign_define(
                 "Dap" .. name,
-                { text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3] }
+                {text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3]}
             )
         end
 
@@ -238,7 +238,7 @@ return {
                     request = "launch",
                     program = "${file}",
                     cwd = "${workspaceFolder}",
-                    args = { "${file}" },
+                    args = {"${file}"},
                     sourceMaps = true,
                     sourceMapPathOverrides = {
                         ["./*"] = "${workspaceFolder}/src/*",
@@ -258,7 +258,7 @@ return {
                     type = "pwa-node",
                     request = "launch",
                     runtimeExecutable = "node",
-                    runtimeArgs = { "${workspaceFolder}/node_modules/.bin/jest", "--runInBand" },
+                    runtimeArgs = {"${workspaceFolder}/node_modules/.bin/jest", "--runInBand"},
                     rootPath = "${workspaceFolder}",
                     cwd = "${workspaceFolder}",
                     console = "integratedTerminal",
@@ -273,10 +273,10 @@ return {
                     request = "launch",
                     cwd = vim.fn.getcwd(),
                     program = "${workspaceFolder}/node_modules/vitest/vitest.mjs",
-                    args = { "run", "${file}" },
+                    args = {"run", "${file}"},
                     autoAttachChildProcesses = true,
                     smartStep = true,
-                    skipFiles = { "<node_internals>/**", "node_modules/**" },
+                    skipFiles = {"<node_internals>/**", "node_modules/**"},
                 },
                 -- Debug web applications (client side)
                 {
@@ -286,7 +286,7 @@ return {
                     url = function()
                         local co = coroutine.running()
                         return coroutine.create(function()
-                            vim.ui.input({ prompt = "Enter URL: ", default = "http://localhost:3000" }, function(url)
+                            vim.ui.input({prompt = "Enter URL: ", default = "http://localhost:3000"}, function(url)
                                 if url == nil or url == "" then
                                     return
                                 else
