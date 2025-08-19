@@ -42,3 +42,6 @@ Library/Application Support/iTerm2/*
 .config/obsidian/workspace.json
 .config/obsidian/types.json
 .config/obsidian/graph.json
+
+# Yazi
+.config/yazi/*.toml-*
