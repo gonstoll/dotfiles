@@ -37,15 +37,6 @@ autocmd({"WinLeave", "BufLeave"}, {
     end,
 })
 
-autocmd("ColorScheme", {
-    group = augroup("cursor-highlight", {}),
-    callback = function()
-        if vim.o.background == "light" then
-            vim.cmd("highlight! clear Cursor")
-        end
-    end,
-})
-
 autocmd("TermOpen", {
     group = augroup("custom-term-open", {}),
     callback = function()

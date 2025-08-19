@@ -8,8 +8,8 @@ return {
         palette = {
             dawn = {
                 no_bg = "#faf4ed",
-                cursor_bg = "#000000",
-                cursor_fg = "#ffffff",
+                cursor_bg = "#998f97",
+                cursor_fg = "#575279",
             },
             moon = {
                 gold = "#f6d5a7",
