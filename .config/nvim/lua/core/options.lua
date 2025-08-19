@@ -1,6 +1,6 @@
 vim.cmd("colorscheme rose-pine")
 
-vim.opt.guicursor = "a:block/,a:blinkoff200-blinkon400-Cursor/lCursor"
+vim.opt.guicursor = "a:block-Cursor/lCursor"
 vim.opt.cursorline = false
 
 vim.opt.clipboard = "unnamedplus"
