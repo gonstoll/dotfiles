@@ -164,8 +164,7 @@ function M.active()
     return table.concat({
         -- update_mode_colors(),
         -- mode(),
-        "%#Statusline# ",
-        filepath(),
+        "%#Statusline#",
         filename(),
         modified(),
         vcs(),
@@ -179,13 +178,16 @@ end
 
 -- Inactive statusline, usually when a window is not focused
 function M.inactive()
-    return " %f "
+    return table.concat({
+        "%#Statusline#",
+        filename(),
+        modified(),
+    })
 end
 
 function M.help()
     return table.concat({
         "%#Statusline#",
-        filepath(),
         filename(),
         "%#Statusline#",
         "%=%#StatusLineExtra#",

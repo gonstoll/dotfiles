@@ -28,7 +28,7 @@ return {
             Directory = {fg = "foam", bold = false},
             StatusLine = {bg = "none", fg = "clear"},
             StatusLineTerm = {bg = "base", fg = "subtle"},
-            StatusLineNC = {bg = "base", fg = "subtle"},
+            StatusLineNC = {bg = "none", fg = "subtle"},
             --- gitsigns
             StatusLineGitSignsAdd = {bg = "none", fg = "pine"},
             StatusLineGitSignsChange = {bg = "none", fg = "gold"},
