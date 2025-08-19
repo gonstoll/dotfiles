@@ -5,6 +5,7 @@ os:
   editPreset: nvim
 
 gui:
+  useHunkModeInStagingView: false
   border: 'single'
   branchColors:
     'master': red
