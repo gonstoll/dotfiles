@@ -25,21 +25,21 @@ vim.wo.foldmethod = "expr" -- Set foldmethod to expr
 vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.fillchars = {fold = " ", foldopen = "", foldsep = " ", foldclose = ""}
 vim.opt.diffopt = {
-    "internal",
-    "filler",
-    "closeoff",
-    "indent-heuristic",
-    "linematch:60",
-    "algorithm:histogram",
-    "context:20",
-    "iwhiteall",
+  "internal",
+  "filler",
+  "closeoff",
+  "indent-heuristic",
+  "linematch:60",
+  "algorithm:histogram",
+  "context:20",
+  "iwhiteall",
 }
 
 vim.opt.swapfile = false
 vim.opt.backup = false
 
 vim.opt.wrap = false
-vim.opt.textwidth = 80
+vim.opt.textwidth = 120
 vim.opt.formatexpr = "v:lua.require'conform'.formatexpr()"
 
 vim.opt.hlsearch = false
