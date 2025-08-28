@@ -25,14 +25,14 @@ vim.wo.foldmethod = "expr" -- Set foldmethod to expr
 vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.fillchars = {fold = " ", foldopen = "", foldsep = " ", foldclose = ""}
 vim.opt.diffopt = {
-  "internal",
-  "filler",
-  "closeoff",
-  "indent-heuristic",
-  "linematch:60",
-  "algorithm:histogram",
-  "context:20",
-  "iwhiteall",
+    "internal",
+    "filler",
+    "closeoff",
+    "indent-heuristic",
+    "linematch:60",
+    "algorithm:histogram",
+    "context:20",
+    "iwhiteall",
 }
 
 vim.opt.swapfile = false
@@ -57,6 +57,7 @@ vim.opt.mouse = "a"
 vim.opt.wildignore:append({"*/node_modules/*"})
 vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 -- vim.opt.showtabline = 0
+vim.opt.tabline = "%!v:lua.require('tabline').setup()"
 
 -- Grep format
 vim.opt.grepprg = "rg --vimgrep"
