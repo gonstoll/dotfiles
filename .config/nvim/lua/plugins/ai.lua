@@ -28,9 +28,9 @@ return {
 
     {
         "CopilotC-Nvim/CopilotChat.nvim",
-        cmd = { "CopilotChat" },
-        dependencies = { "zbirenbaum/copilot.lua", "nvim-lua/plenary.nvim" },
-        opts = { debug = false },
+        cmd = {"CopilotChat"},
+        dependencies = {"zbirenbaum/copilot.lua", "nvim-lua/plenary.nvim"},
+        opts = {debug = false},
     },
 
     {
@@ -47,7 +47,7 @@ return {
             "zbirenbaum/copilot.lua",
         },
         keys = {
-            { "<leader>ak", ":AvanteChat<CR>", desc = "Avante: Chat" },
+            {"<leader>ak", ":AvanteChat<CR>", desc = "Avante: Chat"},
         },
         opts = {
             provider = "gemini",

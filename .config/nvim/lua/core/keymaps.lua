@@ -17,8 +17,8 @@ keyset("n", "t[", ":tabprev<CR>", {desc = "Previous tab"})
 keyset("n", "t]", ":tabnext<CR>", {desc = "Next tab"})
 
 -- Split window
-keyset("n", "<leader>ss", ":split<Return><C-w>w", {desc = "Split window horizontally"})   -- Horizontal
-keyset("n", "<leader>sv", ":vsplit<Return><C-w>w", {desc = "Split window vertically"})    -- Vertical
+keyset("n", "<leader>ss", ":split<Return><C-w>w", {desc = "Split window horizontally"}) -- Horizontal
+keyset("n", "<leader>sv", ":vsplit<Return><C-w>w", {desc = "Split window vertically"})  -- Vertical
 
 -- Move between qf items
 keyset("n", "<C-p>", "<cmd>cprev<CR>zz", {desc = "Previous quickfix item"})

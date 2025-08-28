@@ -8,28 +8,28 @@ return {
     opts = {
         keymap = {
             preset = "enter",
-            ["<C-y>"] = { "show", "show_documentation", "hide_documentation" },
-            ["<C-u>"] = { "scroll_documentation_up", "fallback" },
-            ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+            ["<C-y>"] = {"show", "show_documentation", "hide_documentation"},
+            ["<C-u>"] = {"scroll_documentation_up", "fallback"},
+            ["<C-d>"] = {"scroll_documentation_down", "fallback"},
         },
         cmdline = {
             enabled = true,
             completion = {
-                menu = { auto_show = true },
+                menu = {auto_show = true},
                 list = {
-                    selection = { preselect = false },
+                    selection = {preselect = false},
                 },
             },
             keymap = {
                 preset = "enter",
-                ["<C-y>"] = { "show_and_insert" },
-                ["<CR>"] = { "accept_and_enter", "fallback" },
-                ["<Tab>"] = { "select_next", "fallback" },
-                ["<S-Tab>"] = { "select_prev", "fallback" },
+                ["<C-y>"] = {"show_and_insert"},
+                ["<CR>"] = {"accept_and_enter", "fallback"},
+                ["<Tab>"] = {"select_next", "fallback"},
+                ["<S-Tab>"] = {"select_prev", "fallback"},
             },
         },
         sources = {
-            default = { "lsp", "path", "snippets", "buffer", "lazydev" },
+            default = {"lsp", "path", "snippets", "buffer", "lazydev"},
             providers = {
                 lazydev = {
                     name = "LazyDev",
@@ -37,7 +37,7 @@ return {
                     score_offset = 100, -- show at a higher priority than lsp
                 },
                 lsp = {
-                    fallbacks = { "buffer", "path" },
+                    fallbacks = {"buffer", "path"},
                 },
                 snippets = {
                     name = "Snippets",
@@ -45,7 +45,7 @@ return {
                     min_keyword_length = 3,
                     opts = {
                         friendly_snippets = false,
-                        search_paths = { vim.fn.stdpath("config") .. "/snippets/nvim" },
+                        search_paths = {vim.fn.stdpath("config") .. "/snippets/nvim"},
                     },
                 },
             },
@@ -67,10 +67,10 @@ return {
             },
             menu = {
                 draw = {
-                    treesitter = { "lsp" },
+                    treesitter = {"lsp"},
                     columns = {
-                        { "label", gap = 2 },
-                        { "kind_icon", gap = 1, "kind" },
+                        {"label", gap = 2},
+                        {"kind_icon", gap = 1, "kind"},
                     },
                 },
             },
@@ -85,5 +85,5 @@ return {
             },
         },
     },
-    opts_extend = { "sources.default" },
+    opts_extend = {"sources.default"},
 }

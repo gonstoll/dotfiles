@@ -2,10 +2,10 @@ return {
     "nvim-treesitter/nvim-treesitter",
     branch = "master",
     dependencies = {
-        { "windwp/nvim-ts-autotag", opts = {} },
-        { "nvim-treesitter/nvim-treesitter-context", opts = { enable = false } },
+        {"windwp/nvim-ts-autotag", opts = {}},
+        {"nvim-treesitter/nvim-treesitter-context", opts = {enable = false}},
     },
-    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    cmd = {"TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo"},
     build = ":TSUpdate",
     lazy = vim.fn.argc(-1) == 0,
     config = function()
@@ -43,8 +43,8 @@ return {
                 "vimdoc",
                 "yaml",
             },
-            highlight = { enable = true },
-            indent = { enable = true },
+            highlight = {enable = true},
+            indent = {enable = true},
             context_commentstring = {
                 enable = true,
                 enable_autocmd = false,
@@ -61,6 +61,6 @@ return {
         })
 
         local parser_configs = parsers.get_parser_configs()
-        parser_configs.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
+        parser_configs.tsx.filetype_to_parsername = {"javascript", "typescript.tsx"}
     end,
 }

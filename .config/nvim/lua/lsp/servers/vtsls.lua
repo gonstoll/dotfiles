@@ -1,6 +1,6 @@
 local desc = Utils.plugin_keymap_desc("typescript")
 local settings = {
-    updateImportsOnFileMove = { enabled = "always" },
+    updateImportsOnFileMove = {enabled = "always"},
     format = {
         enable = false,
         insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false,
@@ -11,12 +11,12 @@ local settings = {
             or "auto",
     },
     inlayHints = {
-        parameterNames = { enabled = "literals" },
-        parameterTypes = { enabled = true },
-        variableTypes = { enabled = true },
-        propertyDeclarationTypes = { enabled = true },
-        functionLikeReturnTypes = { enabled = true },
-        enumMemberValues = { enabled = true },
+        parameterNames = {enabled = "literals"},
+        parameterTypes = {enabled = true},
+        variableTypes = {enabled = true},
+        propertyDeclarationTypes = {enabled = true},
+        functionLikeReturnTypes = {enabled = true},
+        enumMemberValues = {enabled = true},
     },
 }
 
@@ -44,7 +44,7 @@ return {
                 vim.lsp.buf.code_action({
                     apply = true,
                     context = {
-                        only = { "source.organizeImports" },
+                        only = {"source.organizeImports"},
                         diagnostics = {},
                     },
                 })
@@ -57,7 +57,7 @@ return {
                 vim.lsp.buf.code_action({
                     apply = true,
                     context = {
-                        only = { "source.addMissingImports.ts" },
+                        only = {"source.addMissingImports.ts"},
                         diagnostics = {},
                     },
                 })
@@ -70,7 +70,7 @@ return {
                 vim.lsp.buf.code_action({
                     apply = true,
                     context = {
-                        only = { "source.removeUnused.ts" },
+                        only = {"source.removeUnused.ts"},
                         diagnostics = {},
                     },
                 })
@@ -83,7 +83,7 @@ return {
                 vim.lsp.buf.code_action({
                     apply = true,
                     context = {
-                        only = { "source.fixAll.ts" },
+                        only = {"source.fixAll.ts"},
                         diagnostics = {},
                     },
                 })
@@ -93,7 +93,7 @@ return {
         {
             "<leader>tt",
             function()
-                Utils.lsp.execute({ command = "typescript.selectTypeScriptVersion" })
+                Utils.lsp.execute({command = "typescript.selectTypeScriptVersion"})
             end,
             desc = desc("Select typescript version"),
         },
