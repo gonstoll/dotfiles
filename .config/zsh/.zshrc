@@ -36,9 +36,11 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
+bindkey '^[[Z' reverse-menu-complete # Accept S-Tab to cycle backwards between completion items
 
 # Vi mode
 bindkey -v
+bindkey -M viins '^W' backward-kill-word
 
 # Use vim keys in tab complete menu (2nd tab press):
 bindkey -M menuselect 'h' vi-backward-char
