@@ -26,11 +26,12 @@ if [[ $# -eq 1 ]]; then
     selected="$1"
 else
     selected=$(find "${DIRECTORIES[@]}" -mindepth 1 -maxdepth 1 -type d | fzf \
-            --border=rounded \
-            --border-label="[tmux sessionizer]" \
-            --prompt="  " \
+            --style minimal \
             --no-bold \
             --height=100% \
+            --no-unicode \
+            --margin=10% \
+            --no-color \
         )
 fi
 

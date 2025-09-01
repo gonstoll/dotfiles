@@ -38,7 +38,9 @@ export BAT_CONFIG_PATH="$HOME/.config/bat/bat.conf"
 
 # Fzf
 show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
-export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+export FZF_DEFAULT_OPTS='--style=minimal --no-bold --no-unicode --height=100% --margin=10% --color=bw'
+export FZF_CTRL_R_OPTS="--margin=0 --height=50%"
+export FZF_CTRL_T_OPTS="--height=50% --preview '$show_file_or_dir_preview'"
 
 # Set 1ms timeout for Esc press so we can switch
 # between vi "normal" and "command" modes faster
