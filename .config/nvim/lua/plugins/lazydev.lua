@@ -11,6 +11,7 @@ return {
             {path = "luvit-meta/library", words = {"vim%.uv"}},
             {path = "snacks.nvim", words = {"Snacks"}},
             {"nvim-dap-ui"},
+            {"vague.nvim"},
             -- {path = 'wezterm-types', mods = {'wezterm'}},
         },
     },

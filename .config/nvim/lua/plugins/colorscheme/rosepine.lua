@@ -17,7 +17,7 @@ return {
                 iris = "#d9c7ef",
                 rose = "#ebbcba",
                 pine = "#437e91",
-                no_bg = "#000000",
+                no_bg = "#141415",
                 cursor_bg = "#ffffff",
                 cursor_fg = "#000000",
             },
