@@ -22,7 +22,7 @@ if [ "$run_tests" = true ]; then
     npx playwright merge-reports --reporter html "$report_dir"
 fi
 
-if [ ! -f "$download_dir/report.zip" ]; then
+if [[ ! $(find "$download_dir" -maxdepth 1 -name "report*.zip") ]]; then
     print_warning "No new report file found. Runnning existing reports"
     npx playwright merge-reports --reporter html "$report_dir"
 fi
@@ -32,7 +32,7 @@ if [ ! -d "$report_dir" ]; then
 fi
 
 print_header "Moving report to destination directory"
-mv "$download_dir/report.zip" "$report_dest"
+find "$download_dir" -maxdepth 1 -name "report*.zip" -exec mv {} "$report_dir" \;
 
 print_header "Running reports"
 npx playwright merge-reports --reporter html "$report_dir"
