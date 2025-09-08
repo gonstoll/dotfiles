@@ -32,6 +32,7 @@ brew "neovim"
 brew "node"
 brew "php", restart_service: true
 brew "planetscale/tap/pscale"
+brew "sst/tap/opencode"
 brew "pnpm"
 brew "powerlevel10k"
 brew "ripgrep"
