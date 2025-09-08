@@ -22,8 +22,8 @@ return {
             {"<leader>TW", function() require("neotest").watch.toggle(vim.fn.expand("%")) end, desc = desc("Toggle watch mode (not working with jest)")},
             {"<leader>Tl", function() require("neotest").run.run_last() end, desc = desc("Run Last")},
             {"<leader>Ts", function() require("neotest").summary.toggle() end, desc = desc("Toggle Summary")},
-            {"<leader>To", function() require("neotest").output.open({enter = true, auto_close = true}) end, desc = desc("Show Output")},
-            {"<leader>TO", function() require("neotest").output_panel.toggle() end, desc = desc("Toggle Output Panel")},
+            {"<leader>TO", function() require("neotest").output.open({enter = true, auto_close = true}) end, desc = desc("Show Output")},
+            {"<leader>To", function() require("neotest").output_panel.toggle() end, desc = desc("Toggle Output Panel")},
             {"<leader>TS", function() require("neotest").run.stop() end, desc = desc("Stop")},
             {
                 "<leader>Tw",
