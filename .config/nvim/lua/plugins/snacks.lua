@@ -71,13 +71,13 @@ return {
                 desc = desc("Rename File"),
             },
             {
-                "<leader>gy",
+                "<leader>gY",
                 function() snacks.gitbrowse() end,
                 desc = desc("Open line(s) in browser"),
                 mode = {"n", "v"},
             },
             {
-                "<leader>gY",
+                "<leader>gy",
                 function()
                     snacks.gitbrowse.open({
                         open = function(url)
