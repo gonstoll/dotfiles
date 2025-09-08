@@ -11,7 +11,6 @@ return {
         "thenbe/neotest-playwright",
         "fredrikaverpil/neotest-golang",
     },
-    commit = "52fca671",
     keys = function()
         local desc = Utils.plugin_keymap_desc("neotest")
         return {
