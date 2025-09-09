@@ -6,11 +6,12 @@ return {
         "nvim-lua/plenary.nvim",
         "antoinemadec/FixCursorHold.nvim",
         -- Adapters
-        "gonstoll/neotest-jest",
+        "nvim-neotest/neotest-jest",
         "marilari88/neotest-vitest",
         "thenbe/neotest-playwright",
         "fredrikaverpil/neotest-golang",
     },
+    commit = "52fca671",
     keys = function()
         local desc = Utils.plugin_keymap_desc("neotest")
         return {
@@ -54,6 +55,18 @@ return {
                         return string.match(file, "(.-/[^/]+/)src")
                     end
                     return vim.fn.getcwd()
+                end,
+                ---@async
+                ---@param file_path string?
+                ---@return boolean
+                isTestFile = function(file_path)
+                    if not file_path then
+                        return false
+                    end
+
+                    -- return vim.fn.fnamemodify(file_path, ":e:e") == "spec.js"
+                    return require("neotest-jest.jest-util").defaultIsTestFile(file_path) or
+                        string.match(file_path, "**/spec.[tj]sx?$")
                 end,
             },
             ["neotest-vitest"] = {
