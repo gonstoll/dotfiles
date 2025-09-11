@@ -370,5 +370,7 @@ return {
                 port = 8086,
             },
         }
+
+        require("overseer").enable_dap()
     end,
 }
