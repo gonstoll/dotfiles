@@ -159,49 +159,47 @@ end
 
 local M = {}
 
--- Active statusline
-function M.active()
-    return table.concat({
-        -- update_mode_colors(),
-        -- mode(),
-        "%#Statusline#",
-        filename(),
-        modified(),
-        vcs(),
-        "%#Statusline#",
-        "%=%#StatusLineExtra#",
-        lsp(),
-        filetype(),
-        lineinfo(),
-    })
-end
+---@param type "active" | "inactive" | "help" | "oil"
+function M.setup(type)
+    if type == "active" then
+        return table.concat({
+            "%#Statusline#",
+            filename(),
+            modified(),
+            vcs(),
+            "%#Statusline#",
+            "%=%#StatusLineExtra#",
+            lsp(),
+            filetype(),
+            lineinfo(),
+        })
+    end
 
--- Inactive statusline, usually when a window is not focused
-function M.inactive()
-    return table.concat({
-        "%#Statusline#",
-        filename(),
-        modified(),
-    })
-end
+    if type == "inactive" then
+        return table.concat({
+            "%#Statusline#",
+            filename(),
+            modified(),
+        })
+    end
 
-function M.help()
-    return table.concat({
-        "%#Statusline#",
-        filename(),
-        "%#Statusline#",
-        "%=%#StatusLineExtra#",
-        filetype(),
-        lineinfo(),
-    })
-end
+    if type == "help" then
+        return table.concat({
+            "%#Statusline#",
+            filename(),
+            "%#Statusline#",
+            "%=%#StatusLineExtra#",
+            filetype(),
+            lineinfo(),
+        })
+    end
 
--- Oil statusline
-function M.oil()
-    return table.concat({
-        "%#Statusline#  ",
-        filepath(),
-    })
+    if type == "oil" then
+        return table.concat({
+            "%#Statusline#  ",
+            filepath(),
+        })
+    end
 end
 
 return M
