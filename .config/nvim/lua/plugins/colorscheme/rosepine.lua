@@ -12,11 +12,11 @@ return {
                 cursor_fg = "#575279",
             },
             moon = {
-                gold = "#f6d5a7",
-                foam = "#a1d1da",
-                iris = "#d9c7ef",
-                rose = "#ebbcba",
-                pine = "#437e91",
+                -- gold = "#f6d5a7",
+                -- foam = "#a1d1da",
+                -- iris = "#d9c7ef",
+                -- rose = "#ebbcba",
+                -- pine = "#437e91",
                 no_bg = "#141415",
                 cursor_bg = "#ffffff",
                 cursor_fg = "#000000",
@@ -29,16 +29,6 @@ return {
             StatusLine = {bg = "no_bg", fg = "clear"},
             StatusLineTerm = {bg = "base", fg = "subtle"},
             StatusLineNC = {bg = "no_bg", fg = "subtle"},
-            --- gitsigns
-            StatusLineGitSignsAdd = {bg = "no_bg", fg = "pine"},
-            StatusLineGitSignsChange = {bg = "no_bg", fg = "gold"},
-            StatusLineGitSignsDelete = {bg = "no_bg", fg = "rose"},
-            --- diagnostics
-            StatusLineDiagnosticSignError = {bg = "no_bg", fg = "love"},
-            StatusLineDiagnosticSignWarn = {bg = "no_bg", fg = "gold"},
-            StatusLineDiagnosticSignInfo = {bg = "no_bg", fg = "foam"},
-            StatusLineDiagnosticSignHint = {bg = "no_bg", fg = "iris"},
-            StatusLineDiagnosticSignOk = {bg = "no_bg", fg = "pine"},
         },
     },
 }

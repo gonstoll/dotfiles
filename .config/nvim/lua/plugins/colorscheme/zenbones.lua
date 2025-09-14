@@ -81,16 +81,6 @@ return {
                         TodoFgTODO({theme.TodoFgTODO, fg = palette[bg].water}),
                         -- Statusline
                         StatusLine({theme.StatusLine, bg = statusline_bg}),
-                        --- gitsigns
-                        StatusLineGitSignsAdd({bg = statusline_bg, fg = theme.GitSignsAdd.fg}),
-                        StatusLineGitSignsChange({bg = statusline_bg, fg = theme.GitSignsChange.fg}),
-                        StatusLineGitSignsDelete({bg = statusline_bg, fg = theme.GitSignsDelete.fg}),
-                        --- diagnostics
-                        StatusLineDiagnosticSignError({bg = statusline_bg, fg = theme.DiagnosticError.fg}),
-                        StatusLineDiagnosticSignWarn({bg = statusline_bg, fg = theme.DiagnosticWarn.fg}),
-                        StatusLineDiagnosticSignInfo({bg = statusline_bg, fg = theme.DiagnosticInfo.fg}),
-                        StatusLineDiagnosticSignHint({bg = statusline_bg, fg = theme.DiagnosticHint.fg}),
-                        StatusLineDiagnosticSignOk({bg = statusline_bg, fg = theme.DiagnosticOk.fg}),
                     }
                 end)
 

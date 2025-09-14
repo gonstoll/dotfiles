@@ -94,16 +94,16 @@ local function lsp()
     local info = ""
 
     if count["errors"] ~= 0 then
-        errors = " %#StatusLineDiagnosticSignError#" .. "E" .. count["errors"]
+        errors = " %#DiagnosticSignError#" .. "E" .. count["errors"]
     end
     if count["warnings"] ~= 0 then
-        warnings = " %#StatusLineDiagnosticSignWarn#" .. "W" .. count["warnings"]
+        warnings = " %#DiagnosticSignWarn#" .. "W" .. count["warnings"]
     end
     if count["hints"] ~= 0 then
-        hints = " %#StatusLineDiagnosticSignHint#" .. "H" .. count["hints"]
+        hints = " %#DiagnosticSignHint#" .. "H" .. count["hints"]
     end
     if count["info"] ~= 0 then
-        info = " %#StatusLineDiagnosticSignInfo#" .. "I" .. count["info"]
+        info = " %#DiagnosticSignInfo#" .. "I" .. count["info"]
     end
 
     return errors .. warnings .. hints .. info .. "%#Statusline# "
@@ -115,12 +115,12 @@ local vcs = function()
         return ""
     end
     local added = git_info.added and
-        ("%#StatusLineGitSignsAdd#" .. Utils.icons.git.added .. " " .. git_info.added .. " ") or
+        ("%#GitSignsAdd#" .. Utils.icons.git.added .. " " .. git_info.added .. " ") or
         ""
     local changed = git_info.changed and
-        ("%#StatusLineGitSignsChange#" .. Utils.icons.git.changed .. " " .. git_info.changed .. " ") or ""
+        ("%#GitSignsChange#" .. Utils.icons.git.changed .. " " .. git_info.changed .. " ") or ""
     local removed = git_info.removed and
-        ("%#StatusLineGitSignsDelete#" .. Utils.icons.git.deleted .. " " .. git_info.removed .. " ") or ""
+        ("%#GitSignsDelete#" .. Utils.icons.git.deleted .. " " .. git_info.removed .. " ") or ""
     if git_info.added == 0 then
         added = ""
     end
