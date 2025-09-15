@@ -21,27 +21,25 @@ local function on_attach(client, bufnr)
     keyset("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, "Workspace Add Folder")
     keyset("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, "Workspace Remove Folder")
     keyset("n", "K", vim.lsp.buf.hover, "Hover Documentation")
-    keyset("n", "gr", vim.lsp.buf.references, "Go to references")
+    -- keyset("n", "gr", vim.lsp.buf.references, "Go to references")
     keyset("n", "gd", Utils.cmd_center(vim.lsp.buf.definition), "Go to Definition")
     keyset("n", "gD", Utils.cmd_center(vim.lsp.buf.declaration), "Go to Declaration")
+    keyset("n", "<leader>gd", function()
+        vim.cmd(":vsplit | lua vim.lsp.buf.definition()")
+    end, "Go to definition (split)")
+    keyset("n", "<leader>Gd", function()
+        vim.cmd(":belowright split | lua vim.lsp.buf.definition()")
+    end, "Go to definitio (vsplit)")
     keyset("n", "gi", Utils.cmd_center(vim.lsp.buf.implementation), "Go to Implementation")
     keyset("n", "[d", Utils.cmd_center(vim.diagnostic.goto_prev), "Previous diagnostic")
     keyset("n", "]d", Utils.cmd_center(vim.diagnostic.goto_next), "Next diagnostic")
-    keyset(
-        "n",
-        "[e",
-        Utils.cmd_center(function()
-            vim.diagnostic.goto_prev({severity = "ERROR"})
-        end),
-        "Previous diagnostic (error)"
+    keyset("n", "[e", Utils.cmd_center(function()
+        vim.diagnostic.goto_prev({severity = "ERROR"})
+    end), "Previous diagnostic (error)"
     )
-    keyset(
-        "n",
-        "]e",
-        Utils.cmd_center(function()
-            vim.diagnostic.goto_next({severity = "ERROR"})
-        end),
-        "Next diagnostic (error)"
+    keyset("n", "]e", Utils.cmd_center(function()
+        vim.diagnostic.goto_next({severity = "ERROR"})
+    end), "Next diagnostic (error)"
     )
     keyset("n", "gk", vim.diagnostic.open_float, "Open diagnostics")
     keyset("n", "gK", function()
