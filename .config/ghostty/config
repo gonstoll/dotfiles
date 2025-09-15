@@ -9,7 +9,8 @@ adjust-underline-position = 2
 adjust-cell-height = -1
 
 # Windows, colors and styles
-theme = rose-pine-muted
+theme = rose-pine
+background = #141415
 macos-titlebar-style = hidden
 window-padding-y = 2,0
 window-padding-x = 2
