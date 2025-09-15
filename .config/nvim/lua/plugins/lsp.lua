@@ -74,6 +74,7 @@ return {
             notification = {
                 window = {
                     border = "single",
+                    winblend = 0,
                 },
             },
         },

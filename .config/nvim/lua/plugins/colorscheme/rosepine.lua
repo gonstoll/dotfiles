@@ -3,8 +3,7 @@ return {
     name = "rose-pine",
     priority = 1000,
     opts = {
-        dark_variant = "moon",
-        styles = {italic = false},
+        styles = {italic = false, transparency = true},
         palette = {
             dawn = {
                 no_bg = "#faf4ed",
