@@ -20,6 +20,10 @@ return {
                 cursor_bg = "#ffffff",
                 cursor_fg = "#000000",
             },
+            main = {
+                cursor_bg = "#ffffff",
+                cursor_fg = "#000000",
+            },
         },
         highlight_groups = {
             Normal = {bg = "no_bg"},
@@ -29,5 +33,12 @@ return {
             StatusLineTerm = {bg = "base", fg = "subtle"},
             StatusLineNC = {bg = "no_bg", fg = "subtle"},
         },
+
+        before_highlight = function(group, highlight, palette)
+            if group:match("^DiagnosticVirtualText") and highlight.bg == nil then
+                highlight.bg = highlight.fg
+                highlight.blend = 10
+            end
+        end,
     },
 }
