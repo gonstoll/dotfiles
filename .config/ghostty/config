@@ -7,9 +7,11 @@ font-feature = -liga
 font-feature = -dlig
 adjust-underline-position = 2
 adjust-cell-height = -1
+cursor-style = block
+cursor-style-blink = true
 
 # Windows, colors and styles
-theme = rose-pine
+theme = Rose Pine
 background = #141415
 macos-titlebar-style = hidden
 window-padding-y = 2,0
@@ -20,6 +22,7 @@ background-opacity = 0.95
 # macOS stuff
 macos-option-as-alt = left
 macos-window-shadow = false
+shell-integration-features = no-cursor
 
 # Keys
 # Ascii device control codes: https://www3.rocketsoftware.com/bluezone/help/v42/en/bzadmin/APPENDIX_C/ASCII_Character_Set.htm
