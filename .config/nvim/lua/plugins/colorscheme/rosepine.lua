@@ -3,7 +3,7 @@ return {
     name = "rose-pine",
     priority = 1000,
     opts = {
-        styles = {italic = false, transparency = true},
+        styles = {italic = false},
         palette = {
             dawn = {
                 no_bg = "#faf4ed",
@@ -21,6 +21,7 @@ return {
                 cursor_fg = "#000000",
             },
             main = {
+                no_bg = "#141415",
                 cursor_bg = "#ffffff",
                 cursor_fg = "#000000",
             },
