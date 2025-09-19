@@ -3,7 +3,6 @@ local M = {
     icons = require("utils.icons"),
     fzf = require("utils.fzf"),
     lsp = require("utils.lsp"),
-    redir = require("utils.redir"),
     browse = require("utils.browse"),
 }
 

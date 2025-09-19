@@ -72,26 +72,3 @@ autocmd("BufWritePost", {
         end
     end,
 })
-
--- Redir
-vim.api.nvim_create_user_command("Redir", Utils.redir.redir, {
-    nargs = "+",
-    complete = "command",
-    range = true,
-    bang = true,
-})
-
-vim.api.nvim_create_user_command("EvalFile", function(args)
-    local bang = args.bang
-    Utils.redir.evaler("%")(bang)
-end, {bar = true, bang = true})
-
-vim.api.nvim_create_user_command("EvalLine", function(args)
-    local bang = args.bang
-    Utils.redir.evaler(".")(bang)
-end, {bar = true, bang = true})
-
-vim.api.nvim_create_user_command("EvalRange", function(args)
-    local bang = args.bang
-    Utils.redir.evaler("'<,'>")(bang)
-end, {bar = true, bang = true, range = true})
