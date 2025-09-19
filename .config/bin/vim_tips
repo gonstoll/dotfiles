@@ -1,0 +1,93 @@
+#!/usr/bin/env python3
+
+import textwrap
+
+insert_mode_tips = [
+    ["<C-t>", "Indents the current line"],
+    ["<C-d>", "De-indents the current line"],
+    ["<C-y>", "Inserts character above"],
+    ["<C-e>", "Inserts character below"],
+    ["<C-i>", "Inserts tab"],
+    ["<C-w>", "Delete word"],
+    ["<C-h>", "Delete character"],
+    [
+        "<C-o>",
+        "One-shot mode: go into normal mode, execute a command and go back to insert mode",
+    ],
+    ["<C-m>", "Insert new-line"],
+    ["<C-g>j", "Go one line above"],
+    ["<C-g>k", "Go one line below"],
+    ["<C-a>", "Inserts last inserted text"],
+    ["<C-u>", "Delete until start of line"],
+    ["<C-x><C-p>", "Completes words that are used in the current file"],
+    ["<C-x><C-n>", "Completes with completion suggestion"],
+]
+
+command_mode_tips = [
+    ["<C-r><C-w>", "Inserts the word the cursor is on"],
+    ["<C-r><C-a>", "Inserts the WORD the cursor is on"],
+    ["<C-d>", "Displays all available commands"],
+    [":s//newword", "Replaces the last searched word"],
+    [":g", "Execute command on lines where pattern matches"],
+    [":v", "Execute command on lines where pattern does not match"],
+    [":g!", "Execute command on lines where pattern does not match"],
+    [":s//&-s", "Appends -s to pattern"],
+    [":g//norm", "norm can be a flag to go into normal mode"],
+    [
+        ":args",
+        "Loads files where you can perform a command. :args file1.md file2.md. Or :args *.md",
+    ],
+    [":argdo", "Executes commands on :args files. :argdo %s/apple/orange/g | update"],
+    [":read", "Puts the contents of the given file into the buffer"],
+    [
+        ":redir",
+        "Writes messages from vim and put them in files, registers, variables (:redir > out.txt, :redir @+)",
+    ],
+    [":redir END", "Ends redir command"],
+]
+
+normal_mode_tips = [
+    ["@:", "Repeats the last : command"],
+    ["gi", "Go to last insert position"],
+    ["ga", "Ascii represnetation of current character"],
+    ["g8", "Hex representation of current character"],
+    ["<C-w>H", "Move horizontal split to vertical split"],
+    ["<C-w>K", "Move vertical split to horizontal split"],
+]
+
+key_width = 12
+desc_width = 60
+padding = 2
+
+
+def print_title(title: str):
+    title_width = len(title)
+    spacing = int(key_width + desc_width / 2) - padding
+
+    print(f"+{'-' * (title_width + key_width + desc_width)}+", end="\n")
+    print(f"|{' ' * (spacing - 4)}{title}{' ' * (spacing - 4)}|")
+    print(f"+{'-' * (title_width + key_width + desc_width)}+", end="\n")
+
+
+def print_body(key: str, desc: str):
+    for idx, wrapped_desc in enumerate(textwrap.wrap(desc, width=60)):
+        if idx == 0:
+            print(f"{key:<12} {wrapped_desc}")
+        else:
+            print(f"{' ' * 12} {wrapped_desc}")
+
+
+def print_tips(tips: list[list[str]], title: str):
+    print_title(title)
+
+    print(f"{'Key':<12} {'Description':<20}")
+    print(f"{'---':<12} {'-----------':<20}")
+
+    for key, desc in tips:
+        print_body(key, desc)
+    print("\n")
+
+
+print_tips(insert_mode_tips, "Insert mode tips")
+print_tips(command_mode_tips, "Command mode tips")
+print_tips(normal_mode_tips, "Normal mode tips")
