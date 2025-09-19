@@ -36,7 +36,7 @@ return {
     {
         "NickvanDyke/opencode.nvim",
         config = function()
-            local desc = Utils.plugin_keymap_desc("dap")
+            local desc = Utils.plugin_keymap_desc("Opencode")
             ---@type opencode.Opts
             vim.g.opencode_opts = {}
 
