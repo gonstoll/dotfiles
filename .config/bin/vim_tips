@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 import textwrap
 
 insert_mode_tips = [
@@ -60,34 +61,54 @@ desc_width = 60
 padding = 2
 
 
-def print_title(title: str):
-    title_width = len(title)
-    spacing = int(key_width + desc_width / 2) - padding
+def print_border():
+    print("+" + "-" * (key_width + padding) + "+" + "-" * (desc_width + padding) + "+")
 
-    print(f"+{'-' * (title_width + key_width + desc_width)}+", end="\n")
-    print(f"|{' ' * (spacing - 4)}{title}{' ' * (spacing - 4)}|")
-    print(f"+{'-' * (title_width + key_width + desc_width)}+", end="\n")
+
+def print_title(title: str):
+    total_width = key_width + padding + desc_width + padding + 1
+    print("+" + "-" * (total_width) + "+")
+    print("|" + title.center(total_width) + "|")
 
 
 def print_body(key: str, desc: str):
-    for idx, wrapped_desc in enumerate(textwrap.wrap(desc, width=60)):
-        if idx == 0:
-            print(f"{key:<12} {wrapped_desc}")
+    wrapped = textwrap.wrap(desc, width=desc_width)
+    for i, line in enumerate(wrapped):
+        if i == 0:
+            print("| " + key.ljust(key_width) + " | " + line.ljust(desc_width) + " |")
         else:
-            print(f"{' ' * 12} {wrapped_desc}")
+            print("| " + " " * key_width + " | " + line.ljust(desc_width) + " |")
+
+
+def print_header():
+    print_border()
+    print(
+        "| " + "Key".ljust(key_width) + " | " + "Description".ljust(desc_width) + " |"
+    )
+    print_border()
 
 
 def print_tips(tips: list[list[str]], title: str):
     print_title(title)
-
-    print(f"{'Key':<12} {'Description':<20}")
-    print(f"{'---':<12} {'-----------':<20}")
-
+    print_header()
     for key, desc in tips:
         print_body(key, desc)
-    print("\n")
+    print_border()
+    print()
 
 
-print_tips(insert_mode_tips, "Insert mode tips")
-print_tips(command_mode_tips, "Command mode tips")
-print_tips(normal_mode_tips, "Normal mode tips")
+if len(sys.argv) == 2:
+    arg = sys.argv[1]
+    if arg == "--insert":
+        print_tips(insert_mode_tips, "Insert mode tips")
+    elif arg == "--command":
+        print_tips(command_mode_tips, "Command mode tips")
+    elif arg == "--normal":
+        print_tips(normal_mode_tips, "Normal mode tips")
+    else:
+        print("Unknown argument: {}".format(arg))
+        print("Valid options: --insert, --command, --normal")
+else:
+    print_tips(insert_mode_tips, "Insert mode tips")
+    print_tips(command_mode_tips, "Command mode tips")
+    print_tips(normal_mode_tips, "Normal mode tips")
