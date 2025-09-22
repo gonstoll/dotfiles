@@ -14,7 +14,7 @@ You can install these dotfiles in two ways:
 Execute the following command:
 
 ```sh
-bash -c "$(curl -fsSL raw.github.com/gonstoll/dotfiles/master/.config/bin/dotfiles)"
+bash -c "$(curl -fsSL raw.github.com/gonstoll/dotfiles/master/install)"
 ```
 
 #### Cloning the repository
@@ -23,7 +23,7 @@ Clone the repository and execute the `dotfiles` script:
 
 ```sh
 git clone https://github.com/gonstoll/dotfiles.git ~/.dotfiles
-chmod +x ~/.dotfiles/.config/bin/dotfiles && ~/.dotfiles/config/bin/dotfiles
+bash ~/.dotfiles/install
 ```
 
 ## What does the installation script do?

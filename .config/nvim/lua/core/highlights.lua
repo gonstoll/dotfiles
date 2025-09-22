@@ -1,1 +1,2 @@
-vim.api.nvim_set_hl(0, "LazyGitBorder", {link = "FloatBorder"})
+vim.api.nvim_set_hl(0, "lazygitborder", {link = "floatborder"})
+vim.api.nvim_set_hl(0, "Normal", {bg = "NONE"})
