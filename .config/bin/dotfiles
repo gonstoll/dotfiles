@@ -16,7 +16,7 @@ if [[ ! -d ${DOTFILES_DIRECTORY} ]]; then
     rm -rf ${HOME}/dotfiles.tar.gz
 fi
 
-cd ${DOTFILES_DIRECTORY}
+cd ${DOTFILES_DIRECTORY} || exit
 
 source ./other/lib/help
 source ./other/lib/list
@@ -173,5 +173,16 @@ fi
 
 source $ZDOTDIR/.zshrc
 chmod +x $XDG_CONFIG_HOME/bin/*
+
+for file in "$XDG_CONFIG_HOME"/bin/*; do
+    if ! command -v go &> /dev/null; then
+        break
+    fi
+    if [[ $file == *.go ]]; then
+        e_header "Installing Go binary for $(basename "$file" .go)..."
+        go install "$file"
+        e_success "Go binary for $(basename "$file" .go) installed!"
+    fi
+done
 
 e_header "All done! You should probably restart your computer, and enjoy your new dotfiles!"
