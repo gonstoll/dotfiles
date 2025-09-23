@@ -2,7 +2,6 @@ return {
     "saghen/blink.cmp",
     version = "1.*",
     event = "InsertEnter",
-    enabled = vim.g.blink_enabled,
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
