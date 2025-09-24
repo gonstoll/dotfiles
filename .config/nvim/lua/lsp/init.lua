@@ -82,13 +82,7 @@ local function on_attach(client, bufnr)
     -- Toggle signature help
     if client:supports_method(methods.textDocument_signatureHelp) then
         keyset("i", "<C-s>", function()
-            local blink_window = require("blink.cmp.completion.windows.menu")
-            local blink = require("blink.cmp")
-            if blink_window.win:is_open() then
-                blink.hide()
-            end
-
-            -- vim.lsp.buf.signature_help()
+            vim.lsp.buf.signature_help()
         end, "Signature help")
     end
 
