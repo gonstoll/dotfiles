@@ -27,13 +27,6 @@ return {
     },
 
     {
-        "CopilotC-Nvim/CopilotChat.nvim",
-        cmd = {"CopilotChat"},
-        dependencies = {"zbirenbaum/copilot.lua", "nvim-lua/plenary.nvim"},
-        opts = {debug = false},
-    },
-
-    {
         "NickvanDyke/opencode.nvim",
         config = function()
             local desc = Utils.plugin_keymap_desc("Opencode")
