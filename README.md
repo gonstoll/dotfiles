@@ -48,7 +48,7 @@ packages. You can opt-out of this by setting the `--no-packages` flag:
 
 ```sh
 # First time installing:
-bash -c "$(curl -fsSL raw.github.com/gonstoll/dotfiles/master/.config/bin/dotfiles) -- --no-packages"
+bash -c "$(curl -fsSL raw.github.com/gonstoll/dotfiles/master/install) -- --no-packages"
 
 # ...or after installation:
 dotfiles --no-packages
@@ -61,7 +61,7 @@ its submodules. You can opt-out of this by setting the `--no-sync` flag:
 
 ```sh
 # First time installing:
-bash -c "$(curl -fsSL raw.github.com/gonstoll/dotfiles/master/.config/bin/dotfiles) -- --no-sync"
+bash -c "$(curl -fsSL raw.github.com/gonstoll/dotfiles/master/install) -- --no-sync"
 
 # ...or after installation:
 dotfiles --no-sync
