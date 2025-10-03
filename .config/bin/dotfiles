@@ -176,6 +176,7 @@ chmod +x $XDG_CONFIG_HOME/bin/*
 
 for file in "$XDG_CONFIG_HOME"/bin/*; do
     if ! command -v go &> /dev/null; then
+        e_error "Go could not be found, skipping Go binary installations."
         break
     fi
     if [[ $file == *.go ]]; then
