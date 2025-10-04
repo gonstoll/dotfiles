@@ -4,6 +4,7 @@ return {
     priority = 1000,
     opts = {
         styles = {italic = false},
+        dim_inactive_windows = true,
         palette = {
             dawn = {
                 no_bg = "#faf4ed",
