@@ -54,6 +54,11 @@ normal_mode_tips = [
     ["g8", "Hex representation of current character"],
     ["<C-w>H", "Move horizontal split to vertical split"],
     ["<C-w>K", "Move vertical split to horizontal split"],
+    ["<C-w>o", "Close all other windows"],
+    ["<C-w>T", "Move split into a new tab"],
+    ["<C-w>x", "Swap splits"],
+    ["<C-w>=", "Resize splits equally"],
+    ["<C-]>", "Navigate to tag. Useful on man pages to navigate to tags (links)"],
 ]
 
 key_width = 12
