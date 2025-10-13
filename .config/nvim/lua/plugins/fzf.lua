@@ -98,7 +98,7 @@ return {
                 ["--info"] = "default",
                 ["--layout"] = "default",
                 ["--margin"] = "0,1",
-                ["--color"] = "16",
+                -- ["--color"] = "16",
             },
             keymap = {
                 builtin = {

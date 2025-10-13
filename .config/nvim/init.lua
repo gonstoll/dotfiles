@@ -6,3 +6,7 @@ _G.Utils = require("utils")
 
 require("core")
 require("lsp")
+
+-- Remove --color flag on fzf opts. Using this until colorscheme adapts
+-- to new base16 color introduced in 0.66.0 (https://github.com/junegunn/fzf/releases/tag/v0.66.0)
+vim.env.FZF_DEFAULT_OPTS = (vim.env.FZF_DEFAULT_OPTS or ""):gsub("%s*%-%-color%=bw", "")
