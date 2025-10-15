@@ -1,3 +1,6 @@
+local sidekick_desc = Utils.plugin_keymap_desc("Sidekick")
+local default_ai_tool = "opencode"
+
 return {
     {
         "zbirenbaum/copilot.lua",
@@ -27,48 +30,78 @@ return {
     },
 
     {
-        "NickvanDyke/opencode.nvim",
-        config = function()
-            local desc = Utils.plugin_keymap_desc("Opencode")
-            ---@type opencode.Opts
-            vim.g.opencode_opts = {}
-
-            -- Required for `opts.auto_reload`
-            vim.opt.autoread = true
-
-            -- Recommended keymaps
-            vim.keymap.set("n", "<leader>ot", function()
-                require("opencode").toggle()
-            end, {desc = desc("Toggle opencode")})
-            vim.keymap.set("n", "<leader>oA", function()
-                require("opencode").ask()
-            end, {desc = desc("Ask opencode")})
-            vim.keymap.set("n", "<leader>oa", function()
-                require("opencode").ask("@cursor: ")
-            end, {desc = desc("Ask opencode about this")})
-            vim.keymap.set("v", "<leader>oa", function()
-                require("opencode").ask("@selection: ")
-            end, {desc = desc("Ask opencode about selection")})
-            vim.keymap.set("n", "<leader>on", function()
-                require("opencode").command("session_new")
-            end, {desc = desc("New opencode session")})
-            vim.keymap.set("n", "<leader>oy", function()
-                require("opencode").command("messages_copy")
-            end, {desc = desc("Copy last opencode response")})
-            vim.keymap.set("n", "<S-C-u>", function()
-                require("opencode").command("messages_half_page_up")
-            end, {desc = desc("Messages half page up")})
-            vim.keymap.set("n", "<S-C-d>", function()
-                require("opencode").command("messages_half_page_down")
-            end, {desc = desc("Messages half page down")})
-            vim.keymap.set({"n", "v"}, "<leader>os", function()
-                require("opencode").select()
-            end, {desc = desc("Select opencode prompt")})
-
-            -- Example: keymap for custom prompt
-            vim.keymap.set("n", "<leader>oe", function()
-                require("opencode").prompt("Explain @cursor and its context")
-            end, {desc = desc("Explain this code")})
-        end,
+        "folke/sidekick.nvim",
+        event = "VeryLazy",
+        ---@type sidekick.Config
+        opts = {
+            nes = {
+                enabled = false,
+            },
+            cli = {
+                mux = {
+                    backend = "tmux",
+                    enabled = true,
+                },
+            },
+        },
+        keys = {
+            {
+                "<tab>",
+                function()
+                    -- if there is a next edit, jump to it, otherwise apply it if any
+                    if not require("sidekick").nes_jump_or_apply() then
+                        return "<Tab>" -- fallback to normal tab
+                    end
+                end,
+                expr = true,
+                desc = sidekick_desc("Goto/Apply next edit suggestion"),
+            },
+            {
+                "<leader>aa",
+                function() require("sidekick.cli").toggle() end,
+                desc = sidekick_desc("Toggle CLI"),
+            },
+            {
+                "<leader>as",
+                function() require("sidekick.cli").select({name = default_ai_tool}) end,
+                -- Or to select only installed tools:
+                -- require("sidekick.cli").select({ filter = { installed = true } })
+                desc = sidekick_desc("Select CLI"),
+            },
+            {
+                "<leader>ad",
+                function() require("sidekick.cli").close() end,
+                desc = sidekick_desc("Detach a CLI session"),
+            },
+            {
+                "<leader>at",
+                function() require("sidekick.cli").send({msg = "{this}", name = default_ai_tool}) end,
+                mode = {"x", "n"},
+                desc = sidekick_desc("Send this"),
+            },
+            {
+                "<leader>af",
+                function() require("sidekick.cli").send({msg = "{file}", name = default_ai_tool}) end,
+                desc = sidekick_desc("Send file"),
+            },
+            {
+                "<leader>av",
+                function() require("sidekick.cli").send({msg = "{selection}", name = default_ai_tool}) end,
+                mode = {"x"},
+                desc = sidekick_desc("Send visual selection content"),
+            },
+            {
+                "<leader>ap",
+                function() require("sidekick.cli").prompt({name = default_ai_tool}) end,
+                mode = {"n", "x"},
+                desc = sidekick_desc("Select prompt"),
+            },
+            -- Opencode keybinds
+            {
+                "<leader>ao",
+                function() require("sidekick.cli").toggle({name = "opencode", focus = true}) end,
+                desc = sidekick_desc("Toggle claude"),
+            },
+        },
     },
 }

@@ -1,7 +1,7 @@
 return {
     "saghen/blink.cmp",
     version = "1.*",
-    event = "InsertEnter",
+    event = {"InsertEnter", "CmdlineEnter"},
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
@@ -10,6 +10,16 @@ return {
             ["<C-y>"] = {"show", "show_documentation", "hide_documentation"},
             ["<C-u>"] = {"scroll_documentation_up", "fallback"},
             ["<C-d>"] = {"scroll_documentation_down", "fallback"},
+            ["<Tab>"] = {
+                "snippet_forward",
+                function() -- sidekick next edit suggestion
+                    return require("sidekick").nes_jump_or_apply()
+                end,
+                function() -- if you are using Neovim's native inline completions
+                    return vim.lsp.inline_completion.get()
+                end,
+                "fallback",
+            },
         },
         cmdline = {
             enabled = true,
