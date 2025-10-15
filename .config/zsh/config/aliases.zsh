@@ -5,10 +5,6 @@ alias fd="cd \$(find . -type d | fzf)" # cd into a directory
 alias lg="lazygit"
 alias g="git"
 
-# Neovim
-alias vim="nvim"
-alias vi="nvim"
-
 # Navigation
 alias ..="cd .. && cd .."
 
@@ -25,3 +21,8 @@ alias ls="eza --icons=always"
 
 # Docker
 alias ld="lazydocker"
+
+# Me being stupid as fuck
+alias claer="clear"
+alias vim="nvim"
+alias vi="nvim"
