@@ -11,8 +11,8 @@ keyset("c", "<C-g>", "<C-f>", {desc = "Edit command in cmdline mode"})
 keyset("n", "<C-s>", "gg<S-v>G", {desc = "Select all"})
 
 -- Tabs
-keyset("n", "<leader>tN", ":tabnew %<CR>", {desc = "New tab"})
-keyset("n", "<leader>tC", ":tabclose<CR>", {desc = "Close tab"})
+keyset("n", "<leader>TN", ":tabnew %<CR>", {desc = "New tab"})
+keyset("n", "<leader>TC", ":tabclose<CR>", {desc = "Close tab"})
 keyset("n", "TP", ":tabprev<CR>", {desc = "Previous tab"})
 keyset("n", "TN", ":tabnext<CR>", {desc = "Next tab"})
 
