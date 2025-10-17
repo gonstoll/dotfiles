@@ -11,14 +11,14 @@ cursor-style = block
 cursor-style-blink = true
 
 # Windows, colors and styles
-theme = Rose Pine
-background = #000000
-background-blur = 10
 macos-titlebar-style = hidden
 window-padding-y = 2,0
 window-padding-x = 2
 window-padding-balance = true
-background-opacity = 0.90
+theme = Rose Pine
+background = #000000
+background-blur = 30
+background-opacity = 0.80
 
 # macOS stuff
 macos-option-as-alt = left
