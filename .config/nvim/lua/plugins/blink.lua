@@ -75,6 +75,7 @@ return {
                 },
             },
             menu = {
+                border = "none",
                 draw = {
                     treesitter = {"lsp"},
                     columns = {

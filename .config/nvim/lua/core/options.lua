@@ -34,6 +34,7 @@ vim.opt.diffopt = {
     "context:20",
     "iwhiteall",
 }
+vim.opt.winborder = "single"
 
 vim.opt.swapfile = false
 vim.opt.backup = false

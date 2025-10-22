@@ -33,7 +33,9 @@ return {
     lazy = true,
     config = function()
         vim.g.zenbones_italic_comments = false
+        vim.g.zenbones_italic_strings = false
         vim.g.rosebones_italic_comments = false
+        vim.g.rosebones_italic_strings = false
 
         vim.api.nvim_create_autocmd("ColorScheme", {
             group = vim.api.nvim_create_augroup("Customize Zenbones", {}),
