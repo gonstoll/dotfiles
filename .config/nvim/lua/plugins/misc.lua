@@ -22,4 +22,10 @@ return {
         cmd = "LetItSnow",
         opts = {},
     },
+
+    {
+        "chrisgrieser/nvim-early-retirement",
+        config = true,
+        event = "VeryLazy",
+    },
 }
