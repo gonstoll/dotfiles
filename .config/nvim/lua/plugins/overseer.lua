@@ -62,7 +62,7 @@ return {
         {"<leader>kq", "<cmd>OverseerQuickAction<cr>", desc = desc("Action recent task")},
         {"<leader>ki", "<cmd>OverseerInfo<cr>", desc = desc("Overseer Info")},
         {"<leader>kb", "<cmd>OverseerBuild<cr>", desc = desc("Task builder")},
-        {"<leader>kt", "<cmd>OverseerTaskAction<cr>", desc = desc("Task action")},
+        {"<leader>ka", "<cmd>OverseerTaskAction<cr>", desc = desc("Task action")},
         {"<leader>kc", "<cmd>OverseerClearCache<cr>", desc = desc("Clear cache")},
     },
 }
