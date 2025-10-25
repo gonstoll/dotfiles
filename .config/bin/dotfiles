@@ -120,7 +120,7 @@ else
     # Install Homebrew packages
     brew bundle --file="$BREWFILE_PATH"
 
-    # Install Node packages
+    # Install packages
     run_misc_packages
 fi
 
@@ -176,8 +176,8 @@ chmod +x $XDG_CONFIG_HOME/bin/*
 
 for file in "$XDG_CONFIG_HOME"/bin/*; do
     if ! command -v go &> /dev/null; then
-        e_error "Go could not be found, skipping Go binary installations."
-        break
+        e_error "Go could not be found. Installing go"
+        bash ./config/bin/update_go
     fi
     if [[ $file == *.go ]]; then
         e_header "Installing Go binary for $(basename "$file" .go)..."

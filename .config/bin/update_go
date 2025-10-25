@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
 
-go_installer="$(curl -s 'https://go.dev/VERSION?m=text' | head -n 1).darwin-arm64.pkg"
+extension=""
+
+if bash ./config/bin/is-macos; then
+    if bash ./config/bin/is-arm64; then
+        extension="darwin-arm64"
+    else
+        extension="darwin-amd64"
+    fi
+else
+    extension="linux-amd64"
+fi
+
+go_installer="$(curl -s 'https://go.dev/VERSION?m=text' | head -n 1).$extension.pkg"
 go_link="https://go.dev/dl/$go_installer"
 go_tmp="/tmp/go"
 
