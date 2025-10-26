@@ -1,4 +1,4 @@
+tmux renamew vim
 tmux neww -n scratch
 tmux neww -n ai
-tmux next
-tmux renamew vim
+tmux selectw -t 1

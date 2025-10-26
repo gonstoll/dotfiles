@@ -27,6 +27,7 @@ other/images/wallpapers/images/*/*.jpeg
 .config/go
 .config/dlv
 .config/sanity
+.config/vim-sessions
 
 # iTerm2
 .config/iTerm2/*
