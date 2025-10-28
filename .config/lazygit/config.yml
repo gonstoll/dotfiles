@@ -1,5 +1,14 @@
 git:
   overrideGpg: true
+  autoForwardBranches: none
+
+keybinding:
+  universal:
+    scrollUpMain-alt1: <c-k>
+    scrollDownMain-alt1: <c-j>
+  commits:
+    moveUpCommit: K
+    moveDownCommit: J
 
 os:
   editPreset: nvim
@@ -15,5 +24,6 @@ gui:
   filterMode: fuzzy
 
   theme:
+    showDivergenceFromBaseBranch: arrowAndNumber
     selectedLineBgColor:
       - reverse
