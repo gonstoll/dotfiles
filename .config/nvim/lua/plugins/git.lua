@@ -103,42 +103,6 @@ return {
     },
 
     {
-        "pwntester/octo.nvim",
-        cmd = "Octo",
-        event = {{event = "BufReadCmd", pattern = "octo://*"}},
-        opts = {
-            enable_builtin = true,
-            default_to_projects_v2 = true,
-            default_merge_method = "squash",
-            picker = "fzf-lua",
-            picker_config = {
-                use_emojis = true,
-            },
-        },
-        keys = {
-            {"<leader>oi", "<cmd>Octo issue list<CR>", desc = octo_desc("List Issues")},
-            {"<leader>oI", "<cmd>Octo issue search<CR>", desc = octo_desc("Search Issues")},
-            {"<leader>op", "<cmd>Octo pr list<CR>", desc = octo_desc("List PRs")},
-            {"<leader>oP", "<cmd>Octo pr search<CR>", desc = octo_desc("Search PRs")},
-            {"<leader>or", "<cmd>Octo repo list<CR>", desc = octo_desc("List Repos")},
-            {"<leader>oS", "<cmd>Octo search<CR>", desc = octo_desc("Search")},
-
-            {"<localleader>a", "", desc = octo_desc("+assignee"), ft = "octo"},
-            {"<localleader>c", "", desc = octo_desc("+comment/code"), ft = "octo"},
-            {"<localleader>l", "", desc = octo_desc("+label"), ft = "octo"},
-            {"<localleader>i", "", desc = octo_desc("+issue"), ft = "octo"},
-            {"<localleader>r", "", desc = octo_desc("+react"), ft = "octo"},
-            {"<localleader>p", "", desc = octo_desc("+pr"), ft = "octo"},
-            {"<localleader>pr", "", desc = octo_desc("+rebase"), ft = "octo"},
-            {"<localleader>ps", "", desc = octo_desc("+squash"), ft = "octo"},
-            {"<localleader>v", "", desc = octo_desc("+review"), ft = "octo"},
-            {"<localleader>g", "", desc = octo_desc("+goto_issue"), ft = "octo"},
-            {"@", "@<C-x><C-o>", mode = "i", ft = "octo", silent = true},
-            {"#", "#<C-x><C-o>", mode = "i", ft = "octo", silent = true},
-        },
-    },
-
-    {
         "sindrets/diffview.nvim",
         cmd = {"DiffviewOpen", "DiffviewFileHistory"},
         opts = function()

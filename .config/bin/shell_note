@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+markdown_dir="$HOME/notes/shell"
+
+if [ ! -d "$markdown_dir" ]; then
+    mkdir -p "$markdown_dir"
+fi
+
+function create_markdown_file() {
+    local filename
+    filename=$(echo "$1" | tr ' ' '_')
+    touch -c "$markdown_dir/$filename.md"
+    nvim "$markdown_dir/$filename.md"
+}
+
+if [ $# -eq 0 ]; then
+    selected=$(rg --files "$markdown_dir" | fzf --preview "bat --color=always {}")
+    nvim $selected
+else
+    create_markdown_file "$1"
+fi

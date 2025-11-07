@@ -1,20 +1,57 @@
 #!/usr/bin/env bash
 
-markdown_dir="$HOME/notes/shell"
+source "$XDG_CONFIG_HOME/zsh/functions"
 
-if [ ! -d "$markdown_dir" ]; then
-    mkdir -p "$markdown_dir"
-fi
+vault_name="gonzalo_notes"
+OBSIDIAN_CONFIG="${XDG_CONFIG_HOME}/obsidian/"
+OBSIDIAN_NOTES="${HOME}/notes/obsidian/${vault_name}"
 
-function create_markdown_file() {
-    local filename
-    filename=$(echo "$1" | tr ' ' '_')
-    touch -c "$markdown_dir/$filename.md"
-    nvim "$markdown_dir/$filename.md"
+function switch_to() {
+    tmux-sessionizer "$OBSIDIAN_NOTES"
+    tmux send-keys -t "$vault_name" "nvim $1" c-M
 }
 
-if [ $# -eq 0 ]; then
-    rg --files "$markdown_dir" | fzf --preview "bat --color=always {}"
+function create_vault() {
+    vault_name="$1"
+    mkdir -p "${OBSIDIAN_NOTES}/${vault_name}/.obsidian"
+    cp -r "${OBSIDIAN_CONFIG}" "${OBSIDIAN_NOTES}/.obsidian"
+}
+
+function create_note() {
+    file_name=$(date "+%Y-%m-%d")_$(echo "$1" | tr ' ' '-')
+    mkdir -p "${OBSIDIAN_NOTES}/new"
+    file="${OBSIDIAN_NOTES}/new/${file_name}.md"
+    touch $file
+    switch_to $file
+}
+
+function open_note() {
+    selected=$(rg --files "$OBSIDIAN_NOTES" | fzf --preview "bat --color=always {}")
+    if [[ -z "$selected" ]]; then
+        exit 0
+    fi
+    switch_to $selected
+}
+
+if [[ $# -eq 0 ]]; then
+    open_note
 else
-    create_markdown_file "$1"
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -c|--create-vault)
+                shift
+                create_vault "$1"
+                shift
+                ;;
+            -*)
+                print_warning "Warning: invalid option $1"
+                shift
+                ;;
+            *)
+                create_note "$1"
+                shift
+                ;;
+        esac
+    done
 fi
+

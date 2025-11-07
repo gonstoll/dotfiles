@@ -37,6 +37,13 @@ return {
             {"<leader>fy", fzf.lsp_document_symbols, desc = desc("Document Symbols")},
             {"<leader>fw", fzf.lsp_live_workspace_symbols, desc = desc("Workspace Symbols")},
             {"<leader>fG", Utils.fzf.folder_grep, desc = desc("Grep on selected folder")},
+            -- Obsidian
+            {"<leader>of", function() fzf.files({cwd = "~/notes/obsidian/gonzalo_notes/"}) end, desc = desc("Search obsidian files")},
+            {
+                "<leader>og",
+                function() fzf.grep({cwd = "~/notes/obsidian/gonzalo_notes/", input_prompt = "Grep Obsidian notes for ❯ "}) end,
+                desc = desc("Grep obsidian files"),
+            },
         }
     end,
     opts = function()
@@ -124,7 +131,7 @@ return {
             grep = {
                 cwd_prompt = false,
                 prompt = Utils.icons.misc.search .. " ",
-                input_prompt = "Grep For ❯ ",
+                input_prompt = "Grep for ❯ ",
                 cmd = table.concat(grep_opts, " "),
                 hidden = true,
                 follow = true,

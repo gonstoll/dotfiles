@@ -32,6 +32,7 @@ keybind = super+enter=unbind
 
 # Tmux-sessionizer: Ctrl-f+S (.zshrc binds this to `s\n`, since `s` is an alias
 # for tmux-sessionizer)
-keybind = cmd+s=text:\x06\x53
-keybind = cmd+b=text:\x06\x42
-keybind = cmd+h=text:\x06\x48
+keybind = cmd+s=text:\x06\x53 # tmux-sessionizer
+keybind = cmd+n=text:\x06\x4e # Obsidian notes
+keybind = cmd+b=text:\x06\x42 # Dotfiles
+keybind = cmd+h=text:\x06\x48 # Home
