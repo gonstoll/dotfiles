@@ -18,7 +18,7 @@ function create_vault() {
 }
 
 function create_note() {
-    file_name=$(date "+%Y-%m-%d")_$(echo "$1" | tr ' ' '-')
+    file_name=$(date "+%Y-%m-%d")_$(echo "$1" | tr ' ' '_')
     mkdir -p "${OBSIDIAN_NOTES}/new"
     file="${OBSIDIAN_NOTES}/new/${file_name}.md"
     touch $file
