@@ -38,10 +38,16 @@ return {
             {"<leader>fw", fzf.lsp_live_workspace_symbols, desc = desc("Workspace Symbols")},
             {"<leader>fG", Utils.fzf.folder_grep, desc = desc("Grep on selected folder")},
             -- Obsidian
-            {"<leader>of", function() fzf.files({cwd = "~/notes/obsidian/gonzalo_notes/"}) end, desc = desc("Search obsidian files")},
+            {"<leader>of", function() fzf.files({cwd = "~/notes/obsidian/gonzalo_notes/", hidden = false}) end, desc = desc("Search obsidian files")},
             {
                 "<leader>og",
-                function() fzf.grep({cwd = "~/notes/obsidian/gonzalo_notes/", input_prompt = "Grep Obsidian notes for ❯ "}) end,
+                function()
+                    fzf.grep({
+                        cwd = "~/notes/obsidian/gonzalo_notes/",
+                        input_prompt = "Grep Obsidian notes for ❯ ",
+                        hidden = false,
+                    })
+                end,
                 desc = desc("Grep obsidian files"),
             },
         }
@@ -125,6 +131,9 @@ return {
                 git_icons = true,
                 hidden = true,
                 follow = true,
+                actions = {
+                    ["ctrl-s"] = actions.toggle_hidden,
+                },
                 -- rg_opts = [[--color=never --files --hidden --follow -g "!.git"]],
                 -- fd_opts = [[--color=never --type f --hidden --follow --exclude .git]],
             },
@@ -135,6 +144,9 @@ return {
                 cmd = table.concat(grep_opts, " "),
                 hidden = true,
                 follow = true,
+                actions = {
+                    ["ctrl-s"] = actions.toggle_hidden,
+                },
                 -- actions = {
                 --   ['ctrl-q'] = {
                 --     fn = actions.file_edit_or_qf, prefix = 'select-all+'
