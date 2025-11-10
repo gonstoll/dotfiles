@@ -3,7 +3,7 @@ local cel_desc = Utils.plugin_keymap_desc("CellularAutomaton")
 
 return {
     {
-        "tamton-aquib/duck.nvim",
+        "gonstoll/duck.nvim",
         keys = {
             {",dd", function() require("duck").hatch("🐈") end, desc = duck_desc("Hatch")},
             {",dk", function() require("duck").cook() end, mode = "n", desc = duck_desc("Cook")},
@@ -78,7 +78,7 @@ return {
                 local filename = date .. "_" .. title .. ".md"
                 return filename
             end,
-            open_notes_in = "current",
+            open_notes_in = "vsplit",
             templates = {
                 subdir = "templates",
                 date_format = "%Y-%m-%d",
