@@ -64,7 +64,6 @@ return {
                 name = "fzf-lua",
             },
             callbacks = {
-                -- Make sure I don't have any formatting (not sure if this affects frontmatter)
                 enter_note = function()
                     vim.cmd("ConformDisable")
                 end,
