@@ -19,7 +19,7 @@ bash -c "$(curl -fsSL raw.github.com/gonstoll/dotfiles/master/install)"
 
 #### Cloning the repository
 
-Clone the repository and execute the `dotfiles` script:
+Clone the repository and execute the `install` script:
 
 ```sh
 git clone https://github.com/gonstoll/dotfiles.git ~/.dotfiles
