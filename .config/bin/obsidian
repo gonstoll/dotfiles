@@ -26,7 +26,7 @@ function create_note() {
 }
 
 function open_note() {
-    selected=$(rg --files "$OBSIDIAN_NOTES" | fzf --preview "bat --color=always {}")
+    selected=$(rg --files "$OBSIDIAN_NOTES" | fzf --preview "bat --color=always --style=plain {}")
     if [[ -z "$selected" ]]; then
         exit 0
     fi
