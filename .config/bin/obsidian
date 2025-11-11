@@ -40,6 +40,37 @@ function flush() {
     switch_to "$OBSIDIAN_NOTES/$new_notes_dir/*"
 }
 
+function classify() {
+    # for file in "$OBSIDIAN_NOTES/$flushed_notes_dir"/*; do
+    #     if [[ -f "$file" ]]; then
+    #         note_type=$(sed -n 's/^type: //p' "$file")
+    #         if [[ -z "$note_type" ]]; then
+    #             note_type="uncategorized"
+    #         fi
+    #         dest_dir="$OBSIDIAN_NOTES/$classified_notes_dir/$note_type"
+    #         mkdir -p "$dest_dir"
+    #         mv "$file" "$dest_dir/"
+    #     fi
+    # done
+
+    for file in "$OBSIDIAN_NOTES/$flushed_notes_dir"/*.md; do
+        if [[ -f "$file" ]]; then
+            # Extract YAML frontmatter block and get the first 'type:'
+            note_type=$(awk '/^---$/ {in_yaml = !in_yaml; next} in_yaml && /^type:/ {gsub(/^type:[[:space:]]*/, "", $0); print $0; exit}' "$file" | xargs)
+            if [[ -z "$note_type" ]]; then
+                note_type="uncategorized"
+            fi
+            dest_dir="$OBSIDIAN_NOTES/$classified_notes_dir/$note_type"
+            mkdir -p "$dest_dir"
+            if ! mv -n "$file" "$dest_dir/"; then
+                echo "Error: Failed to move $file to $dest_dir" >&2
+            fi
+        fi
+    done
+
+    echo "All notes have been classified"
+}
+
 if [[ $# -eq 0 ]]; then
     open_note
 else
@@ -47,6 +78,10 @@ else
         case "$1" in
             -f|--flush)
                 flush "$OBSIDIAN_NOTES/hubs/*"
+                shift
+                ;;
+            -c|--class)
+                classify
                 shift
                 ;;
             -C|--create-vault)
