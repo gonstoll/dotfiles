@@ -2,6 +2,9 @@
 
 source "$XDG_CONFIG_HOME/zsh/functions"
 
+new_notes_dir="new"
+flushed_notes_dir="flushed"
+classified_notes_dir="notes"
 vault_name="gonzalo_notes"
 OBSIDIAN_CONFIG="${XDG_CONFIG_HOME}/obsidian/"
 OBSIDIAN_NOTES="${HOME}/notes/obsidian/${vault_name}"
@@ -33,12 +36,20 @@ function open_note() {
     switch_to $selected
 }
 
+function flush() {
+    switch_to "$OBSIDIAN_NOTES/$new_notes_dir/*"
+}
+
 if [[ $# -eq 0 ]]; then
     open_note
 else
     while [[ $# -gt 0 ]]; do
         case "$1" in
-            -c|--create-vault)
+            -f|--flush)
+                flush "$OBSIDIAN_NOTES/hubs/*"
+                shift
+                ;;
+            -C|--create-vault)
                 shift
                 create_vault "$1"
                 shift
