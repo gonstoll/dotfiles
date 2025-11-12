@@ -27,6 +27,7 @@ insert_mode_tips = [
 command_mode_tips = [
     ["<C-r><C-w>", "Inserts the word the cursor is on"],
     ["<C-r><C-a>", "Inserts the WORD the cursor is on"],
+    ["<C-r>/", "Inserts the last searched pattern"],
     ["<C-d>", "Displays all available commands"],
     [":s//newword", "Replaces the last searched word"],
     [":g", "Execute command on lines where pattern matches"],
