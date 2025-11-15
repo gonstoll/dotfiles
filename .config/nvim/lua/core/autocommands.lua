@@ -89,7 +89,7 @@ autocmd({"BufRead", "BufNewFile"}, {
 
         vim.keymap.set("n", "<leader>od", ":silent! !rm '%:p'<cr>:bd<cr>", {desc = "Obsidian: Discard note"})
 
-        vim.keymap.set("n", "<leader>of", function()
+        vim.keymap.set("n", "<leader>ol", function()
             -- Search for the first heading line
             vim.cmd("/^# 20")
             -- Remove date prefix from the heading
