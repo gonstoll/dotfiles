@@ -1,4 +1,5 @@
 local desc = Utils.plugin_keymap_desc("Overseer")
+
 return {
     "stevearc/overseer.nvim",
     cmd = {
@@ -16,10 +17,11 @@ return {
         "OverseerTaskAction",
         "OverseerClearCache",
     },
+    ---@type overseer.Config
     opts = {
         dap = false,
         task_list = {
-            bindings = {
+            keymaps = {
                 ["<C-h>"] = false,
                 ["<C-j>"] = false,
                 ["<C-k>"] = false,
@@ -42,7 +44,6 @@ return {
             },
         },
     },
-    -- stylua: ignore
     keys = {
         {"<leader>k", "", desc = "+overseer"},
         {
@@ -50,7 +51,7 @@ return {
             function()
                 local overseer = require("overseer")
 
-                overseer.run_template({}, function(task)
+                overseer.run_task({}, function(task)
                     if task then
                         overseer.open({enter = false})
                     end
