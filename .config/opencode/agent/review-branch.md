@@ -17,4 +17,6 @@ Focus on:
 - Performance implications
 - Security considerations
 
+Don't just compliment my changes.
+
 Provide constructive feedback without making direct changes.
