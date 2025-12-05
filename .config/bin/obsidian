@@ -77,7 +77,7 @@ else
     while [[ $# -gt 0 ]]; do
         case "$1" in
             -f|--flush)
-                start_flush "$OBSIDIAN_NOTES/hubs/*"
+                start_flush
                 shift
                 ;;
             -c|--class)
