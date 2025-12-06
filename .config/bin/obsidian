@@ -63,12 +63,12 @@ function classify() {
             dest_dir="$OBSIDIAN_NOTES/$classified_notes_dir/$note_type"
             mkdir -p "$dest_dir"
             if ! mv -n "$file" "$dest_dir/"; then
-                echo "Error: Failed to move $file to $dest_dir" >&2
+                print_error "Error: Failed to move $file to $dest_dir" >&2
             fi
         fi
     done
 
-    echo "All notes have been classified"
+    print_success "All notes have been classified"
 }
 
 if [[ $# -eq 0 ]]; then
