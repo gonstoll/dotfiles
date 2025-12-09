@@ -24,6 +24,8 @@ alias ld="lazydocker"
 
 # Me being stupid as fuck
 alias claer="clear"
+alias clar="clear"
+alias cler="clear"
 alias vim="nvim"
 alias vi="nvim"
 alias o="obsidian"
