@@ -8,6 +8,15 @@ run_tests=false
 
 source "$XDG_CONFIG_HOME/zsh/functions"
 
+function run_report() {
+    if [[ ! $(find "$report_dir" -maxdepth 1 -name "report*.zip") ]]; then
+        print_error "No report files found in $report_dir"
+        exit 0
+    fi
+    print_header "Running reports"
+    npx playwright merge-reports --reporter html "$report_dir"
+}
+
 for opt in "$@"
 do
     case $opt in
@@ -17,18 +26,17 @@ do
     esac
 done
 
+if [ ! -d "$report_dir" ]; then
+    mkdir -p "$report_dir"
+fi
+
 if [ "$run_tests" = true ]; then
-    print_header "Running reports"
-    npx playwright merge-reports --reporter html "$report_dir"
+    run_report
 fi
 
 if [[ ! $(find "$download_dir" -maxdepth 1 -name "report*.zip") ]]; then
-    print_warning "No new report file found. Runnning existing reports"
-    npx playwright merge-reports --reporter html "$report_dir"
-fi
-
-if [ ! -d "$report_dir" ]; then
-    mkdir -p "$report_dir"
+    print_warning "No new report file found in downloads"
+    run_report
 fi
 
 print_header "Moving report to destination directory"
