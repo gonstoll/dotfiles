@@ -9,6 +9,31 @@ vault_name="gonzalo_notes"
 OBSIDIAN_CONFIG="${XDG_CONFIG_HOME}/obsidian/"
 OBSIDIAN_NOTES="${HOME}/notes/obsidian/${vault_name}"
 
+function run_help() {
+
+    cat <<EOT
+Obisidan cli
+
+Usage: $(basename "$0") [OPTION]... [NOTE_TITLE]
+
+When run without arguments, opens an interactive file browser to select existing notes.
+When given a NOTE_TITLE, creates a new note with that title.
+
+Options:
+    -h, --help            Print this help text
+    -f, --flush           Start the flush workflow. This goes through all your new notes, where you can choose to keep the current note (<leader>ok) or discard it (<leader>od).
+    -c, --class           Classifies all your flushed notes. Goes through all your flushed notes, and assignes them to their respective dirs based on their type frontmatter.
+    -C, --create-valut    Creates a new vault with all dotfiles configurations and plugins
+
+Examples:
+    $(basename "$0")                    # Browse existing notes with fzf
+    $(basename "$0") "My new note"      # Create note titled "My new note"
+    $(basename "$0") -f                 # Start flush workflow
+
+EOT
+
+}
+
 function switch_to() {
     tmux-sessionizer "$OBSIDIAN_NOTES"
     tmux send-keys -t "$vault_name" "nvim $1" c-M
@@ -76,6 +101,10 @@ if [[ $# -eq 0 ]]; then
 else
     while [[ $# -gt 0 ]]; do
         case "$1" in
+            -h|--help)
+                run_help
+                shift
+                ;;
             -f|--flush)
                 start_flush
                 shift
