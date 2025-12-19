@@ -37,7 +37,16 @@ EOT
 function switch_to() {
     tmux-sessionizer "$OBSIDIAN_NOTES"
     tmux selectw -t "$vault_name:1"
-    tmux send-keys -t "$vault_name" "nvim -p $1" c-M
+    
+    # Check if nvim is running in the target pane
+    if tmux display-message -t "$vault_name:1" -p '#{pane_current_command}' | grep -q "^nvim$"; then
+        # Nvim is running - use :tabnew to open in new tab
+        tmux send-keys -t "$vault_name" Escape
+        tmux send-keys -t "$vault_name" ":tabnew $1" C-m
+    else
+        # Nvim is not running - start nvim with the file
+        tmux send-keys -t "$vault_name" "nvim $1" C-m
+    fi
 }
 
 function create_vault() {
