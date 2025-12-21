@@ -5,6 +5,7 @@
 .zcompdump
 .zsh_*
 .z_database
+.zcompcache
 custom.zsh
 
 # Wallpapers
