@@ -37,7 +37,7 @@ EOT
 function switch_to() {
     tmux-sessionizer "$OBSIDIAN_NOTES"
     tmux selectw -t "$vault_name:1"
-    
+
     # Check if nvim is running in the target pane
     if tmux display-message -t "$vault_name:1" -p '#{pane_current_command}' | grep -q "^nvim$"; then
         # Nvim is running - use :tabnew to open in new tab
@@ -76,20 +76,17 @@ function start_flush() {
 }
 
 function classify() {
-    # for file in "$OBSIDIAN_NOTES/$flushed_notes_dir"/*; do
-    #     if [[ -f "$file" ]]; then
-    #         note_type=$(sed -n 's/^type: //p' "$file")
-    #         if [[ -z "$note_type" ]]; then
-    #             note_type="uncategorized"
-    #         fi
-    #         dest_dir="$OBSIDIAN_NOTES/$classified_notes_dir/$note_type"
-    #         mkdir -p "$dest_dir"
-    #         mv "$file" "$dest_dir/"
-    #     fi
-    # done
 
     for file in "$OBSIDIAN_NOTES/$flushed_notes_dir"/*.md; do
         if [[ -f "$file" ]]; then
+            # note_type=$(sed -n 's/^type: //p' "$file")
+            # if [[ -z "$note_type" ]]; then
+            #     note_type="uncategorized"
+            # fi
+            # dest_dir="$OBSIDIAN_NOTES/$classified_notes_dir/$note_type"
+            # mkdir -p "$dest_dir"
+            # mv "$file" "$dest_dir/"
+
             # Extract YAML frontmatter block and get the first 'type:'
             note_type=$(awk '/^---$/ {in_yaml = !in_yaml; next} in_yaml && /^type:/ {gsub(/^type:[[:space:]]*/, "", $0); print $0; exit}' "$file" | xargs)
             if [[ -z "$note_type" ]]; then
