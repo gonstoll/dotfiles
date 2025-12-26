@@ -208,6 +208,7 @@ autocmd({"BufReadPre", "BufNewFile"}, {
             eslint = require("lsp.servers.eslint"),
             lua_ls = require("lsp.servers.lua_ls"),
             vtsls = require("lsp.servers.vtsls"),
+            -- tsgo = require("lsp.servers.tsgo"),
             gopls = require("lsp.servers.gopls"),
         }
 

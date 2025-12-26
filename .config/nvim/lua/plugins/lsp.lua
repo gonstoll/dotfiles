@@ -56,6 +56,7 @@ return {
                 "eslint",
                 "bashls",
                 "vtsls",
+                "tsgo",
                 "jsonls",
                 "yamlls",
                 "bashls",
