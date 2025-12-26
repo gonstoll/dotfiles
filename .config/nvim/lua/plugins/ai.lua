@@ -70,7 +70,7 @@ return {
                 desc = sidekick_desc("Select CLI"),
             },
             {
-                "<leader>ad",
+                "<leader>aD",
                 function() require("sidekick.cli").close() end,
                 desc = sidekick_desc("Detach a CLI session"),
             },
@@ -92,6 +92,12 @@ return {
                 desc = sidekick_desc("Send visual selection content"),
             },
             {
+                "<leader>ad",
+                function() require("sidekick.cli").send({msg = "{diagnostics}", name = default_ai_tool}) end,
+                mode = {"x"},
+                desc = sidekick_desc("Send selected diagnostics"),
+            },
+            {
                 "<leader>ap",
                 function() require("sidekick.cli").prompt({name = default_ai_tool}) end,
                 mode = {"n", "x"},
@@ -101,7 +107,7 @@ return {
             {
                 "<leader>ao",
                 function() require("sidekick.cli").toggle({name = "opencode", focus = true}) end,
-                desc = sidekick_desc("Toggle claude"),
+                desc = sidekick_desc("Toggle opencode"),
             },
         },
     },
