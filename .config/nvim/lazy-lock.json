@@ -3,6 +3,7 @@
   "SchemaStore.nvim": { "branch": "main", "commit": "5ed01fc84e587e0883e7d04122684d768eb76bbc" },
   "blame.nvim": { "branch": "main", "commit": "f3f6153ea94e1120f2776f22bbbd63c4aeebaf32" },
   "blink.cmp": { "branch": "main", "commit": "b19413d214068f316c78978b08264ed1c41830ec" },
+  "catppuccin": { "branch": "main", "commit": "ce8d176faa4643e026e597ae3c31db59b63cef09" },
   "cellular-automaton.nvim": { "branch": "main", "commit": "1606e9d5d04ff254023c3f3c62842d065708d6d3" },
   "conform.nvim": { "branch": "master", "commit": "5420c4b5ea0aeb99c09cfbd4fd0b70d257b44f25" },
   "copilot.lua": { "branch": "master", "commit": "e78d1ffebdf6ccb6fd8be4e6898030c1cf5f9b64" },
