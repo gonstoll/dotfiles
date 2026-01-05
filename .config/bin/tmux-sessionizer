@@ -30,7 +30,7 @@ else
             --no-bold \
             --height=100% \
             --no-unicode \
-            --margin=10% \
+            --margin=5% \
             --no-color \
         )
 fi
