@@ -1,0 +1,20 @@
+{
+  "Print to console": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "logging",
+    "body": ["console.log('logging $1', $1)"],
+    "description": "Log output to console"
+  },
+  "Export a function": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "efunc",
+    "body": ["export function ${1:Function}() {$0}"],
+    "description": "Exports a function"
+  },
+  "Export an async function": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "eafunc",
+    "body": ["export async function ${1:Function}() {$0}"],
+    "description": "Exports an async function"
+  },
+}

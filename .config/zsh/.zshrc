@@ -113,3 +113,4 @@ source $ZDOTDIR/functions
 export EDITOR="$(which nvim)"
 export VISUAL="$EDITOR"
 export GIT_EDITOR="$EDITOR"
+export CURSOR_CONFIG_DIR="$XDG_CONFIG_HOME/cursor/cli-config.json"

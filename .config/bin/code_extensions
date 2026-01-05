@@ -18,27 +18,43 @@ gum style \
 ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═══╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝
 '
 
-selected=$(gum choose "Save VSCode extensions" "Install VSCode extensions" "Exit")
 dotfiles_dir=$(pwd -P)
-extensios_dir=$dotfiles_dir/vscode/Library/Application\ Support/Code/User/extensions
+editor=$(gum choose "vscode" "cursor" "Exit" --header="Choose editor:")
+
+if [[ $# -eq 1 ]] || [[ $editor == "Exit" ]]; then
+    exit 1
+fi
+
+if [[ $editor == "vscode" ]]; then
+    extensions_dir="$dotfiles_dir/Library/Application Support/Code/User/extensions"
+elif [[ $editor == "cursor" ]]; then
+    extensions_dir="$dotfiles_dir/Library/Application Support/Cursor/User/extensions"
+else
+    echo "Unknown editor: $editor"
+    exit 1
+fi
+
+selected=$(gum choose "Save $editor extensions" "Install $editor extensions" "Exit" --header="Choose action:")
 
 if [[ $# -eq 1 ]] || [[ $selected == "Exit" ]]; then
     exit 1
 fi
 
-if [[ $selected == "Save VSCode extensions" ]]; then
-    echo "Saving VSCode extensions..."
-    code --list-extensions > $extensions_dir
+if [[ $selected == "Save $editor extensions" ]]; then
+    echo "Saving $editor extensions..."
+    [[ $editor == "vscode" ]] && code --list-extensions > $extensions_dir
+    [[ $editor == "cursor" ]] && cursor --list-extensions > $extensions_dir
 fi
 
-if [[ $selected == "Install VSCode extensions" ]]; then
-    if [[ -f $extensios_dir ]]; then
-        echo "Installing VSCode extensions..."
-        extension_list=$(cat $extensios_dir)
+if [[ $selected == "Install $editor extensions" ]]; then
+    if [[ -f "$extensions_dir" ]]; then
+        echo "Installing $editor extensions..."
+        extension_list=$(cat $extensions_dir)
         for i in "${extension_list[@]}"; do
-            code --install-extension $i
+            [[ $editor == "vscode" ]] && code --install-extension $i
+            [[ $editor == "cursor" ]] && cursor --install-extension $i
         done
     else
-        echo "VSCode extensions file not found."
+        echo "$editor extensions file not found."
     fi
 fi
