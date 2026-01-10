@@ -8,33 +8,24 @@ return {
             dim_inactive_windows = true,
             palette = {
                 dawn = {
-                    no_bg = "#faf4ed",
+                    -- no_bg = "#faf4ed",
                     cursor_bg = "#998f97",
                     cursor_fg = "#575279",
                 },
-                moon = {
+                main = {
+                    -- no_bg = "#141415",
+                    cursor_bg = "#ffffff",
+                    cursor_fg = "#000000",
                     -- gold = "#f6d5a7",
                     -- foam = "#a1d1da",
                     -- iris = "#d9c7ef",
                     -- rose = "#ebbcba",
                     -- pine = "#437e91",
-                    no_bg = "#141415",
-                    cursor_bg = "#ffffff",
-                    cursor_fg = "#000000",
-                },
-                main = {
-                    no_bg = "#141415",
-                    cursor_bg = "#ffffff",
-                    cursor_fg = "#000000",
                 },
             },
             highlight_groups = {
-                Normal = {bg = "no_bg"},
                 Cursor = {bg = "cursor_bg", fg = "cursor_fg"},
-                Directory = {fg = "foam", bold = false},
-                StatusLine = {bg = "no_bg", fg = "clear"},
-                StatusLineTerm = {bg = "base", fg = "subtle"},
-                StatusLineNC = {bg = "no_bg", fg = "subtle"},
+                Directory = {fg = "pine", bold = false},
             },
 
             before_highlight = function(group, highlight, palette)
@@ -51,10 +42,8 @@ return {
         name = "catppuccin",
         lazy = true,
         opts = {
-            transparent_background = true,
             term_colors = true,
             no_italic = true,
-            no_bold = true,
             lsp_styles = {
                 underlines = {
                     errors = {"undercurl"},
