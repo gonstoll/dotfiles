@@ -10,13 +10,18 @@
     "[Rosé Pine (no italics)]": {
       "editorCursor.background": "#000000",
       "editorCursor.foreground": "#ffffff",
-      "terminalCursor.background": "#ffffff",
+      "terminalCursor.background": "#ffffff"
     },
     "[Rosé Pine Dawn (no italics)]": {
       "editorCursor.background": "#ffffff",
       "editorCursor.foreground": "#000000",
-      "terminalCursor.background": "#ffffff",
-    }
+      "terminalCursor.background": "#ffffff"
+    },
+    "statusBar.background": "#005f5f",
+    "statusBar.noFolderBackground": "#005f5f",
+    "statusBar.debuggingBackground": "#005f5f",
+    "statusBar.foreground": "#ffffff",
+    "statusBar.debuggingForeground": "#ffffff"
   },
   "editor.fontSize": 15,
   "editor.fontFamily": "JetBrainsMono Nerd Font Mono",
@@ -35,7 +40,7 @@
   "editor.formatOnSave": true,
   "editor.inlineSuggest.enabled": true,
   "editor.quickSuggestions": {"strings": true},
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "prettier.prettier-vscode",
   "prettier.arrowParens": "avoid",
   "prettier.singleQuote": true,
   "prettier.bracketSpacing": false,
@@ -97,5 +102,12 @@
     "yaml",
     "plaintext",
     "scminput"
-  ]
+  ],
+  "vim.cursorStylePerMode.normal": "block",
+  "vim.cursorStylePerMode.visual": "block",
+  "vim.neovimConfigPath": "~/.config/nvim/init.lua",
+  "vim.neovimPath": "/opt/homebrew/bin/nvim",
+  "vim.scroll": 10,
+  "editor.lineNumbers": "relative",
+  "editor.cursorStyle": "block"
 }

@@ -3,15 +3,28 @@
   "window.zoomLevel": 1,
   "window.titleBarStyle": "custom",
   "workbench.panel.defaultLocation": "right",
-  "workbench.colorTheme": "Rosé Pine Moon (no italics)",
+  "workbench.colorTheme": "Rosé Pine (no italics)",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.editor.enablePreview": true,
   "workbench.colorCustomizations": {
-    "editorCursor.background": "#ffffff",
-    "terminalCursor.background": "#ffffff"
+    "[Rosé Pine (no italics)]": {
+      "editorCursor.background": "#000000",
+      "editorCursor.foreground": "#ffffff",
+      "terminalCursor.background": "#ffffff"
+    },
+    "[Rosé Pine Dawn (no italics)]": {
+      "editorCursor.background": "#ffffff",
+      "editorCursor.foreground": "#000000",
+      "terminalCursor.background": "#ffffff"
+    },
+    "statusBar.background": "#005f5f",
+    "statusBar.noFolderBackground": "#005f5f",
+    "statusBar.debuggingBackground": "#005f5f",
+    "statusBar.foreground": "#ffffff",
+    "statusBar.debuggingForeground": "#ffffff"
   },
   "editor.fontSize": 15,
-  "editor.fontFamily": "JetBrainsMonoNL Nerd Font Mono",
+  "editor.fontFamily": "JetBrainsMono Nerd Font Mono",
   "editor.lineHeight": 1.35,
   "editor.tabSize": 2,
   "editor.formatOnPaste": true,
@@ -27,7 +40,7 @@
   "editor.formatOnSave": true,
   "editor.inlineSuggest.enabled": true,
   "editor.quickSuggestions": {"strings": true},
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "prettier.prettier-vscode",
   "prettier.arrowParens": "avoid",
   "prettier.singleQuote": true,
   "prettier.bracketSpacing": false,
@@ -83,5 +96,19 @@
   "vim.highlightedyank.enable": true,
   "vim.highlightedyank.color": "#f2594b",
   "vim.highlightedyank.textColor": "#000000",
-  "vim.enableNeovim": true
+  "vim.enableNeovim": true,
+  "window.commandCenter": true,
+  "cursor.cpp.disabledLanguages": [
+    "yaml",
+    "plaintext",
+    "scminput"
+  ],
+  "vim.cursorStylePerMode.normal": "block",
+  "vim.cursorStylePerMode.visual": "block",
+  "vim.neovimConfigPath": "~/.config/nvim/init.lua",
+  "vim.neovimPath": "/opt/homebrew/bin/nvim",
+  "vim.scroll": 10,
+  "editor.lineNumbers": "relative",
+  "editor.cursorStyle": "block"
 }
+

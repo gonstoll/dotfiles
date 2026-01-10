@@ -5,21 +5,23 @@ return {
     {
         "gonstoll/duck.nvim",
         keys = {
-            {",dd", function() require("duck").hatch("🐈") end, desc = duck_desc("Hatch")},
-            {",dk", function() require("duck").cook() end, mode = "n", desc = duck_desc("Cook")},
+            {"<leader>,dd", function() require("duck").hatch("🐈") end, desc = duck_desc("Hatch")},
+            {"<leader>,dk", function() require("duck").cook() end, mode = "n", desc = duck_desc("Cook")},
         },
     },
 
     {
         "eandrju/cellular-automaton.nvim",
         keys = {
-            {",fml", "<cmd>CellularAutomaton make_it_rain<CR>", desc = cel_desc("Make it rain")},
+            {"<leader>,fml", "<cmd>CellularAutomaton make_it_rain<CR>", desc = cel_desc("Make it rain")},
         },
     },
 
     {
         "marcussimonsen/let-it-snow.nvim",
-        cmd = "LetItSnow",
+        keys = {
+            {"<leader>,lis", "<cmd>CellularAutomaton make_it_rain<CR>", desc = cel_desc("Make it rain")},
+        },
         opts = {},
     },
 
