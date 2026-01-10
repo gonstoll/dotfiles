@@ -1,5 +1,5 @@
 local desc = Utils.plugin_keymap_desc("dap")
-local desc_dapui = Utils.plugin_keymap_desc("dapui")
+local desc_dap_ui = Utils.plugin_keymap_desc("dap view")
 local desc_go = Utils.plugin_keymap_desc("dap go")
 local desc_lua = Utils.plugin_keymap_desc("dap lua")
 
@@ -32,10 +32,10 @@ return {
         {
             "rcarriga/nvim-dap-ui",
             keys = {
-                {"<leader>duo", function() require("dapui").toggle() end, desc = desc_dapui("Toggle")},
-                {"<leader>due", function() require("dapui").eval() end, desc = desc_dapui("Eval"), mode = {"n", "v"}},
+                {"<leader>duo", function() require("dapui").toggle() end, desc = desc_dap_ui("Toggle")},
+                {"<leader>due", function() require("dapui").eval() end, desc = desc_dap_ui("Eval"), mode = {"n", "v"}},
                 -- See https://github.com/rcarriga/nvim-dap-ui/issues/161#issuecomment-1304500935
-                {"<leader>dut", function() toggle_types() end, desc = desc_dapui("Toggle types")},
+                {"<leader>dut", function() toggle_types() end, desc = desc_dap_ui("Toggle types")},
             },
             ---@type dapui.Config
             opts = {
@@ -122,10 +122,7 @@ return {
             "<leader>dws",
             function()
                 local widgets = require("dap.ui.widgets")
-                -- widgets.sidebar(widgets.scopes,
-                --     {width = math.floor(vim.o.columns * 0.20)},
-                --     'aboveleft vsplit'
-                -- ).toggle()
+                -- widgets.sidebar(widgets.scopes, {width = math.floor(vim.o.columns * 0.20)}, "aboveleft vsplit").toggle()
                 widgets.centered_float(widgets.scopes, {border = "single"})
             end,
             desc = desc("Widget - Scopes"),
@@ -133,6 +130,8 @@ return {
     },
     config = function()
         local dap = require("dap")
+
+        dap.defaults.fallback.switchbuf = "useopen,newtab"
 
         if not dap.adapters["node"] then
             dap.adapters["node"] = function(cb, config)
