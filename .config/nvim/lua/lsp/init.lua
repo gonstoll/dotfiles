@@ -51,7 +51,7 @@ local function on_attach(client, bufnr)
         end
     end, "Toggle virtual lines")
 
-    keyset("n", "<leader>it", function()
+    keyset("n", "<leader>ih", function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({bufnr = bufnr}))
     end, "Toggle inlay hints")
 
