@@ -1,10 +1,9 @@
 {
     "$schema": "https://opencode.ai/config.json",
     "instructions": ["CONTRIBUTING.md", "docs/*.md", "docs/**/*.md", ".cursor/rules/*.md", ".cursor/rules/*.mdc"],
-    "theme": "system",
+    "theme": "rosepine",
     "keybinds": {
         "messages_half_page_up": "ctrl+u",
-        "messages_half_page_down": "ctrl+d",
-        "input_newline": "ctrl+n"
+        "messages_half_page_down": "ctrl+d"
     },
 }
