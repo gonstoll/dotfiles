@@ -10,6 +10,7 @@ return {
     keys = {
         {"<leader>on", ":Obsidian new_from_template<CR>", desc = desc("New note from template")},
         {"<leader>ot", ":Obsidian template note<CR>", desc = desc("Apply default template on note")},
+        {"<leader>oh", ":Obsidian today<CR>", desc = desc("New daily note")},
     },
     ---@module 'obsidian'
     ---@type obsidian.config
