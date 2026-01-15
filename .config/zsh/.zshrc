@@ -4,7 +4,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Configs
 source $ZDOTDIR/config/options.zsh
@@ -18,7 +18,7 @@ fi
 
 # Completions
 if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+    FPATH=$HOMEBREW_PREFIX/share/zsh-completions:$FPATH
 fi
 
 # History
@@ -99,7 +99,7 @@ bindkey "^X^E" edit-command-line
 # bindkey '^R' fzf-history-widget
 
 # Loading syntax highlighting last on purpose
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Load nvm if present
 if [ -s "$NVM_DIR/nvm.sh" ]; then
@@ -108,9 +108,3 @@ fi
 
 # Functions
 source $ZDOTDIR/functions
-
-# Set up neovim as the default editor.
-export EDITOR="$(which nvim)"
-export VISUAL="$EDITOR"
-export GIT_EDITOR="$EDITOR"
-export CURSOR_CONFIG_DIR="$XDG_CONFIG_HOME/cursor/cli-config.json"

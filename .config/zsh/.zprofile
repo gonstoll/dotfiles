@@ -41,3 +41,8 @@ export GHOSTTY_SHELL_INTEGRATION_NO_CURSOR=1
 # Set 1ms timeout for Esc press so we can switch
 # between vi "normal" and "command" modes faster
 export KEYTIMEOUT=1
+
+export EDITOR="nvim"
+export VISUAL="$EDITOR"
+export GIT_EDITOR="$EDITOR"
+export CURSOR_CONFIG_DIR="$XDG_CONFIG_HOME/cursor/cli-config.json"
