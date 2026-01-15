@@ -10,7 +10,6 @@ OBSIDIAN_CONFIG="${XDG_CONFIG_HOME}/obsidian/"
 OBSIDIAN_NOTES="${HOME}/notes/obsidian/${vault_name}"
 
 function run_help() {
-
     cat <<EOT
 Obisidan cli
 
@@ -31,7 +30,6 @@ Examples:
     $(basename "$0") -f                 # Start flush workflow
 
 EOT
-
 }
 
 function switch_to() {
@@ -62,9 +60,13 @@ function create_note() {
     touch $file
     switch_to $file
 
+    sleep 0.3
+
     # Apply template with keymap (<leader>ot)
     tmux send-keys -t "$vault_name" Escape
     tmux send-keys -t "$vault_name" " ot" C-m
+    # Format note title
+    tmux send-keys -t "$vault_name" " ol" C-m
 }
 
 function open_note() {
@@ -80,7 +82,6 @@ function start_flush() {
 }
 
 function classify() {
-
     for file in "$OBSIDIAN_NOTES/$flushed_notes_dir"/*.md; do
         if [[ -f "$file" ]]; then
             # note_type=$(sed -n 's/^type: //p' "$file")
