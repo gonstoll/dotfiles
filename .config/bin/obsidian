@@ -61,6 +61,10 @@ function create_note() {
     file="${OBSIDIAN_NOTES}/new/${file_name}.md"
     touch $file
     switch_to $file
+
+    # Apply template with keymap (<leader>ot)
+    tmux send-keys -t "$vault_name" Escape
+    tmux send-keys -t "$vault_name" " ot" C-m
 }
 
 function open_note() {
