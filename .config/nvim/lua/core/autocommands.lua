@@ -90,12 +90,8 @@ autocmd({"BufRead", "BufNewFile"}, {
         vim.keymap.set("n", "<leader>od", ":silent! !rm '%:p'<cr>:bd<cr>", {desc = "Obsidian: Discard note"})
 
         vim.keymap.set("n", "<leader>ol", function()
-            -- Search for the first heading line
-            vim.cmd("/^# 20")
-            -- Remove date prefix from the heading
-            vim.cmd([[s/^# \d\{4}-\d\{2}-\d\{2}_\(.*\)/# \1/]])
-            -- Replace underscores with spaces in the heading
-            vim.cmd([[s/_/ /g]])
+            -- Find title, remove date prefix (YYYY_MM_DD_), and replace underscores with spaces
+            vim.cmd([[g/^# \d\{4}_\d\{2}_\d\{2}_/s/^# \d\{4}_\d\{2}_\d\{2}_\(.*\)/\=substitute("# " . submatch(1), "_", " ", "g")/]])
         end, {desc = "Format note title"})
     end,
 })

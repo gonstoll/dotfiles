@@ -42,11 +42,16 @@ return {
                 vim.cmd("ConformEnable")
             end,
         },
-        note_path_func = function(spec)
+        note_id_func = function(title)
             local date = os.date("%Y_%m_%d")
-            local title = spec.title and spec.title:gsub(" ", "_"):lower() or ""
-            local filename = date .. "_" .. title .. ".md"
-            return filename
+            if title then
+                local formated_title = title:gsub(" ", "_"):lower() or ""
+                local filename = date .. "_" .. formated_title .. ".md"
+                return filename
+            else
+                local filename = tostring(date)
+                return filename
+            end
         end,
         open_notes_in = "vsplit",
         templates = {
@@ -59,7 +64,7 @@ return {
         },
         daily_notes = {
             folder = "dailies",
-            date_format = "%Y-%m-%d",
+            date_format = "%Y_%m_%d",
             template = "note",
         },
     },
