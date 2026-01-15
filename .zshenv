@@ -37,7 +37,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export BAT_CONFIG_PATH="$HOME/.config/bat/bat.conf"
 
 # Postgresql
-export PATH="$HOMEBREW_PREFIX/opt/postgresql@17/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 
 # Fzf
 show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
