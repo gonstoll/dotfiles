@@ -87,8 +87,8 @@ source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 eval "$(zoxide init zsh)"
 
 # Fzf
-source $ZDOTDIR/fzf
-source <(fzf --zsh)
+# source $ZDOTDIR/fzf
+source <(fzf --zsh) # $ZDOTDIR/fzf already does the same as this line
 
 # Edit command line in vim
 autoload -U edit-command-line
