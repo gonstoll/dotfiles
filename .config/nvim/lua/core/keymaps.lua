@@ -7,6 +7,13 @@ local keyset = vim.keymap.set
 -- end, {desc = 'Open Netrw'})
 -- keyset('n', '<C-c>', vim.cmd.Rex, {desc = 'Open last visited file'})
 
+keyset("n", "j", "gj")
+keyset("n", "k", "gk")
+keyset("n", "0", "g0")
+keyset("n", "_", "g^")
+keyset("n", "^", "g^")
+keyset("n", "$", "g$")
+
 keyset("c", "<C-g>", "<C-f>", {desc = "Edit command in cmdline mode"})
 keyset("n", "<C-s>", "gg<S-v>G", {desc = "Select all"})
 

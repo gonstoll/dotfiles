@@ -1,6 +1,15 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+autocmd("FileType", {
+    desc = "Wrap text on text files",
+    group = augroup("WrapText", {}),
+    callback = function()
+        vim.opt_local.wrap = true
+        vim.opt_local.linebreak = true
+    end,
+})
+
 -- Highlight yanked text
 autocmd("TextYankPost", {
     desc = "Highlight yanked text",
@@ -91,7 +100,8 @@ autocmd({"BufRead", "BufNewFile"}, {
 
         vim.keymap.set("n", "<leader>ol", function()
             -- Find title, remove date prefix (YYYY_MM_DD_), and replace underscores with spaces
-            vim.cmd([[g/^# \d\{4}_\d\{2}_\d\{2}_/s/^# \d\{4}_\d\{2}_\d\{2}_\(.*\)/\=substitute("# " . submatch(1), "_", " ", "g")/]])
+            vim.cmd(
+                [[g/^# \d\{4}_\d\{2}_\d\{2}_/s/^# \d\{4}_\d\{2}_\d\{2}_\(.*\)/\=substitute("# " . submatch(1), "_", " ", "g")/]])
         end, {desc = "Format note title"})
     end,
 })

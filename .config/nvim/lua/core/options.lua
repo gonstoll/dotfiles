@@ -39,8 +39,6 @@ vim.opt.winborder = "single"
 vim.opt.swapfile = false
 vim.opt.backup = false
 
-vim.opt.wrap = false
-vim.opt.textwidth = 120
 vim.opt.formatexpr = "v:lua.require'conform'.formatexpr()"
 
 vim.opt.hlsearch = false
