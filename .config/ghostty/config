@@ -1,6 +1,7 @@
 # Fonts, underlines
 # font-family = SFMono Nerd Font
 # font-style-italic = Regular Italic
+font-family = Lilex Nerd Font
 font-size = 18
 font-feature = -calt, -liga, -dlig
 adjust-cell-height = -1
