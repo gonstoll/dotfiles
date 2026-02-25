@@ -18,7 +18,7 @@ return {
         {"<leader>qI", "<cmd>Octo issue search<CR>", desc = desc("Search Issues")},
         {"<leader>qp", "<CMD>Octo pr list<CR>", desc = desc("List GitHub Pull Requests")},
         {"<leader>qP", "<CMD>Octo pr search<CR>", desc = desc("Search GitHub Pull Requests")},
-        {"<leader>qc", "<CMD>tabnew | Octo pr create<CR>", desc = desc("Create GitHub Pull Request")},
+        {"<leader>qc", "<CMD>Octo pr create<CR>", desc = desc("Create GitHub Pull Request")},
         {"<leader>qb", "<CMD>Octo pr browser<CR>", desc = desc("Open Pull Request on browser")},
         {"<leader>qd", "<CMD>Octo discussion list<CR>", desc = desc("List GitHub Discussions")},
         {"<leader>qn", "<CMD>Octo notification list<CR>", desc = desc("List GitHub Notifications")},
