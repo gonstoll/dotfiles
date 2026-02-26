@@ -4,7 +4,7 @@
 font-family = Lilex Nerd Font
 font-size = 18
 font-feature = -calt, -liga, -dlig
-adjust-cell-height = -1
+# adjust-cell-height = -1
 cursor-style = block
 cursor-style-blink = true
 
