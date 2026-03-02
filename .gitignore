@@ -48,3 +48,7 @@ Library/Application Support/iTerm2/*
 
 # Yazi
 .config/yazi/*.toml-*
+
+# Copilot
+.config/.copilot/logs/**
+.config/.copilot/config.json
