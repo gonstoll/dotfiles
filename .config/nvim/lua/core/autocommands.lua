@@ -1,12 +1,18 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
-autocmd("FileType", {
+autocmd({"FileType", "BufEnter"}, {
     desc = "Wrap text on text files",
     group = augroup("WrapText", {}),
     callback = function()
-        vim.opt_local.wrap = true
-        vim.opt_local.linebreak = true
+        local filetypes_with_wrap = {"markdown", "octo"}
+        if vim.tbl_contains(filetypes_with_wrap, vim.bo.filetype) then
+            vim.opt_local.wrap = true
+            vim.opt_local.linebreak = true
+        else
+            vim.opt_local.wrap = false
+            vim.opt_local.linebreak = false
+        end
     end,
 })
 
