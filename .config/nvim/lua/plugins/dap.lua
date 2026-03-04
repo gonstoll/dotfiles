@@ -225,6 +225,15 @@ return {
             end
         end
 
+        -- Ensure all configs have a cwd, defaulting to workspaceFolder.
+        -- This fixes launch.json configs that omit the cwd property.
+        dap.listeners.on_config["ensure_cwd"] = function(config)
+            if not config.cwd then
+                config.cwd = "${workspaceFolder}"
+            end
+            return config
+        end
+
         for _, language in ipairs(js_filetypes) do
             dap.configurations[language] = {
                 -- Debug single nodejs files
