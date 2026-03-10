@@ -9,7 +9,6 @@ local keyset = vim.keymap.set
 
 keyset("n", "j", "gj")
 keyset("n", "k", "gk")
-keyset("n", "0", "g0")
 keyset("n", "_", "g^")
 keyset("n", "^", "g^")
 keyset("n", "$", "g$")
