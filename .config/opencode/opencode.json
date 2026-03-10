@@ -5,6 +5,7 @@
       "docs/*.md",
       "docs/**/*.md",
       ".cursor/rules/*.md",
-      ".cursor/rules/*.mdc"
+      ".cursor/rules/*.mdc",
+      "~/.config/opencode/rules.md"
     ],
 }
