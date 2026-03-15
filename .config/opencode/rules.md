@@ -17,7 +17,7 @@ Unless contradicted by the rules in the current project, ALWAYS follow the follo
 - If the function's return statement is not inlined (`array.map((item) => item.name)`), never use implicit returns. For example:
 
 ```ts
-❌Bad
+❌ Bad
 array.map((item) => ({
   name: item.name,
   id: item.id,
@@ -32,18 +32,5 @@ array.map((item) => {
 })
 ```
 
-- For js/ts/jsx/tsx projects, if the current project has a prettier configuration, use that (or run `npx prettier --write {file}` after your edits). Otherwise, use the following prettier config:
-
-```json
-{
-  "semi": false,
-  "printWidth": 80,
-  "arrowParens": "always",
-  "singleQuote": true,
-  "bracketSpacing": false
-}
-```
-
-- Always use the previous prettier configuration for js/ts/jsx/tsx code blocks on documentation
 - Don't eagerly abstract. Prefer to inline things, and only abstract away when really needed
 - Try to write elegant code. Don't overcomplicate things
