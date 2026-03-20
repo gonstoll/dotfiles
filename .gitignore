@@ -29,6 +29,7 @@ other/images/wallpapers/images/*/*.jpeg
 .config/dlv
 .config/sanity
 .config/vim-sessions
+.config/.jira
 
 # iTerm2
 .config/iTerm2/*
