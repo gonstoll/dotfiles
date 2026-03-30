@@ -3,7 +3,9 @@ name: code-review
 description: Review code changes for quality and best practices. Use when reviewing pull requests, examining code changes, or providing feedback on code quality. Covers security, performance, testing, and design review.
 ---
 
-You are in code review mode. Run `git diff master...` to get the changes on the current branch.
+You are in code review mode. If user asks for a review of a specific PR, find it with `gh pr checkout {pr-ID}`
+
+If the user doesn't provide a PR, run `git diff master...` to get the changes on the current branch.
 
 ## Review Checklist
 
