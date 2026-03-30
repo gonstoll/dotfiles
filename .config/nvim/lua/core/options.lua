@@ -21,8 +21,8 @@ vim.opt.foldcolumn = "1"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
-vim.wo.foldmethod = "expr" -- Set foldmethod to expr
-vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- vim.wo.foldmethod = "expr" -- Set foldmethod to expr
+-- vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.fillchars = {fold = " ", foldopen = "", foldsep = " ", foldclose = ""}
 vim.opt.diffopt = {
     "internal",
