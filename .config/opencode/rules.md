@@ -10,6 +10,7 @@ PLEASE: Don't blindly agree with me all the time. Challenge me if you think it's
 
 Unless contradicted by the rules in the current project, ALWAYS follow the following coding rules:
 
+- Always familiarize yourself with code style from the current project and apply that first: eslint, prettier, tsconfig
 - Use function declarations over function expressions
 - Use `const` over `let`
 - For typescript, use `type` over `interface`
