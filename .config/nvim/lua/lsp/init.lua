@@ -89,14 +89,13 @@ local function on_attach(client, bufnr)
         end, "Signature help")
     end
 
-    -- TODO: Uncomment this when v0.12 drops!
-    -- https://github.com/neovim/neovim/pull/33440
-    -- if client:supports_method("textDocument/documentColor") then
-    --     local document_color_enabled = false
-    --     keyset("n", "<leader>Ct", function()
-    --         vim.lsp.document_color.enable(not document_color_enabled, bufnr)
-    --     end, "Toogle colors highlighting")
-    -- end
+    vim.lsp.document_color.enable(false, {bufnr = bufnr})
+    if client:supports_method("textDocument/documentColor") then
+        keyset({"n", "x"}, "<leader>Ct", function()
+            local is_document_color_enabled = vim.lsp.document_color.is_enabled({bufnr = bufnr})
+            vim.lsp.document_color.enable(not is_document_color_enabled, {bufnr = bufnr})
+        end, "vim.lsp.document_color.color_presentation()")
+    end
 
     if client:supports_method(methods.textDocument_documentHighlight) then
         local highlight_enabled = false
