@@ -2,17 +2,23 @@
 
 download_dir="$HOME/Downloads"
 report_dir="$HOME/reports/e2e"
-report_file_name="report_$(date +%Y%m%d_%H%M%S).zip"
+report_file_name="report.zip"
 report_dest="$report_dir/$report_file_name"
 run_tests=false
 
 source "$XDG_CONFIG_HOME/zsh/functions"
 
+if ! command -v "npx playwright" &> /dev/null; then
+    print_error "Playwright could not be found"
+    cd apps/e2e-tests || exit 1
+fi
+
 function run_report() {
-    if [[ ! $(find "$report_dir" -maxdepth 1 -name "report*.zip") ]]; then
+    if [[ ! $(find "$report_dir" -maxdepth 1 -name $report_file_name) ]]; then
         print_error "No report files found in $report_dir"
         exit 0
     fi
+
     print_header "Running reports"
     npx playwright merge-reports --reporter html "$report_dir"
 }
@@ -32,15 +38,19 @@ fi
 
 if [ "$run_tests" = true ]; then
     run_report
+    exit 0
 fi
 
-if [[ ! $(find "$download_dir" -maxdepth 1 -name "report*.zip") ]]; then
+if [[ ! $(find "$download_dir" -maxdepth 1 -name "e2e-blob-report*.zip") ]]; then
     print_warning "No new report file found in downloads"
     run_report
+    exit 0
 fi
 
 print_header "Moving report to destination directory"
-find "$download_dir" -maxdepth 1 -name "report*.zip" -exec mv {} "$report_dir" \;
+# Unzip report and move it to destination directory
+find "$report_dir" -maxdepth 1 -name "e2e-blob-report*.zip" -exec unzip -o {} -d "$report_dir" \;
+# Move report to destination directory (with report.zip name)
+find "$report_dir" -maxdepth 1 -name "e2e-blob-report*.zip" -exec mv {} "$report_dest" \;
 
-print_header "Running reports"
-npx playwright merge-reports --reporter html "$report_dir"
+run_report
