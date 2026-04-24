@@ -2,7 +2,6 @@ return {
     "nvim-neotest/neotest",
     dependencies = {
         "nvim-neotest/nvim-nio",
-        "nvim-treesitter/nvim-treesitter",
         "nvim-lua/plenary.nvim",
         "antoinemadec/FixCursorHold.nvim",
         -- Adapters
@@ -11,7 +10,6 @@ return {
         "thenbe/neotest-playwright",
         "fredrikaverpil/neotest-golang",
     },
-    commit = "52fca671",
     keys = function()
         local desc = Utils.plugin_keymap_desc("neotest")
         return {
@@ -27,7 +25,7 @@ return {
             {"<leader>TS", function() require("neotest").run.stop() end, desc = desc("Stop")},
             {
                 "<leader>Tw",
-                function() require("neotest").run.run({vim.fn.expand("%"), jestCommand = "node_modules/.bin/jest --watch"}) end,
+                function() require("neotest").run.run({vim.fn.expand("%"), jestCommand = "jest --watch "}) end,
                 desc = desc("Run test on watch mode"),
             },
         }
