@@ -7,11 +7,17 @@ local keyset = vim.keymap.set
 -- end, {desc = 'Open Netrw'})
 -- keyset('n', '<C-c>', vim.cmd.Rex, {desc = 'Open last visited file'})
 
-keyset("n", "j", "gj")
-keyset("n", "k", "gk")
-keyset("n", "_", "g^")
-keyset("n", "^", "g^")
-keyset("n", "$", "g$")
+local function wrap_motion(g_motion, plain_motion)
+    return function()
+        return vim.wo.wrap and g_motion or plain_motion
+    end
+end
+
+keyset("n", "j", wrap_motion("gj", "j"), {expr = true})
+keyset("n", "k", wrap_motion("gk", "k"), {expr = true})
+keyset("n", "_", wrap_motion("g^", "_"), {expr = true})
+keyset("n", "^", wrap_motion("g^", "^"), {expr = true})
+keyset("n", "$", wrap_motion("g$", "$"), {expr = true})
 
 keyset("c", "<C-g>", "<C-f>", {desc = "Edit command in cmdline mode"})
 keyset("n", "<C-s>", "gg<S-v>G", {desc = "Select all"})
