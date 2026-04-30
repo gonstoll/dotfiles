@@ -39,7 +39,25 @@ if [[ -z "$selected" ]]; then
     exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
+base=$(basename "$selected" | tr . _)
+# To detect conflicts, this searches all configured parent directories for immediate
+# subdirectories (-mindepth 1 -maxdepth 1) matching the selected directory's basename.
+#
+# Using -name filters at the find level to avoid listing all directories (faster).
+#
+# sort -u deduplicates in case overlapping directory configs surface the same path twice.
+# If more than one unique match is found, the basename is ambiguous and needs a prefix.
+match_count=$(find "${DIRECTORIES[@]}" -mindepth 1 -maxdepth 1 -type d -name "$(basename "$selected")" 2>/dev/null | sort -u | wc -l)
+
+# Disambiguate directories with the same basename (e.g., ~/code/dashboard and
+# ~/code/metarepo/projects/app/dashboard) by prefixing with the parent directory name.
+if [[ $match_count -gt 1 ]]; then
+    parent=$(basename "$(dirname "$selected")" | tr . _)
+    selected_name="${parent}_${base}"
+else
+    selected_name="$base"
+fi
+
 tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
