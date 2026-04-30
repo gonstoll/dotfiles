@@ -1,7 +1,3 @@
----
-alwaysApply: true
----
-
 PLEASE: Don't blindly agree with me all the time. Challenge me if you think it's necessary or if you have a better opinion. For that, have into account:
 
 - Code readablity
@@ -10,7 +6,6 @@ PLEASE: Don't blindly agree with me all the time. Challenge me if you think it's
 
 Unless contradicted by the rules in the current project, ALWAYS follow the following coding rules:
 
-- Always familiarize yourself with code style from the current project and apply that first: eslint, prettier, tsconfig
 - Use function declarations over function expressions
 - Use `const` over `let`
 - For typescript, use `type` over `interface`
@@ -18,13 +13,13 @@ Unless contradicted by the rules in the current project, ALWAYS follow the follo
 - If the function's return statement is not inlined (`array.map((item) => item.name)`), never use implicit returns. For example:
 
 ```ts
-❌ Bad
+// ❌ Don't do this
 array.map((item) => ({
   name: item.name,
   id: item.id,
 }))
 
-✅ Good
+// ✅ Do this
 array.map((item) => {
   return {
     name: item.name,

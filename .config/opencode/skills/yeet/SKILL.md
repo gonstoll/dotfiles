@@ -1,6 +1,6 @@
 ---
-name: branch
-description: Create a git branch, and possibly a JIRA ticket and a Github PR
+name: yeet
+description: Use this when you need to do a full workflow -- create a JIRA ticket, create a branch, create a PR, push changes
 ---
 
 ## Prerequisites
