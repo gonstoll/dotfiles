@@ -1,5 +1,5 @@
 # Fzf
-alias fd="cd \$(find . -type d | fzf)" # cd into a directory
+alias fzd="cd \$(find . -type d | fzf)" # cd into a directory
 
 # Git
 alias lg="lazygit"
