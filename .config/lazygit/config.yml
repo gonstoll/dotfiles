@@ -10,9 +10,6 @@ keybinding:
     moveUpCommit: K
     moveDownCommit: J
 
-os:
-  editPreset: nvim
-
 gui:
   useHunkModeInStagingView: false
   border: 'single'
