@@ -26,3 +26,5 @@
 	enable = true
 [init]
 	defaultBranch = master
+[commit]
+  verbose = true
