@@ -109,5 +109,6 @@
   "vim.neovimPath": "/opt/homebrew/bin/nvim",
   "vim.scroll": 10,
   "editor.lineNumbers": "relative",
-  "editor.cursorStyle": "block"
+  "editor.cursorStyle": "block",
+  "window.autoDetectColorScheme": false
 }

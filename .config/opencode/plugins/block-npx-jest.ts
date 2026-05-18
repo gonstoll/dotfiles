@@ -8,14 +8,19 @@ export async function BlockNpxJest() {
       const command = output.args.command as string | undefined
       if (!command) return
 
-      // Match `npx jest` (with optional flags/args) but avoid matching things
-      // like `npx jest-something` by requiring a word boundary after `jest`.
-      const npxJestRegex =
-        /(^|[\s;&|`(])npx\s+(--\S+\s+)*jest(\s|$|;|&|\||`|\))/
+      // Match direct `jest` invocations through common runners:
+      //   npx jest
+      //   bunx jest
+      //   pnpm jest / pnpm exec jest / pnpm dlx jest
+      //   yarn jest / yarn dlx jest
+      //   bun x jest / bun run jest
+      // Word boundary after `jest` avoids matching `jest-something`.
+      const jestRegex =
+        /(^|[\s;&|`(])(npx|bunx|pnpm(\s+(exec|dlx))?|yarn(\s+dlx)?|bun(\s+(x|run))?)\s+(--\S+\s+)*jest(\s|$|;|&|\||`|\))/
 
-      if (npxJestRegex.test(command)) {
+      if (jestRegex.test(command)) {
         throw new Error(
-          "`npx jest` is not allowed. Check the project's package.json for the correct npm script (e.g. `npm test`, `npm run test`, `npm run test:unit`) and use that instead.",
+          "Running `jest` directly is not allowed. Check the project's package.json for the correct npm script (e.g. `npm test`, `npm run test`, `npm run test:unit`) and use that instead.",
         )
       }
     },
