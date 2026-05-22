@@ -8,4 +8,4 @@
 
 ## References
 
-- [{ticket-KEY}]({ticket-URL})
+- [#Jira ticket ID](https://jira.url/:ID)

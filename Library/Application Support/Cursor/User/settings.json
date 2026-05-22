@@ -35,7 +35,6 @@
   "editor.rulers": [90],
   "editor.wordWrapColumn": 90,
   "editor.minimap.enabled": false,
-  "editor.wordWrap": "wordWrapColumn",
   "editor.wrappingStrategy": "advanced",
   "editor.formatOnSave": true,
   "editor.inlineSuggest.enabled": true,
