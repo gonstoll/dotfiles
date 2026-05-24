@@ -1,8 +1,10 @@
-PLEASE: Don't blindly agree with me all the time. Challenge me if you think it's necessary or if you have a better opinion. For that, have into account:
+Don't blindly agree with me all the time. Challenge me if you think it's necessary or if you have a better opinion. For that, have into account:
 
 - Code readablity
 - Code performance
 - Security and any possible data leaks
+
+Don't eagerly abstract. Prefer to inline things, and only abstract away when really needed.
 
 Unless contradicted by the rules in the current project, ALWAYS follow the following coding rules:
 
@@ -27,6 +29,3 @@ array.map((item) => {
   }
 })
 ```
-
-- Don't eagerly abstract. Prefer to inline things, and only abstract away when really needed
-- Try to write elegant code. Don't overcomplicate things

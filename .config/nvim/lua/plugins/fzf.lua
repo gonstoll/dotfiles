@@ -132,7 +132,7 @@ return {
                 hidden = true,
                 follow = true,
                 actions = {
-                    ["ctrl-s"] = actions.toggle_hidden,
+                    ["ctrl-]"] = actions.toggle_hidden,
                 },
                 -- rg_opts = [[--color=never --files --hidden --follow -g "!.git"]],
                 -- fd_opts = [[--color=never --type f --hidden --follow --exclude .git]],
@@ -145,7 +145,7 @@ return {
                 hidden = true,
                 follow = true,
                 actions = {
-                    ["ctrl-s"] = actions.toggle_hidden,
+                    ["ctrl-]"] = actions.toggle_hidden,
                 },
                 -- actions = {
                 --   ['ctrl-q'] = {
