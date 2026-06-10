@@ -32,21 +32,33 @@ bindkey "^[[B" history-search-forward
 zle_highlight=('paste:none')
 
 autoload -U +X compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
+# zstyle ':completion:*' menu select
+# zmodload zsh/complist
 compinit
-_comp_options+=(globdots)
-bindkey '^[[Z' reverse-menu-complete # Accept S-Tab to cycle backwards between completion items
+# _comp_options+=(globdots)
+# bindkey '^[[Z' reverse-menu-complete # Accept S-Tab to cycle backwards between completion items
 
-# Vi mode
-bindkey -v
-bindkey -M viins '^W' backward-kill-word
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+# custom fzf flags
+zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
+# To make fzf-tab follow FZF_DEFAULT_OPTS.
+# NOTE: This may lead to unexpected behavior since some flags break this plugin. See Aloxaf/fzf-tab#455.
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
 
-# Use vim keys in tab complete menu (2nd tab press):
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
+# # Use vim keys in tab complete menu (2nd tab press):
+# bindkey -M menuselect 'h' vi-backward-char
+# bindkey -M menuselect 'k' vi-up-line-or-history
+# bindkey -M menuselect 'l' vi-forward-char
+# bindkey -M menuselect 'j' vi-down-line-or-history
 
 # By default backspace (^?) is bound to `vi-backward-delete-char`
 # we want it to have the same bahvior as vim/nvim (i.e. backspace=del)
@@ -94,6 +106,9 @@ source <(fzf --zsh) # $ZDOTDIR/fzf already does the same as this line
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
+
+# autoload -U compinit; compinit
+source $HOMEBREW_PREFIX/share/fzf-tab/fzf-tab.zsh
 
 # Use fzf for history search
 # bindkey '^R' fzf-history-widget
