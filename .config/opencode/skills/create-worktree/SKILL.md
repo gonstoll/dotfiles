@@ -17,23 +17,23 @@ After it runs, reply with one sentence: worktree path, branch, strategy.
 ## Own + link
 
 ```sh
-B="<BRANCH>" && git fetch && src=$(git rev-parse --show-toplevel) && dir=$(realpath "$src/..")/${B//\//-} && git worktree add -b "$B" "$dir" origin/master --no-track && cd "$dir" && { [ -f "$src/.env" ] && ln -s "$src/.env" .env; [ -f "$src/.tmux-sessionizer" ] && ln -s "$src/.tmux-sessionizer" .tmux-sessionizer; fd -t d -HI --prune '^node_modules$' "$src" | while read nm; do rel=${nm#$src/}; p=$(dirname "$rel"); [ -d "$p" ] && ln -sfn "$nm" "$p/node_modules"; done; tmux-sessionizer "$dir"; }
+B="<BRANCH>" && git fetch && src=$(git rev-parse --show-toplevel) && dir=$(realpath "$src/..")/${B//\//-} && git worktree add -b "$B" "$dir" origin/master --no-track && cd "$dir" && { [ -f "$src/.env" ] && cp "$src/.env" .env; [ -f "$src/.tmux-sessionizer" ] && cp "$src/.tmux-sessionizer" .tmux-sessionizer; fd -t d -HI --prune '^node_modules$' "$src" | while read nm; do rel=${nm#$src/}; p=$(dirname "$rel"); [ -d "$p" ] && ln -sfn "$nm" "$p/node_modules"; done; tmux-sessionizer "$dir"; }
 ```
 
 ## Own + install
 
 ```sh
-B="<BRANCH>" && CMD="<INSTALL_CMD>" && git fetch && src=$(git rev-parse --show-toplevel) && dir=$(realpath "$src/..")/${B//\//-} && git worktree add -b "$B" "$dir" origin/master --no-track && cd "$dir" && { [ -f "$src/.env" ] && ln -s "$src/.env" .env; [ -f "$src/.tmux-sessionizer" ] && ln -s "$src/.tmux-sessionizer" .tmux-sessionizer; tmux-sessionizer "$dir" && tmux send-keys -t "$(basename "$dir" | tr . _)" "$CMD" C-m; }
+B="<BRANCH>" && CMD="<INSTALL_CMD>" && git fetch && src=$(git rev-parse --show-toplevel) && dir=$(realpath "$src/..")/${B//\//-} && git worktree add -b "$B" "$dir" origin/master --no-track && cd "$dir" && { [ -f "$src/.env" ] && cp "$src/.env" .env; [ -f "$src/.tmux-sessionizer" ] && cp "$src/.tmux-sessionizer" .tmux-sessionizer; tmux-sessionizer "$dir" && tmux send-keys -t "$(basename "$dir" | tr . _)" "$CMD" C-m; }
 ```
 
 ## Other + link
 
 ```sh
-B="<BRANCH>" && git fetch && src=$(git rev-parse --show-toplevel) && dir=$(realpath "$src/..")/${B//\//-} && git worktree add "$dir" -b "$B" "origin/$B" && cd "$dir" && { [ -f "$src/.env" ] && ln -s "$src/.env" .env; [ -f "$src/.tmux-sessionizer" ] && ln -s "$src/.tmux-sessionizer" .tmux-sessionizer; fd -t d -HI --prune '^node_modules$' "$src" | while read nm; do rel=${nm#$src/}; p=$(dirname "$rel"); [ -d "$p" ] && ln -sfn "$nm" "$p/node_modules"; done; tmux-sessionizer "$dir"; }
+B="<BRANCH>" && git fetch && src=$(git rev-parse --show-toplevel) && dir=$(realpath "$src/..")/${B//\//-} && git worktree add "$dir" -b "$B" "origin/$B" && cd "$dir" && { [ -f "$src/.env" ] && cp "$src/.env" .env; [ -f "$src/.tmux-sessionizer" ] && cp "$src/.tmux-sessionizer" .tmux-sessionizer; fd -t d -HI --prune '^node_modules$' "$src" | while read nm; do rel=${nm#$src/}; p=$(dirname "$rel"); [ -d "$p" ] && ln -sfn "$nm" "$p/node_modules"; done; tmux-sessionizer "$dir"; }
 ```
 
 ## Other + install
 
 ```sh
-B="<BRANCH>" && CMD="<INSTALL_CMD>" && git fetch && src=$(git rev-parse --show-toplevel) && dir=$(realpath "$src/..")/${B//\//-} && git worktree add "$dir" -b "$B" "origin/$B" && cd "$dir" && { [ -f "$src/.env" ] && ln -s "$src/.env" .env; [ -f "$src/.tmux-sessionizer" ] && ln -s "$src/.tmux-sessionizer" .tmux-sessionizer; tmux-sessionizer "$dir" && tmux send-keys -t "$(basename "$dir" | tr . _)" "$CMD" C-m; }
+B="<BRANCH>" && CMD="<INSTALL_CMD>" && git fetch && src=$(git rev-parse --show-toplevel) && dir=$(realpath "$src/..")/${B//\//-} && git worktree add "$dir" -b "$B" "origin/$B" && cd "$dir" && { [ -f "$src/.env" ] && cp "$src/.env" .env; [ -f "$src/.tmux-sessionizer" ] && cp "$src/.tmux-sessionizer" .tmux-sessionizer; tmux-sessionizer "$dir" && tmux send-keys -t "$(basename "$dir" | tr . _)" "$CMD" C-m; }
 ```
