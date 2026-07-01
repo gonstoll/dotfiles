@@ -4,6 +4,46 @@ local i18n_desc = Utils.plugin_keymap_desc("i18n")
 
 return {
     {
+        "dmtrKovalenko/fff.nvim",
+        build = function()
+            require("fff.download").download_or_build_binary()
+        end,
+        opts = {
+            debug = {
+                enabled = true,
+                show_scores = true,
+            },
+            layout = {
+                height = 0.9,
+                width = 0.6,
+                prompt_position = "bottom",
+                preview_position = "bottom",
+                -- preview_size = 0.5,
+                -- flex = {size = 130, wrap = "top"},
+                -- min_list_height = 2,                     --  do not display anything except the list below this threshold
+                show_scrollbar = true,
+                path_shorten_strategy = "middle_number", -- 'middle_number' | 'middle' | 'end' | 'start'
+                anchor = "center",
+            },
+        },
+        lazy = false, -- the plugin lazy-initialises itself
+        keys = {
+            {"<leader>Ff", function() require("fff").find_files() end, desc = "FFFind files"},
+            {"<leader>Fg", function() require("fff").live_grep() end, desc = "LiFFFe grep"},
+            {
+                "<leader>Fz",
+                function() require("fff").live_grep({grep = {modes = {"fuzzy", "plain"}}}) end,
+                desc = "Live fffuzy grep",
+            },
+            {
+                "<leader>Fc",
+                function() require("fff").live_grep({query = vim.fn.expand("<cword>")}) end,
+                desc = "Search current word",
+            },
+        },
+    },
+
+    {
         "gonstoll/duck.nvim",
         keys = {
             {"<leader>,dd", function() require("duck").hatch("🐈") end, desc = duck_desc("Hatch")},
