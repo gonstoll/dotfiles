@@ -56,3 +56,6 @@ Library/Application Support/iTerm2/*
 
 # Opencode
 .config/opencode/package-lock.json
+
+# Homebrew
+.config/homebrew/trust.json.lock
