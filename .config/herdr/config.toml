@@ -1,0 +1,83 @@
+onboarding = false
+
+[theme]
+name = "rose-pine"
+
+[keys]
+prefix = "ctrl+f"
+toggle_sidebar = "prefix+f"
+
+# Panes
+split_vertical = "prefix+|"
+split_horizontal = 'prefix+-'
+# focus_pane_left = "ctrl+h"
+# focus_pane_down = "ctrl+j"
+# focus_pane_up = "ctrl+k"
+# focus_pane_right = "ctrl+l"
+
+# Tabs
+new_tab = "prefix+c"
+next_tab = "prefix+ctrl+n"
+previous_tab = "prefix+ctrl+p"
+rename_tab = "prefix+,"
+
+# Workspaces
+next_workspace = "prefix+ctrl+l"
+previous_workspace = "prefix+ctrl+h"
+close_workspace = "prefix+ctrl+x"
+
+[ui.toast]
+delivery = "system"
+
+[ui]
+sidebar_collapsed_mode = "hidden"
+show_agent_labels_on_pane_borders = false
+
+[experimental]
+kitty_graphics = true
+
+[[keys.command]]
+key = "prefix+ctrl+g"
+type = "popup"
+command = "lazygit"
+description = "run lazygit"
+width = "90%"
+height = "90%"
+
+[[keys.command]]
+key = "prefix+t"
+type = "popup"
+command = "exec \"${SHELL:-sh}\""
+description = "open scratch terminal"
+width = "90%"
+height = "90%"
+
+# herdr-sessionizer
+[[keys.command]]
+key = "prefix+S"
+type = "popup"
+command = "herdr-sessionizer"
+description = "run herdr sessionizer"
+width = "70%"
+height = "70%"
+
+# herdr-sessionizer - Notes
+[[keys.command]]
+key = "prefix+N"
+type = "shell"
+command = "herdr-sessionizer ~/notes/obsidian/gonzalo_notes"
+description = "go to gonzalo_notes workspace"
+
+# herdr-sessionizer - Dotfiles
+[[keys.command]]
+key = "prefix+B"
+type = "shell"
+command = "herdr-sessionizer ~/.dotfiles"
+description = "go to dotfiles workspace"
+
+# herdr-sessionizer - Home
+[[keys.command]]
+key = "prefix+H"
+type = "shell"
+command = "herdr-sessionizer ~/"
+description = "go to home workspace"

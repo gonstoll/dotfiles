@@ -54,11 +54,13 @@ Library/Application Support/iTerm2/*
 .config/.copilot/logs/**
 .config/.copilot/config.json
 
-# Opencode
-.config/opencode/package-lock.json
-
 # Homebrew
 .config/homebrew/trust.json.lock
 
-# Cursor
+# AI
+.agents/.skill-lock.json
+.config/opencode/package-lock.json
+.config/opencode/plugins/herdr-agent-state.js
 .config/cursor/cli-config.json/**
+.config/herdr/*
+!.config/herdr/config.toml

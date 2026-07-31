@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# $1 = workspace_id, $2 = selected directory
+
+# Rename the initial tab to "vim"
+first_tab=$(herdr tab list --workspace "$1" 2>/dev/null | jq -r '.result.tabs[0].tab_id')
+if [[ -n "$first_tab" && "$first_tab" != "null" ]]; then
+    herdr tab rename "$first_tab" vim
+fi
+
+herdr tab create --workspace "$1" --label scratch --cwd "$2" --no-focus
+herdr tab create --workspace "$1" --label ai --cwd "$2" --no-focus
+
+# ai_pane=$(herdr tab create --workspace "$1" --label ai --cwd "$2" --no-focus | jq -r '.result.root_pane.pane_id')
+# herdr pane run "$ai_pane" agent
+
+# herdr pane send-text "$ai_pane" "agent"
+# herdr pane send-keys "$ai_pane" enter

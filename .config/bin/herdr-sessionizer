@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+
+DIRECTORIES=($(eval echo $(xargs < "$XDG_CONFIG_HOME/herdr-sessionizer/directories")))
+
+function hydrate() {
+    local workspace_id="$1"
+    local selected="$2"
+
+    if [ -f "$selected/.herdr-sessionizer" ]; then
+        bash "$selected/.herdr-sessionizer" "$workspace_id" "$selected"
+    elif [ -f "$XDG_CONFIG_HOME/herdr-sessionizer/default" ]; then
+        bash "$XDG_CONFIG_HOME/herdr-sessionizer/default" "$workspace_id" "$selected"
+    fi
+}
+
+if [[ $# -eq 1 ]]; then
+    selected="$1"
+else
+    selected=$(find "${DIRECTORIES[@]}" -mindepth 1 -maxdepth 1 -type d | fzf \
+            --style minimal \
+            --no-bold \
+            --height=100% \
+            --no-unicode \
+            --margin=5% \
+            --no-color \
+        )
+fi
+
+if [[ -z "$selected" ]]; then
+    exit 0
+fi
+
+base=$(basename "$selected" | tr . _)
+# To detect conflicts, this searches all configured parent directories for immediate
+# subdirectories (-mindepth 1 -maxdepth 1) matching the selected directory's basename.
+#
+# Using -name filters at the find level to avoid listing all directories (faster).
+#
+# sort -u deduplicates in case overlapping directory configs surface the same path twice.
+# If more than one unique match is found, the basename is ambiguous and needs a prefix.
+match_count=$(find "${DIRECTORIES[@]}" -mindepth 1 -maxdepth 1 -type d -name "$(basename "$selected")" 2>/dev/null | sort -u | wc -l)
+
+# Disambiguate directories with the same basename (e.g., ~/code/dashboard and
+# ~/code/metarepo/projects/app/dashboard) by prefixing with the parent directory name.
+if [[ $match_count -gt 1 ]]; then
+    parent=$(basename "$(dirname "$selected")" | tr . _)
+    selected_name="${parent}_${base}"
+else
+    selected_name="$base"
+fi
+
+workspace_list=$(herdr workspace list 2>/dev/null)
+
+workspace_id=$(echo "$workspace_list" | jq -r --arg label "$selected_name" \
+    '.result.workspaces[] | select(.label == $label) | .workspace_id')
+
+if [[ -n "$workspace_id" ]]; then
+    herdr workspace focus "$workspace_id"
+else
+    workspace_id=$(herdr workspace create --cwd "$selected" --label "$selected_name" --focus 2>/dev/null \
+        | jq -r '.result.workspace.workspace_id')
+
+    if [[ -z "$workspace_id" || "$workspace_id" == "null" ]]; then
+        echo "Failed to create workspace" >&2
+        exit 1
+    fi
+
+    hydrate "$workspace_id" "$selected"
+fi
