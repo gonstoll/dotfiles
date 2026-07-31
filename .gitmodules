@@ -3,4 +3,4 @@
 	url = https://github.com/mczachurski/wallpapper.git
 [submodule ".agents"]
 	path = .agents
-	url = https://github.com/gonstoll/agents
+	url = git@github.com:gonstoll/agents.git
