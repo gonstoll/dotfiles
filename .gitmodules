@@ -1,3 +1,6 @@
 [submodule "other/images/wallpapers/wallpapper"]
 	path = other/images/wallpapers/wallpapper
 	url = https://github.com/mczachurski/wallpapper.git
+[submodule ".agents"]
+	path = .agents
+	url = https://github.com/gonstoll/agents
