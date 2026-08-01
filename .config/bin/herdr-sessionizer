@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
 DIRECTORIES=($(eval echo $(xargs < "$XDG_CONFIG_HOME/herdr-sessionizer/directories")))
+SESSION_NAME="general"
+
+if [[ "$1" == "--kill" ]]; then
+    herdr session stop "$SESSION_NAME" 2>/dev/null
+    herdr session delete "$SESSION_NAME" 2>/dev/null
+    exit 0
+fi
 
 function hydrate() {
     local workspace_id="$1"
