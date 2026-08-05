@@ -26,6 +26,11 @@ next_workspace = "prefix+ctrl+l"
 previous_workspace = "prefix+ctrl+h"
 close_workspace = "prefix+ctrl+x"
 
+# Agents
+next_agent = "prefix+ctrl+L"
+previous_agent = "prefix+ctrl+H"
+focus_agent = "prefix+shift+1..9"
+
 [ui.toast]
 delivery = "system"
 
@@ -81,3 +86,24 @@ key = "prefix+H"
 type = "shell"
 command = "herdr-sessionizer ~/"
 description = "go to home workspace"
+
+# herdr-sessionizer - Dashboard
+[[keys.command]]
+key = "prefix+D"
+type = "shell"
+command = "herdr-sessionizer ~/code/metarepo/projects/app/dashboard"
+description = "go to dashboard workspace"
+
+# herdr-sessionizer - Api
+[[keys.command]]
+key = "prefix+A"
+type = "shell"
+command = "herdr-sessionizer ~/code/metarepo/projects/app/api"
+description = "go to api workspace"
+
+# herdr-sessionizer - Survey
+[[keys.command]]
+key = "prefix+Y"
+type = "shell"
+command = "herdr-sessionizer ~/code/metarepo/projects/app/survey"
+description = "go to survey workspace"
