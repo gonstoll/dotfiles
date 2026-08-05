@@ -36,18 +36,72 @@ function M.get_lsp_format(bufnr)
     return filetype == "lua" and "prefer" or "fallback"
 end
 
+local PEEK_MAX_HEIGHT = 20
+
+---Line range (0-indexed, end-inclusive) covering the whole declaration
+---@param location table lsp.Location|lsp.LocationLink
+---@param target_bufnr integer
+local function declaration_range(location, target_bufnr)
+    local range = location.targetRange or location.range
+    local start_line = range.start.line
+    local end_line = range["end"].line
+
+    -- Plain Locations only point at the identifier, so grow to the enclosing
+    -- node as long as it still starts on the same line
+    if end_line == start_line then
+        local ok, node = pcall(vim.treesitter.get_node, {
+            bufnr = target_bufnr,
+            pos = {start_line, range.start.character},
+        })
+        while ok and node do
+            local node_start, _, node_end, _ = node:range()
+            if node_start ~= start_line then
+                break
+            end
+            if node_end > node_start then
+                end_line = node_end
+                break
+            end
+            node = node:parent()
+        end
+    end
+
+    return start_line, math.min(end_line, start_line + PEEK_MAX_HEIGHT - 1)
+end
+
+---Markdown lines for a hover response, or nil when it carries no content
+---@param result table lsp.Hover
+local function hover_lines(result)
+    local contents = result.contents
+
+    if not contents then
+        return nil
+    end
+
+    -- MarkupContent, MarkedString (string or pair) and MarkedString[]
+    local value = type(contents) == "table"
+            and (vim.tbl_get(contents, "value") or vim.tbl_get(contents, 1, "value") or contents[1])
+        or contents
+
+    if type(value) ~= "string" or value == "" then
+        return nil
+    end
+
+    return vim.lsp.util.convert_input_to_markdown_lines(contents)
+end
+
 function M.peek_definition()
     local bufnr = vim.api.nvim_get_current_buf()
     local win = vim.api.nvim_get_current_win()
-    local methods = {"textDocument/typeDefinition", "textDocument/definition"}
+    local methods = {"textDocument/typeDefinition", "textDocument/definition", "textDocument/hover"}
 
-    local function open_location(location, offset_encoding)
-        local uri = location.targetUri or location.uri
-        local range = location.targetSelectionRange or location.targetRange or location.range
+    ---@return boolean handled
+    local function open_location(result)
+        local location = vim.islist(result) and result[1] or result
+        local uri = location and (location.targetUri or location.uri)
 
-        if not uri or not range then
-            vim.notify("No definition found", vim.log.levels.INFO)
-            return
+        if not uri then
+            return false
         end
 
         local target_bufnr = vim.uri_to_bufnr(uri)
@@ -55,47 +109,47 @@ function M.peek_definition()
             vim.fn.bufload(target_bufnr)
         end
 
-        local lines = vim.api.nvim_buf_get_lines(target_bufnr, 0, -1, false)
-        local width = math.max(20, math.min(math.floor(vim.o.columns * 0.8), 120))
-        local height = math.max(1, math.min(math.floor(vim.o.lines * 0.5), #lines))
-        local row = math.max(0, math.floor((vim.o.lines - height) / 2 - 1))
-        local col = math.max(0, math.floor((vim.o.columns - width) / 2))
-        local float_bufnr = vim.api.nvim_create_buf(false, true)
+        local start_line, end_line = declaration_range(location, target_bufnr)
+        local lines = vim.api.nvim_buf_get_lines(target_bufnr, start_line, end_line + 1, false)
+        local filename = vim.fn.fnamemodify(vim.uri_to_fname(uri), ":~:.")
 
-        vim.bo[float_bufnr].buftype = "nofile"
-        vim.bo[float_bufnr].bufhidden = "wipe"
-        vim.bo[float_bufnr].swapfile = false
-        vim.bo[float_bufnr].filetype = vim.bo[target_bufnr].filetype
-        vim.bo[float_bufnr].syntax = vim.bo[target_bufnr].syntax
-        vim.api.nvim_buf_set_lines(float_bufnr, 0, -1, false, lines)
-        vim.bo[float_bufnr].modifiable = false
-        vim.bo[float_bufnr].readonly = true
-
-        local float_win = vim.api.nvim_open_win(float_bufnr, true, {
-            border = "rounded",
-            col = col,
-            height = height,
-            relative = "editor",
-            row = row,
-            style = "minimal",
-            title = vim.fn.fnamemodify(vim.uri_to_fname(uri), ":~:."),
-            width = width,
+        local float_bufnr = vim.lsp.util.open_floating_preview(lines, "", {
+            border = "single",
+            focus_id = "peek_definition",
+            title = string.format("%s:%d", filename, start_line + 1),
+            title_pos = "left",
+            wrap = false,
+            max_width = math.floor(vim.o.columns * 0.7),
+            max_height = math.min(PEEK_MAX_HEIGHT, math.floor(vim.o.lines * 0.5)),
         })
 
-        vim.wo[float_win].cursorline = true
-        vim.wo[float_win].number = true
-        vim.wo[float_win].relativenumber = false
-        vim.wo[float_win].wrap = false
+        local lang = vim.treesitter.language.get_lang(vim.bo[target_bufnr].filetype)
+        if lang then
+            pcall(vim.treesitter.start, float_bufnr, lang)
+        end
 
-        local line = math.min(range.start.line + 1, #lines)
-        local character = vim.str_byteindex(lines[line] or "", offset_encoding, range.start.character, false)
-        vim.api.nvim_win_set_cursor(float_win, {line, character})
-        vim.api.nvim_win_call(float_win, function()
-            vim.cmd "normal! zt"
-        end)
+        return true
+    end
 
-        vim.keymap.set("n", "q", "<cmd>close<CR>", {buffer = float_bufnr, silent = true})
-        vim.keymap.set("n", "<Esc>", "<cmd>close<CR>", {buffer = float_bufnr, silent = true})
+    ---@return boolean handled
+    local function open_hover(result)
+        local lines = hover_lines(result)
+
+        if not lines or vim.tbl_isempty(lines) then
+            return false
+        end
+
+        -- open_floating_preview stylizes and highlights markdown on its own
+        vim.lsp.util.open_floating_preview(lines, "markdown", {
+            border = "single",
+            focus_id = "peek_definition",
+            title = "Hover",
+            title_pos = "left",
+            max_width = math.floor(vim.o.columns * 0.7),
+            max_height = math.floor(vim.o.lines * 0.7),
+        })
+
+        return true
     end
 
     local function request(method_index)
@@ -106,7 +160,7 @@ function M.peek_definition()
             if methods[method_index + 1] then
                 request(method_index + 1)
             else
-                vim.notify("No definition provider found", vim.log.levels.INFO)
+                vim.notify("No type information provider found", vim.log.levels.INFO)
             end
             return
         end
@@ -114,12 +168,11 @@ function M.peek_definition()
         vim.lsp.buf_request_all(bufnr, method, function(client)
             return vim.lsp.util.make_position_params(win, client.offset_encoding)
         end, function(results)
-            for client_id, response in pairs(results) do
+            local open = method == "textDocument/hover" and open_hover or open_location
+
+            for _, response in pairs(results) do
                 local result = response and response.result
-                if result and not vim.tbl_isempty(result) then
-                    local location = vim.islist(result) and result[1] or result
-                    local client = vim.lsp.get_client_by_id(client_id)
-                    open_location(location, client and client.offset_encoding or "utf-16")
+                if result and not vim.tbl_isempty(result) and open(result) then
                     return
                 end
             end
@@ -127,7 +180,7 @@ function M.peek_definition()
             if methods[method_index + 1] then
                 request(method_index + 1)
             else
-                vim.notify("No definition found", vim.log.levels.INFO)
+                vim.notify("No type information found", vim.log.levels.INFO)
             end
         end)
     end
