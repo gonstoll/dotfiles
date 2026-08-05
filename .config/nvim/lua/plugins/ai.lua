@@ -1,5 +1,5 @@
 local sidekick_desc = Utils.plugin_keymap_desc("Sidekick")
-local default_ai_tool = "opencode"
+local default_ai_tool = vim.env.DEFAULT_AI_CLI or "opencode"
 
 return {
     {
@@ -39,8 +39,8 @@ return {
             },
             cli = {
                 mux = {
-                    backend = "tmux",
                     enabled = true,
+                    backend = "tmux",
                     create = "terminal",
                 },
             },
