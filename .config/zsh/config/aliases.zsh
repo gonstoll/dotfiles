@@ -14,6 +14,7 @@ alias mysqladmin=/usr/local/mysql/bin/mysqladmin
 
 # Tmux
 alias s="tmux-sessionizer"
+# alias s="herdr session attach general"
 alias tn="tmux new -s $(pwd | sed 's/.*\///g')"
 
 # Eza (better ls)
