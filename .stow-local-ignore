@@ -26,3 +26,4 @@ Brewfile
 other
 install
 AGENTS.md
+.tmux-sessionizer
