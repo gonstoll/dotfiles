@@ -64,3 +64,6 @@ Library/Application Support/iTerm2/*
 .config/cursor/cli-config.json/**
 .config/herdr/*
 !.config/herdr/config.toml
+.claude/*
+!.claude/skills/*
+!.claude/settings.json

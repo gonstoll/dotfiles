@@ -2,3 +2,5 @@
 .herdr-sessionizer
 auto-tag-missing.ts
 .opencode
+
+**/.claude/settings.local.json
