@@ -109,5 +109,6 @@
   "vim.scroll": 10,
   "editor.lineNumbers": "relative",
   "editor.cursorStyle": "block",
-  "window.autoDetectColorScheme": false
+  "window.autoDetectColorScheme": false,
+  "js/ts.experimental.useTsgo": true
 }

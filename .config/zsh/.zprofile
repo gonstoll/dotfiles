@@ -45,4 +45,7 @@ export KEYTIMEOUT=1
 export EDITOR="nvim"
 export VISUAL="$EDITOR"
 export GIT_EDITOR="$EDITOR"
-export CURSOR_CONFIG_DIR="$XDG_CONFIG_HOME/cursor/cli-config.json"
+
+# AI
+export CURSOR_CONFIG_DIR="$XDG_CONFIG_HOME/cursor"
+export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"

@@ -57,13 +57,20 @@ Library/Application Support/iTerm2/*
 # Homebrew
 .config/homebrew/trust.json.lock
 
+.config/herdr/*
+!.config/herdr/config.toml
+
 # AI
 .agents/.skill-lock.json
 .config/opencode/package-lock.json
 .config/opencode/plugins/herdr-agent-state.js
-.config/cursor/cli-config.json/**
-.config/herdr/*
-!.config/herdr/config.toml
+.config/cursor/*
+!.config/cursor/hooks
+!.config/cursor/hooks.json
+.config/claude/*
+!.config/claude/skills
+!.config/claude/hooks
+!.config/claude/settings.json
 .claude/*
-!.claude/skills/*
+!.claude/skills
 !.claude/settings.json

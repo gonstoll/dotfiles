@@ -1,0 +1,29 @@
+{
+  "tui": "fullscreen",
+  "editorMode": "vim",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./hooks/block-dangerous-git"
+          },
+          {
+            "type": "command",
+            "command": "./hooks/block-tsc"
+          },
+          {
+            "type": "command",
+            "command": "./hooks/block-npx-jest"
+          },
+          {
+            "type": "command",
+            "command": "./hooks/block-npx-vitest"
+          }
+        ]
+      }
+    ]
+  }
+}
