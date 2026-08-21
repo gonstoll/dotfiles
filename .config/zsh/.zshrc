@@ -123,3 +123,6 @@ fi
 
 # Functions
 source $ZDOTDIR/functions
+
+# bun completions
+[ -s "/Users/gonzalo.stoll/.dotfiles/.config/bun/_bun" ] && source "/Users/gonzalo.stoll/.dotfiles/.config/bun/_bun"
