@@ -24,6 +24,7 @@ return {
             "css",
             "diff",
             "dockerfile",
+            "git_config",
             "go",
             "gomod",
             "gowork",
