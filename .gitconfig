@@ -11,6 +11,10 @@
   undo = reset --soft HEAD~1
 [pull]
   rebase = false
+[color]
+  ui = auto
+[difftool "nvim"]
+  cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
 [push]
   autoSetupRemote = true
 [core]
