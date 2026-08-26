@@ -59,6 +59,7 @@ Library/Application Support/iTerm2/*
 
 .config/herdr/*
 !.config/herdr/config.toml
+.config/AWSVPNClient
 
 # AI
 .agents/.skill-lock.json
