@@ -16,7 +16,7 @@ window-padding-balance = true
 theme = Rose Pine
 # background = #000000
 # background-blur = 30
-# background-opacity = 0.80
+background-opacity = 0.80
 
 # macOS stuff
 macos-option-as-alt = left

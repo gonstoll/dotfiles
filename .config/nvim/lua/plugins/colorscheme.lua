@@ -4,7 +4,7 @@ return {
         name = "rose-pine",
         priority = 1000,
         opts = {
-            styles = {italic = false},
+            styles = {italic = false, transparency = true},
             dim_inactive_windows = true,
             palette = {
                 dawn = {
