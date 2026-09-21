@@ -30,6 +30,7 @@ other/images/wallpapers/images/*/*.jpeg
 .config/sanity
 .config/vim-sessions
 .config/.jira
+.config/nodemon.json
 
 # iTerm2
 .config/iTerm2/*
