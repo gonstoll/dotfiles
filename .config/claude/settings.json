@@ -21,6 +21,10 @@
           {
             "type": "command",
             "command": "./hooks/block-npx-vitest"
+          },
+          {
+            "type": "command",
+            "command": "./hooks/block-pnpm-filter-double-dash"
           }
         ]
       }

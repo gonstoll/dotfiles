@@ -3,20 +3,24 @@
   "hooks": {
     "preToolUse": [
       {
-        "matcher": "Bash",
+        "matcher": "Shell|Bash",
         "command": "./hooks/block-dangerous-git"
       },
       {
-        "matcher": "Bash",
+        "matcher": "Shell|Bash",
         "command": "./hooks/block-tsc"
       },
       {
-        "matcher": "Bash",
+        "matcher": "Shell|Bash",
         "command": "./hooks/block-npx-jest"
       },
       {
-        "matcher": "Bash",
+        "matcher": "Shell|Bash",
         "command": "./hooks/block-npx-vitest"
+      },
+      {
+        "matcher": "Shell|Bash",
+        "command": "./hooks/block-pnpm-filter-double-dash"
       }
     ]
   }
