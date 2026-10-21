@@ -1,7 +1,6 @@
 git:
   overrideGpg: true
   autoForwardBranches: none
-
 keybinding:
   universal:
     scrollUpMain-alt1: <c-k>
@@ -9,18 +8,15 @@ keybinding:
   commits:
     moveUpCommit: K
     moveDownCommit: J
-
 gui:
-  useHunkModeInStagingView: false
+  useHunkModeInDiffView: false
   border: 'single'
-  branchColors:
-    'master': red
-
   nerdFontsVersion: '3'
-
   filterMode: fuzzy
-
   theme:
     showDivergenceFromBaseBranch: arrowAndNumber
     selectedLineBgColor:
       - reverse
+    branchColorPatterns:
+      '^master(/|$)': red
+  showNumstatInFilesView: true
