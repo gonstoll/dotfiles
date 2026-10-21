@@ -31,6 +31,9 @@ other/images/wallpapers/images/*/*.jpeg
 .config/vim-sessions
 .config/.jira
 .config/nodemon.json
+.config/ccmux
+.config/homebrew
+.config/sentry
 
 # iTerm2
 .config/iTerm2/*
