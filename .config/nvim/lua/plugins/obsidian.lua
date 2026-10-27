@@ -20,10 +20,6 @@ return {
             -- enable = false,
             ignore_conceal_warn = true,
         },
-        completion = {
-            blink = true,
-            nvim_cmp = false,
-        },
         notes_subdir = "new",
         new_notes_location = "notes_subdir",
         workspaces = {
