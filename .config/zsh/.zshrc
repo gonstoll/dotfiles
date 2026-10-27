@@ -126,3 +126,6 @@ source $ZDOTDIR/functions
 
 # bun completions
 [ -s "/Users/gonzalo.stoll/.dotfiles/.config/bun/_bun" ] && source "/Users/gonzalo.stoll/.dotfiles/.config/bun/_bun"
+
+# ccmux
+eval "$(ccmux completion zsh)"
