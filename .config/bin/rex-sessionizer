@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+DIRECTORIES=($(eval echo $(xargs < "$CONFIG_HOME/rex-sessionizer/directories")))
+
+function hydrate() {
+    local session_id="$1"
+    local selected="$2"
+
+    if [ -f "$selected/.rex-sessionizer" ]; then
+        bash "$selected/.rex-sessionizer" "$session_id" "$selected"
+    elif [ -f "$CONFIG_HOME/rex-sessionizer/default" ]; then
+        bash "$CONFIG_HOME/rex-sessionizer/default" "$session_id" "$selected"
+    fi
+}
+
+if [[ $# -eq 1 ]]; then
+    selected=$(eval echo "$1")
+else
+    selected=$(find "${DIRECTORIES[@]}" -mindepth 1 -maxdepth 1 -type d | fzf \
+            --style minimal \
+            --no-bold \
+            --height=100% \
+            --no-unicode \
+            --margin=5% \
+            --no-color \
+        )
+fi
+
+if [[ -z "$selected" ]]; then
+    exit 0
+fi
+
+selected="${selected%/}"
+base=$(basename "$selected" | tr . _)
+# To detect conflicts, this searches all configured parent directories for immediate
+# subdirectories (-mindepth 1 -maxdepth 1) matching the selected directory's basename.
+#
+# Using -name filters at the find level to avoid listing all directories (faster).
+#
+# sort -u deduplicates in case overlapping directory configs surface the same path twice.
+# If more than one unique match is found, the basename is ambiguous and needs a prefix.
+match_count=$(find "${DIRECTORIES[@]}" -mindepth 1 -maxdepth 1 -type d -name "$(basename "$selected")" 2>/dev/null | sort -u | wc -l)
+
+# Disambiguate directories with the same basename (e.g., ~/code/dashboard and
+# ~/code/metarepo/projects/app/dashboard) by prefixing with the parent directory name.
+if [[ $match_count -gt 1 ]]; then
+    parent=$(basename "$(dirname "$selected")" | tr . _)
+    selected_name="${parent}_${base}"
+else
+    selected_name="$base"
+fi
+
+# Rex doesn't enforce unique session labels, so take the first match.
+session_id=$(rex ls --json | jq -r --arg label "$selected_name" \
+    'first(.sessions[] | select(.label == $label) | .session_id) // empty')
+
+if [[ -z "$session_id" ]]; then
+    session_id=$(rex new "$selected_name" -c "$selected" --json | jq -r '.session_id')
+
+    if [[ -z "$session_id" || "$session_id" == "null" ]]; then
+        echo "Failed to create session" >&2
+        read -r -p "Press Enter to close"
+        exit 1
+    fi
+
+    hydrate "$session_id" "$selected"
+fi
+
+# The script runs in a tab that closes when it exits, so wait on failure to keep the error readable.
+if ! rex do session.select session_id="$session_id"; then
+    read -r -p "Press Enter to close"
+    exit 1
+fi

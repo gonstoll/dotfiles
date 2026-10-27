@@ -1,0 +1,3 @@
+rex window rename -s "$1" vim
+rex window new -s "$1" scratch -c "$2" --focus=false
+rex window new -s "$1" ai -c "$2" --focus=false
