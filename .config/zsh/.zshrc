@@ -129,3 +129,6 @@ source $ZDOTDIR/functions
 
 # ccmux
 eval "$(ccmux completion zsh)"
+
+# Site functions
+fpath=("$HOME/.local/share/zsh/site-functions" "$fpath")
