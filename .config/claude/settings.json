@@ -8,23 +8,23 @@
         "hooks": [
           {
             "type": "command",
-            "command": "./hooks/block-dangerous-git"
+            "command": "~/.config/claude/hooks/block-dangerous-git"
           },
           {
             "type": "command",
-            "command": "./hooks/block-tsc"
+            "command": "~/.config/claude/hooks/block-tsc"
           },
           {
             "type": "command",
-            "command": "./hooks/block-npx-jest"
+            "command": "~/.config/claude/hooks/block-npx-jest"
           },
           {
             "type": "command",
-            "command": "./hooks/block-npx-vitest"
+            "command": "~/.config/claude/hooks/block-npx-vitest"
           },
           {
             "type": "command",
-            "command": "./hooks/block-pnpm-filter-double-dash"
+            "command": "~/.config/claude/hooks/block-pnpm-filter-double-dash"
           }
         ]
       }
