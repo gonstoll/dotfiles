@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+INPUT=$(cat)
+MODEL=$(printf '%s' "$INPUT" | jq -r '.model.display_name // .model.id // "?"')
+EFFORT=$(printf '%s' "$INPUT" | jq -r '.effort.level // empty')
+DIR=$(printf '%s' "$INPUT" | jq -r '.workspace.current_dir // .cwd // empty')
+BRANCH=$(git -C "$DIR" branch --show-current 2>/dev/null)
+
+# Tokens currently in the window = this turn's input, fresh or from cache
+CTX_PCT=$(printf '%s' "$INPUT" | jq -r '.context_window.used_percentage // empty')
+CTX_USED=$(printf '%s' "$INPUT" | jq -r '
+  .context_window.current_usage // empty
+  | .input_tokens + .cache_creation_input_tokens + .cache_read_input_tokens')
+CTX_SIZE=$(printf '%s' "$INPUT" | jq -r '.context_window.context_window_size // empty')
+
+human() {
+  if [ "$1" -ge 1000000 ]; then
+    printf '%sM' "$(($1 / 1000000))"
+  elif [ "$1" -ge 1000 ]; then
+    printf '%sk' "$(($1 / 1000))"
+  else
+    printf '%s' "$1"
+  fi
+}
+
+SEP=' \033[2m·\033[0m '
+
+printf '\033[1;35m%s\033[0m' "$MODEL"
+[ -n "$EFFORT" ] && printf ' \033[35m(%s)\033[0m' "$EFFORT"
+
+if [ -n "$CTX_PCT" ]; then
+  if [ "$CTX_PCT" -ge 80 ]; then
+    COLOR=31
+  elif [ "$CTX_PCT" -ge 50 ]; then
+    COLOR=33
+  else
+    COLOR=32
+  fi
+  printf "$SEP\033[${COLOR}mctx %s%%\033[0m" "$CTX_PCT"
+  [ -n "$CTX_USED" ] && [ -n "$CTX_SIZE" ] &&
+    printf ' \033[2m(%s/%s)\033[0m' "$(human "$CTX_USED")" "$(human "$CTX_SIZE")"
+fi
+
+printf "$SEP\033[36m%s\033[0m" "${DIR/#$HOME/~}"
+[ -n "$BRANCH" ] && printf "$SEP\033[33m%s\033[0m" "$BRANCH"
+printf '\n'

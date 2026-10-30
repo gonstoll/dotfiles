@@ -76,6 +76,7 @@ Library/Application Support/iTerm2/*
 !.config/claude/skills
 !.config/claude/hooks
 !.config/claude/settings.json
+!.config/claude/statusline
 .claude/*
 !.claude/skills
 !.claude/settings.json

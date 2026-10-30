@@ -1,6 +1,4 @@
 {
-  "tui": "fullscreen",
-  "editorMode": "vim",
   "hooks": {
     "PreToolUse": [
       {
@@ -40,5 +38,11 @@
         ]
       }
     ]
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.config/claude/statusline"
+  },
+  "tui": "fullscreen",
+  "editorMode": "vim"
 }
