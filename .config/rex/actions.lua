@@ -48,17 +48,22 @@ end
 rex.action({
     name  = "open_project",
     title = "Open Project",
-    args  = { dir = "string" },
+    args  = { dir = "string", input = "string?" },
     run   = function(ctx, args)
         local dir = normalize(args.dir)
         local name = session_name(dir)
 
         local session_id = find_session(name)
         if session_id == nil then
+            -- `input` is only typed into newly created sessions, never into an existing one.
+            local options = {
+                cwd = dir,
+                initial_input = args.input and (args.input .. "\n") or nil,
+            }
             local created, err = rex.call("session.create", {
                 label = name,
                 initial_windows = {
-                    { layout = rex.layout.block({ flavor = SHELL, options = { cwd = dir } }) },
+                    { layout = rex.layout.block({ flavor = SHELL, options = options }) },
                 },
             })
             if err ~= nil then error(err, 0) end
