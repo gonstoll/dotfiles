@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DIRECTORIES=($(eval echo $(xargs < "$XDG_CONFIG_HOME/herdr-sessionizer/directories")))
+DIRECTORIES=($(eval echo $(xargs < "$XDG_CONFIG_HOME/sessionizer-directories")))
 SESSION_NAME="general"
 
 if [[ "$1" == "--kill" ]]; then

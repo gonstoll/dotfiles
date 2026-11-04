@@ -4,7 +4,7 @@
 export PATH="/opt/homebrew/bin:$PATH"
 
 CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
-DIRECTORIES=($(eval echo $(xargs < "$CONFIG_HOME/rex-sessionizer/directories")))
+DIRECTORIES=($(eval echo $(xargs < "$CONFIG_HOME/sessionizer-directories")))
 
 function list_directories() {
     find "${DIRECTORIES[@]}" -mindepth 1 -maxdepth 1 -type d

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DIRECTORIES=($(eval echo $(xargs < "$XDG_CONFIG_HOME/tmux-sessionizer/directories")))
+DIRECTORIES=($(eval echo $(xargs < "$XDG_CONFIG_HOME/sessionizer-directories")))
 
 function switch_to() {
     if [[ -z $TMUX ]]; then
