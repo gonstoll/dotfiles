@@ -21,6 +21,9 @@ if type brew &>/dev/null; then
     FPATH=$HOMEBREW_PREFIX/share/zsh-completions:$FPATH
 fi
 
+# Site functions
+fpath=("$HOME/.local/share/zsh/site-functions" $fpath)
+
 # History
 HISTFILE=$ZDOTDIR/.zsh_history
 HISTSIZE=1100000000
@@ -129,6 +132,3 @@ source $ZDOTDIR/functions
 
 # ccmux
 eval "$(ccmux completion zsh)"
-
-# Site functions
-fpath=("$HOME/.local/share/zsh/site-functions" "$fpath")
