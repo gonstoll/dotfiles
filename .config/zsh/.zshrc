@@ -132,3 +132,19 @@ source $ZDOTDIR/functions
 
 # ccmux
 eval "$(ccmux completion zsh)"
+
+# Rex completes commands but not session names, so `rex kill <tab>` lists them here.
+# Loading _rex up front keeps its autoload stub from re-registering itself over the wrapper.
+if (( $+commands[rex] )); then
+    eval "$(rex completion zsh)"
+    _rex_with_sessions() {
+        if [[ $words[2] == kill ]] && (( CURRENT > 2 )); then
+            local -a sessions
+            sessions=(${(f)"$(rex ls --json 2>/dev/null | jq -r '.sessions[].label')"})
+            compadd -a sessions
+        else
+            _rex
+        fi
+    }
+    compdef _rex_with_sessions rex
+fi
