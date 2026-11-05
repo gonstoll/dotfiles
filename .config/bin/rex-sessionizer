@@ -15,6 +15,13 @@ if [[ "$1" == "--list" ]]; then
     exit 0
 fi
 
+# The sessionizer action passes the client that opened the popup, so
+# open_project can switch that client to the selected session
+client_args=()
+if [[ "$1" == "--client" && -n "$2" ]]; then
+    client_args=(-C "$2")
+fi
+
 selected=$(list_directories | fzf \
         --style minimal \
         --no-bold \
@@ -29,7 +36,7 @@ if [[ -z "$selected" ]]; then
     exit 0
 fi
 
-if ! rex do open_project dir="$selected"; then
+if ! rex "${client_args[@]}" do open_project dir="$selected"; then
     read -r -p "Press Enter to close"
     exit 1
 fi

@@ -77,12 +77,19 @@ rex.action({
 rex.action({
     name  = "sessionizer",
     title = "Sessionizer",
-    run   = function()
+    run   = function(ctx)
+        -- open_project switches sessions through the client, but the sessionizer
+        -- calls it from the popup's shell, where no client is targeted
+        local command = { SESSIONIZER }
+        if ctx.client_id ~= nil then
+            command = { SESSIONIZER, "--client", ctx.client_id }
+        end
+
         local _, err = rex.session.new_layer({
             bounds = { 0.15, 0.15, 0.7, 0.7 },
             layout = rex.layout.block({
                 flavor  = SHELL,
-                options = { command = { SESSIONIZER }, shell = "none" },
+                options = { command = command, shell = "none" },
             }),
             focus  = true,
         })
