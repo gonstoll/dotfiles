@@ -1,0 +1,24 @@
+#!/bin/sh
+# Fake rex for tests: records each call's arguments, then answers from the
+# fixture files in $REX_FAKE_DIR. Arguments are separated by \037 and calls
+# by \036, because arguments may contain newlines.
+for arg in "$@"; do
+	printf '%s\037' "$arg" >>"$REX_FAKE_DIR/calls"
+done
+printf '\036' >>"$REX_FAKE_DIR/calls"
+
+answer() {
+	if [ -f "$REX_FAKE_DIR/$1" ]; then
+		cat "$REX_FAKE_DIR/$1"
+	else
+		printf '%s' "$2"
+	fi
+}
+
+case "$1 $2 $3" in
+"run "*) answer run.json '{"window_id":"window:new","block_ids":["block:new"]}' ;;
+"do -e "*) answer list.json '[]' ;;
+"api call session.list_blocks") answer blocks.json '{"blocks":[]}' ;;
+"block call "*) answer process.json '{"child":{"pid":1},"last_exit":null}' ;;
+*) printf '{}' ;;
+esac
