@@ -1,0 +1,8 @@
+rex window rename -s "$1" Editor
+rex window new -s "$1" Scratch -c "$2" --focus=false
+rex window new -s "$1" Agents -c "$2" --focus=false
+case "$DEFAULT_AI_CLI" in
+  cursor) rex send -s "$1" -w Agents $'agent\n' ;;
+  claude) rex send -s "$1" -w Agents $'claude\n' ;;
+  *)      rex send -s "$1" -w Agents $'opencode\n' ;;
+esac

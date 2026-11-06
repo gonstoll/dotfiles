@@ -1,6 +1,7 @@
 local SHELL = "com.superlogical.terminal.shell"
 local HOME = os.getenv("HOME")
 local SESSIONIZER = HOME .. "/.config/bin/rex-sessionizer"
+local DEFAULT_HYDRATE = HOME .. "/.config/rex-sessionizer/default"
 
 local function basename(path)
     return path:match("([^/]+)$")
@@ -37,6 +38,23 @@ local function session_name(dir)
     return name
 end
 
+local function exists(path)
+    local file = io.open(path)
+    if file == nil then return false end
+    file:close()
+    return true
+end
+
+-- Like tmux-sessionizer, a new session sources the project's .rex-sessionizer
+-- (or the default one) in its first shell, with the session and directory as
+-- arguments, so the script can open windows and start commands through `rex`
+local function hydrate_input(dir)
+    local script = dir .. "/.rex-sessionizer"
+    if not exists(script) then script = DEFAULT_HYDRATE end
+    if not exists(script) then return nil end
+    return string.format("source %q \"$REX_SESSION\" %q", script, dir)
+end
+
 local function find_session(label)
     local list, err = rex.call("session.list")
     if err ~= nil then error(err, 0) end
@@ -56,9 +74,13 @@ rex.action({
         local session_id = find_session(name)
         if session_id == nil then
             -- `input` is only typed into newly created sessions, never into an existing one.
+            local input = ""
+            local hydrate = hydrate_input(dir)
+            if hydrate ~= nil then input = input .. hydrate .. "\n" end
+            if args.input ~= nil then input = input .. args.input .. "\n" end
             local options = {
                 cwd = dir,
-                initial_input = args.input and (args.input .. "\n") or nil,
+                initial_input = input ~= "" and input or nil,
             }
             local created, err = rex.call("session.create", {
                 label = name,
