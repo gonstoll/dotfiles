@@ -5,9 +5,9 @@ return {
         format = false,
         -- run = "onSave",
         -- workingDirectory = {mode = "location"},
-        experimental = {
-            useFlatConfig = true,
-        },
+        -- experimental = {
+        --     useFlatConfig = true,
+        -- },
     },
     flags = os.getenv("DEBOUNCE_ESLINT") and {
         allow_incremental_sync = false,
