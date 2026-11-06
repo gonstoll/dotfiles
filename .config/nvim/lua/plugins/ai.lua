@@ -1,6 +1,30 @@
 local sidekick_desc = Utils.plugin_keymap_desc("Sidekick")
 local default_ai_tool = vim.env.DEFAULT_AI_CLI or "opencode"
 
+-- Sends `msg` to a running agent of any tool, picked from all of them. With no
+-- agent running, starts the default tool instead.
+local function send_to_running(msg)
+    return function()
+        local Cli = require("sidekick.cli")
+        -- Render before the picker opens, since it ends visual mode and the selection with it
+        local rendered, text = Cli.render({msg = msg})
+        if rendered == "" or not text then
+            return
+        end
+        if #require("sidekick.cli.state").get({started = true}) == 0 then
+            return Cli.send({text = text, name = default_ai_tool})
+        end
+        require("sidekick.cli.ui.select").select({
+            filter = {started = true},
+            cb = function(state)
+                if state then
+                    Cli.send({text = text, filter = {session = state.session.id}})
+                end
+            end,
+        })
+    end
+end
+
 return {
     {
         "zbirenbaum/copilot.lua",
@@ -32,6 +56,9 @@ return {
     {
         "folke/sidekick.nvim",
         event = "VeryLazy",
+        dependencies = {
+            {dir = vim.fn.stdpath("config") .. "/local-plugins/sidekick-rex.nvim", name = "sidekick-rex.nvim"},
+        },
         ---@type sidekick.Config
         opts = {
             nes = {
@@ -40,11 +67,17 @@ return {
             cli = {
                 mux = {
                     enabled = true,
-                    backend = "tmux",
+                    backend = vim.env.REX_SESSION and vim.env.REX_BLOCK and "rex" or "tmux",
+                    -- Rex has its own layout options below, since it can't run agents in a Neovim terminal
                     create = "terminal",
                 },
             },
         },
+        config = function(_, opts)
+            -- Must come first: it lets sidekick accept "rex" as a backend
+            require("sidekick-rex").setup({create = "window", split = {side = "right", ratio = 40}})
+            require("sidekick").setup(opts)
+        end,
         keys = {
             {
                 "<tab>",
@@ -76,24 +109,24 @@ return {
             },
             {
                 "<leader>at",
-                function() require("sidekick.cli").send({msg = "{this}", name = default_ai_tool}) end,
+                send_to_running("{this}"),
                 mode = {"x", "n"},
                 desc = sidekick_desc("Send this"),
             },
             {
                 "<leader>af",
-                function() require("sidekick.cli").send({msg = "{file}", name = default_ai_tool}) end,
+                send_to_running("{file}"),
                 desc = sidekick_desc("Send file"),
             },
             {
                 "<leader>av",
-                function() require("sidekick.cli").send({msg = "{selection}", name = default_ai_tool}) end,
+                send_to_running("{selection}"),
                 mode = {"x"},
                 desc = sidekick_desc("Send visual selection content"),
             },
             {
                 "<leader>ad",
-                function() require("sidekick.cli").send({msg = "{diagnostics}", name = default_ai_tool}) end,
+                send_to_running("{diagnostics}"),
                 mode = {"x"},
                 desc = sidekick_desc("Send selected diagnostics"),
             },
