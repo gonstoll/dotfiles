@@ -1,6 +1,37 @@
 local sidekick_desc = Utils.plugin_keymap_desc("Sidekick")
 local default_ai_tool = vim.env.DEFAULT_AI_CLI or "opencode"
 
+-- sidekick's picker formatter, but with the path column lined up. sidekick pads
+-- the `[backend:location]` part to a fixed width, so a long Rex tab title pushes
+-- that row's path out of line. Pad it to the widest location instead.
+local function aligned_format(states)
+    local Select = require("sidekick.cli.ui.select")
+    -- The location is the part highlighted as "Special", and the padding follows it
+    local function location(parts)
+        for i, part in ipairs(parts) do
+            if part[2] == "Special" then
+                return i
+            end
+        end
+    end
+    local width = 0
+    for _, state in ipairs(states) do
+        local parts = Select.format(state)
+        local i = location(parts)
+        if i then
+            width = math.max(width, vim.api.nvim_strwidth(parts[i][1]))
+        end
+    end
+    return function(state, picker)
+        local parts = Select.format(state, picker)
+        local i = location(parts)
+        if i and parts[i + 1] then
+            parts[i + 1] = {string.rep(" ", width - vim.api.nvim_strwidth(parts[i][1]) + 2)}
+        end
+        return parts
+    end
+end
+
 -- Sends `msg` to a running agent of any tool, picked from all of them. The pick
 -- sticks until the agent is detached with <leader>aD. With no agent running,
 -- starts the default tool instead.
@@ -22,14 +53,14 @@ local function send_to_running(msg)
         if #running == 0 then
             return Cli.send({text = text, name = default_ai_tool})
         end
-        local Select = require("sidekick.cli.ui.select")
+        local format = aligned_format(running)
         vim.ui.select(running, {
             prompt = "Send to:",
             kind = "sidekick_cli",
             format_item = function(state)
-                return table.concat(vim.tbl_map(function(part) return part[1] end, Select.format(state)))
+                return table.concat(vim.tbl_map(function(part) return part[1] end, format(state)))
             end,
-            snacks = {format = Select.format},
+            snacks = {format = format},
         }, function(state)
             if state then
                 State.attach(state)

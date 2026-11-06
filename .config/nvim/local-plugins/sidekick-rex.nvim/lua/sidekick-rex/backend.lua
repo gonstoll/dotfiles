@@ -7,6 +7,7 @@ local Util = require("sidekick.util")
 
 ---@class sidekick.cli.muxer.Rex: sidekick.cli.Session
 ---@field rex_block_id string
+---@field rex_session_id string
 local M = {}
 M.__index = M
 M.priority = 10
@@ -14,22 +15,29 @@ M.external = true
 
 -- Every terminal block in every Rex session with its root process, in one call.
 -- A script may only read sessions it's attached to, and one session failing
--- mustn't hide the agents in the others.
+-- mustn't hide the agents in the others. Windows come in tab order.
 local LIST = [[
 local ret = {}
 for _, s in ipairs(rex.call("session.list", {}).sessions or {}) do
   pcall(rex.session.attach, { session_id = s.session_id })
-  local listed = rex.call("session.list_blocks", { session_id = s.session_id })
-  for _, b in ipairs(listed and listed.blocks or {}) do
-    if b.creator_name == "com.superlogical.terminal" then
-      local ok, p = pcall(rex.block.call, "com.superlogical.terminal", "process", { session_id = s.session_id, block_id = b.block_id })
-      if ok and p and p.child then
-        ret[#ret + 1] = {
-          session_id = s.session_id,
-          block_id = b.block_id,
-          pid = p.child.pid,
-          cwd = p.foreground and p.foreground.cwd or p.child.cwd,
-        }
+  local view = rex.call("session.view", { session_id = s.session_id })
+  for index, w in ipairs(view and view.windows or {}) do
+    for _, layer in ipairs(w.layers or {}) do
+      for _, b in ipairs(layer.blocks or {}) do
+        if b.creator_name == "com.superlogical.terminal" then
+          local ok, p = pcall(rex.block.call, "com.superlogical.terminal", "process", { session_id = s.session_id, block_id = b.block_id })
+          if ok and p and p.child then
+            ret[#ret + 1] = {
+              session_id = s.session_id,
+              session_label = s.label,
+              window_index = index,
+              window_label = w.label,
+              block_id = b.block_id,
+              pid = p.child.pid,
+              cwd = p.foreground and p.foreground.cwd or p.child.cwd,
+            }
+          end
+        end
       end
     end
   end
@@ -58,14 +66,15 @@ end
 
 function M:init()
     if not self.started then
-        self.mux_session = vim.env.REX_SESSION
+        self.rex_session_id = vim.env.REX_SESSION
+        self.mux_session = self.rex_session_id
     end
 end
 
 -- A second agent of the same tool in this session gets its cwd as a suffix,
 -- so the two tabs can be told apart
 function M:label()
-    local listed = api("session.list_blocks", {session_id = self.mux_session}, {notify = false})
+    local listed = api("session.list_blocks", {session_id = self.rex_session_id}, {notify = false})
     for _, block in ipairs(listed and listed.blocks or {}) do
         if block.label == self.tool.name then
             return ("%s·%s"):format(self.tool.name, vim.fs.basename(self.cwd))
@@ -77,7 +86,7 @@ end
 ---@return sidekick.cli.terminal.Cmd?
 function M:start()
     local label = self:label()
-    local cmd = {"run", "-s", self.mux_session, "-c", self.cwd, "--label", label, "--focus=false", "--json", "--"}
+    local cmd = {"run", "-s", self.rex_session_id, "-c", self.cwd, "--label", label, "--focus=false", "--json", "--"}
     if self.tool.env and next(self.tool.env) then
         cmd[#cmd + 1] = "env"
         for key, value in pairs(self.tool.env) do
@@ -91,7 +100,7 @@ function M:start()
     if not block_id then
         return
     end
-    rex({"window", "rename", "-s", self.mux_session, res.window_id, label})
+    rex({"window", "rename", "-s", self.rex_session_id, res.window_id, label})
     self.id = "rex " .. block_id
     self.rex_block_id = block_id
     self.started = true
@@ -102,7 +111,7 @@ function M:is_running()
     if not self.rex_block_id then
         return false
     end
-    local out = rex({"block", "call", "-s", self.mux_session, "-b", self.rex_block_id, "process"}, {notify = false})
+    local out = rex({"block", "call", "-s", self.rex_session_id, "-b", self.rex_block_id, "process"}, {notify = false})
     local proc = decode(out)
     return proc ~= nil and proc.last_exit == nil
 end
@@ -127,7 +136,10 @@ function M.sessions()
                         cwd = pane.cwd or proc.cwd,
                         tool = tool,
                         rex_block_id = pane.block_id,
-                        mux_session = pane.session_id,
+                        rex_session_id = pane.session_id,
+                        -- sidekick's picker shows this, so it names where the
+                        -- agent is: session, then tab position and title
+                        mux_session = ("%s %d:%s"):format(pane.session_label, pane.window_index, pane.window_label),
                         pids = Procs.pids(pane.pid),
                     }
                     return true
@@ -140,7 +152,7 @@ end
 
 ---@param event table
 function M:event(event)
-    api("block.event", {session_id = self.mux_session, block_id = self.rex_block_id, event = event}, {notify = true})
+    api("block.event", {session_id = self.rex_session_id, block_id = self.rex_block_id, event = event}, {notify = true})
 end
 
 -- Rex delivers a paste event as a bracketed paste when the tool enabled it,
@@ -159,15 +171,15 @@ function M:send(text)
 end
 
 function M:submit()
-    rex({"send-key", "-s", self.mux_session, "-b", self.rex_block_id, "enter"})
+    rex({"send-key", "-s", self.rex_session_id, "-b", self.rex_block_id, "enter"})
 end
 
 -- Switches Rex to the agent's tab
 function M:focus()
-    api("session.focus_block", {session_id = self.mux_session, block_id = self.rex_block_id}, {notify = true})
-    if self.mux_session ~= vim.env.REX_SESSION then
+    api("session.focus_block", {session_id = self.rex_session_id, block_id = self.rex_block_id}, {notify = true})
+    if self.rex_session_id ~= vim.env.REX_SESSION then
         -- The agent lives in another session, so the app has to switch to it too
-        rex({"do", "session.select", "session_id=" .. self.mux_session})
+        rex({"do", "session.select", "session_id=" .. self.rex_session_id})
     end
 end
 

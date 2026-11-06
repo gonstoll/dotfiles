@@ -184,14 +184,14 @@ test("is running until the block's process exits", function()
     eq(session:is_running(), false, "exited")
 end)
 
-test("finds agents across sessions by walking each block's processes", function()
+test("finds agents across sessions and names them by session and tab", function()
     local a = vim.system({"sleep", "31"})
     local b = vim.system({"sleep", "31"})
     local other = vim.system({"sleep", "32"})
     fixture("list.json", {
-        {session_id = S, block_id = "block:a", pid = a.pid, cwd = "/tmp"},
-        {session_id = "session:other", block_id = "block:b", pid = b.pid, cwd = "/tmp"},
-        {session_id = S, block_id = "block:shell", pid = other.pid, cwd = "/tmp"},
+        {session_id = S, session_label = "dots", window_index = 2, window_label = "Agents", block_id = "block:a", pid = a.pid, cwd = "/tmp"},
+        {session_id = "session:other", session_label = "app", window_index = 1, window_label = "claude", block_id = "block:b", pid = b.pid, cwd = "/tmp"},
+        {session_id = S, session_label = "dots", window_index = 3, window_label = "zsh", block_id = "block:shell", pid = other.pid, cwd = "/tmp"},
     })
     local ok, err = pcall(function()
         local found = require("sidekick-rex.backend").sessions()
@@ -199,10 +199,10 @@ test("finds agents across sessions by walking each block's processes", function(
             return x.id < y.id
         end)
         eq(vim.tbl_map(function(s)
-            return {s.id, s.mux_session, s.tool.name, s.rex_block_id}
+            return {s.id, s.rex_session_id, s.mux_session, s.tool.name, s.rex_block_id}
         end, found), {
-            {"rex block:a", S, "sleeper", "block:a"},
-            {"rex block:b", "session:other", "sleeper", "block:b"},
+            {"rex block:a", S, "dots 2:Agents", "sleeper", "block:a"},
+            {"rex block:b", "session:other", "app 1:claude", "sleeper", "block:b"},
         }, "sessions")
         eq(found[1].pids, {a.pid}, "pids")
     end)
@@ -219,7 +219,7 @@ end)
 
 test("focus switches the app to an agent in another session", function()
     local session = new_session(AGENT)
-    session.mux_session = "session:other"
+    session.rex_session_id = "session:other"
     session:focus()
     eq(api_params("session.focus_block"), {session_id = "session:other", block_id = AGENT}, "focus")
     eq(find({"do", "session.select"}), {"do", "session.select", "session_id=session:other"}, "select")
