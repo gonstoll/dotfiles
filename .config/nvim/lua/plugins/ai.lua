@@ -72,15 +72,15 @@ return {
             cli = {
                 mux = {
                     enabled = true,
-                    backend = vim.env.REX_SESSION and vim.env.REX_BLOCK and "rex" or "tmux",
-                    -- Rex has its own layout options below, since it can't run agents in a Neovim terminal
+                    backend = vim.env.REX_SESSION and "rex" or "tmux",
+                    -- Only tmux reads this: Rex always starts agents in their own tab
                     create = "terminal",
                 },
             },
         },
         config = function(_, opts)
             -- Must come first: it lets sidekick accept "rex" as a backend
-            require("sidekick-rex").setup({create = "window", split = {side = "right", ratio = 40}})
+            require("sidekick-rex").setup()
             require("sidekick").setup(opts)
         end,
         keys = {

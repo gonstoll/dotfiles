@@ -23,7 +23,6 @@ local function test(name, fn)
     vim.fn.delete(fake, "rf")
     vim.fn.mkdir(fake, "p")
     notes = {}
-    require("sidekick-rex").config.create = "window"
     local ok, err = xpcall(fn, debug.traceback)
     if ok then
         passed = passed + 1
@@ -88,11 +87,10 @@ local function errors()
     end, notes)
 end
 
-local S, NVIM = "session:test", "block:nvim"
-local AGENT, AGENT_WINDOW, NVIM_WINDOW = "block:agent", "window:agent", "window:nvim"
+local S, AGENT = "session:test", "block:agent"
 
 -- Outside Rex nothing may register, so must run before Rex's env is set
-vim.env.REX_SESSION, vim.env.REX_BLOCK = nil, nil
+vim.env.REX_SESSION = nil
 require("sidekick-rex").setup()
 local Session = require("sidekick.cli.session")
 test("registers nothing outside Rex", function()
@@ -100,7 +98,7 @@ test("registers nothing outside Rex", function()
     eq(require("sidekick-rex").did_setup, false, "did_setup")
 end)
 
-vim.env.REX_SESSION, vim.env.REX_BLOCK = S, NVIM
+vim.env.REX_SESSION = S
 require("sidekick-rex").setup()
 require("sidekick").setup({
     nes = {enabled = false},
@@ -140,16 +138,6 @@ test("starts in a new tab named after the tool", function()
     eq(session.rex_block_id, "block:new", "block id")
     eq(session.id, "rex block:new", "session id")
     eq(session.started, true, "started")
-end)
-
-test("starts in a split beside Neovim", function()
-    require("sidekick-rex").config.create = "split"
-    new_session():start()
-    eq(find({"run"}), {
-        "run", "-s", S, "-c", "/tmp/project", "--label", "sleeper", "--focus=false", "--json",
-        "-b", NVIM, "--split=right", "--ratio", "40", "--", "sleep", "31",
-    }, "run")
-    eq(find({"window"}), nil, "no tab rename for a split")
 end)
 
 test("a second agent of the same tool gets its cwd as a suffix", function()
@@ -224,88 +212,20 @@ test("finds agents across sessions by walking each block's processes", function(
     assert(ok, err)
 end)
 
-local function placed_beside()
-    fixture("blocks.json", {blocks = {
-        {block_id = NVIM, label = "nvim", placement = "placed", window_id = NVIM_WINDOW},
-        {block_id = AGENT, label = "sleeper", placement = "placed", window_id = NVIM_WINDOW},
-    }})
-end
-
-local function detached()
-    fixture("blocks.json", {blocks = {
-        {block_id = NVIM, label = "nvim", placement = "placed", window_id = NVIM_WINDOW},
-        {block_id = AGENT, label = "sleeper", placement = "detached"},
-    }})
-end
-
-local function in_own_tab()
-    fixture("blocks.json", {blocks = {
-        {block_id = NVIM, label = "nvim", placement = "placed", window_id = NVIM_WINDOW},
-        {block_id = AGENT, label = "sleeper", placement = "placed", window_id = AGENT_WINDOW},
-    }})
-end
-
-test("split: hide takes the agent out of the window", function()
-    require("sidekick-rex").config.create = "split"
-    placed_beside()
-    new_session(AGENT):hide()
-    eq(api_params("session.detach_block"), {session_id = S, block_id = AGENT}, "detach")
-end)
-
-test("split: show puts a hidden agent back beside Neovim and focuses it", function()
-    require("sidekick-rex").config.create = "split"
-    detached()
-    new_session(AGENT):show(true)
-    eq(api_params("session.move_block"), {
-        session_id = S,
-        block_id = AGENT,
-        anchor_block_id = NVIM,
-        direction = "horizontal",
-        side = "after",
-        ratio = 0.6,
-    }, "move")
-    eq(api_params("session.focus_block"), {session_id = S, block_id = AGENT}, "focus")
-end)
-
-test("split: toggle hides a visible agent and shows a hidden one", function()
-    require("sidekick-rex").config.create = "split"
-    placed_beside()
-    new_session(AGENT):toggle(true)
-    assert(find({"api", "call", "session.detach_block"}), "visible agent was not hidden")
-    assert(not find({"api", "call", "session.focus_block"}), "hiding must not focus")
-    vim.fn.delete(fake .. "/calls")
-    detached()
-    new_session(AGENT):toggle(false)
-    assert(find({"api", "call", "session.move_block"}), "hidden agent was not shown")
-    assert(not find({"api", "call", "session.focus_block"}), "focus = false must not focus")
-end)
-
-test("tab: show switches to the agent's tab, hide does nothing", function()
-    in_own_tab()
-    local session = new_session(AGENT)
-    session:show(true)
-    eq(api_params("session.focus_block"), {session_id = S, block_id = AGENT}, "focus")
-    assert(not find({"api", "call", "session.move_block"}), "a tab agent must stay in its tab")
-    vim.fn.delete(fake .. "/calls")
-    session:hide()
-    session:toggle(true)
-    assert(not find({"api", "call", "session.detach_block"}), "tabs never hide")
-    assert(find({"api", "call", "session.focus_block"}), "toggle switches to the tab")
+test("focus switches to the agent's tab", function()
+    new_session(AGENT):focus()
+    eq(calls(), {{"api", "call", "session.focus_block", vim.json.encode({session_id = S, block_id = AGENT})}}, "calls")
 end)
 
 test("focus switches the app to an agent in another session", function()
-    in_own_tab()
     local session = new_session(AGENT)
     session.mux_session = "session:other"
     session:focus()
     eq(api_params("session.focus_block"), {session_id = "session:other", block_id = AGENT}, "focus")
-    eq(find({"do", "session.select"}), {
-        "do", "session.select", "session_id=session:other", "window_id=" .. AGENT_WINDOW,
-    }, "select")
+    eq(find({"do", "session.select"}), {"do", "session.select", "session_id=session:other"}, "select")
 end)
 
 test("sidekick's toggle and focus reach attached Rex sessions", function()
-    in_own_tab()
     local session = new_session(AGENT)
     Session.attach(session)
     require("sidekick.cli").toggle({name = "sleeper"})
@@ -317,16 +237,6 @@ test("sidekick's toggle and focus reach attached Rex sessions", function()
     assert(vim.wait(500, function()
         return find({"api", "call", "session.focus_block"}) ~= nil
     end), "focus did not focus, calls: " .. vim.inspect(calls()))
-    Session.detach(session)
-end)
-
-test("sidekick's hide reaches attached Rex splits", function()
-    require("sidekick-rex").config.create = "split"
-    placed_beside()
-    local session = new_session(AGENT)
-    Session.attach(session)
-    require("sidekick.cli").hide({name = "sleeper"})
-    assert(find({"api", "call", "session.detach_block"}), "hide did not detach")
     Session.detach(session)
 end)
 
