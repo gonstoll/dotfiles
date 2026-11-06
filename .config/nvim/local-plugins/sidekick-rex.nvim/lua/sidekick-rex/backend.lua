@@ -123,7 +123,8 @@ function M.sessions()
                 if tool:is_proc(proc) then
                     ret[#ret + 1] = {
                         id = "rex " .. pane.block_id,
-                        cwd = proc.cwd or pane.cwd,
+                        -- Rex already knows the cwd, and asking `proc` for it runs lsof
+                        cwd = pane.cwd or proc.cwd,
                         tool = tool,
                         rex_block_id = pane.block_id,
                         mux_session = pane.session_id,

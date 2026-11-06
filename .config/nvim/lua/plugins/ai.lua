@@ -16,17 +16,26 @@ local function send_to_running(msg)
         if #State.get({attached = true}) > 0 then
             return Cli.send({text = text})
         end
-        if #State.get({started = true}) == 0 then
+        -- Finding running agents is slow, so look once and attach the pick
+        -- directly. sidekick's own picker and send() would each look again.
+        local running = State.get({started = true})
+        if #running == 0 then
             return Cli.send({text = text, name = default_ai_tool})
         end
-        require("sidekick.cli.ui.select").select({
-            filter = {started = true},
-            cb = function(state)
-                if state then
-                    Cli.send({text = text, filter = {session = state.session.id}})
-                end
+        local Select = require("sidekick.cli.ui.select")
+        vim.ui.select(running, {
+            prompt = "Send to:",
+            kind = "sidekick_cli",
+            format_item = function(state)
+                return table.concat(vim.tbl_map(function(part) return part[1] end, Select.format(state)))
             end,
-        })
+            snacks = {format = Select.format},
+        }, function(state)
+            if state then
+                State.attach(state)
+                Cli.send({text = text})
+            end
+        end)
     end
 end
 
