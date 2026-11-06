@@ -1,17 +1,22 @@
 local sidekick_desc = Utils.plugin_keymap_desc("Sidekick")
 local default_ai_tool = vim.env.DEFAULT_AI_CLI or "opencode"
 
--- Sends `msg` to a running agent of any tool, picked from all of them. With no
--- agent running, starts the default tool instead.
+-- Sends `msg` to a running agent of any tool, picked from all of them. The pick
+-- sticks until the agent is detached with <leader>aD. With no agent running,
+-- starts the default tool instead.
 local function send_to_running(msg)
     return function()
         local Cli = require("sidekick.cli")
+        local State = require("sidekick.cli.state")
         -- Render before the picker opens, since it ends visual mode and the selection with it
         local rendered, text = Cli.render({msg = msg})
         if rendered == "" or not text then
             return
         end
-        if #require("sidekick.cli.state").get({started = true}) == 0 then
+        if #State.get({attached = true}) > 0 then
+            return Cli.send({text = text})
+        end
+        if #State.get({started = true}) == 0 then
             return Cli.send({text = text, name = default_ai_tool})
         end
         require("sidekick.cli.ui.select").select({
