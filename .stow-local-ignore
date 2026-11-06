@@ -27,3 +27,4 @@ other
 install
 AGENTS.md
 .tmux-sessionizer
+.luarc.json
