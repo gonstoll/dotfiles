@@ -68,7 +68,11 @@ Library/Application Support/iTerm2/*
 # AI
 .agents/.skill-lock.json
 .config/opencode/package-lock.json
-.config/opencode/plugins/herdr-agent-state.js
+.config/opencode/service.json
+.config/opencode/plugins/**
+!.config/opencode/plugins/block-npx-jest
+!.config/opencode/plugins/block-npx-vitest
+!.config/opencode/plugins/block-tsc
 .config/cursor/*
 !.config/cursor/hooks
 !.config/cursor/hooks.json
