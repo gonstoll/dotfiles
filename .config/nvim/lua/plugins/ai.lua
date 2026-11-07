@@ -102,7 +102,7 @@ return {
         "folke/sidekick.nvim",
         event = "VeryLazy",
         dependencies = {
-            {dir = vim.fn.stdpath("config") .. "/local-plugins/sidekick-rex.nvim", name = "sidekick-rex.nvim"},
+            "gonstoll/sidekick-rex.nvim",
         },
         ---@type sidekick.Config
         opts = {

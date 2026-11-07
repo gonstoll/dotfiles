@@ -1,7 +1,6 @@
 -- Like vim-tmux-navigator: ctrl+h/j/k/l move between Rex panes, except in
 -- panes running one of these programs, which get the key so they can move
 -- inside themselves. Neovim hands focus back with `rex focus` at its edge
--- (see nvim/local-plugins/vim-rex-navigator.nvim).
 local TERMINAL = "com.superlogical.terminal"
 local PASS_THROUGH = { nvim = true, vim = true, fzf = true }
 

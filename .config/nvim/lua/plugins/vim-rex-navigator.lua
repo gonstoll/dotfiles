@@ -7,8 +7,7 @@ end
 
 -- Under tmux, vim-tmux-navigator takes these keys instead
 return {
-    dir = vim.fn.stdpath("config") .. "/local-plugins/vim-rex-navigator.nvim",
-    name = "vim-rex-navigator.nvim",
+    "gonstoll/vim-rex-navigator.nvim",
     cond = vim.env.TMUX == nil,
     keys = {
         {mode = {"n", "t"}, "<c-h>", navigate("left")},
