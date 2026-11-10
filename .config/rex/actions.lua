@@ -101,6 +101,19 @@ rex.action({
     end,
 })
 
+-- Runs a client action that switches sessions, such as session.next, after
+-- recording the session it leaves. Key handlers can't queue client actions,
+-- so this has to be an action rather than a function bound to the key
+rex.action({
+    name  = "leave_session",
+    title = "Leave Session",
+    args  = { action = "string" },
+    run   = function(ctx, args)
+        history.touch(ctx.session_id)
+        rex.client.queue(args.action)
+    end,
+})
+
 rex.action({
     name  = "last_session",
     title = "Go to Last Session",

@@ -48,14 +48,4 @@ function M.previous(current)
     end
 end
 
--- Returns a function to bind to a key that runs a client action, such as
--- session.next, after recording the session it leaves
-function M.leave_with(action)
-    return function(ctx)
-        M.touch(ctx.session_id)
-        rex.client.queue(action)
-        return true
-    end
-end
-
 return M
