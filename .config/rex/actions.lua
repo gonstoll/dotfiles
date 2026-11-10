@@ -1,3 +1,5 @@
+local history = require("./session_history")
+
 local SHELL = "com.superlogical.terminal.shell"
 local HOME = os.getenv("HOME")
 local SESSIONIZER = HOME .. "/.config/bin/rex-sessionizer"
@@ -92,6 +94,22 @@ rex.action({
             session_id = created.session_id
         end
 
+        -- From the sessionizer there's no ctx.session_id; it records the session it leaves itself
+        history.touch(ctx.session_id)
+        history.touch(session_id)
+        rex.client.queue("session.select", { session_id = session_id })
+    end,
+})
+
+rex.action({
+    name  = "last_session",
+    title = "Go to Last Session",
+    run   = function(ctx)
+        local session_id = history.previous(ctx.session_id)
+        if session_id == nil then return end
+
+        history.touch(ctx.session_id)
+        history.touch(session_id)
         rex.client.queue("session.select", { session_id = session_id })
     end,
 })
@@ -100,6 +118,8 @@ rex.action({
     name  = "sessionizer",
     title = "Sessionizer",
     run   = function(ctx)
+        history.touch(ctx.session_id)
+
         -- open_project switches sessions through the client, but the sessionizer
         -- calls it from the popup's shell, where no client is targeted
         local command = { SESSIONIZER }

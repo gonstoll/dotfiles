@@ -1,5 +1,6 @@
 require("./actions")
 local navigator = require("./navigator")
+local history = require("./session_history")
 
 -- Panes
 rex.bind("ctrl+h", navigator.navigate("left"))
@@ -12,8 +13,9 @@ rex.bind("ctrl+j", navigator.navigate("down"))
 -- rex.bind("ctrl+alt+j", "pane.focus.down")
 
 -- Sessions
-rex.bind("ctrl+shift+l", "session.next")
-rex.bind("ctrl+shift+h", "session.previous")
+rex.bind("ctrl+shift+l", history.leave_with("session.next"))
+rex.bind("ctrl+shift+h", history.leave_with("session.previous"))
+rex.bind("ctrl+shift+p", "last_session")
 rex.bind("ctrl+shift+c", "session.close")
 
 -- Custom actions
