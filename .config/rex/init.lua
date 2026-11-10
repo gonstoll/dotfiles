@@ -20,7 +20,7 @@ rex.bind("ctrl+shift+c", "session.close")
 
 -- Custom actions
 rex.bind("cmd+s", "sessionizer")
-rex.bind("ctrl+shift+b", "open_project", { dir = "~/.dotfiles" })
-rex.bind("ctrl+shift+n", "open_project", { dir = "~/notes/obsidian/gonzalo_notes" })
+rex.bind("cmd+shift+b", "open_project", { dir = "~/.dotfiles" })
+rex.bind("cmd+shift+n", "open_project", { dir = "~/notes/obsidian/gonzalo_notes" })
 
 rex.bind("ctrl+shift+o", "open_window", { label = "obsidian", command = { "obsidian" } })
