@@ -148,3 +148,14 @@ if (( $+commands[rex] )); then
     }
     compdef _rex_with_sessions rex
 fi
+
+# `kill-wt <tab>` lists the current repo's worktrees, with their branch as the description
+_kill_wt() {
+    local -a worktrees
+    local line
+    for line in ${(f)"$(kill-wt --list 2>/dev/null)"}; do
+        worktrees+=("${${line%%$'\t'*}//:/\\:}:${line#*$'\t'}")
+    done
+    _describe -t worktrees worktree worktrees
+}
+compdef _kill_wt kill-wt

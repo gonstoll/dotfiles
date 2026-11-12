@@ -1,0 +1,376 @@
+#!/usr/bin/env bash
+
+# Rex can start this without a login shell, so Homebrew's tools aren't on PATH yet.
+export PATH="/opt/homebrew/bin:$PATH"
+
+CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+DIRECTORIES=($(eval echo $(xargs < "$CONFIG_HOME/sessionizer-directories")))
+
+source "$CONFIG_HOME/zsh/functions"
+
+# Progress for the slow steps, dimmed so the results stand out
+function print_step() {
+    printf "$(tput setaf 8) %s…$(tput sgr0)\n" "$@"
+}
+
+function usage() {
+    cat <<EOF
+Usage: kill-wt [-f|--force] [worktree...]
+
+Removes worktrees of the current repo together with their local branch, the
+processes running in them and their Rex or tmux session. A worktree can be
+given as its folder name, path or branch; without one, fzf lets you pick.
+
+  -f, --force   Don't ask before discarding uncommitted changes or deleting
+                an unmerged branch
+EOF
+}
+
+# Prints "<path>\t<branch>" for every worktree except the main one. The branch
+# is empty when the worktree has a detached HEAD.
+function list_worktrees() {
+    git worktree list --porcelain | awk '
+        function flush() {
+            if (path != "" && count++ > 0) print path "\t" branch
+            path = ""
+        }
+        /^worktree / { flush(); path = substr($0, 10); branch = "" }
+        /^branch / { branch = substr($0, 8); sub("^refs/heads/", "", branch) }
+        END { flush() }
+    '
+}
+
+function main_worktree() {
+    git worktree list --porcelain | awk '/^worktree / { print substr($0, 10); exit }'
+}
+
+# Accepts a worktree's folder name, path or branch
+function resolve() {
+    local arg=$1 abs path branch
+    abs=$(cd "$arg" 2>/dev/null && pwd -P)
+    while IFS=$'\t' read -r path branch; do
+        if [[ $arg == "$(basename "$path")" || $arg == "$branch" ]] ||
+            [[ -n $abs && $abs == "$(cd "$path" 2>/dev/null && pwd -P)" ]]; then
+            printf '%s\t%s\n' "$path" "$branch"
+            return 0
+        fi
+    done < <(list_worktrees)
+    return 1
+}
+
+function pick() {
+    list_worktrees |
+        awk -F '\t' '{ n = split($1, parts, "/"); print parts[n] "\t" $2 "\t" $0 }' |
+        fzf --multi --delimiter '\t' --with-nth 1,2 --prompt 'kill-wt> ' |
+        cut -f 3-
+}
+
+function confirm() {
+    local answer
+    # Without a terminal (e.g. run by an agent) there's no one to ask, so it's a no
+    { : < /dev/tty; } 2> /dev/null || return 1
+    read -r -p "$1 [y/N] " answer < /dev/tty
+    [[ $answer == [yY]* ]]
+}
+
+# Commits that would be lost with the branch because they're neither merged into
+# HEAD nor on any remote, so a pushed branch never needs confirming
+function unsaved_commits() {
+    git log --oneline "$1" --not HEAD --remotes
+}
+
+# Same naming as the sessionizers: dots become underscores, and folders that
+# share a basename with another project get their parent's name as a prefix
+function session_name() {
+    local dir=$1 base matches
+    base=$(basename "$dir" | tr . _)
+    matches=$(find "${DIRECTORIES[@]}" -mindepth 1 -maxdepth 1 -type d -name "$(basename "$dir")" 2>/dev/null | sort -u | wc -l)
+    if [[ $matches -gt 1 ]]; then
+        echo "$(basename "$(dirname "$dir")" | tr . _)_$base"
+    else
+        echo "$base"
+    fi
+}
+
+function descendants() {
+    local child
+    for child in $(pgrep -P "$1"); do
+        echo "$child"
+        descendants "$child"
+    done
+}
+
+function ancestors() {
+    local pid=$1
+    while [[ -n $pid && $pid -gt 1 ]]; do
+        echo "$pid"
+        pid=$(ps -o ppid= -p "$pid" | tr -d ' ')
+    done
+}
+
+# Deleting node_modules takes a while, so the folder is moved out of the way
+# (instant on the same disk) and deleted in the background. $TMPDIR keeps it out
+# of the sessionizer's list, but a sibling folder is the fallback when it's on
+# another disk, where moving would mean copying.
+function remove_worktree() {
+    local path=$1 parent trash_dir trash
+    parent=$(dirname "$path")
+    trash_dir=${TMPDIR%/}
+    trash_dir=${trash_dir:-/tmp}
+    [[ $(stat -f %d "$trash_dir") == "$(stat -f %d "$parent")" ]] || trash_dir=$parent
+    trash="$trash_dir/.kill-wt.$$.$(basename "$path")"
+
+    # A locked worktree survives prune
+    git worktree unlock "$path" 2> /dev/null
+    if mv "$path" "$trash" 2> /dev/null; then
+        git worktree prune
+        nohup rm -rf "$trash" > /dev/null 2>&1 &
+        print_success "Removed worktree $path (deleting its files in the background)"
+        return
+    fi
+
+    print_step "Deleting the folder"
+    if ! git worktree remove --force "$path" 2> /dev/null; then
+        rm -rf "$path"
+        git worktree prune
+    fi
+    print_success "Removed worktree $path"
+}
+
+# Processes whose working directory is inside the worktree, in any session or none
+function processes_in() {
+    lsof -a -d cwd -u "$(id -u)" -Fpn 2>/dev/null | awk -v dir="$1" '
+        /^p/ { pid = substr($0, 2) }
+        /^n/ { path = substr($0, 2); if (path == dir || index(path, dir "/") == 1) print pid }
+    '
+}
+
+# A pane's own shell dies with its session, so idle shells aren't worth killing
+function is_pane_shell() {
+    local parent
+    parent=$(ps -o ppid= -p "$1" | tr -d ' ')
+    [[ -n $parent && $(ps -o comm= -p "$parent") =~ (^|/)(login|tmux)$ ]]
+}
+
+function kill_processes() {
+    local pids=() alive=() pid
+    for pid in "$@"; do
+        [[ " ${excluded[*]} ${pids[*]} " == *" $pid "* ]] && continue
+        kill -0 "$pid" 2>/dev/null && pids+=("$pid")
+    done
+    [[ ${#pids[@]} -eq 0 ]] && return
+
+    print_warning "Stopping $(ps -o comm= -p "$(IFS=,; echo "${pids[*]}")" | sed 's|.*/||' | sort -u | paste -sd ' ' -)"
+    kill -TERM "${pids[@]}" 2>/dev/null
+    for _ in {1..30}; do
+        alive=()
+        for pid in "${pids[@]}"; do
+            kill -0 "$pid" 2>/dev/null && alive+=("$pid")
+        done
+        [[ ${#alive[@]} -eq 0 ]] && return
+        sleep 0.1
+    done
+    print_warning "Force-killing ${#alive[@]} that didn't exit"
+    kill -KILL "${alive[@]}" 2>/dev/null
+}
+
+function has_rex() {
+    command -v rex > /dev/null && rex --autostart=false ls -q > /dev/null 2>&1
+}
+
+# Prints "<id>\t<label>" for the worktree's Rex sessions: the one named like the
+# sessionizer would name it or, failing that, any with a pane inside the worktree
+function rex_sessions() {
+    local dir=$1 name=$2 match id block
+    match=$(rex ls --json | jq -r --arg name "$name" '.sessions[] | select(.label == $name) | "\(.session_id)\t\(.label)"')
+    if [[ -n $match ]]; then
+        echo "$match"
+        return
+    fi
+
+    # stdout is the result, so progress goes to stderr
+    print_step "No Rex session named $name, checking every session's panes" >&2
+    rex ls --json | jq -r '.sessions[] | "\(.session_id)\t\(.label)"' | while IFS=$'\t' read -r id name; do
+        for block in $(rex block ls -s "$id" --json | jq -r '.blocks[].block_id'); do
+            if rex block call -s "$id" -b "$block" process 2>/dev/null | jq -e --arg dir "$dir" \
+                '[.foreground.cwd, .ancestors[]?.cwd] | any(. != null and (. == $dir or startswith($dir + "/")))' > /dev/null; then
+                printf '%s\t%s\n' "$id" "$name"
+                break
+            fi
+        done
+    done
+}
+
+# Rex starts each pane's shell under /usr/bin/login
+function rex_shells() {
+    local block
+    for block in $(rex block ls -s "$1" --json | jq -r '.blocks[].block_id'); do
+        rex block call -s "$1" -b "$block" process 2>/dev/null | jq -r '.child | select(.) | "\(.name) \(.pid)"'
+    done | while read -r name pid; do
+        if [[ $name == login ]]; then
+            pgrep -P "$pid"
+        else
+            echo "$pid"
+        fi
+    done
+}
+
+function tmux_sessions() {
+    local dir=$1 name=$2 session path
+    if tmux has-session -t "=$name" 2>/dev/null; then
+        echo "$name"
+        return
+    fi
+
+    tmux list-panes -a -F "#{session_name}	#{pane_current_path}" 2>/dev/null | while IFS=$'\t' read -r session path; do
+        [[ $path == "$dir" || $path == "$dir"/* ]] && echo "$session"
+    done | sort -u
+}
+
+force=0
+args=()
+for arg in "$@"; do
+    case "$arg" in
+        -f | --force) force=1 ;;
+        -h | --help) usage; exit 0 ;;
+        # Used by the zsh completion
+        --list)
+            list_worktrees | awk -F '\t' '{ n = split($1, parts, "/"); print parts[n] "\t" $2 }'
+            exit 0
+            ;;
+        *) args+=("$arg") ;;
+    esac
+done
+
+if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    print_error "Not inside a git repository"
+    exit 1
+fi
+
+worktrees=()
+if [[ ${#args[@]} -eq 0 ]]; then
+    while read -r line; do
+        [[ -n $line ]] && worktrees+=("$line")
+    done < <(pick)
+    [[ ${#worktrees[@]} -eq 0 ]] && exit 0
+else
+    for arg in "${args[@]}"; do
+        if ! line=$(resolve "$arg"); then
+            print_error "No worktree matches $arg"
+            exit 1
+        fi
+        worktrees+=("$line")
+    done
+fi
+
+# Run git from the main worktree, since the current directory may be one of the
+# worktrees about to disappear
+cd "$(main_worktree)" || exit 1
+
+# Never kill this script or whatever started it (a shell, an agent...)
+excluded=($(ancestors $$))
+use_rex=0
+has_rex && use_rex=1
+own_rex=""
+own_tmux=""
+current_tmux=""
+[[ -n $TMUX ]] && current_tmux=$(tmux display-message -p '#S')
+
+for line in "${worktrees[@]}"; do
+    path=${line%%$'\t'*}
+    branch=${line#*$'\t'}
+    name=$(basename "$path")
+    print_header "$name"
+
+    # Ask everything up front, so declining leaves the worktree untouched
+    if [[ -d $path && -n $(git -C "$path" status --porcelain) ]]; then
+        git -C "$path" status --short
+        if (( ! force )) && ! confirm "Discard these changes?"; then
+            print_warning "Skipped $name"
+            continue
+        fi
+    fi
+
+    delete_branch=0
+    if [[ -n $branch ]]; then
+        delete_branch=1
+        commits=$(unsaved_commits "$branch")
+        if [[ -n $commits ]]; then
+            echo "$commits"
+            if (( ! force )) && ! confirm "These commits aren't merged or pushed. Delete $branch anyway?"; then
+                delete_branch=0
+            fi
+        fi
+    fi
+
+    print_step "Looking for its sessions and processes"
+    session=$(session_name "$path")
+    rex_ids=()
+    rex_labels=()
+    if (( use_rex )); then
+        while IFS=$'\t' read -r id label; do
+            [[ -z $id ]] && continue
+            rex_ids+=("$id")
+            rex_labels+=("$label")
+        done < <(rex_sessions "$path" "$session")
+    fi
+    tmux_names=()
+    while read -r tmux_name; do
+        [[ -n $tmux_name ]] && tmux_names+=("$tmux_name")
+    done < <(tmux_sessions "$path" "$session")
+
+    shells=()
+    for id in "${rex_ids[@]}"; do
+        shells+=($(rex_shells "$id"))
+    done
+    for tmux_name in "${tmux_names[@]}"; do
+        shells+=($(tmux list-panes -s -t "=$tmux_name" -F '#{pane_pid}'))
+    done
+    excluded+=("${shells[@]}")
+
+    victims=()
+    for shell in "${shells[@]}"; do
+        victims+=($(descendants "$shell"))
+    done
+    for pid in $(processes_in "$path"); do
+        is_pane_shell "$pid" || victims+=("$pid")
+    done
+    kill_processes "${victims[@]}"
+
+    remove_worktree "$path"
+
+    # unsaved_commits already confirmed nothing gets lost, which `-d` can't tell
+    # for branches that were pushed without an upstream
+    if (( delete_branch )); then
+        git branch -D "$branch" > /dev/null && print_success "Deleted branch $branch"
+    elif [[ -n $branch ]]; then
+        print_warning "Kept branch $branch"
+    fi
+
+    for i in "${!rex_ids[@]}"; do
+        if [[ ${rex_ids[$i]} == "$REX_SESSION" ]]; then
+            own_rex=${rex_ids[$i]}
+        elif rex kill "${rex_ids[$i]}" > /dev/null; then
+            print_success "Closed Rex session ${rex_labels[$i]}"
+        fi
+    done
+    for tmux_name in "${tmux_names[@]}"; do
+        if [[ $tmux_name == "$current_tmux" ]]; then
+            own_tmux=$tmux_name
+        elif tmux kill-session -t "=$tmux_name"; then
+            print_success "Closed tmux session $tmux_name"
+        fi
+    done
+done
+
+# Closing the session this runs in kills the script too, so it goes last and
+# detached, so the close itself can't be cut short
+if [[ -n $own_tmux ]]; then
+    tmux switch-client -l 2>/dev/null || tmux switch-client -n
+    print_success "Closing tmux session $own_tmux"
+    nohup tmux kill-session -t "=$own_tmux" > /dev/null 2>&1 &
+fi
+if [[ -n $own_rex ]]; then
+    print_success "Closing this Rex session"
+    nohup rex kill "$own_rex" > /dev/null 2>&1 &
+fi
