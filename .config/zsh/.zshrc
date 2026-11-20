@@ -149,6 +149,16 @@ if (( $+commands[rex] )); then
     compdef _rex_with_sessions rex
 fi
 
+# Keeps ~/.config/rex/session_watcher.lua running, which records the sessions
+# Rex shows for its last_session action. It exits with the Rex server, and the
+# next Rex shell starts it again. lockf lets only one run, so the shells Rex
+# opens at once on startup don't start several
+if [[ -n $REX_SESSION ]]; then
+    lockf -s -t 0 ~/.local/state/rex-session-watcher.lock \
+        rex --autostart=false do --all ~/.config/rex/session_watcher.lua \
+        </dev/null >/dev/null 2>&1 &!
+fi
+
 # `kill-wt <tab>` lists the current repo's worktrees, with their branch as the description
 _kill_wt() {
     local -a worktrees

@@ -12,8 +12,8 @@ rex.bind("ctrl+j", navigator.navigate("down"))
 -- rex.bind("ctrl+alt+j", "pane.focus.down")
 
 -- Sessions
-rex.bind("ctrl+shift+l", "leave_session", { action = "session.next" })
-rex.bind("ctrl+shift+h", "leave_session", { action = "session.previous" })
+rex.bind("ctrl+shift+l", "session.next")
+rex.bind("ctrl+shift+h", "session.previous")
 rex.bind("ctrl+shift+p", "last_session")
 rex.bind("ctrl+shift+c", "session.close")
 

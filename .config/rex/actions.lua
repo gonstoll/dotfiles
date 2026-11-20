@@ -94,23 +94,7 @@ rex.action({
             session_id = created.session_id
         end
 
-        -- From the sessionizer there's no ctx.session_id; it records the session it leaves itself
-        history.touch(ctx.session_id)
-        history.touch(session_id)
         rex.client.queue("session.select", { session_id = session_id })
-    end,
-})
-
--- Runs a client action that switches sessions, such as session.next, after
--- recording the session it leaves. Key handlers can't queue client actions,
--- so this has to be an action rather than a function bound to the key
-rex.action({
-    name  = "leave_session",
-    title = "Leave Session",
-    args  = { action = "string" },
-    run   = function(ctx, args)
-        history.touch(ctx.session_id)
-        rex.client.queue(args.action)
     end,
 })
 
@@ -121,6 +105,8 @@ rex.action({
         local session_id = history.previous(ctx.session_id)
         if session_id == nil then return end
 
+        -- session_watcher records the switch too, but only once the app has
+        -- shown the session; recording it here lets a quick second press go back
         history.touch(ctx.session_id)
         history.touch(session_id)
         rex.client.queue("session.select", { session_id = session_id })
@@ -131,8 +117,6 @@ rex.action({
     name  = "sessionizer",
     title = "Sessionizer",
     run   = function(ctx)
-        history.touch(ctx.session_id)
-
         -- open_project switches sessions through the client, but the sessionizer
         -- calls it from the popup's shell, where no client is targeted
         local command = { SESSIONIZER }

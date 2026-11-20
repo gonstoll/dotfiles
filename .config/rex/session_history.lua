@@ -1,6 +1,7 @@
 -- Like tmux's `switch-client -l`: Rex doesn't tell the config which session a
--- client shows, so the actions that switch sessions record it here, most recent
--- first. Kept in a file so it survives config reloads and server restarts
+-- client shows, so session_watcher records each session the app shows here,
+-- most recent first. Kept in a file so last_session, which runs in the server,
+-- and session_watcher, which runs in its own process, share it
 local FILE = os.getenv("HOME") .. "/.local/state/rex-session-history"
 local MAX = 20
 
