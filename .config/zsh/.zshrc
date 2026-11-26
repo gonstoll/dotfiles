@@ -5,6 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export LANG=en_US.UTF-8
+export DEFAULT_AI_CLI="claude"
 
 # Configs
 source $ZDOTDIR/config/options.zsh
@@ -135,12 +136,13 @@ eval "$(ccmux completion zsh)"
 
 # Rex completes commands but not session names, so `rex kill <tab>` lists them here.
 # Loading _rex up front keeps its autoload stub from re-registering itself over the wrapper.
-if (( $+commands[rex] )); then
+if command -v rex &>/dev/null; then
     eval "$(rex completion zsh)"
     _rex_with_sessions() {
-        if [[ $words[2] == kill ]] && (( CURRENT > 2 )); then
+        if [[ ${words[2]} == kill ]] && (( CURRENT > 2 )); then
             local -a sessions
-            sessions=(${(f)"$(rex ls --json 2>/dev/null | jq -r '.sessions[].label')"})
+            local IFS=$'\n'
+            sessions=($(rex ls --json 2>/dev/null | jq -r '.sessions[].label'))
             compadd -a sessions
         else
             _rex
@@ -154,17 +156,19 @@ fi
 # next Rex shell starts it again. lockf lets only one run, so the shells Rex
 # opens at once on startup don't start several
 if [[ -n $REX_SESSION ]]; then
-    lockf -s -t 0 ~/.local/state/rex-session-watcher.lock \
+    (lockf -s -t 0 ~/.local/state/rex-session-watcher.lock \
         rex --autostart=false do --all ~/.config/rex/session_watcher.lua \
-        </dev/null >/dev/null 2>&1 &!
+        </dev/null >/dev/null 2>&1 &)
 fi
 
 # `kill-wt <tab>` lists the current repo's worktrees, with their branch as the description
 _kill_wt() {
     local -a worktrees
-    local line
-    for line in ${(f)"$(kill-wt --list 2>/dev/null)"}; do
-        worktrees+=("${${line%%$'\t'*}//:/\\:}:${line#*$'\t'}")
+    local line name
+    local IFS=$'\n'
+    for line in $(kill-wt --list 2>/dev/null); do
+        name=${line%%$'\t'*}
+        worktrees+=("${name//:/\\:}:${line#*$'\t'}")
     done
     _describe -t worktrees worktree worktrees
 }
