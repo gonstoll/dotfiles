@@ -31,6 +31,7 @@ return {
 
     {
         "folke/sidekick.nvim",
+        event = "VeryLazy",
         dependencies = {
             "gonstoll/sidekick-rex.nvim",
         },
